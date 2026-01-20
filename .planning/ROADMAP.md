@@ -83,7 +83,7 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 ## Phase 3 - Visualizer & Export
 
 **Goal:** Users can preview and export annotated emails with arrow annotations
-**Status:** Context captured — Ready for planning
+**Status:** Ready for execution
 **Context:** .planning/phases/03-visualizer-export/03-CONTEXT.md
 
 **Dependencies:** Phase 2 (need annotations before visualizing)
@@ -103,9 +103,14 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 4. User can export the annotated email as high-resolution PNG (2x scale, flexible height)
 5. Exported PNG includes all highlights, arrows, technique badges, and explanations burned into the image
 
-**Plans:** 0 plans
+**Plans:** 5 plans in 3 waves
+
 **Plan list:**
-- [ ] TBD — To be created by /gsd-plan-phase
+- [ ] 03-01-PLAN.md — Install html2canvas library for DOM-to-image export
+- [ ] 03-02-PLAN.md — Create slide layout components (SlideWrapper, EmailColumn, AnnotationColumn)
+- [ ] 03-03-PLAN.md — Create annotation cards with collision detection
+- [ ] 03-04-PLAN.md — Create SVG arrow overlay system with elbow connectors
+- [ ] 03-05-PLAN.md — Integrate html2canvas for high-resolution PNG export
 
 ---
 
