@@ -27,7 +27,7 @@ export function ArrowOverlay({ paths }: ArrowOverlayProps) {
       {paths.map((path) => (
         <path
           key={path.lureId}
-          d={`M ${path.start.x} ${path.start.y} L ${path.mid1.x} ${path.mid1.y} L ${path.mid2.x} ${path.mid2.y} L ${path.end.x} ${path.end.y}`}
+          d={`M ${path.start.x} ${path.start.y} L ${path.midHorizontal.x} ${path.midHorizontal.y} L ${path.midVertical.x} ${path.midVertical.y} L ${path.end.x} ${path.end.y}`}
           stroke="#FF4500"
           strokeWidth="2"
           fill="none"

@@ -3,10 +3,10 @@ import type { Annotation } from '../types/annotations'
 
 export interface ArrowPath {
   lureId: string
-  start: { x: number; y: number }    // Right edge of lure span
-  mid1: { x: number; y: number }     // Bus line at lure Y
-  mid2: { x: number; y: number }     // Bus line at card Y
-  end: { x: number; y: number }      // Left edge of annotation card
+  start: { x: number; y: number }    // Right edge of lure span + 5px
+  midHorizontal: { x: number; y: number }     // Bus line at start Y
+  midVertical: { x: number; y: number }       // Bus line vertical travel
+  end: { x: number; y: number }      // Left edge of card - 5px
 }
 
 interface UseArrowCalculationsProps {
@@ -30,7 +30,10 @@ export function useArrowCalculations({ containerRef, annotations }: UseArrowCalc
 
     const containerRect = containerRef.current.getBoundingClientRect()
     const paths: ArrowPath[] = []
-    const busX = 1000 // Per Phase 3 Context: center of gutter at x=1000px
+
+    // Bus Line: Fixed X-coordinate at the 60% split point (960px) + 20px gutter
+    // All vertical movement happens ONLY on this line
+    const busLineX = 960 + 20 // 980px from container left edge
 
     Object.values(annotations).forEach((annotation) => {
       // Find lure span element
@@ -50,21 +53,27 @@ export function useArrowCalculations({ containerRef, annotations }: UseArrowCalc
       const cardRect = cardElement.getBoundingClientRect()
 
       // Convert to container-relative coordinates
+      // Start at RIGHT edge of lure highlight + 5px buffer
       const start = {
-        x: lureRect.right - containerRect.left,
+        x: lureRect.right - containerRect.left + 5,
         y: lureRect.top + lureRect.height / 2 - containerRect.top,
       }
 
+      // End at LEFT edge of card - 5px buffer
       const end = {
-        x: cardRect.left - containerRect.left,
+        x: cardRect.left - containerRect.left - 5,
         y: cardRect.top + cardRect.height / 2 - containerRect.top,
       }
 
+      // 3-segment Bus Line path:
+      // 1. Right from lure to bus line
+      // 2. Vertical movement on bus line ONLY
+      // 3. Left from bus line to card
       paths.push({
         lureId: annotation.lureId,
         start,
-        mid1: { x: busX, y: start.y },
-        mid2: { x: busX, y: end.y },
+        midHorizontal: { x: busLineX, y: start.y },  // Horizontal to bus line
+        midVertical: { x: busLineX, y: end.y },       // Vertical on bus line
         end,
       })
     })
