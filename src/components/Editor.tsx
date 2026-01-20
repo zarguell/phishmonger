@@ -68,7 +68,7 @@ export function Editor({ content = '', onUpdate }: EditorProps) {
         </button>
         <button
           onClick={() => editor.chain().focus().toggleLink({ href: prompt('Enter URL:') || '' }).run()}
-          disabled={!editor.can().chain().focus().toggleLink().run()}
+          disabled={!editor.can().chain().focus().toggleLink({ href: '' }).run()}
           className={`toolbar-btn ${editor.isActive('link') ? 'is-active' : ''}`}
         >
           Link
@@ -76,7 +76,6 @@ export function Editor({ content = '', onUpdate }: EditorProps) {
         <div className="toolbar-divider" />
         <button
           onClick={() => {
-            const { from, to } = editor.state.selection
             const lureId = crypto.randomUUID()
             editor
               .chain()

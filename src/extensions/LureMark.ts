@@ -29,8 +29,8 @@ export const LureMark = Node.create({
   renderHTML({ HTMLAttributes }) {
     return [
       'span',
-      mergeAttributes(HTMLAttributes, {
-        'data-lure-id': HTMLAttributes.lureId,
+      mergeAttributes(HTMLAttributes || {}, {
+        'data-lure-id': HTMLAttributes?.lureId,
         class: 'lure-mark',
       }),
       0,

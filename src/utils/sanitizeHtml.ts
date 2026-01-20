@@ -33,14 +33,5 @@ export function sanitizeHtml(html: string): string {
     // Strip dangerous elements and events
     FORBID_TAGS: ['script', 'iframe', 'object', 'embed', 'form', 'input', 'button'],
     FORBID_ATTR: ['onclick', 'onload', 'onerror', 'onmouseover', 'onmouseout', 'onfocus', 'onblur'],
-
-    // Keep safe CSS styles for layout preservation
-    ALLOWED_STYLES: [
-      'text-align', 'color', 'background-color',
-      'font-family', 'font-size', 'font-weight', 'font-style',
-      'text-decoration', 'text-transform',
-      'padding', 'margin', 'border', 'width', 'height',
-      'display', 'float', 'position', 'clear',
-    ],
   })
 }
