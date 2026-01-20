@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { HTMLInput } from './components/HTMLInput'
-import { ModeToggle, InputMode } from './components/ModeToggle'
-import { Editor } from './components/Editor'
+import type { InputMode } from './components/ModeToggle'
 import { Preview } from './components/Preview'
 import { LureList } from './components/LureList'
 import './index.css'
