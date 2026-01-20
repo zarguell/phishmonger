@@ -18,12 +18,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Annotations
 
-- [ ] **ANN-01**: Application displays sidebar panel listing all marked lures
-- [ ] **ANN-02**: Each lure in sidebar shows corresponding text preview
-- [ ] **ANN-03**: User can select technique from pre-loaded boilerplate library
-- [ ] **ANN-04**: User can enter custom MITRE ATT&CK ID for each lure
-- [ ] **ANN-05**: User can write explanation text for each lure
-- [ ] **ANN-06**: Application loads static JSON of common phishing techniques
+- [x] **ANN-01**: Application displays sidebar panel listing all marked lures
+- [x] **ANN-02**: Each lure in sidebar shows corresponding text preview
+- [x] **ANN-03**: User can select technique from pre-loaded boilerplate library
+- [x] **ANN-04**: User can enter custom MITRE ATT&CK ID for each lure
+- [x] **ANN-05**: User can write explanation text for each lure
+- [x] **ANN-06**: Application loads static JSON of common phishing techniques
 
 ### Visualizer
 
@@ -96,12 +96,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | EDIT-04 | Phase 1 | Complete |
 | EDIT-05 | Phase 1 | Complete |
 | EDIT-06 | Phase 1 | Complete |
-| ANN-01 | Phase 2 | Pending |
-| ANN-02 | Phase 2 | Pending |
-| ANN-03 | Phase 2 | Pending |
-| ANN-04 | Phase 2 | Pending |
-| ANN-05 | Phase 2 | Pending |
-| ANN-06 | Phase 2 | Pending |
+| ANN-01 | Phase 2 | Complete |
+| ANN-02 | Phase 2 | Complete |
+| ANN-03 | Phase 2 | Complete |
+| ANN-04 | Phase 2 | Complete |
+| ANN-05 | Phase 2 | Complete |
+| ANN-06 | Phase 2 | Complete |
 | VIS-01 | Phase 3 | Pending |
 | VIS-02 | Phase 3 | Pending |
 | VIS-03 | Phase 3 | Pending |
