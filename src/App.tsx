@@ -1,15 +1,21 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { HTMLInput } from './components/HTMLInput'
 import { Editor } from './components/Editor'
 import type { InputMode } from './components/ModeToggle'
 import { Preview } from './components/Preview'
 import { LureList } from './components/LureList'
+import { SlideWrapper } from './components/preview/SlideWrapper'
+import { EmailColumn } from './components/preview/EmailColumn'
+import { AnnotationColumn } from './components/preview/AnnotationColumn'
+import { ExportButton } from './components/export/ExportButton'
 import type { Annotation } from './types/annotations'
 import { loadAnnotations, saveAnnotations } from './utils/storage'
 import './index.css'
 
 const STORAGE_KEY = 'phishmonger-html-source'
 const MODE_KEY = 'phishmonger-input-mode'
+
+type ViewMode = 'edit' | 'preview'
 
 function App() {
   const [inputMode, setInputMode] = useState<InputMode>(() => {
@@ -20,10 +26,11 @@ function App() {
     const saved = localStorage.getItem(STORAGE_KEY)
     return saved || '<p>Start typing your phishing email here...</p>'
   })
-
   const [annotations, setAnnotations] = useState<Record<string, Annotation>>(() => {
     return loadAnnotations()
   })
+  const [viewMode, setViewMode] = useState<ViewMode>('edit')
+  const slideWrapperRef = useRef<HTMLDivElement>(null)
 
   // Save to LocalStorage whenever htmlSource changes
   useEffect(() => {
@@ -58,7 +65,6 @@ function App() {
 
   const handleRemoveLure = (lureId: string) => {
     // Remove all spans with matching data-lure-id from HTML source
-    // Keep the text content, unwrap the spans
     const parser = new DOMParser()
     const doc = parser.parseFromString(htmlSource, 'text/html')
     const lureElements = doc.querySelectorAll(`[data-lure-id="${lureId}"]`)
@@ -66,7 +72,6 @@ function App() {
     lureElements.forEach((el) => {
       const parent = el.parentNode
       if (parent) {
-        // Replace the span with its text content (unwrap)
         while (el.firstChild) {
           parent.insertBefore(el.firstChild, el)
         }
@@ -83,11 +88,53 @@ function App() {
     })
   }
 
+  if (viewMode === 'preview') {
+    return (
+      <div className="app app-preview-mode">
+        <header className="app-header">
+          <h1>Phish Monger - Preview Mode</h1>
+          <div className="header-actions">
+            <button
+              onClick={() => setViewMode('edit')}
+              className="back-to-edit-button"
+              type="button"
+            >
+              Back to Edit
+            </button>
+            <ExportButton
+              slideWrapperRef={slideWrapperRef}
+              projectTitle="phish-analysis"
+            />
+          </div>
+        </header>
+        <main className="app-main app-main-preview">
+          <SlideWrapper
+            ref={slideWrapperRef}
+            annotations={annotations}
+          >
+            <EmailColumn htmlSource={htmlSource} />
+            <AnnotationColumn annotations={annotations} />
+          </SlideWrapper>
+        </main>
+      </div>
+    )
+  }
+
   return (
     <div className="app">
       <header className="app-header">
         <h1>Phish Monger</h1>
         <p>Phishing Email Annotation Tool</p>
+        <div className="header-actions">
+          <button
+            onClick={() => setViewMode('preview')}
+            className="preview-mode-button"
+            type="button"
+            disabled={Object.keys(annotations).length === 0}
+          >
+            Preview Mode
+          </button>
+        </div>
       </header>
       <main className="app-main">
         <div className="input-column">
