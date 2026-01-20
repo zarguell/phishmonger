@@ -396,3 +396,52 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* Slide Layout */
+.slide-wrapper {
+  width: 1600px;
+  min-height: 900px;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  position: relative;
+}
+
+.email-column {
+  width: 960px;
+  flex-shrink: 0;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.email-content {
+  /* Inherits styling from preview-pane */
+}
+
+.annotation-column {
+  width: 640px;
+  flex-shrink: 0;
+  padding: 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ghost-card {
+  width: 380px;
+  padding: 60px 40px;
+  border: 2px dashed #dee2e6;
+  border-radius: 8px;
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+}
+
+.annotation-card-placeholder {
+  border: 1px solid #FF4500;
+  background: #FFF5F5;
+  padding: 16px;
+  border-radius: 8px;
+}
