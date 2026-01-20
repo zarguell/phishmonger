@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { AnnotationPanel } from './AnnotationPanel'
+import type { Annotation } from '../types/annotations'
 
 interface Lure {
   id: string
@@ -8,10 +10,13 @@ interface Lure {
 interface LureListProps {
   htmlSource: string
   onRemoveLure: (lureId: string) => void
+  annotations: Record<string, Annotation>
+  onUpdateAnnotation: (lureId: string, updates: Partial<Annotation>) => void
 }
 
-export function LureList({ htmlSource, onRemoveLure }: LureListProps) {
+export function LureList({ htmlSource, onRemoveLure, annotations, onUpdateAnnotation }: LureListProps) {
   const [lures, setLures] = useState<Lure[]>([])
+  const [expandedLureId, setExpandedLureId] = useState<string | null>(null)
 
   useEffect(() => {
     // Parse HTML source to extract all data-lure-id attributes
@@ -73,6 +78,15 @@ export function LureList({ htmlSource, onRemoveLure }: LureListProps) {
                   <span className="lure-text">"{lure.text}"</span>
                 </button>
                 <button
+                  onClick={() => setExpandedLureId(expandedLureId === lure.id ? null : lure.id)}
+                  className="annotation-toggle"
+                  type="button"
+                  aria-label={expandedLureId === lure.id ? "Collapse annotation" : "Expand annotation"}
+                  title={expandedLureId === lure.id ? "Collapse annotation" : "Expand annotation"}
+                >
+                  {expandedLureId === lure.id ? '▼' : '▶'}
+                </button>
+                <button
                   onClick={(e) => removeLure(lure.id, e)}
                   className="lure-remove-btn"
                   type="button"
@@ -82,6 +96,14 @@ export function LureList({ htmlSource, onRemoveLure }: LureListProps) {
                   ×
                 </button>
               </div>
+              {expandedLureId === lure.id && (
+                <AnnotationPanel
+                  lureId={lure.id}
+                  lureText={lure.text}
+                  annotation={annotations[lure.id]}
+                  onUpdate={(updates) => onUpdateAnnotation(lure.id, updates)}
+                />
+              )}
             </li>
           ))}
         </ul>
