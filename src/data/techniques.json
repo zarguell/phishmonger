@@ -1,0 +1,86 @@
+[
+  {
+    "id": "T1566.001",
+    "name": "Spearphishing Attachment",
+    "tactic": "Initial Access",
+    "description": "Adversaries send spearphishing emails with malicious attachments to gain access.",
+    "url": "https://attack.mitre.org/techniques/T1566/001/"
+  },
+  {
+    "id": "T1566.002",
+    "name": "Spearphishing Link",
+    "tactic": "Initial Access",
+    "description": "Adversaries send spearphishing emails with malicious links to deliver payloads.",
+    "url": "https://attack.mitre.org/techniques/T1566/002/"
+  },
+  {
+    "id": "T1566.003",
+    "name": "Spearphishing via Service",
+    "tactic": "Initial Access",
+    "description": "Adversaries send spearphishing emails via third-party services like SharePoint, Teams, or Google Drive.",
+    "url": "https://attack.mitre.org/techniques/T1566/003/"
+  },
+  {
+    "id": "T1566.004",
+    "name": "Spearphishing Voice",
+    "tactic": "Initial Access",
+    "description": "Adversaries use phone calls (vishing) from attackers claiming to be technical support or executives.",
+    "url": "https://attack.mitre.org/techniques/T1566/004/"
+  },
+  {
+    "id": "T1598",
+    "name": "Phishing for Information",
+    "tactic": "Resource Development",
+    "description": "Adversaries send spearphishing emails to gather information (BEC) rather than deliver malware.",
+    "url": "https://attack.mitre.org/techniques/T1598/"
+  },
+  {
+    "id": "T1036.005",
+    "name": "Masquerading: Match Legitimate Name or Location",
+    "tactic": "Defense Evasion",
+    "description": "Adversaries spoof display names or use lookalike domains to appear as legitimate senders.",
+    "url": "https://attack.mitre.org/techniques/T1036/005/"
+  },
+  {
+    "id": "T1078.004",
+    "name": "Valid Accounts: Cloud Accounts",
+    "tactic": "Defense Evasion",
+    "description": "Adversaries send phishing emails from legitimate compromised cloud accounts (onmicrosoft.com, gmail.com).",
+    "url": "https://attack.mitre.org/techniques/T1078/004/"
+  },
+  {
+    "id": "T1586.002",
+    "name": "Compromised Accounts: Email Accounts",
+    "tactic": "Initial Access",
+    "description": "Adversaries send emails from hacked vendor or colleague accounts for supply chain attacks.",
+    "url": "https://attack.mitre.org/techniques/T1586/002/"
+  },
+  {
+    "id": "T1027",
+    "name": "Obfuscated Files or Information",
+    "tactic": "Defense Evasion",
+    "description": "Adversaries hide text, use zero-width spaces, or white-on-white text to evade analysis.",
+    "url": "https://attack.mitre.org/techniques/T1027/"
+  },
+  {
+    "id": "T1001.003",
+    "name": "Data Obfuscation: Protocol Impersonation",
+    "tactic": "Command and Control",
+    "description": "Adversaries create fake system notifications or quarantine alerts to induce user actions.",
+    "url": "https://attack.mitre.org/techniques/T1001/003/"
+  },
+  {
+    "id": "T1204.001",
+    "name": "User Execution: Malicious Link",
+    "tactic": "Execution",
+    "description": "The specific button or link the user is urged to click to execute the attack.",
+    "url": "https://attack.mitre.org/techniques/T1204/001/"
+  },
+  {
+    "id": "T1204.002",
+    "name": "User Execution: Malicious File",
+    "tactic": "Execution",
+    "description": "The specific file the user is urged to open to execute the attack.",
+    "url": "https://attack.mitre.org/techniques/T1204/002/"
+  }
+]
