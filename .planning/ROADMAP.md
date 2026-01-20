@@ -29,8 +29,7 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 **Plan list:**
 - [x] 01-01-PLAN.md — Initialize Vite + React + TypeScript and install Tiptap/DOMPurify
 - [x] 01-02-PLAN.md — Create Lure Mark Tiptap extension and DOMPurify paste handler
-- [ ] 01-03-PLAN.md — Create Editor component integrating extensions with toolbar
-- [ ] 01-04-PLAN.md — Verify editor functionality (typing, formatting, Lure Marks, safe paste)
+- [x] 01-03-PLAN.md — Create Editor component integrating extensions with toolbar
 
 **Success Criteria:**
 1. User can type and format text in a rich text editor with standard formatting options (bold, italic, links)
@@ -139,7 +138,7 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 
 | Phase | Status | Completion |
 |-------|--------|------------|
-| Phase 1 - Editor Foundation | Not Started | 0% |
+| Phase 1 - Editor Foundation | Complete | 100% |
 | Phase 2 - Technique Annotations | Not Started | 0% |
 | Phase 3 - Visualizer & Export | Not Started | 0% |
 | Phase 4 - NIST Phish Scale Scoring | Not Started | 0% |
