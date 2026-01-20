@@ -5,6 +5,7 @@ import type { InputMode } from './components/ModeToggle'
 import { Preview } from './components/Preview'
 import { LureList } from './components/LureList'
 import type { Annotation } from './types/annotations'
+import { loadAnnotations, saveAnnotations } from './utils/storage'
 import './index.css'
 
 const STORAGE_KEY = 'phishmonger-html-source'
@@ -21,8 +22,7 @@ function App() {
   })
 
   const [annotations, setAnnotations] = useState<Record<string, Annotation>>(() => {
-    const saved = localStorage.getItem('phishmonger-annotations')
-    return saved ? JSON.parse(saved) : {}
+    return loadAnnotations()
   })
 
   // Save to LocalStorage whenever htmlSource changes
@@ -34,6 +34,11 @@ function App() {
   useEffect(() => {
     localStorage.setItem(MODE_KEY, inputMode)
   }, [inputMode])
+
+  // Save annotations to LocalStorage
+  useEffect(() => {
+    saveAnnotations(annotations)
+  }, [annotations])
 
   const updateAnnotation = (lureId: string, updates: Partial<Annotation>) => {
     setAnnotations(prev => ({
@@ -70,7 +75,12 @@ function App() {
     })
 
     setHtmlSource(doc.body.innerHTML)
-    // Future: Clean up annotations state for removed lure
+
+    // Remove annotation
+    setAnnotations(prev => {
+      const { [lureId]: removed, ...rest } = prev
+      return rest
+    })
   }
 
   return (
@@ -122,7 +132,12 @@ function App() {
           />
         </div>
         <div className="lure-list-column">
-          <LureList htmlSource={htmlSource} onRemoveLure={handleRemoveLure} />
+          <LureList
+            htmlSource={htmlSource}
+            onRemoveLure={handleRemoveLure}
+            annotations={annotations}
+            onUpdateAnnotation={updateAnnotation}
+          />
         </div>
       </main>
     </div>
