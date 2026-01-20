@@ -18,14 +18,20 @@ export function LureList({ htmlSource }: LureListProps) {
     const doc = parser.parseFromString(htmlSource, 'text/html')
     const lureElements = doc.querySelectorAll('[data-lure-id]')
 
-    const extractedLures: Lure[] = []
+    // Group text by lure ID to combine spans with same UUID
+    const lureMap = new Map<string, string>()
     lureElements.forEach((el) => {
       const lureId = el.getAttribute('data-lure-id')
-      const text = el.textContent?.slice(0, 50) || ''
+      const text = el.textContent || ''
       if (lureId) {
-        extractedLures.push({ id: lureId, text })
+        const existingText = lureMap.get(lureId) || ''
+        lureMap.set(lureId, existingText + text)
       }
     })
+
+    // Convert map to array
+    const extractedLures: Lure[] = Array.from(lureMap.entries())
+      .map(([id, text]) => ({ id, text }))
 
     setLures(extractedLures)
   }, [htmlSource])
