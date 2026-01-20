@@ -24,9 +24,9 @@
 ## Current Position
 
 **Phase:** 3 of 5 (Visualizer & Export)
-**Plan:** 6 of 7 in current phase
-**Status:** In progress
-**Last activity:** 2026-01-20 - Completed 03-06-PLAN.md
+**Plan:** 7 of 7 in current phase
+**Status:** Phase complete
+**Last activity:** 2026-01-20 - Completed 03-07-PLAN.md
 
 **Progress:** ███████████████ 60% (3 of 5 phases complete)
 
@@ -181,14 +181,16 @@
 **Current Session:** 2026-01-20 (Phase 3 plan 05 execution complete)
 
 **What Was Done:**
-- Executed 03-05: Created export utility with html2canvas wrapper and ExportButton component
-- Added exportSlideAsPNG function with scale: 2 for retina sharpness (3200px wide)
-- Added generateExportFilename with timestamp format
-- Built ExportButton component with loading and error states
-- Resolved TypeScript type issue with html2canvas scale property
+- Executed 03-07: Integrated preview mode and export button into App.tsx
+- Updated SlideWrapper to accept forwarded ref for html2canvas export
+- Added preview mode toggle with disabled state when no annotations
+- Added preview mode layout showing SlideWrapper with EmailColumn and AnnotationColumn
+- Added export button in preview mode header with loading/error states
+- Added CSS for preview mode layout and button styling
+- **Phase 3 complete:** All 6 VIS requirements verified (VIS-01 through VIS-06)
 
 **What's Next:**
-- Phase 3 (Visualizer & Export): Continue with SVG overlay component for arrows
+- Phase 4 (NIST Phish Scale Scoring): Implement scoring calculation logic
 
 ---
 
