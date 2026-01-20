@@ -24,6 +24,14 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 - EDIT-05: Sanitized paste preserves layout tables and inline styles
 - EDIT-06: Sanitized paste strips scripts and on-click events
 
+**Plans:** 4 plans
+
+**Plan list:**
+- [ ] 01-01-PLAN.md — Initialize Vite + React + TypeScript and install Tiptap/DOMPurify
+- [ ] 01-02-PLAN.md — Create Lure Mark Tiptap extension and DOMPurify paste handler
+- [ ] 01-03-PLAN.md — Create Editor component integrating extensions with toolbar
+- [ ] 01-04-PLAN.md — Verify editor functionality (typing, formatting, Lure Marks, safe paste)
+
 **Success Criteria:**
 1. User can type and format text in a rich text editor with standard formatting options (bold, italic, links)
 2. User can select any text range and wrap it in a highlighted "Lure Mark" with a unique identifier
