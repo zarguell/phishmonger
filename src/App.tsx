@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { HTMLInput } from './components/HTMLInput'
+import { Editor } from './components/Editor'
 import type { InputMode } from './components/ModeToggle'
 import { Preview } from './components/Preview'
 import { LureList } from './components/LureList'
@@ -68,9 +69,10 @@ function App() {
               onChange={setHtmlSource}
             />
           ) : (
-            <div className="richtext-placeholder">
-              <p>Rich Text Editor (Phase 2)</p>
-            </div>
+            <Editor
+              content={htmlSource}
+              onUpdate={setHtmlSource}
+            />
           )}
         </div>
         <div className="preview-column">
