@@ -83,23 +83,29 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 ## Phase 3 - Visualizer & Export
 
 **Goal:** Users can preview and export annotated emails with arrow annotations
+**Status:** Context captured — Ready for planning
+**Context:** .planning/phases/03-visualizer-export/03-CONTEXT.md
 
 **Dependencies:** Phase 2 (need annotations before visualizing)
 
 **Requirements:**
 - VIS-01: Application creates transparent SVG overlay on email preview
 - VIS-02: Application calculates BoundingClientRect for each lure span
-- VIS-03: Application draws Bezier curve arrows from lures to explanations
+- VIS-03: Application draws elbow-connector arrows from lures to floating side-cards
 - VIS-04: User can preview full slide with annotations and arrows
-- VIS-05: User can export composition as high-res PNG using html2canvas
+- VIS-05: User can export composition as high-res PNG using html2canvas (2x scale)
 - VIS-06: Exported PNG includes burned-in annotations and arrows
 
 **Success Criteria:**
-1. User can toggle to Preview mode showing the email with annotations and arrows in a slide layout
-2. Arrows connect each highlighted lure to its explanation using smooth Bezier curves
+1. User can toggle to Preview mode showing the email with floating side-cards and arrows in a slide layout
+2. Elbow-connector arrows route through shared bus line (x=1000px) with collision detection
 3. Arrows track with text position when browser window resizes (re-calculated from DOM)
-4. User can export the annotated email as high-resolution PNG (1920x1080 minimum)
-5. Exported PNG includes all highlights, arrows, technique labels, and explanations burned into the image
+4. User can export the annotated email as high-resolution PNG (2x scale, flexible height)
+5. Exported PNG includes all highlights, arrows, technique badges, and explanations burned into the image
+
+**Plans:** 0 plans
+**Plan list:**
+- [ ] TBD — To be created by /gsd-plan-phase
 
 ---
 
@@ -156,8 +162,8 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 | Phase | Status | Completion |
 |-------|--------|------------|
 | Phase 1 - Editor Foundation | ✓ Complete | 100% |
-| Phase 2 - Technique Annotations | Planned | 0% |
-| Phase 3 - Visualizer & Export | Not Started | 0% |
+| Phase 2 - Technique Annotations | ✓ Complete | 100% |
+| Phase 3 - Visualizer & Export | Context captured | 0% |
 | Phase 4 - NIST Phish Scale Scoring | Not Started | 0% |
 | Phase 5 - Data & Persistence | Not Started | 0% |
 
