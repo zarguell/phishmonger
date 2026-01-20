@@ -1,0 +1,37 @@
+[
+  {
+    "id": "CIAL-01",
+    "name": "Authority",
+    "description": "The attacker impersonates an executive, IT Support, or law enforcement to force compliance."
+  },
+  {
+    "id": "CIAL-02",
+    "name": "Urgency / Scarcity",
+    "description": "Time pressure or limited availability creates fear of missing out ('Account Deletion in 24h', 'Last Chance')."
+  },
+  {
+    "id": "CIAL-03",
+    "name": "Social Proof / Consensus",
+    "description": "Appeals to the desire to conform ('Everyone else has signed this', 'Join your team')."
+  },
+  {
+    "id": "CIAL-04",
+    "name": "Liking / Similarity",
+    "description": "Establishes rapport through shared interests or positive messaging ('Happy Holidays from your friends at HR')."
+  },
+  {
+    "id": "CIAL-05",
+    "name": "Reciprocity",
+    "description": "Creates obligation through perceived favor ('We fixed your account, please confirm', 'Here is a refund')."
+  },
+  {
+    "id": "CIAL-06",
+    "name": "Consistency / Commitment",
+    "description": "References prior fake interactions to build trust ('As we discussed', referencing a fake prior thread)."
+  },
+  {
+    "id": "CIAL-07",
+    "name": "Fear / Curiosity",
+    "description": "Exploits emotional responses ('Legal Action Pending' or 'See who viewed your profile')."
+  }
+]
