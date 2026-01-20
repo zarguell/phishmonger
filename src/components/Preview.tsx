@@ -1,5 +1,4 @@
 import { useRef } from 'react'
-import DOMPurify from 'dompurify'
 import { sanitizeHtml } from '../utils/sanitizeHtml'
 
 interface PreviewProps {

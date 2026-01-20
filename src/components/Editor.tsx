@@ -1,7 +1,6 @@
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Link from '@tiptap/extension-link'
-import { LureMark } from '../extensions/LureMark'
 import { sanitizeHtml } from '../utils/sanitizeHtml'
 
 interface EditorProps {
@@ -20,7 +19,6 @@ export function Editor({ content = '', onUpdate }: EditorProps) {
           rel: 'noopener noreferrer',
         },
       }),
-      LureMark,
     ],
     content,
     editorProps: {
@@ -72,21 +70,6 @@ export function Editor({ content = '', onUpdate }: EditorProps) {
           className={`toolbar-btn ${editor.isActive('link') ? 'is-active' : ''}`}
         >
           Link
-        </button>
-        <div className="toolbar-divider" />
-        <button
-          onClick={() => {
-            const lureId = crypto.randomUUID()
-            editor
-              .chain()
-              .focus()
-              .setMark('lureMark', { lureId })
-              .run()
-          }}
-          disabled={editor.state.selection.empty}
-          className="toolbar-btn toolbar-btn-lure"
-        >
-          Mark Lure
         </button>
       </div>
       <EditorContent editor={editor} className="editor-content" />
