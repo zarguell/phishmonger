@@ -13,7 +13,11 @@ export function AnnotationCard({ annotation, style }: AnnotationCardProps) {
   const techniqueName = technique?.name || annotation.techniqueId
 
   return (
-    <div className="annotation-card" style={style}>
+    <div
+      className="annotation-card"
+      style={style}
+      data-card-id={annotation.lureId} // For arrow calculations
+    >
       <h3 className="annotation-card-title">
         {techniqueName}
       </h3>
