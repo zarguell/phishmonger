@@ -439,9 +439,38 @@ body {
   font-style: italic;
 }
 
-.annotation-card-placeholder {
-  border: 1px solid #FF4500;
-  background: #FFF5F5;
-  padding: 16px;
+/* Annotation Cards */
+.annotation-card {
+  background: #FFFFFF;
+  border: 1px solid #dee2e6;
   border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.annotation-card-title {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #212529;
+}
+
+.annotation-card-badge {
+  display: inline-block;
+  border: 1px solid #FF4500;
+  color: #FF4500;
+  background: #FFF5F5;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.annotation-card-explanation {
+  margin: 0;
+  font-size: 14px;
+  color: #495057;
+  line-height: 1.5;
+  word-wrap: break-word;
 }
