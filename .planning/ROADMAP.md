@@ -85,8 +85,7 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 **Goal:** Users can preview and export annotated emails with arrow annotations
 **Status:** COMPLETE ✓
 **Completed:** 2026-01-20
-**Context:** .planning/phases/03-visualizer-export/03-CONTEXT.md
-**Research:** .planning/phases/03-visualizer-export/03-RESEARCH.md
+**Verification:** .planning/phases/03-visualizer-export/03-visualizer-export-VERIFICATION.md
 
 **Dependencies:** Phase 2 (need annotations before visualizing)
 

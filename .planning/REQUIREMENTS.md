@@ -27,12 +27,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Visualizer
 
-- [ ] **VIS-01**: Application creates transparent SVG overlay on email preview
-- [ ] **VIS-02**: Application calculates BoundingClientRect for each lure span
-- [ ] **VIS-03**: Application draws Bezier curve arrows from lures to explanations
-- [ ] **VIS-04**: User can preview full slide with annotations and arrows
-- [ ] **VIS-05**: User can export composition as high-res PNG using html2canvas
-- [ ] **VIS-06**: Exported PNG includes burned-in annotations and arrows
+- [x] **VIS-01**: Application creates transparent SVG overlay on email preview
+- [x] **VIS-02**: Application calculates BoundingClientRect for each lure span
+- [x] **VIS-03**: Application draws elbow-connector arrows from lures to floating side-cards
+- [x] **VIS-04**: User can preview full slide with annotations and arrows
+- [x] **VIS-05**: User can export composition as high-res PNG using html2canvas (2x scale)
+- [x] **VIS-06**: Exported PNG includes burned-in annotations and arrows
 
 ### Scoring
 
@@ -51,6 +51,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **DATA-04**: Application loads project from LocalStorage on return visit
 - [ ] **DATA-05**: User can export project as JSON with full structure
 - [ ] **DATA-06**: User can import project from JSON file
+- [ ] **DATA-07**: User can import project from JSON file (pasted in a text box, without need for file)
 
 ## v2 Requirements
 
@@ -102,12 +103,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ANN-04 | Phase 2 | Complete |
 | ANN-05 | Phase 2 | Complete |
 | ANN-06 | Phase 2 | Complete |
-| VIS-01 | Phase 3 | Pending |
-| VIS-02 | Phase 3 | Pending |
-| VIS-03 | Phase 3 | Pending |
-| VIS-04 | Phase 3 | Pending |
-| VIS-05 | Phase 3 | Pending |
-| VIS-06 | Phase 3 | Pending |
+| VIS-01 | Phase 3 | Complete |
+| VIS-02 | Phase 3 | Complete |
+| VIS-03 | Phase 3 | Complete |
+| VIS-04 | Phase 3 | Complete |
+| VIS-05 | Phase 3 | Complete |
+| VIS-06 | Phase 3 | Complete |
 | SCOR-01 | Phase 4 | Pending |
 | SCOR-02 | Phase 4 | Pending |
 | SCOR-03 | Phase 4 | Pending |
