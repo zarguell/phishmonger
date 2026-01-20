@@ -424,6 +424,7 @@ body {
   flex-shrink: 0;
   padding: 40px;
   box-sizing: border-box;
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 24px;
