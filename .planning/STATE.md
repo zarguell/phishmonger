@@ -24,15 +24,15 @@
 ## Current Position
 
 **Phase:** 1 of 5 (Editor Foundation)
-**Plan:** 1 of 2 in current phase
+**Plan:** 2 of 2 in current phase
 **Status:** In progress
-**Last activity:** 2026-01-20 - Completed 01-01-PLAN.md
+**Last activity:** 2026-01-20 - Completed 01-02-PLAN.md
 
-**Progress:** ████░░░░░░ 10% (1 of 10 total plans)
+**Progress:** ██████░░░░ 20% (2 of 10 total plans)
 
-**Current Focus:** Creating Tiptap editor component and implementing Lure Mark extension.
+**Current Focus:** Phase 1 near complete. Ready to move to annotation system.
 
-**Next Step:** Execute 01-02-PLAN.md to build Tiptap editor with Lure Mark span wrapping
+**Next Step:** Execute 01-03-PLAN.md to build technique library and complete Editor Foundation phase
 
 ---
 
@@ -48,12 +48,14 @@
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Tiptap over other editors | Mark API makes span wrapping trivial; headless allows custom UI | Editor foundation (Phase 1) |
+ | Tiptap over other editors | Mark API makes span wrapping trivial; headless allows custom UI | Editor foundation (Phase 1) |
 | DOM-based annotation over coordinate-based | Arrows track with text layout changes; more robust | Visualizer (Phase 3) |
 | Client-side only with LocalStorage | Privacy (no data leaves browser), no infra complexity | Data & Persistence (Phase 5) |
 | NIST Phish Scale methodology | Industry-standard for phishing difficulty assessment | Scoring (Phase 4) |
 | Manual project setup vs create-vite | Non-empty directory blocked create-vite; manual files match template exactly | 01-01: Project initialized |
 | Latest Tiptap 2.27.2 over ^2.8.0 | Latest stable version with all bug fixes and features | 01-01: Tiptap installed |
+| Lure Mark as atom Node extension | Prevents cursor issues, simplest implementation for span wrapping | 01-02: Lure Mark extension |
+| UUID for lure IDs | Ensures unique identifiers across all Lure Marks for annotation linking | 01-02: UUID integration |
 
 ### Requirements Coverage
 
@@ -79,8 +81,9 @@
 
 - [x] Set up React + Vite project structure (01-01)
 - [x] Install Tiptap and dependencies (01-01)
-- [ ] Implement Lure Mark custom extension (01-02)
-- [ ] Build technique library JSON structure (01-02)
+- [x] Implement Lure Mark custom extension (01-02)
+- [x] Implement DOMPurify paste sanitization (01-02)
+- [ ] Build technique library JSON structure (01-03)
 - [ ] Create SVG overlay component for visualizer (03-01)
 - [ ] Implement NIST Phish Scale calculation logic (04-01)
 
@@ -102,11 +105,12 @@
 - Initialized project state tracking
 - Executed 01-01: Project initialization with Vite + React + TypeScript
 - Installed Tiptap editor and DOMPurify dependencies
+- Executed 01-02: Lure Mark Tiptap extension with UUID generation
+- Executed 01-02: DOMPurify sanitization preserving email layout
 
 **What's Next:**
-- Execute 01-02: Create Tiptap editor component with Lure Mark extension
-- Implement paste sanitization with DOMPurify
-- Build technique library JSON structure
+- Execute 01-03: Build technique library JSON structure
+- Complete Editor Foundation phase
 
 **Context to Preserve:**
 - Each phase builds on the previous (vertical slices, not horizontal layers)
