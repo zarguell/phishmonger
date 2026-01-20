@@ -24,11 +24,11 @@
 ## Current Position
 
 **Phase:** 1 of 5 (Editor Foundation)
-**Plan:** 6 of 6 in current phase
+**Plan:** 7 of 7 in current phase (gap closure)
 **Status:** Phase complete
-**Last activity:** 2026-01-20 - Completed 01-06-PLAN.md (Live Preview Pane and Lure Marking)
+**Last activity:** 2026-01-20 - Completed 01-07 (Cross-element lure marking fix)
 
-**Progress:** █████████░░ 50% (5 of 10 total plans)
+**Progress:** █████████░░ 50% (6 of 10 total plans)
 
 **Current Focus:** Phase 1 (Editor Foundation) complete. Ready to begin Phase 2 (Technique Annotations).
 
@@ -69,6 +69,7 @@
    | Selection-based Lure marking | User selects text in Preview pane (not editor) using DOM Range API; wraps selection in span with UUID | 01-06: Preview marking workflow |
    | Three-column layout (Input, Preview, Lure List) | Shows HTML input, live preview, and lure list side by side; Preview column centered as primary focus | 01-06: Layout architecture |
    | LureList with scroll-to functionality | Parses HTML source to extract data-lure-id attributes; displays lures with UUID preview; scrolls to lure with flash animation | 01-06: Lure list sidebar |
+   | Cross-element text marking | Use TreeWalker to find all text nodes within selection range; split partial nodes with splitText(); wrap each with data-lure-id span | 01-07: Lure marking across elements |
 
 ### Requirements Coverage
 
@@ -84,7 +85,8 @@
 
 ### Technical Notes
 
-- **Lure Mark Implementation:** Selection-based marking in Preview pane using DOM Range API; wraps text in `<span data-lure-id="UUID">` elements
+- **Lure Mark Implementation:** Selection-based marking in Preview pane using DOM Range API and TreeWalker; wraps text in `<span data-lure-id="UUID">` elements across element boundaries
+- **Cross-element Marking:** Uses TreeWalker to find all text nodes intersecting with selection; splitText() for partial nodes; cloned spans for multiple wraps
 - **Preview Rendering:** dangerouslySetInnerHTML with DOMPurify sanitization for secure HTML rendering
 - **Lure List Parsing:** DOMParser to extract data-lure-id attributes from HTML source string
 - **Annotation Positioning:** BoundingClientRect API for arrow calculations (Phase 3)
@@ -94,15 +96,16 @@
 
 ### Active Todos
 
-- [x] Set up React + Vite project structure (01-01)
-- [x] Install Tiptap and dependencies (01-01)
-- [x] Implement Lure Mark custom extension (01-02)
-- [x] Implement DOMPurify paste sanitization (01-02)
-- [x] Create Editor component with toolbar (01-03)
-- [x] Implement LocalStorage persistence (01-03)
-- [x] Create mode toggle with HTML input and Rich Text switching (01-05)
-- [x] Implement live preview pane with lure marking (01-06)
-- [ ] Build technique library JSON structure (02-01)
+ - [x] Set up React + Vite project structure (01-01)
+ - [x] Install Tiptap and dependencies (01-01)
+ - [x] Implement Lure Mark custom extension (01-02)
+ - [x] Implement DOMPurify paste sanitization (01-02)
+ - [x] Create Editor component with toolbar (01-03)
+ - [x] Implement LocalStorage persistence (01-03)
+ - [x] Create mode toggle with HTML input and Rich Text switching (01-05)
+ - [x] Implement live preview pane with lure marking (01-06)
+ - [x] Fix cross-element text marking for lures (01-07)
+ - [ ] Build technique library JSON structure (02-01)
 - [ ] Create annotation panel UI (02-02)
 - [ ] Link Lure Marks to technique annotations (02-03)
 - [ ] Create SVG overlay component for visualizer (03-01)
@@ -116,8 +119,8 @@
 
 ## Session Continuity
 
-**Last Session:** 2026-01-20 (phase 1 plan 06 execution)
-**Current Session:** 2026-01-20 (phase 1 complete)
+**Last Session:** 2026-01-20 (phase 1 complete)
+**Current Session:** 2026-01-20 (phase 1 gap closure fix)
 
 **What Was Done:**
 - Defined 27 v1 requirements across 5 categories
@@ -132,6 +135,7 @@
 - Executed 01-04: Architectural decision checkpoint (split Editor/Viewer)
 - Executed 01-05: Mode toggle with HTML input and Rich Text editor
 - Executed 01-06: Live Preview pane with selection-based Lure marking and LureList sidebar
+- Executed 01-07: Cross-element text marking fix using TreeWalker and splitText()
 
 **What's Next:**
 - Phase 2 (Technique Annotations): Build technique library JSON structure
