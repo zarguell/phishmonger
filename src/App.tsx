@@ -4,6 +4,7 @@ import { Editor } from './components/Editor'
 import type { InputMode } from './components/ModeToggle'
 import { Preview } from './components/Preview'
 import { LureList } from './components/LureList'
+import type { Annotation } from './types/annotations'
 import './index.css'
 
 const STORAGE_KEY = 'phishmonger-html-source'
@@ -19,6 +20,11 @@ function App() {
     return saved || '<p>Start typing your phishing email here...</p>'
   })
 
+  const [annotations, setAnnotations] = useState<Record<string, Annotation>>(() => {
+    const saved = localStorage.getItem('phishmonger-annotations')
+    return saved ? JSON.parse(saved) : {}
+  })
+
   // Save to LocalStorage whenever htmlSource changes
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, htmlSource)
@@ -28,6 +34,18 @@ function App() {
   useEffect(() => {
     localStorage.setItem(MODE_KEY, inputMode)
   }, [inputMode])
+
+  const updateAnnotation = (lureId: string, updates: Partial<Annotation>) => {
+    setAnnotations(prev => ({
+      ...prev,
+      [lureId]: {
+        ...prev[lureId],
+        ...updates,
+        lureId,
+        updatedAt: new Date().toISOString()
+      }
+    }))
+  }
 
   const handleMarkLure = (updatedHtml: string) => {
     setHtmlSource(updatedHtml)
@@ -52,6 +70,7 @@ function App() {
     })
 
     setHtmlSource(doc.body.innerHTML)
+    // Future: Clean up annotations state for removed lure
   }
 
   return (
