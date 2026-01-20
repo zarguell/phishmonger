@@ -24,15 +24,15 @@
 ## Current Position
 
 **Phase:** 2 of 5 (Technique Annotations)
-**Plan:** Not started
-**Status:** Phase 1 complete
-**Last activity:** 2026-01-20 - Completed Phase 1 with verification (6/6 requirements passed)
+**Plan:** 1 of 3 in current phase
+**Status:** In progress
+**Last activity:** 2026-01-20 - Completed 02-01-PLAN.md
 
-**Progress:** ██████████░ 20% (1 of 5 phases complete)
+**Progress:** ██████████░░ 20% (1.3 of 5 phases complete)
 
-**Current Focus:** Phase 1 (Editor Foundation) complete. Ready to begin Phase 2 (Technique Annotations).
+**Current Focus:** Phase 2 (Technique Annotations) - Static data foundation complete.
 
-**Next Step:** Begin Phase 2 planning with `/gsd-plan-phase 2`
+**Next Step:** Execute 02-02: Build annotation state management and AnnotationPanel component
 
 ---
 
@@ -72,6 +72,9 @@
 | Cross-element text marking | Use TreeWalker to find all text nodes within selection range; split partial nodes with splitText(); wrap each with data-lure-id span | 01-07: Lure marking across elements |
 | LureList groups by UUID | Multiple spans with same UUID show as single lure entry with combined text | 01-07: Lure list grouping |
 | Remove lure button | Users can delete lures from LureList; unwraps spans while preserving text content | 01-07: Lure removal UX |
+| Static JSON libraries for v1 | Pre-loaded technique and persuasion libraries; MITRE ATT&CK API deferred to v2 | 02-01: Data foundation |
+| 12 techniques from MITRE ATT&CK | Focus on observable email artifacts (T1566, T1598, T1036, T1078, T1586, T1027, T1001, T1204) | 02-01: Technique selection |
+| 7 persuasion principles from Cialdini | Authority, Urgency, Social Proof, Liking, Reciprocity, Consistency, Fear/Curiosity | 02-01: Psychological analysis |
 
 ### Requirements Coverage
 
@@ -107,7 +110,7 @@
 - [x] Create mode toggle with HTML input and Rich Text switching (01-05)
 - [x] Implement live preview pane with lure marking (01-06)
 - [x] Fix cross-element text marking for lures (01-07)
-- [ ] Build technique library JSON structure (02-01)
+- [x] Build technique library JSON structure (02-01)
 - [ ] Create annotation panel UI (02-02)
 - [ ] Link Lure Marks to technique annotations (02-03)
 - [ ] Create SVG overlay component for visualizer (03-01)
@@ -122,7 +125,7 @@
 ## Session Continuity
 
 **Last Session:** 2026-01-20 (Phase 1 complete)
-**Current Session:** 2026-01-20 (Phase 1 verification complete)
+**Current Session:** 2026-01-20 (02-01: Technique library data complete)
 
 **What Was Done:**
 - Defined 27 v1 requirements across 5 categories
@@ -140,11 +143,11 @@
 - Executed 01-07: Cross-element text marking fix using TreeWalker and splitText()
 - **Phase 1 complete:** All 6 requirements verified (6/6 passed)
 - **Verification report:** .planning/phases/01-editor-foundation/01-editor-foundation-VERIFICATION.md
+- **Phase 2 (02-01) complete:** Static technique and persuasion libraries with TypeScript types
 
 **What's Next:**
-- Phase 2 (Technique Annotations): Build technique library JSON structure
-- Phase 2 (Technique Annotations): Create annotation panel UI
-- Phase 2 (Technique Annotations): Link Lure Marks to technique annotations
+- Phase 2 (02-02): Build annotation state management and AnnotationPanel component
+- Phase 2 (02-03): Integrate annotations with LureList and add LocalStorage persistence
 
 **Context to Preserve:**
 - Each phase builds on the previous (vertical slices, not horizontal layers)
