@@ -1,34 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react'
+import { Editor } from './components/Editor'
+import './index.css'
+
+const STORAGE_KEY = 'phishmonger-editor-content'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [content, setContent] = useState(() => {
+    // Load from LocalStorage on mount
+    const saved = localStorage.getItem(STORAGE_KEY)
+    return saved || '<p>Start typing your phishing email here...</p>'
+  })
+
+  // Save to LocalStorage whenever content changes
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, content)
+  }, [content])
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Phish Monger</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="app">
+      <header className="app-header">
+        <h1>Phish Monger</h1>
+        <p>Phishing Email Annotation Tool</p>
+      </header>
+      <main className="app-main">
+        <Editor
+          content={content}
+          onUpdate={setContent}
+        />
+        <div className="preview">
+          <h2>HTML Preview</h2>
+          <pre>{content}</pre>
+        </div>
+      </main>
+    </div>
   )
 }
 
