@@ -1,6 +1,6 @@
 import React from 'react'
 import type { Annotation, Technique } from '../../types/annotations'
-import techniques from '../../data/techniques.json' assert { type: 'json' }
+import techniques from '../../data/techniques.json' with { type: 'json' }
 
 interface AnnotationCardProps {
   annotation: Annotation
