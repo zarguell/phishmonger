@@ -24,15 +24,15 @@
 ## Current Position
 
 **Phase:** 1 of 5 (Editor Foundation)
-**Plan:** 3 of 3 in current phase
+**Plan:** 6 of 6 in current phase
 **Status:** Phase complete
-**Last activity:** 2026-01-20 - Completed 01-03-PLAN.md
+**Last activity:** 2026-01-20 - Completed 01-06-PLAN.md (Live Preview Pane and Lure Marking)
 
-**Progress:** ████████░░░ 30% (3 of 10 total plans)
+**Progress:** █████████░░ 50% (5 of 10 total plans)
 
-**Current Focus:** Editor Foundation phase complete. Ready to move to Annotation System.
+**Current Focus:** Phase 1 (Editor Foundation) complete. Ready to begin Phase 2 (Technique Annotations).
 
-**Next Step:** Execute 02-01-PLAN.md to build technique library and annotation panel
+**Next Step:** Begin Phase 2 planning or execute 02-01: Build technique library JSON structure
 
 ---
 
@@ -59,6 +59,13 @@
  | crypto.randomUUID() for Mark Lure button | Native browser API, no additional dependency needed | 01-03: Editor component |
  | Two-column layout (editor + preview) | Shows rendered output and HTML source side-by-side for debugging | 01-03: App layout |
  | Yellow highlight for Lure Marks | Matches warning/alert visual language, high contrast | 01-03: Lure Mark styling |
+  | Split Editor/Viewer with Toggle | Phishing emails come as HTML; users paste HTML, see victim view, mark lures in preview (not editor) | 01-04: Architectural pivot |
+  | Preview-first architecture | Live Preview pane is central; users select text in preview to mark lures; HTML source shows <span data-lure-id> tags | 01-04: New architecture |
+  | Lure marks as HTML spans (not Tiptap extension) | Simpler: manipulate HTML strings directly with DOM Range API; no complex Tiptap extension needed | 01-04: Lure storage model |
+  | Mode toggle (HTML input ↔ Rich Text) | Supports pasting raw phishing emails OR typing formatted content; flexibility for different workflows | 01-04: Input modes |
+  | Radio button toggle for mode switching | Simple, familiar UI pattern; clear indication of current mode | 01-05: Mode toggle UI |
+  | Content state shared across modes | Single content state ensures no data loss when switching between HTML and Rich Text modes | 01-05: Content preservation |
+  | localStorage for mode preference | Remembers user's preferred input mode across sessions | 01-05: Mode persistence |
 
 ### Requirements Coverage
 
@@ -88,6 +95,8 @@
 - [x] Implement DOMPurify paste sanitization (01-02)
 - [x] Create Editor component with toolbar (01-03)
 - [x] Implement LocalStorage persistence (01-03)
+- [x] Create mode toggle with HTML input and Rich Text switching (01-05)
+- [ ] Implement live preview pane with lure marking (01-06)
 - [ ] Build technique library JSON structure (02-01)
 - [ ] Create annotation panel UI (02-02)
 - [ ] Link Lure Marks to technique annotations (02-03)
@@ -103,7 +112,7 @@
 ## Session Continuity
 
 **Last Session:** 2026-01-20 (phase 1 execution)
-**Current Session:** 2026-01-20 (phase 1 completion)
+**Current Session:** 2026-01-20 (phase 1 plan 05 execution)
 
 **What Was Done:**
 - Defined 27 v1 requirements across 5 categories
@@ -115,6 +124,8 @@
 - Executed 01-02: Lure Mark Tiptap extension with UUID generation
 - Executed 01-02: DOMPurify sanitization preserving email layout
 - Executed 01-03: Editor component with toolbar and LocalStorage persistence
+- Executed 01-04: Architectural decision checkpoint (split Editor/Viewer)
+- Executed 01-05: Mode toggle with HTML input and Rich Text editor
 
 **What's Next:**
 - Execute 02-01: Build technique library JSON structure
@@ -126,7 +137,12 @@
 - DOM-based positioning (not coordinate-based) for arrow annotations
 - Static JSON for technique library (v1) — MITRE ATT&CK API integration deferred to v2
 - Export format is high-res PNG with burned-in annotations (not editable layers)
-- Lure Mark UUIDs stored in HTML persist in LocalStorage across page reloads
+- **NEW ARCHITECTURE (01-04):** Split Editor/Viewer with toggle
+  - Lure marks created by selecting text in Preview pane (not editor)
+  - Lure storage as `<span data-lure-id="UUID">` in HTML source
+  - Mode toggle: HTML input mode (textarea) OR rich text mode (Tiptap)
+  - Live Preview pane always visible, shows rendered email with highlights
+  - Tiptap simplified (no LureMark extension needed)
 
 ---
 
