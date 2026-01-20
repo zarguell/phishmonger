@@ -90,12 +90,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| EDIT-01 | Phase 1 | Pending |
-| EDIT-02 | Phase 1 | Pending |
-| EDIT-03 | Phase 1 | Pending |
-| EDIT-04 | Phase 1 | Pending |
-| EDIT-05 | Phase 1 | Pending |
-| EDIT-06 | Phase 1 | Pending |
+| EDIT-01 | Phase 1 | Complete |
+| EDIT-02 | Phase 1 | Complete |
+| EDIT-03 | Phase 1 | Complete |
+| EDIT-04 | Phase 1 | Complete |
+| EDIT-05 | Phase 1 | Complete |
+| EDIT-06 | Phase 1 | Complete |
 | ANN-01 | Phase 2 | Pending |
 | ANN-02 | Phase 2 | Pending |
 | ANN-03 | Phase 2 | Pending |
