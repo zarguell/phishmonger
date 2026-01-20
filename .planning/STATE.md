@@ -23,16 +23,16 @@
 
 ## Current Position
 
-**Phase:** 4 of 5 (NIST Phish Scale Scoring)
-**Plan:** Not started
-**Status:** Phase 3 complete
-**Last activity:** 2026-01-20 - Phase 3 verified (2/2 must-haves passed)
+**Phase:** 3 of 5 (Visualizer & Export)
+**Plan:** 8 of 8
+**Status:** Phase 3 complete pending verification
+**Last activity:** 2026-01-20 - Completed 03-08-PLAN.md (layout collapse fix)
 
 **Progress:** ███████████████ 60% (3 of 5 phases complete)
 
-**Current Focus:** Phase 3 (Visualizer & Export) complete. Ready to begin Phase 4 (NIST Phish Scale Scoring).
+**Current Focus:** Phase 3 (Visualizer & Export) all plans executed. Layout collapse fixed (flexbox layout, deleted useCardLayout). Awaiting human verification checkpoint.
 
-**Next Step:** Begin Phase 4 planning with `/gsd-plan-phase 4`
+**Next Step:** Complete verification checkpoint, then begin Phase 4 (NIST Phish Scale Scoring).
 
 ---
 
@@ -52,6 +52,8 @@
 | DOM-based annotation over coordinate-based | Arrows track with text layout changes; more robust | Visualizer (Phase 3) |
 | Client-side only with LocalStorage | Privacy (no data leaves browser), no infra complexity | Data & Persistence (Phase 5) |
 | NIST Phish Scale methodology | Industry-standard for phishing difficulty assessment | Scoring (Phase 4) |
+| Flexbox over absolute positioning for cards | Simpler, more maintainable, responsive layout; no manual Y calculations | Visualizer (Phase 3) |
+| Deleted useCardLayout hook | No longer needed with flexbox gap handling; simplifies codebase | Visualizer (Phase 3) |
 | Manual project setup vs create-vite | Non-empty directory blocked create-vite; manual files match template exactly | 01-01: Project initialized |
 | Latest Tiptap 2.27.2 over ^2.8.0 | Latest stable version with all bug fixes and features | 01-01: Tiptap installed |
 | Lure Mark as atom Node extension | Prevents cursor issues, simplest implementation for span wrapping | 01-02: Lure Mark extension |
@@ -177,19 +179,28 @@
 
 ## Session Continuity
 
-**Last Session:** 2026-01-20 (Completed 03-05-PLAN.md)
-**Current Session:** 2026-01-20 (Phase 3 plan 05 execution complete)
+**Last Session:** 2026-01-20 (Completed 03-08-PLAN.md)
+**Current Session:** 2026-01-20 (Phase 3 plan 08 execution complete)
 
 **What Was Done:**
-- Executed 03-07: Integrated preview mode and export button into App.tsx
-- Updated SlideWrapper to accept forwarded ref for html2canvas export
-- Added preview mode toggle with disabled state when no annotations
-- Added preview mode layout showing SlideWrapper with EmailColumn and AnnotationColumn
-- Added export button in preview mode header with loading/error states
-- Added CSS for preview mode layout and button styling
-- **Phase 3 complete:** All 6 VIS requirements verified (VIS-01 through VIS-06)
+- **Phase 3 complete:** All 8 plans executed
+- **Executed 03-08:** Fixed layout collapse in preview mode
+  - Added position: relative to .annotation-column CSS
+  - Removed absolute positioning from AnnotationColumn component
+  - Deleted useCardLayout hook (no longer needed)
+  - Replaced with flexbox layout for simpler, more maintainable code
+- **Phase 3 plans:**
+  - 03-01: Installed html2canvas
+  - 03-02: Three-column slide layout components
+  - 03-03: Arrow overlay SVG component
+  - 03-04: getBoundingClientRect positioning for arrows
+  - 03-05: Export utility and ExportButton component
+  - 03-06: Color-coded technique badges
+  - 03-07: Preview mode integration
+  - 03-08: Layout collapse fix (flexbox over absolute positioning)
 
 **What's Next:**
+- Human verification checkpoint: Confirm cards render correctly in preview mode
 - Phase 4 (NIST Phish Scale Scoring): Implement scoring calculation logic
 
 ---

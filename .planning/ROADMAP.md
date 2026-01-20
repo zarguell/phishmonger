@@ -85,7 +85,8 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 **Goal:** Users can preview and export annotated emails with arrow annotations
 **Status:** COMPLETE ✓
 **Completed:** 2026-01-20
-**Verification:** .planning/phases/03-visualizer-export/03-visualizer-export-VERIFICATION.md
+**Plans:** 8/8 complete
+**Verification:** .planning/phases/03-visualizer-export/03-visualizer-export-VERIFICATION.md (pending human checkpoint)
 
 **Dependencies:** Phase 2 (need annotations before visualizing)
 
@@ -114,7 +115,7 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 - [x] 03-05-PLAN.md — Create export utility and ExportButton component
 - [x] 03-06-PLAN.md — Create SVG ArrowOverlay and integrate with SlideWrapper
 - [x] 03-07-PLAN.md — Integrate preview mode in App.tsx with export button
-- [ ] 03-08-PLAN.md — Fix layout collapse by replacing absolute positioning with flexbox
+- [x] 03-08-PLAN.md — Fix layout collapse by replacing absolute positioning with flexbox
 
 ---
 
