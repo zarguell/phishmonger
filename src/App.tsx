@@ -1,20 +1,37 @@
 import { useState, useEffect } from 'react'
+import { HTMLInput } from './components/HTMLInput'
+import { ModeToggle, InputMode } from './components/ModeToggle'
 import { Editor } from './components/Editor'
+import { Preview } from './components/Preview'
+import { LureList } from './components/LureList'
 import './index.css'
 
-const STORAGE_KEY = 'phishmonger-editor-content'
+const STORAGE_KEY = 'phishmonger-html-source'
+const MODE_KEY = 'phishmonger-input-mode'
 
 function App() {
-  const [content, setContent] = useState(() => {
-    // Load from LocalStorage on mount
+  const [inputMode, setInputMode] = useState<InputMode>(() => {
+    const savedMode = localStorage.getItem(MODE_KEY) as InputMode | null
+    return savedMode || 'html'
+  })
+  const [htmlSource, setHtmlSource] = useState(() => {
     const saved = localStorage.getItem(STORAGE_KEY)
     return saved || '<p>Start typing your phishing email here...</p>'
   })
 
-  // Save to LocalStorage whenever content changes
+  // Save to LocalStorage whenever htmlSource changes
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, content)
-  }, [content])
+    localStorage.setItem(STORAGE_KEY, htmlSource)
+  }, [htmlSource])
+
+  // Save input mode preference
+  useEffect(() => {
+    localStorage.setItem(MODE_KEY, inputMode)
+  }, [inputMode])
+
+  const handleMarkLure = (updatedHtml: string) => {
+    setHtmlSource(updatedHtml)
+  }
 
   return (
     <div className="app">
@@ -23,13 +40,48 @@ function App() {
         <p>Phishing Email Annotation Tool</p>
       </header>
       <main className="app-main">
-        <Editor
-          content={content}
-          onUpdate={setContent}
-        />
-        <div className="preview">
-          <h2>HTML Preview</h2>
-          <pre>{content}</pre>
+        <div className="input-column">
+          <div className="mode-toggle">
+            <label className="mode-toggle-label">
+              <input
+                type="radio"
+                name="inputMode"
+                value="html"
+                checked={inputMode === 'html'}
+                onChange={(e) => setInputMode(e.target.value as InputMode)}
+              />
+              <span>HTML Input</span>
+            </label>
+            <label className="mode-toggle-label">
+              <input
+                type="radio"
+                name="inputMode"
+                value="richtext"
+                checked={inputMode === 'richtext'}
+                onChange={(e) => setInputMode(e.target.value as InputMode)}
+              />
+              <span>Rich Text</span>
+            </label>
+          </div>
+          {inputMode === 'html' ? (
+            <HTMLInput
+              value={htmlSource}
+              onChange={setHtmlSource}
+            />
+          ) : (
+            <div className="richtext-placeholder">
+              <p>Rich Text Editor (Phase 2)</p>
+            </div>
+          )}
+        </div>
+        <div className="preview-column">
+          <Preview
+            htmlSource={htmlSource}
+            onUpdate={handleMarkLure}
+          />
+        </div>
+        <div className="lure-list-column">
+          <LureList htmlSource={htmlSource} />
         </div>
       </main>
     </div>
