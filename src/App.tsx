@@ -33,6 +33,27 @@ function App() {
     setHtmlSource(updatedHtml)
   }
 
+  const handleRemoveLure = (lureId: string) => {
+    // Remove all spans with matching data-lure-id from HTML source
+    // Keep the text content, unwrap the spans
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(htmlSource, 'text/html')
+    const lureElements = doc.querySelectorAll(`[data-lure-id="${lureId}"]`)
+
+    lureElements.forEach((el) => {
+      const parent = el.parentNode
+      if (parent) {
+        // Replace the span with its text content (unwrap)
+        while (el.firstChild) {
+          parent.insertBefore(el.firstChild, el)
+        }
+        parent.removeChild(el)
+      }
+    })
+
+    setHtmlSource(doc.body.innerHTML)
+  }
+
   return (
     <div className="app">
       <header className="app-header">
@@ -82,7 +103,7 @@ function App() {
           />
         </div>
         <div className="lure-list-column">
-          <LureList htmlSource={htmlSource} />
+          <LureList htmlSource={htmlSource} onRemoveLure={handleRemoveLure} />
         </div>
       </main>
     </div>

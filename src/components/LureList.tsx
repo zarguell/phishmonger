@@ -7,9 +7,10 @@ interface Lure {
 
 interface LureListProps {
   htmlSource: string
+  onRemoveLure: (lureId: string) => void
 }
 
-export function LureList({ htmlSource }: LureListProps) {
+export function LureList({ htmlSource, onRemoveLure }: LureListProps) {
   const [lures, setLures] = useState<Lure[]>([])
 
   useEffect(() => {
@@ -48,6 +49,11 @@ export function LureList({ htmlSource }: LureListProps) {
     }
   }
 
+  const removeLure = (lureId: string, event: React.MouseEvent) => {
+    event.stopPropagation()
+    onRemoveLure(lureId)
+  }
+
   return (
     <div className="lure-list">
       <h2>Lures ({lures.length})</h2>
@@ -57,14 +63,25 @@ export function LureList({ htmlSource }: LureListProps) {
         <ul className="lure-list-items">
           {lures.map((lure) => (
             <li key={lure.id} className="lure-list-item">
-              <button
-                onClick={() => scrollToLure(lure.id)}
-                className="lure-list-btn"
-                type="button"
-              >
-                <span className="lure-id">{lure.id.slice(0, 8)}</span>
-                <span className="lure-text">"{lure.text}"</span>
-              </button>
+              <div className="lure-list-item-content">
+                <button
+                  onClick={() => scrollToLure(lure.id)}
+                  className="lure-list-btn"
+                  type="button"
+                >
+                  <span className="lure-id">{lure.id.slice(0, 8)}</span>
+                  <span className="lure-text">"{lure.text}"</span>
+                </button>
+                <button
+                  onClick={(e) => removeLure(lure.id, e)}
+                  className="lure-remove-btn"
+                  type="button"
+                  aria-label="Remove lure"
+                  title="Remove this lure"
+                >
+                  ×
+                </button>
+              </div>
             </li>
           ))}
         </ul>
