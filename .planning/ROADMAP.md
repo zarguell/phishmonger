@@ -104,7 +104,7 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 4. User can export the annotated email as high-resolution PNG (2x scale, flexible height)
 5. Exported PNG includes all highlights, arrows, technique badges, and explanations burned into the image
 
-**Plans:** 7 plans in 4 waves
+**Plans:** 8 plans in 4 waves
 
 **Plan list:**
 - [x] 03-01-PLAN.md — Install html2canvas library for DOM-to-image export
@@ -114,6 +114,7 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 - [x] 03-05-PLAN.md — Create export utility and ExportButton component
 - [x] 03-06-PLAN.md — Create SVG ArrowOverlay and integrate with SlideWrapper
 - [x] 03-07-PLAN.md — Integrate preview mode in App.tsx with export button
+- [ ] 03-08-PLAN.md — Fix layout collapse by replacing absolute positioning with flexbox
 
 ---
 
