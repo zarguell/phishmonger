@@ -31,8 +31,8 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 - [x] 01-02-PLAN.md — Create Lure Mark Tiptap extension and DOMPurify paste handler
 - [x] 01-03-PLAN.md — Create Editor component integrating extensions with toolbar
 - [x] 01-04-ARCHITECTURAL-DECISION.md — Split Editor/Viewer architecture decision
-- [ ] 01-05-PLAN.md — Build mode toggle and HTML input mode
-- [ ] 01-06-PLAN.md — Build live preview pane with lure marking
+- [x] 01-05-PLAN.md — Build mode toggle and HTML input mode
+- [x] 01-06-PLAN.md — Build live preview pane with lure marking
 
 **Success Criteria:**
 1. User can type and format text in a rich text editor with standard formatting options (bold, italic, links)

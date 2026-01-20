@@ -62,10 +62,13 @@
   | Split Editor/Viewer with Toggle | Phishing emails come as HTML; users paste HTML, see victim view, mark lures in preview (not editor) | 01-04: Architectural pivot |
   | Preview-first architecture | Live Preview pane is central; users select text in preview to mark lures; HTML source shows <span data-lure-id> tags | 01-04: New architecture |
   | Lure marks as HTML spans (not Tiptap extension) | Simpler: manipulate HTML strings directly with DOM Range API; no complex Tiptap extension needed | 01-04: Lure storage model |
-  | Mode toggle (HTML input ↔ Rich Text) | Supports pasting raw phishing emails OR typing formatted content; flexibility for different workflows | 01-04: Input modes |
-  | Radio button toggle for mode switching | Simple, familiar UI pattern; clear indication of current mode | 01-05: Mode toggle UI |
-  | Content state shared across modes | Single content state ensures no data loss when switching between HTML and Rich Text modes | 01-05: Content preservation |
-  | localStorage for mode preference | Remembers user's preferred input mode across sessions | 01-05: Mode persistence |
+   | Mode toggle (HTML input ↔ Rich Text) | Supports pasting raw phishing emails OR typing formatted content; flexibility for different workflows | 01-04: Input modes |
+   | Radio button toggle for mode switching | Simple, familiar UI pattern; clear indication of current mode | 01-05: Mode toggle UI |
+   | Content state shared across modes | Single content state ensures no data loss when switching between HTML and Rich Text modes | 01-05: Content preservation |
+   | localStorage for mode preference | Remembers user's preferred input mode across sessions | 01-05: Mode persistence |
+   | Selection-based Lure marking | User selects text in Preview pane (not editor) using DOM Range API; wraps selection in span with UUID | 01-06: Preview marking workflow |
+   | Three-column layout (Input, Preview, Lure List) | Shows HTML input, live preview, and lure list side by side; Preview column centered as primary focus | 01-06: Layout architecture |
+   | LureList with scroll-to functionality | Parses HTML source to extract data-lure-id attributes; displays lures with UUID preview; scrolls to lure with flash animation | 01-06: Lure list sidebar |
 
 ### Requirements Coverage
 
@@ -81,11 +84,13 @@
 
 ### Technical Notes
 
-- **Lure Mark Implementation:** Custom Tiptap extension wrapping text in spans with UUID attributes
-- **Annotation Positioning:** BoundingClientRect API for arrow calculations
-- **Export Pipeline:** html2canvas for PNG generation with burned-in overlays
-- **Security:** DOMPurify for HTML sanitization on paste
-- **Persistence:** LocalStorage with auto-save on every state change
+- **Lure Mark Implementation:** Selection-based marking in Preview pane using DOM Range API; wraps text in `<span data-lure-id="UUID">` elements
+- **Preview Rendering:** dangerouslySetInnerHTML with DOMPurify sanitization for secure HTML rendering
+- **Lure List Parsing:** DOMParser to extract data-lure-id attributes from HTML source string
+- **Annotation Positioning:** BoundingClientRect API for arrow calculations (Phase 3)
+- **Export Pipeline:** html2canvas for PNG generation with burned-in overlays (Phase 3)
+- **Security:** DOMPurify for HTML sanitization on paste and render
+- **Persistence:** LocalStorage with auto-save on every state change; separate keys for HTML source and input mode
 
 ### Active Todos
 
@@ -96,7 +101,7 @@
 - [x] Create Editor component with toolbar (01-03)
 - [x] Implement LocalStorage persistence (01-03)
 - [x] Create mode toggle with HTML input and Rich Text switching (01-05)
-- [ ] Implement live preview pane with lure marking (01-06)
+- [x] Implement live preview pane with lure marking (01-06)
 - [ ] Build technique library JSON structure (02-01)
 - [ ] Create annotation panel UI (02-02)
 - [ ] Link Lure Marks to technique annotations (02-03)
@@ -111,8 +116,8 @@
 
 ## Session Continuity
 
-**Last Session:** 2026-01-20 (phase 1 execution)
-**Current Session:** 2026-01-20 (phase 1 plan 05 execution)
+**Last Session:** 2026-01-20 (phase 1 plan 06 execution)
+**Current Session:** 2026-01-20 (phase 1 complete)
 
 **What Was Done:**
 - Defined 27 v1 requirements across 5 categories
@@ -126,11 +131,12 @@
 - Executed 01-03: Editor component with toolbar and LocalStorage persistence
 - Executed 01-04: Architectural decision checkpoint (split Editor/Viewer)
 - Executed 01-05: Mode toggle with HTML input and Rich Text editor
+- Executed 01-06: Live Preview pane with selection-based Lure marking and LureList sidebar
 
 **What's Next:**
-- Execute 02-01: Build technique library JSON structure
-- Execute 02-02: Create annotation panel UI
-- Execute 02-03: Link Lure Marks to technique annotations
+- Phase 2 (Technique Annotations): Build technique library JSON structure
+- Phase 2 (Technique Annotations): Create annotation panel UI
+- Phase 2 (Technique Annotations): Link Lure Marks to technique annotations
 
 **Context to Preserve:**
 - Each phase builds on the previous (vertical slices, not horizontal layers)
