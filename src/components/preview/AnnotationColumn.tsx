@@ -1,5 +1,4 @@
 import type { Annotation } from '../../types/annotations'
-import { useCardLayout } from '../../hooks/useCardLayout'
 import { AnnotationCard } from '../annotation/AnnotationCard'
 
 interface AnnotationColumnProps {
@@ -7,7 +6,6 @@ interface AnnotationColumnProps {
 }
 
 export function AnnotationColumn({ annotations }: AnnotationColumnProps) {
-  const cardPositions = useCardLayout(annotations)
   const hasAnnotations = Object.keys(annotations).length > 0
 
   if (!hasAnnotations) {
@@ -22,23 +20,12 @@ export function AnnotationColumn({ annotations }: AnnotationColumnProps) {
 
   return (
     <div className="annotation-column">
-      {cardPositions.map((position) => {
-        const annotation = annotations[position.lureId]
-        if (!annotation) return null
-
-        return (
-          <AnnotationCard
-            key={annotation.lureId}
-            annotation={annotation}
-            style={{
-              position: 'absolute',
-              top: position.y,
-              left: '130px', // Center in 640px column: (640 - 380) / 2
-              width: '380px',
-            }}
-          />
-        )
-      })}
+      {Object.values(annotations).map((annotation) => (
+        <AnnotationCard
+          key={annotation.lureId}
+          annotation={annotation}
+        />
+      ))}
     </div>
   )
 }
