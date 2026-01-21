@@ -81,9 +81,10 @@ Each task was committed atomically:
 5. **Bug fix: Restore arrowStyle prop to AnnotationColumn** - `6dbd5eb` (fix)
 6. **Bug fix: Remove inline width style from AnnotationColumn** - `e19a78b` (fix)
 7. **Checkpoint fix: Arrow badge positioning, styling, and red circle option** - `15ab1e9` (fix)
+8. **Checkpoint fix: Shift annotation title right to avoid badge overlap** - `1b6599a` (fix)
 
 **Note:** Commits 3-6 were auto-fixes for integration issues between components modified by concurrent plan execution (08-01 undo/redo work)
-**Note:** Commit 7 was checkpoint response to user feedback (see Checkpoint Resolutions below)
+**Note:** Commits 7-8 were checkpoint responses to user feedback (see Checkpoint Resolutions below)
 
 ## Files Created/Modified
 
@@ -98,7 +99,7 @@ Each task was committed atomically:
 - `src/components/preview/AnnotationColumn.tsx` - Added `arrowStyle` prop, passes style preference to AnnotationCard components
 - `src/components/preview/EmailColumn.tsx` - Added `arrowStyle` prop, applies style classes to inline badges in email content
 - `src/App.tsx` - Added `arrowStyle` state with LocalStorage persistence (`ARROW_STYLE_KEY`), rendered ArrowStyleSelector in preview mode header, passes arrowStyle to EmailColumn
-- `src/index.css` - Updated `.lure-badge` positioning to fix text overlap (larger, better spacing, middle alignment)
+- `src/index.css` - Updated `.lure-badge` positioning to fix text overlap (larger, better spacing, middle alignment), added padding-left to `.annotation-title` to clear badge (30px)
 
 ## Decisions Made
 
@@ -134,9 +135,17 @@ Each task was committed atomically:
 - **Verification:** All three issues resolved, awaiting re-verification
 - **Committed in:** `15ab1e9` (checkpoint resolution commit)
 
+**3. Second checkpoint: Badge overlapping annotation title**
+- **Found during:** Re-verification after first checkpoint fixes
+- **Issue:** Numbered badge in annotation cards (right column) overlapping title text
+- **Fix:** Added padding-left: 30px to .annotation-title class (24px badge + 6px spacing)
+- **Files modified:** src/index.css (.annotation-title styles)
+- **Verification:** Title now clears the absolutely positioned badge
+- **Committed in:** `1b6599a` (second checkpoint resolution commit)
+
 ---
 
-**Total deviations:** 1 auto-fixed (blocking) + 1 checkpoint resolution (user feedback)
+**Total deviations:** 1 auto-fixed (blocking) + 2 checkpoint resolutions (user feedback)
 **Impact on plan:** Auto-fixes required for concurrent execution. Checkpoint fixes improved UX based on user testing. No scope creep.
 
 ## Issues Encountered
@@ -152,8 +161,9 @@ None - no external service configuration required.
 - **Arrow style system complete and functional** (4 styles: Classic Blue, Classic Red, Square, Diamond)
 - **Selector component integrated into preview mode header**
 - **Inline badges in email content match selected style**
-- **Badge positioning fixed** - no text overlap, proper spacing
-- **Awaiting user re-verification** - all checkpoint fixes implemented
+- **Badge positioning fixed** - no text overlap in email content or annotation cards
+- **All checkpoint issues resolved** - positioning, styling, and layout all correct
+- **Plan 08-03 complete** - ready for next phase or audit
 - **No blockers** - all four badge styles rendering correctly, persistence working, proper positioning
 
 ## Verification Checklist
@@ -173,10 +183,12 @@ None - no external service configuration required.
 - [x] Arrow badges no longer overlap text (positioning fixed)
 - [x] Inline badges match selected arrow style (EmailColumn integration)
 - [x] Classic Red option added (4 styles total: Classic Blue, Classic Red, Square, Diamond)
-- [x] TypeScript build succeeds after fixes
+- [x] Annotation title no longer overlaps badge (30px left padding added)
+- [x] TypeScript build succeeds after all fixes
 - [x] All style variants render correctly
+- [x] Badge positioning correct in both email content and annotation cards
 
-**Ready for re-verification checkpoint.**
+**Plan complete - all checkpoint issues resolved.**
 
 ---
 *Phase: 08-deferred-v1-0-work*
