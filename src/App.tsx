@@ -38,6 +38,7 @@ function App() {
   const [viewMode, setViewMode] = useState<ViewMode>('edit')
   const [scaleMode, setScaleMode] = useState<ScaleMode>('fit')
   const [annotationWidth, setAnnotationWidth] = useState(640)
+  const [showBadge, setShowBadge] = useState(true)
   const slideWrapperRef = useRef<HTMLDivElement>(null)
 
   // Save to LocalStorage whenever htmlSource changes
@@ -192,7 +193,7 @@ function App() {
               ref={slideWrapperRef}
               annotations={annotations}
               scoring={scoring}
-              showBadge={true}
+              showBadge={showBadge}
             >
               <EmailColumn htmlSource={htmlSource} annotations={annotations} />
               <AnnotationColumn 
@@ -276,6 +277,8 @@ function App() {
           <ScoringPanel
             scoring={scoring}
             onUpdate={updateScoring}
+            showBadge={showBadge}
+            onBadgeToggle={setShowBadge}
           />
         </div>
       </main>

@@ -4,9 +4,11 @@ import { calculateDifficulty, getDifficultyLevel, getDifficultyBadge } from '../
 interface ScoringPanelProps {
   scoring: ScoringData
   onUpdate: (updates: Partial<ScoringData>) => void
+  showBadge?: boolean
+  onBadgeToggle?: (show: boolean) => void
 }
 
-export function ScoringPanel({ scoring, onUpdate }: ScoringPanelProps) {
+export function ScoringPanel({ scoring, onUpdate, showBadge = true, onBadgeToggle }: ScoringPanelProps) {
   const score = calculateDifficulty(scoring)
   const difficulty = getDifficultyLevel(score)
   const badge = getDifficultyBadge(difficulty)
@@ -52,12 +54,8 @@ export function ScoringPanel({ scoring, onUpdate }: ScoringPanelProps) {
             <strong>{scoring.premiseAlignment}</strong>
           </div>
           <div className="score-row">
-            <span>Visual Cues:</span>
-            <strong>-{scoring.visualCues}</strong>
-          </div>
-          <div className="score-row">
-            <span>Language Cues:</span>
-            <strong>-{scoring.languageCues}</strong>
+            <span>Cues Total:</span>
+            <strong>({scoring.visualCues} + {scoring.languageCues}) = {scoring.visualCues + scoring.languageCues}</strong>
           </div>
           <div className="score-row score-total">
             <span>Difficulty:</span>
@@ -99,6 +97,19 @@ export function ScoringPanel({ scoring, onUpdate }: ScoringPanelProps) {
             <span>Low (1)</span>
             <span>High (5)</span>
           </div>
+        </div>
+
+        {/* Badge Toggle */}
+        <div className="badge-toggle">
+          <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+            <input
+              type="checkbox"
+              checked={showBadge}
+              onChange={(e) => onBadgeToggle?.(e.target.checked)}
+              style={{ width: '18px', height: '18px' }}
+            />
+            <span>Show badge on exported slide</span>
+          </label>
         </div>
       </div>
     </div>
