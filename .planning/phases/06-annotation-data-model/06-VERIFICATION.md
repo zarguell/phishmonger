@@ -1,26 +1,23 @@
 ---
 phase: 06-annotation-data-model
-verified: 2026-01-21T19:00:00Z
-status: gaps_found
-score: 8/9 must-haves verified
-gaps:
-  - truth: "User can add a freetext title to any annotation"
-    status: failed
-    reason: "Title input field missing from AnnotationPanel component"
-    artifacts:
-      - path: "src/components/AnnotationPanel.tsx"
-        issue: "No input field for title - only technique, persuasion, and explanation inputs exist"
-    missing:
-      - "Add title input field above technique selector in AnnotationPanel.tsx"
-      - "Connect title input to onUpdate callback with title field"
+verified: 2026-01-21T19:35:00Z
+status: passed
+score: 9/9 must-haves verified
+re_verification:
+  previous_status: gaps_found
+  previous_score: 8/9
+  gaps_closed:
+    - "User can add a freetext title to any annotation"
+  gaps_remaining: []
+  regressions: []
 ---
 
 # Phase 6: Annotation Data Model Verification Report
 
 **Phase Goal:** Freetext title and optional MITRE/Persuasion tags
-**Verified:** 2026-01-21T19:00:00Z
-**Status:** gaps_found
-**Re-verification:** No — initial verification
+**Verified:** 2026-01-21T19:35:00Z
+**Status:** passed
+**Re-verification:** Yes — after gap closure
 
 ## Goal Achievement
 
@@ -28,42 +25,42 @@ gaps:
 
 | #   | Truth   | Status     | Evidence       |
 | --- | ------- | ---------- | -------------- |
-| 1   | User can add a freetext title to any annotation | ✗ FAILED   | Title input field missing from AnnotationPanel |
-| 2   | Title appears in bold at the top of the annotation card | ✓ VERIFIED | AnnotationCard renders annotation.title in bold .annotation-title class |
-| 3   | Existing annotations without titles work correctly | ✓ VERIFIED | title is optional field in Annotation type, conditional rendering in AnnotationCard |
-| 4   | User can create annotations without selecting a MITRE technique | ✓ VERIFIED | techniqueId?: string in Annotation type, selector allows empty value |
-| 5   | MITRE tag displays in format 'T1598 - Phishing for Information' | ✓ VERIFIED | getTechniqueName returns "id - name", wrapped in parentheses in AnnotationCard |
-| 6   | Tag can be cleared/removed from annotation | ✓ VERIFIED | techniqueId optional, selector onChange sets to undefined when empty |
+| 1   | User can add a freetext title to any annotation | ✓ VERIFIED | Title input field added to AnnotationPanel.tsx, binds to annotation.title |
+| 2   | Title appears in bold at the top of the annotation card | ✓ VERIFIED | AnnotationCard renders annotation.title conditionally in .annotation-title div |
+| 3   | Existing annotations without titles work correctly | ✓ VERIFIED | title optional in Annotation type, conditional rendering in AnnotationCard |
+| 4   | User can create annotations without selecting a MITRE technique | ✓ VERIFIED | techniqueId optional, selector allows empty value |
+| 5   | MITRE tag displays in format 'T1598 - Phishing for Information' | ✓ VERIFIED | getTechniqueName returns "id - name", wrapped in parentheses |
+| 6   | Tag can be cleared/removed from annotation | ✓ VERIFIED | techniqueId optional, selector sets to undefined when empty |
 | 7   | Persuasion tag displays in format '(Persuasion: Urgency)' | ✓ VERIFIED | (Persuasion: {getPersuasionName}) in AnnotationCard |
-| 8   | Both MITRE and Persuasion tags can coexist on same annotation | ✓ VERIFIED | Both rendered conditionally in same .annotation-tags div |
-| 9   | Tags appear inline on the same line in visualizer card | ✓ VERIFIED | .annotation-tags has display: inline, tags in same div |
+| 8   | Both MITRE and Persuasion tags can coexist on same annotation | ✓ VERIFIED | Both rendered conditionally in .annotation-tags div |
+| 9   | Tags appear inline on the same line in visualizer card | ✓ VERIFIED | .annotation-tags display inline, tags in same div |
 
-**Score:** 8/9 truths verified
+**Score:** 9/9 truths verified
 
 ### Required Artifacts
 
 | Artifact | Expected    | Status | Details |
 | -------- | ----------- | ------ | ------- |
-| `src/types/annotations.ts` | title?: string field | ✓ VERIFIED | Field exists with correct optional typing |
-| `src/types/annotations.ts` | techniqueId?: string field | ✓ VERIFIED | Changed from required to optional |
-| `src/components/AnnotationPanel.tsx` | Title input field | ✗ FAILED | No title input element found |
+| `src/types/annotations.ts` | title?: string field | ✓ VERIFIED | Field exists with optional typing |
+| `src/types/annotations.ts` | techniqueId?: string field | ✓ VERIFIED | Optional field for MITRE tags |
+| `src/components/AnnotationPanel.tsx` | Title input field | ✓ VERIFIED | Input added with value binding and onChange |
 | `src/components/annotation/AnnotationCard.tsx` | Tag display components | ✓ VERIFIED | MITRE and Persuasion tags with correct formatting |
 
 ### Key Link Verification
 
 | From | To  | Via | Status | Details |
 | ---- | --- | --- | ------ | ------- |
-| AnnotationPanel | annotations.ts | title field in type | ✗ NOT_WIRED | No title input connects to annotation.title |
-| AnnotationPanel | techniques.json | techniqueId selection | ✓ WIRED | Selector dropdown with technique options, onChange updates techniqueId |
+| AnnotationPanel | annotations.ts | title field in type | ✓ WIRED | Title input onChange calls onUpdate({ title: value }) |
+| AnnotationPanel | techniques.json | techniqueId selection | ✓ WIRED | Selector dropdown with technique options |
 | AnnotationCard | annotations.ts | techniqueId for display | ✓ WIRED | annotation.techniqueId used in conditional rendering |
-| AnnotationCard | techniques.json | technique lookup | ✓ WIRED | getTechniqueName function imports and searches techniques array |
-| AnnotationCard | persuasion.json | principle lookup | ✓ WIRED | getPersuasionName function imports and searches persuasionPrinciples array |
+| AnnotationCard | techniques.json | technique lookup | ✓ WIRED | getTechniqueName function searches techniques array |
+| AnnotationCard | persuasion.json | principle lookup | ✓ WIRED | getPersuasionName function searches persuasionPrinciples array |
 
 ### Requirements Coverage
 
 | Requirement | Status | Blocking Issue |
 | ----------- | ------ | -------------- |
-| ANN-09: Freetext title field | ✗ BLOCKED | Title input field missing from UI |
+| ANN-09: Freetext title field | ✓ SATISFIED | Title input field implemented in AnnotationPanel |
 | ANN-10: Optional MITRE ATT&CK tag | ✓ SATISFIED | techniqueId optional with formatted display |
 | ANN-11: Optional Persuasion Principle tag | ✓ SATISFIED | persuasionPrincipleId optional with formatted display |
 
@@ -75,24 +72,22 @@ gaps:
 
 ### Human Verification Required
 
-None - all verification completed programmatically. The missing title input is a clear structural gap.
+None - all verification completed programmatically. The previously missing title input has been implemented and verified.
 
 ### Gaps Summary
 
-**1 gap blocking goal achievement: Title input field missing**
+**All gaps from previous verification have been closed.**
 
-The annotation data model has been partially implemented:
-- ✅ Optional MITRE and Persuasion tags with proper display formatting
-- ✅ Title field in data type and visual display
-- ❌ **Missing: Title input field in AnnotationPanel**
+The annotation data model is now fully implemented:
+- ✅ Freetext title input field in AnnotationPanel
+- ✅ Optional MITRE ATT&CK technique tags with proper formatting
+- ✅ Optional Persuasion Principle tags with proper formatting
+- ✅ All data types correctly defined with optional fields
+- ✅ Visual display components render all fields correctly
 
-Without the title input, users cannot add freetext titles to annotations, breaking the core "Freetext title" requirement of the phase goal.
-
-**Recommended fix:** Add title input field to AnnotationPanel.tsx above the technique selector, following the same pattern as other inputs (value binding to annotation?.title, onChange updating via onUpdate callback).
+Phase goal "Freetext title and optional MITRE/Persuasion tags" is achieved.
 
 ---
 
-_Verified: 2026-01-21T19:00:00Z_
+_Verified: 2026-01-21T19:35:00Z_
 _Verifier: OpenCode (gsd-verifier)_
-</content>
-<parameter name="filePath">.planning/phases/06-annotation-data-model/06-VERIFICATION.md
