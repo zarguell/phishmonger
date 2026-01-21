@@ -9,12 +9,6 @@ interface ProjectSettingsProps {
   onImportFromText?: (jsonText: string) => void
 }
 
-/**
- * ProjectSettings component for managing project metadata
- *
- * Provides UI for editing project title and author,
- * displaying read-only creation timestamp, and export/import functionality.
- */
 export const ProjectSettings: React.FC<ProjectSettingsProps> = ({
   metadata,
   onUpdate,
@@ -22,8 +16,10 @@ export const ProjectSettings: React.FC<ProjectSettingsProps> = ({
   onImportFromFile,
   onImportFromText
 }) => {
+  const [menuOpen, setMenuOpen] = useState(false)
   const [importText, setImportText] = useState('')
   const [importError, setImportError] = useState<string | null>(null)
+
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onUpdate({
       ...metadata,
@@ -66,7 +62,6 @@ export const ProjectSettings: React.FC<ProjectSettingsProps> = ({
       }
       reader.readAsText(file)
     }
-    // Reset input so same file can be selected again
     e.target.value = ''
   }
 
@@ -97,86 +92,97 @@ export const ProjectSettings: React.FC<ProjectSettingsProps> = ({
 
   return (
     <div className="project-settings">
-      <h3>Project Settings</h3>
-      
-      <div className="settings-field">
-        <label htmlFor="project-title">Project Title</label>
-        <input
-          id="project-title"
-          type="text"
-          value={metadata.title}
-          onChange={handleTitleChange}
-          placeholder="Enter project title"
-        />
+      <div className="project-settings-header">
+        <h3>Project Settings</h3>
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="menu-toggle-button"
+          type="button"
+        >
+          {menuOpen ? '▼ Hide' : '▶ Import / Export'}
+        </button>
       </div>
 
-      <div className="settings-field">
-        <label htmlFor="project-author">Author</label>
-        <input
-          id="project-author"
-          type="text"
-          value={metadata.author}
-          onChange={handleAuthorChange}
-          placeholder="Enter author name"
-        />
-      </div>
+      {menuOpen && (
+        <div className="project-settings-content">
+          <div className="settings-field">
+            <label htmlFor="project-title">Project Title</label>
+            <input
+              id="project-title"
+              type="text"
+              value={metadata.title}
+              onChange={handleTitleChange}
+              placeholder="Enter project title"
+            />
+          </div>
 
-      <div className="settings-field">
-        <label>Created</label>
-        <div className="created-date">
-          {formatDate(metadata.createdAt)}
+          <div className="settings-field">
+            <label htmlFor="project-author">Author</label>
+            <input
+              id="project-author"
+              type="text"
+              value={metadata.author}
+              onChange={handleAuthorChange}
+              placeholder="Enter author name"
+            />
+          </div>
+
+          <div className="settings-field">
+            <label>Created</label>
+            <div className="created-date">
+              {formatDate(metadata.createdAt)}
+            </div>
+          </div>
+
+          <hr className="settings-divider" />
+
+          <div className="settings-export-import">
+            <div className="export-import-section">
+              <button
+                onClick={handleExportClick}
+                disabled={!onExport}
+                className="export-json-button"
+                type="button"
+              >
+                Export Phish
+              </button>
+            </div>
+
+            <div className="export-import-section">
+              <label htmlFor="import-file" className="import-file-label">
+                Import from File
+              </label>
+              <input
+                id="import-file"
+                type="file"
+                accept=".json"
+                onChange={handleFileImport}
+                className="import-file-input"
+              />
+            </div>
+
+            <div className="export-import-section">
+              <label htmlFor="import-text">Import from Pasted JSON</label>
+              <textarea
+                id="import-text"
+                value={importText}
+                onChange={handleImportTextChange}
+                placeholder="Paste project JSON here..."
+                className="import-textarea"
+              />
+              <button
+                onClick={handleTextImport}
+                disabled={!onImportFromText || !importText.trim()}
+                className="import-text-button"
+                type="button"
+              >
+                Import
+              </button>
+              {importError && <div className="import-error">{importError}</div>}
+            </div>
+          </div>
         </div>
-      </div>
-
-      <hr className="settings-divider" />
-
-      <div className="settings-export-import">
-        <h4>Export / Import</h4>
-        
-        <div className="export-import-section">
-          <button
-            onClick={handleExportClick}
-            disabled={!onExport}
-            className="export-json-button"
-            type="button"
-          >
-            Export JSON
-          </button>
-        </div>
-
-        <div className="export-import-section">
-          <label htmlFor="import-file" className="import-file-label">
-            Import from File
-          </label>
-          <input
-            id="import-file"
-            type="file"
-            accept=".json"
-            onChange={handleFileImport}
-            className="import-file-input"
-          />
-        </div>
-
-        <div className="export-import-section">
-          <label htmlFor="import-text">Import from Pasted JSON</label>
-          <textarea
-            id="import-text"
-            value={importText}
-            onChange={handleImportTextChange}
-            placeholder="Paste project JSON here..."
-            className="import-textarea"
-          />
-          <button
-            onClick={handleTextImport}
-            disabled={!onImportFromText || !importText.trim()}
-            className="import-text-button"
-            type="button"
-          >
-            Import
-          </button>
-          {importError && <div className="import-error">{importError}</div>}
-        </div>
-      </div>
+      )}
     </div>
   )
 }
