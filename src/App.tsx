@@ -112,7 +112,7 @@ function App() {
             ref={slideWrapperRef}
             annotations={annotations}
           >
-            <EmailColumn htmlSource={htmlSource} />
+            <EmailColumn htmlSource={htmlSource} annotations={annotations} />
             <AnnotationColumn annotations={annotations} />
           </SlideWrapper>
         </main>
