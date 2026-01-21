@@ -20,7 +20,10 @@ Post-v1.0 roadmap for Phish Monger. v1.1 focuses on annotation flexibility (free
 
 **Goal:** Freetext title and optional MITRE/Persuasion tags
 **Status:** Not started
-**Plans:** TBD
+**Plans:**
+- `06-01`: Extend Annotation type with optional title field
+- `06-02`: Add optional MITRE ATT&CK tag to annotation
+- `06-03`: Add optional Persuasion Principle tag to annotation
 
 **Requirements:**
 - ANN-09: Freetext title field
@@ -35,11 +38,13 @@ Post-v1.0 roadmap for Phish Monger. v1.1 focuses on annotation flexibility (free
 
 **Goal:** Updated card display and list summary
 **Status:** Not started
-**Plans:** TBD
+**Plans:**
+- `07-01`: Update visualizer card layout (title, tags, description)
+- `07-02`: Update lure list to show title/description
 
 **Requirements:**
-- ANN-12: Visualizer card layout (title, inline tags, description)
-- ANN-13: Lure list shows title/description
+- ANN-12: Visualizer card layout
+- ANN-13: Lure list summary
 
 **Dependencies:** Phase 6
 
