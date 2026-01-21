@@ -9,8 +9,9 @@
  */
 export interface Annotation {
   lureId: string                 // Matches data-lure-id attribute in HTML
-  techniqueId: string            // MITRE ATT&CK ID (e.g., "T1566.001")
+   techniqueId?: string           // MITRE ATT&CK ID (e.g., "T1566.001") - optional
   persuasionPrincipleId?: string // Optional ID from persuasion.json (e.g., "CIAL-02")
+  title?: string                 // NEW: freetext title for annotation
   explanation: string            // User-written explanation
   createdAt: string              // ISO timestamp
   annotationNumber?: number      // Sequential number for display (1-based)
