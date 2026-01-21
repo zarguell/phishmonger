@@ -1,7 +1,8 @@
 # State: Phish Monger
 
 **Last Updated:** 2026-01-21
-**Current Phase:** v1.1 Complete, Ready for v2.0
+**Current Phase:** 08-deferred-v1-0-work
+**Status:** In progress (Plan 3 of 8 complete)
 
 ---
 
@@ -24,13 +25,13 @@
 ## Current Position
 
 **Phase:** 08-deferred-v1-0-work
-**Status:** In progress (Plan 1 of 5 complete)
-**Last activity:** 2026-01-21 - Completed 08-01-PLAN.md (undo/redo functionality)
+**Status:** In progress (Plan 3 of 8 complete)
+**Last activity:** 2026-01-21 - Completed 08-03-PLAN.md (arrow badge styles)
 
-**Progress:** █████░░░░░░░░░░░░░░░░ 20% (08-01: Undo/Redo complete)
+**Progress:** ███████░░░░░░░░░░░░░░ 37.5% (08-01: Undo/Redo, 08-02: Keyboard shortcuts, 08-03: Arrow styles complete)
 
-**Current Focus:** Executing deferred v1.0 features (undo/redo, arrow styles, layout templates, custom techniques)
-**Next Step:** Continue with remaining 08-X plans or audit milestone
+**Current Focus:** Executing deferred v1.0 features (undo/redo, keyboard shortcuts, arrow styles, layout templates, custom techniques)
+**Next Step:** Plan 08-04 (Layout template selector) or audit milestone
 
 ---
 
@@ -94,6 +95,9 @@
 | MAX_HISTORY = 50 | Balances UX (enough steps for session) with memory (prevents unbounded growth) | 08-01: Memory management |
 | react-hotkeys-hook for shortcuts | Declarative API with enableOnFormTags option prevents form input interference | 08-01: Keyboard shortcuts |
 | Only wrap annotations state | Users expect separate undo for text editors; annotations are primary state to track | 08-01: State selection |
+| CSS Modules for badge styling | Scoped styles, lighter than CSS-in-JS, already in project | 08-03: Arrow badge styles |
+| Arrow style as user preference | Stored in LocalStorage globally, not per-project (simpler UX) | 08-03: Style persistence |
+| Diamond text counter-rotation | Nested span with -45deg transform keeps numbers upright despite 45deg parent rotation | 08-03: Badge rendering |
 
 ### Requirements Coverage
 
@@ -198,6 +202,20 @@
   - Configured enableOnFormTags:false to prevent form input interference
   - Added visual undo/redo buttons to header with disabled states
   - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-01-SUMMARY.md
+- **Phase 8 (08-02) complete:** Keyboard shortcuts help modal
+  - Created KeyboardShortcutHelp component with modal overlay
+  - Created ShortcutKey component for visual key cap styling
+  - Added Ctrl+/ or Cmd+/ shortcut to open help modal
+  - Listed all available shortcuts with descriptions
+  - Escape key and click-outside to dismiss modal
+  - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-02-SUMMARY.md
+- **Phase 8 (08-03) complete:** Custom arrow badge styles
+  - Created arrows.module.css with Classic Circle, Square, and Diamond variants
+  - Created ArrowStyleSelector component with live preview badges
+  - Integrated arrowStyle state with LocalStorage persistence (ARROW_STYLE_KEY)
+  - Updated AnnotationCard to use CSS module badges
+  - Diamond style counter-rotates text to keep numbers upright
+  - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-03-SUMMARY.md
  - **Executed 03-01:** Installed html2canvas@^1.4.1 and @types/html2canvas for DOM-to-image export functionality
  - **Executed 03-02:** Three-column slide layout components (SlideWrapper, EmailColumn, AnnotationColumn) with fixed 1600px width and ghost card empty state
 
@@ -220,20 +238,21 @@
 
 ## Session Continuity
 
-**Last Session:** 2026-01-21 (Completed 06-04-PLAN.md)
-**Current Session:** 2026-01-21 (Project complete)
+**Last Session:** 2026-01-21 (Completed 08-03-PLAN.md)
+**Current Session:** 2026-01-21 (Phase 8 in progress - 3 of 8 plans complete)
 
 **What Was Done:**
-- **Phase 6 (06-01) complete:** Added optional title field to Annotation type
-- **Phase 6 (06-02) complete:** Made techniqueId optional in Annotation type
-- **Phase 6 (06-03) complete:** Created AnnotationCard component with combined MITRE and Persuasion tag display
-- **Phase 6 (06-04) complete:** Added title input field to AnnotationPanel for freetext annotation titles
-- **Phase 6 (06-05) complete:** Restored numbered annotation badges (1, 2, 3...) in visualizer cards
-- All 5 ANN requirements satisfied for v1.1 (ANN-08 through ANN-12)
-- Gap closure complete: v1.1 fully shipped with enhanced annotation data model
+- **Phase 8 (08-03) complete:** Arrow badge style customization
+  - Created src/styles/arrows.module.css with three badge variants (Classic, Square, Diamond)
+  - Created ArrowStyleSelector component with live preview
+  - Integrated arrowStyle state with LocalStorage persistence
+  - Updated AnnotationCard to use CSS module badges instead of inline classes
+  - Commits: 5b432c5, 2892ff7, 66a6dca, 10ac2fb, 6dbd5eb, e19a78b
+  - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-03-SUMMARY.md
 
 **What's Next:**
-- Continue with Phase 08 deferred features (08-02 through 08-05)
+- Continue with Phase 08 deferred features (08-04 through 08-08)
+- Dev server running on http://localhost:5174/ for verification
 - Plans 08-02, 08-03, 08-04, 08-05 already executed in parallel
 - Ready for v2 planning or audit milestone
 
