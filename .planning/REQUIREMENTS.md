@@ -45,13 +45,13 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Data & Persistence
 
-- [ ] **DATA-01**: User can input project metadata (title, author)
-- [ ] **DATA-02**: Application auto-generates created timestamp
-- [ ] **DATA-03**: Application saves project state to LocalStorage
-- [ ] **DATA-04**: Application loads project from LocalStorage on return visit
-- [ ] **DATA-05**: User can export project as JSON with full structure
-- [ ] **DATA-06**: User can import project from JSON file
-- [ ] **DATA-07**: User can import project from JSON file (pasted in a text box, without need for file)
+- [x] **DATA-01**: User can input project metadata (title, author)
+- [x] **DATA-02**: Application auto-generates created timestamp
+- [x] **DATA-03**: Application saves project state to LocalStorage
+- [x] **DATA-04**: Application loads project from LocalStorage on return visit
+- [x] **DATA-05**: User can export project as JSON with full structure
+- [x] **DATA-06**: User can import project from JSON file
+- [x] **DATA-07**: User can import project from JSON file (pasted in a text box, without need for file)
 
 ## v2 Requirements
 
@@ -115,13 +115,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SCOR-04 | Phase 4 | Pending |
 | SCOR-05 | Phase 4 | Pending |
 | SCOR-06 | Phase 4 | Pending |
-| DATA-01 | Phase 5 | Pending |
-| DATA-02 | Phase 5 | Pending |
-| DATA-03 | Phase 5 | Pending |
-| DATA-04 | Phase 5 | Pending |
-| DATA-05 | Phase 5 | Pending |
-| DATA-06 | Phase 5 | Pending |
-| DATA-07 | Phase 5 | Pending |
+| DATA-01 | Phase 5 | Complete |
+| DATA-02 | Phase 5 | Complete |
+| DATA-03 | Phase 5 | Complete |
+| DATA-04 | Phase 5 | Complete |
+| DATA-05 | Phase 5 | Complete |
+| DATA-06 | Phase 5 | Complete |
+| DATA-07 | Phase 5 | Complete |
 
 **Coverage:**
 - v1 requirements: 28 total
