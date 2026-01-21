@@ -464,6 +464,18 @@ body {
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: move;
+  transition: box-shadow 0.2s, opacity 0.2s;
+  user-select: none;
+}
+
+.annotation-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.annotation-card.is-dragging {
+  opacity: 0.5;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .annotation-card-header {
@@ -471,6 +483,23 @@ body {
   align-items: center;
   gap: 8px;
   margin-bottom: 8px;
+  position: relative;
+}
+
+.drag-handle {
+  position: absolute;
+  left: -24px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ccc;
+  font-size: 16px;
+  cursor: grab;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
 }
 
 .annotation-card-number-badge {

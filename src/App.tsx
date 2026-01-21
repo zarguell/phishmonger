@@ -113,7 +113,7 @@ function App() {
             annotations={annotations}
           >
             <EmailColumn htmlSource={htmlSource} annotations={annotations} />
-            <AnnotationColumn annotations={annotations} />
+            <AnnotationColumn annotations={annotations} onUpdateAnnotation={updateAnnotation} />
           </SlideWrapper>
         </main>
       </div>
