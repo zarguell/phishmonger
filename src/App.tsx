@@ -4,12 +4,14 @@ import { Editor } from './components/Editor'
 import type { InputMode } from './components/ModeToggle'
 import { Preview } from './components/Preview'
 import { LureList } from './components/LureList'
+import { ScoringPanel } from './components/ScoringPanel'
 import { SlideWrapper } from './components/preview/SlideWrapper'
 import { EmailColumn } from './components/preview/EmailColumn'
 import { AnnotationColumn } from './components/preview/AnnotationColumn'
 import { ExportButton } from './components/export/ExportButton'
 import type { Annotation } from './types/annotations'
-import { loadAnnotations, saveAnnotations } from './utils/storage'
+import type { ScoringData } from './types/scoring'
+import { loadAnnotations, saveAnnotations, loadScoring, saveScoring } from './utils/storage'
 import './index.css'
 
 const STORAGE_KEY = 'phishmonger-html-source'
@@ -30,6 +32,9 @@ function App() {
   const [annotations, setAnnotations] = useState<Record<string, Annotation>>(() => {
     return loadAnnotations()
   })
+  const [scoring, setScoring] = useState<ScoringData>(() => {
+    return loadScoring()
+  })
   const [viewMode, setViewMode] = useState<ViewMode>('edit')
   const [scaleMode, setScaleMode] = useState<ScaleMode>('fit')
   const [annotationWidth, setAnnotationWidth] = useState(640)
@@ -49,6 +54,11 @@ function App() {
   useEffect(() => {
     saveAnnotations(annotations)
   }, [annotations])
+
+  // Save scoring to LocalStorage
+  useEffect(() => {
+    saveScoring(scoring)
+  }, [scoring])
 
   // Calculate scale factor for "fit to screen" mode
   useEffect(() => {
@@ -88,6 +98,13 @@ function App() {
         lureId,
         updatedAt: new Date().toISOString()
       }
+    }))
+  }
+
+  const updateScoring = (updates: Partial<ScoringData>) => {
+    setScoring(prev => ({
+      ...prev,
+      ...updates
     }))
   }
 
@@ -251,6 +268,12 @@ function App() {
             onRemoveLure={handleRemoveLure}
             annotations={annotations}
             onUpdateAnnotation={updateAnnotation}
+          />
+        </div>
+        <div className="scoring-column">
+          <ScoringPanel
+            scoring={scoring}
+            onUpdate={updateScoring}
           />
         </div>
       </main>
