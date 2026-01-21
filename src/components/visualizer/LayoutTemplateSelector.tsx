@@ -51,8 +51,8 @@ export function LayoutTemplateSelector({
       label: 'Compact',
       icon: (
         <svg width="60" height="24" viewBox="0 0 60 24">
-          <rect x="0" y="0" width="24" height="24" fill="#e9ecef" rx="2" />
-          <rect x="26" y="0" width="34" height="24" fill="#dee2e6" rx="2" />
+          <rect x="0" y="0" width="29" height="24" fill="#e9ecef" rx="2" />
+          <rect x="31" y="0" width="29" height="24" fill="#dee2e6" rx="2" />
         </svg>
       )
     }
