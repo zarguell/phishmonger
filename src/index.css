@@ -465,11 +465,9 @@ body {
 }
 
 .annotation-column {
-  width: 640px;
   flex-shrink: 0;
   padding: 40px;
   box-sizing: border-box;
-  position: relative;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -492,18 +490,11 @@ body {
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  cursor: move;
-  transition: box-shadow 0.2s, opacity 0.2s;
-  user-select: none;
+  transition: box-shadow 0.2s;
 }
 
 .annotation-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.annotation-card.is-dragging {
-  opacity: 0.5;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .annotation-card-header {
@@ -511,23 +502,6 @@ body {
   align-items: center;
   gap: 8px;
   margin-bottom: 8px;
-  position: relative;
-}
-
-.drag-handle {
-  position: absolute;
-  left: -24px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #ccc;
-  font-size: 16px;
-  cursor: grab;
-  line-height: 1;
-  letter-spacing: -2px;
-}
-
-.drag-handle:active {
-  cursor: grabbing;
 }
 
 .annotation-card-number-badge {
@@ -579,14 +553,44 @@ body {
   min-height: 100vh;
   background: #f8f9fa;
   overflow-x: auto;
-  /* Allow horizontal scroll for wide slide content (1600px) */
 }
 
 .app-main-preview {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 40px;
   overflow: auto;
+}
+
+/* Scale Mode Container */
+.slide-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  min-width: 100%;
+}
+
+/* Scale to fit mode - scales the slide to fit viewport */
+.slide-container.scale-mode-fit {
+  justify-content: center;
+  align-items: center;
+}
+
+.slide-container.scale-mode-fit .slide-wrapper {
+  transform-origin: top center;
+  transform: scale(var(--scale-factor, 1));
+  margin: 0 auto;
+}
+
+/* Full width scroll mode */
+.slide-container.scale-mode-scroll {
+  justify-content: flex-start;
+  overflow-x: auto;
+}
+
+.slide-container.scale-mode-scroll .slide-wrapper {
+  transform: none;
 }
 
 /* Header Actions */
@@ -594,6 +598,102 @@ body {
   display: flex;
   gap: 12px;
   align-items: center;
+}
+
+/* Scale Toggle Buttons */
+.scale-toggle {
+  display: flex;
+  gap: 4px;
+  background: #e9ecef;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.scale-toggle button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 3px;
+  background: transparent;
+  color: #495057;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.scale-toggle button:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.scale-toggle button.active {
+  background: white;
+  color: #007bff;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Width Slider */
+.width-slider-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  background: #e9ecef;
+  border-radius: 4px;
+}
+
+.width-slider-container label {
+  font-size: 12px;
+  color: #495057;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.width-slider {
+  width: 120px;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #dee2e6;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.width-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.width-slider::-webkit-slider-thumb:hover {
+  background: #0056b3;
+}
+
+.width-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #007bff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.width-slider::-moz-range-thumb:hover {
+  background: #0056b3;
+}
+
+.width-value {
+  font-size: 12px;
+  color: #495057;
+  font-weight: 600;
+  min-width: 45px;
+  text-align: right;
 }
 
 /* Preview Mode Button */

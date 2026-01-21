@@ -16,6 +16,7 @@ const STORAGE_KEY = 'phishmonger-html-source'
 const MODE_KEY = 'phishmonger-input-mode'
 
 type ViewMode = 'edit' | 'preview'
+type ScaleMode = 'scroll' | 'fit'
 
 function App() {
   const [inputMode, setInputMode] = useState<InputMode>(() => {
@@ -30,6 +31,8 @@ function App() {
     return loadAnnotations()
   })
   const [viewMode, setViewMode] = useState<ViewMode>('edit')
+  const [scaleMode, setScaleMode] = useState<ScaleMode>('fit')
+  const [annotationWidth, setAnnotationWidth] = useState(640)
   const slideWrapperRef = useRef<HTMLDivElement>(null)
 
   // Save to LocalStorage whenever htmlSource changes
@@ -46,6 +49,35 @@ function App() {
   useEffect(() => {
     saveAnnotations(annotations)
   }, [annotations])
+
+  // Calculate scale factor for "fit to screen" mode
+  useEffect(() => {
+    if (viewMode === 'preview' && scaleMode === 'fit') {
+      const updateScale = () => {
+        const container = document.querySelector('.slide-container') as HTMLElement
+        const slideWrapper = slideWrapperRef.current
+        if (container && slideWrapper) {
+          const containerWidth = container.clientWidth
+          const slideWidth = 1600 // Fixed width of slide-wrapper
+          const slideHeight = 900 // Fixed height of slide-wrapper
+          const padding = 80 // Account for container padding
+          
+          const availableWidth = containerWidth - padding
+          const availableHeight = window.innerHeight - 200 // Account for header and padding
+          
+          const scaleX = availableWidth / slideWidth
+          const scaleY = availableHeight / slideHeight
+          const scale = Math.min(scaleX, scaleY, 1) // Don't scale up, only down
+          
+          slideWrapper.style.setProperty('--scale-factor', scale.toString())
+        }
+      }
+
+      updateScale()
+      window.addEventListener('resize', updateScale)
+      return () => window.removeEventListener('resize', updateScale)
+    }
+  }, [viewMode, scaleMode])
 
   const updateAnnotation = (lureId: string, updates: Partial<Annotation>) => {
     setAnnotations(prev => ({
@@ -94,6 +126,36 @@ function App() {
         <header className="app-header">
           <h1>Phish Monger - Preview Mode</h1>
           <div className="header-actions">
+            <div className="scale-toggle">
+              <button
+                className={scaleMode === 'fit' ? 'active' : ''}
+                onClick={() => setScaleMode('fit')}
+                type="button"
+              >
+                Scale to Fit
+              </button>
+              <button
+                className={scaleMode === 'scroll' ? 'active' : ''}
+                onClick={() => setScaleMode('scroll')}
+                type="button"
+              >
+                Full Width
+              </button>
+            </div>
+            <div className="width-slider-container">
+              <label htmlFor="annotation-width-slider">Annotation Width</label>
+              <input
+                id="annotation-width-slider"
+                type="range"
+                min="400"
+                max="800"
+                step="20"
+                value={annotationWidth}
+                onChange={(e) => setAnnotationWidth(Number(e.target.value))}
+                className="width-slider"
+              />
+              <span className="width-value">{annotationWidth}px</span>
+            </div>
             <button
               onClick={() => setViewMode('edit')}
               className="back-to-edit-button"
@@ -108,13 +170,18 @@ function App() {
           </div>
         </header>
         <main className="app-main app-main-preview">
-          <SlideWrapper
-            ref={slideWrapperRef}
-            annotations={annotations}
-          >
-            <EmailColumn htmlSource={htmlSource} annotations={annotations} />
-            <AnnotationColumn annotations={annotations} onUpdateAnnotation={updateAnnotation} />
-          </SlideWrapper>
+          <div className={`slide-container scale-mode-${scaleMode}`}>
+            <SlideWrapper
+              ref={slideWrapperRef}
+              annotations={annotations}
+            >
+              <EmailColumn htmlSource={htmlSource} annotations={annotations} />
+              <AnnotationColumn 
+                annotations={annotations}
+                width={annotationWidth}
+              />
+            </SlideWrapper>
+          </div>
         </main>
       </div>
     )
