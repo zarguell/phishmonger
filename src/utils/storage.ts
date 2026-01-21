@@ -2,6 +2,7 @@ import type { Annotation } from '../types/annotations'
 import type { ProjectMetadata } from '../types/project'
 import type { ScoringData } from '../types/scoring'
 import type { InputMode } from '../components/ModeToggle'
+import type { CustomTechnique } from '../types/library'
 
 const ANNOTATIONS_KEY = 'phishmonger-annotations'
 
@@ -104,6 +105,11 @@ export const saveMetadata = (metadata: ProjectMetadata) => {
 
 /**
  * Project export/import interface
+ *
+ * Includes optional customTechniques field for portability:
+ * - Custom techniques travel with the project JSON
+ * - Built-in techniques are NOT included (reference by ID only)
+ * - This prevents bloat and allows sharing projects with custom techniques
  */
 export interface ProjectJSON {
   metadata: ProjectMetadata
@@ -111,30 +117,48 @@ export interface ProjectJSON {
   annotations: Record<string, Annotation>
   scoring: ScoringData
   inputMode: InputMode
+  customTechniques?: Record<string, CustomTechnique>
 }
 
 /**
  * Export project data as JSON string
+ *
+ * @param metadata - Project metadata (title, author, timestamps)
+ * @param htmlSource - HTML email source with lure mark spans
+ * @param annotations - Annotation data keyed by lure ID
+ * @param scoring - NIST Phish Scale scoring data
+ * @param inputMode - Current input mode (html or richtext)
+ * @param customTechniques - Optional custom techniques to include in export
+ * @returns JSON string representation of the project
  */
 export const exportProjectJSON = (
   metadata: ProjectMetadata,
   htmlSource: string,
   annotations: Record<string, Annotation>,
   scoring: ScoringData,
-  inputMode: InputMode
+  inputMode: InputMode,
+  customTechniques?: Record<string, CustomTechnique>
 ): string => {
   const project: ProjectJSON = {
     metadata,
     htmlSource,
     annotations,
     scoring,
-    inputMode
+    inputMode,
+    ...(customTechniques && Object.keys(customTechniques).length > 0 && { customTechniques })
   }
   return JSON.stringify(project, null, 2)
 }
 
 /**
  * Import project data from JSON string with validation
+ *
+ * Validates required fields (metadata, htmlSource, annotations, scoring)
+ * and optionally accepts customTechniques for merging into LocalStorage.
+ *
+ * @param jsonString - JSON string representation of project
+ * @returns Parsed and validated project data
+ * @throws Error if JSON is malformed or missing required fields
  */
 export const importProjectJSON = (jsonString: string): ProjectJSON => {
   try {
@@ -152,6 +176,32 @@ export const importProjectJSON = (jsonString: string): ProjectJSON => {
 
     if (!parsed.metadata.createdAt || typeof parsed.metadata.createdAt !== 'string') {
       throw new Error('Invalid project JSON: metadata.createdAt is required')
+    }
+
+    // Validate customTechniques if present (optional field)
+    if (parsed.customTechniques !== undefined) {
+      if (typeof parsed.customTechniques !== 'object' || parsed.customTechniques === null || Array.isArray(parsed.customTechniques)) {
+        throw new Error('Invalid project JSON: customTechniques must be an object')
+      }
+
+      // Validate each custom technique has required fields
+      for (const [id, technique] of Object.entries(parsed.customTechniques)) {
+        if (typeof technique !== 'object' || technique === null) {
+          throw new Error(`Invalid project JSON: custom technique "${id}" is not an object`)
+        }
+        if (!technique.id || typeof technique.id !== 'string') {
+          throw new Error(`Invalid project JSON: custom technique "${id}" missing id`)
+        }
+        if (!technique.name || typeof technique.name !== 'string') {
+          throw new Error(`Invalid project JSON: custom technique "${id}" missing name`)
+        }
+        if (technique.isCustom !== true) {
+          throw new Error(`Invalid project JSON: custom technique "${id}" must have isCustom: true`)
+        }
+        if (!technique.createdAt || typeof technique.createdAt !== 'string') {
+          throw new Error(`Invalid project JSON: custom technique "${id}" missing createdAt`)
+        }
+      }
     }
 
     return parsed
