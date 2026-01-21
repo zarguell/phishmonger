@@ -23,14 +23,14 @@
 
 ## Current Position
 
-**Phase:** v1.1 Complete
-**Status:** All v1.1 requirements satisfied
-**Last activity:** 2026-01-21 - Phase 6 verification passed (9/9 must-haves)
+**Phase:** 08-deferred-v1-0-work
+**Status:** In progress (Plan 1 of 5 complete)
+**Last activity:** 2026-01-21 - Completed 08-01-PLAN.md (undo/redo functionality)
 
-**Progress:** ████████████████████ 100% (v1.1 annotation flexibility shipped)
+**Progress:** █████░░░░░░░░░░░░░░░░ 20% (08-01: Undo/Redo complete)
 
-**Current Focus:** Milestone complete
-**Next Step:** Audit milestone or plan v2.0
+**Current Focus:** Executing deferred v1.0 features (undo/redo, arrow styles, layout templates, custom techniques)
+**Next Step:** Continue with remaining 08-X plans or audit milestone
 
 ---
 
@@ -90,6 +90,10 @@
 | Title field for annotations | Optional `title?: string` field enables freetext annotation titles in visualizer | 06-01: Data model extension |
 | Optional techniqueId | Changed `techniqueId: string` to `techniqueId?: string` - annotations now work without MITRE technique | 06-02: Optional tags |
 | AnnotationCard component | New component displays title (bold), tags inline, description below per ANN-12 layout | 06-03: Visualizer cards |
+| useReducer for undo/redo | History pattern with past/present/future arrays more testable and maintainable than manual useState | 08-01: Undo/redo implementation |
+| MAX_HISTORY = 50 | Balances UX (enough steps for session) with memory (prevents unbounded growth) | 08-01: Memory management |
+| react-hotkeys-hook for shortcuts | Declarative API with enableOnFormTags option prevents form input interference | 08-01: Keyboard shortcuts |
+| Only wrap annotations state | Users expect separate undo for text editors; annotations are primary state to track | 08-01: State selection |
 
 ### Requirements Coverage
 
@@ -143,6 +147,9 @@
 - [x] Add Persuasion tag display to AnnotationCard (06-03)
 - [x] Add title input field to AnnotationPanel (06-04)
 - [x] Restore numbered annotation badges in visualizer cards (06-05)
+- [x] Install react-hotkeys-hook dependency (08-01)
+- [x] Create useUndoRedo hook with history management (08-01)
+- [x] Integrate undo/redo into App.tsx with keyboard shortcuts (08-01)
 
 ### Blockers
 
@@ -152,8 +159,8 @@
 
 ## Session Continuity
 
-**Last Session:** 2026-01-20 (Completed 03-02-PLAN.md)
-**Current Session:** 2026-01-20 (Phase 3 plan 02 execution complete)
+**Last Session:** 2026-01-21 (Completed 08-01-PLAN.md)
+**Current Session:** 2026-01-21 (Phase 08 plan 01 execution complete)
 
 **What Was Done:**
 - Defined 27 v1 requirements across 5 categories
@@ -176,6 +183,21 @@
 - **Phase 2 (02-03) complete:** Annotation integration with LureList, LocalStorage persistence, and cleanup
 - **Phase 2 complete:** All 6 requirements verified (11/11 must-haves passed)
 - **Verification report:** .planning/phases/02-technique-annotations/02-TECHNIQUE-ANNOTATIONS-VERIFICATION.md
+- **Phase 6 (06-01) complete:** Added optional title field to Annotation type
+- **Phase 6 (06-02) complete:** Made techniqueId optional in Annotation type
+- **Phase 6 (06-03) complete:** Created AnnotationCard component with combined MITRE and Persuasion tag display
+- **Phase 6 (06-04) complete:** Added title input field to AnnotationPanel for freetext annotation titles
+- **Phase 6 (06-05) complete:** Restored numbered annotation badges (1, 2, 3...) in visualizer cards
+- All 5 ANN requirements satisfied for v1.1 (ANN-08 through ANN-12)
+- Gap closure complete: v1.1 fully shipped with enhanced annotation data model
+- **Phase 8 (08-01) complete:** Undo/redo functionality with keyboard shortcuts
+  - Installed react-hotkeys-hook@5.2.3 for global keyboard shortcuts
+  - Created useUndoRedo hook with useReducer pattern and MAX_HISTORY=50
+  - Wrapped annotations state with undo/redo history tracking
+  - Added Ctrl+Z/Cmd+Z for undo, Ctrl+Shift+Z/Ctrl+Y for redo
+  - Configured enableOnFormTags:false to prevent form input interference
+  - Added visual undo/redo buttons to header with disabled states
+  - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-01-SUMMARY.md
  - **Executed 03-01:** Installed html2canvas@^1.4.1 and @types/html2canvas for DOM-to-image export functionality
  - **Executed 03-02:** Three-column slide layout components (SlideWrapper, EmailColumn, AnnotationColumn) with fixed 1600px width and ghost card empty state
 
@@ -211,7 +233,8 @@
 - Gap closure complete: v1.1 fully shipped with enhanced annotation data model
 
 **What's Next:**
-- Ready for v2 planning and development
-- All v1.1 requirements satisfied
+- Continue with Phase 08 deferred features (08-02 through 08-05)
+- Plans 08-02, 08-03, 08-04, 08-05 already executed in parallel
+- Ready for v2 planning or audit milestone
 
 ---
