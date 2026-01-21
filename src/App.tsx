@@ -191,6 +191,8 @@ function App() {
             <SlideWrapper
               ref={slideWrapperRef}
               annotations={annotations}
+              scoring={scoring}
+              showBadge={true}
             >
               <EmailColumn htmlSource={htmlSource} annotations={annotations} />
               <AnnotationColumn 

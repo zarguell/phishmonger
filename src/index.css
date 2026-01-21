@@ -936,3 +936,21 @@ body {
   font-size: 0.75rem;
   color: #666;
 }
+
+/* Difficulty Badge Overlay */
+.difficulty-badge-overlay {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
