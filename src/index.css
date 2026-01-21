@@ -430,6 +430,7 @@ body {
   flex-shrink: 0;
   padding: 40px;
   box-sizing: border-box;
+  background: #fff;
 }
 
 .email-content {
@@ -441,6 +442,26 @@ body {
   word-wrap: break-word;
   word-break: break-word;
   overflow-wrap: break-word;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.email-content p {
+  color: #333;
+  margin: 1rem 0;
+}
+
+.email-content h1,
+.email-content h2,
+.email-content h3 {
+  color: #222;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.email-content a {
+  color: #007bff;
 }
 
 .annotation-column {
