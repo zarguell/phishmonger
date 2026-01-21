@@ -437,6 +437,10 @@ body {
   max-width: 100%;
   overflow-x: auto;
   /* Allow wide content to scroll horizontally if needed */
+  /* Text wrapping to prevent clipping */
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .annotation-column {
