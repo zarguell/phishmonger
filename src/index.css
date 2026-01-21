@@ -433,7 +433,10 @@ body {
 }
 
 .email-content {
-  /* Inherits styling from preview-pane */
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  /* Allow wide content to scroll horizontally if needed */
 }
 
 .annotation-column {
