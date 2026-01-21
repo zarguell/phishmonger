@@ -124,7 +124,7 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 ## Phase 4 - NIST Phish Scale Scoring
 
 **Goal:** Users can calculate phishing difficulty scores using NIST Phish Scale methodology
-**Status:** In Progress
+**Status:** Planned
 **Plans:** 2 plans in 2 waves
 
 **Dependencies:** Phase 3 (scoring displayed on exported slides)
