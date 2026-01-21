@@ -24,15 +24,15 @@
 ## Current Position
 
 **Phase:** 4 of 5 (NIST Phish Scale Scoring)
-**Plan:** 1 of 4 in current phase
+**Plan:** 2 of 4 in current phase
 **Status:** In progress
-**Last activity:** 2026-01-21 - Completed 04-01-PLAN.md (scoring types, calculation utility, ScoringPanel component)
+**Last activity:** 2026-01-21 - Completed 04-02-PLAN.md (App integration, badge overlay, persistence)
 
-**Progress:** ███████████████ 65% (3 of 5 phases complete, 1/4 plans in phase 4)
+**Progress:** ███████████████ 70% (3 of 5 phases complete, 2/4 plans in phase 4)
 
-**Current Focus:** Phase 4 (NIST Phish Scale Scoring) - Scoring types and calculation complete. ScoringPanel component with counter widgets and slider ready for App integration.
+**Current Focus:** Phase 4 (NIST Phish Scale Scoring) - Scoring system fully integrated with zone-based NIST Phish Scale difficulty matrix, badge overlay on preview/export, and LocalStorage persistence.
 
-**Next Step:** Execute 04-02-PLAN.md (App integration)
+**Next Step:** Execute 04-03-PLAN.md (Export refinements)
 
 ---
 
@@ -186,21 +186,24 @@
 
 ## Session Continuity
 
-**Last Session:** 2026-01-21 (Completed 04-01-PLAN.md)
-**Current Session:** 2026-01-21 (Phase 4 plan 01 execution)
+**Last Session:** 2026-01-21 (Completed 04-02-PLAN.md)
+**Current Session:** 2026-01-21 (Phase 4 plan 02 execution)
 
 **What Was Done:**
 - **Phase 3 complete:** All 8 plans executed
 - **Phase 4 (04-01) complete:** Scoring types, calculation utility, and ScoringPanel component
-  - Created ScoringData, DifficultyLevel, DifficultyBadge types
-  - Implemented calculateDifficulty(), getDifficultyLevel(), getDifficultyBadge() utilities
-  - Built ScoringPanel component with counter widgets and premise alignment slider
-  - Added comprehensive CSS styling for scoring controls
-  - Verified TypeScript compilation and component structure
+- **Phase 4 (04-02) complete:** App integration, badge overlay, and persistence
+  - Integrated ScoringPanel into App.tsx with state management
+  - Added loadScoring/saveScoring utilities to storage.ts
+  - Updated layout to four columns (input, preview, lure list, scoring)
+  - Added difficulty badge overlay to SlideWrapper with NIST zone display
+  - Implemented badge visibility toggle in ScoringPanel
+  - Fixed NIST scoring to use zone-based matrix (not subtraction formula)
+  - Badge shows: "NIST Phish Scale Score" + difficulty label + cue/alignment zones
 
 **What's Next:**
-- Execute 04-02-PLAN.md (App integration - add ScoringPanel to main layout)
-- Phase 4 remaining: Badge on export (04-03), Export settings (04-04)
+- Execute 04-03-PLAN.md (Export refinements - quality improvements, filename handling)
+- Phase 4 remaining: Export settings (04-04)
 
 ---
 
