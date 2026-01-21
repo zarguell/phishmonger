@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { useHotkeys } from 'react-hotkeys-hook'
 import { HTMLInput } from './components/HTMLInput'
 import { Editor } from './components/Editor'
 import type { InputMode } from './components/ModeToggle'
@@ -10,6 +11,8 @@ import { SlideWrapper } from './components/preview/SlideWrapper'
 import { EmailColumn } from './components/preview/EmailColumn'
 import { AnnotationColumn } from './components/preview/AnnotationColumn'
 import { ExportButton } from './components/export/ExportButton'
+import { ArrowStyleSelector } from './components/visualizer/ArrowStyleSelector'
+import { useUndoRedo } from './hooks/useUndoRedo'
 import type { Annotation } from './types/annotations'
 import type { ScoringData } from './types/scoring'
 import type { ProjectMetadata } from './types/project'
@@ -19,6 +22,7 @@ import './index.css'
 
 const STORAGE_KEY = 'phishmonger-html-source'
 const MODE_KEY = 'phishmonger-input-mode'
+const ARROW_STYLE_KEY = 'phishmonger-arrow-style'
 
 type ViewMode = 'edit' | 'preview'
 type ScaleMode = 'scroll' | 'fit'
@@ -32,9 +36,14 @@ function App() {
     const saved = localStorage.getItem(STORAGE_KEY)
     return saved || '<p>Start typing your phishing email here...</p>'
   })
-  const [annotations, setAnnotations] = useState<Record<string, Annotation>>(() => {
-    return loadAnnotations()
-  })
+  const {
+    state: annotations,
+    setState: setAnnotations,
+    undo: undoAnnotations,
+    redo: redoAnnotations,
+    canUndo: canUndoAnnotations,
+    canRedo: canRedoAnnotations
+  } = useUndoRedo<Record<string, Annotation>>(() => loadAnnotations())
   const [scoring, setScoring] = useState<ScoringData>(() => {
     return loadScoring()
   })
@@ -45,6 +54,10 @@ function App() {
   const [scaleMode, setScaleMode] = useState<ScaleMode>('fit')
   const [annotationWidth, setAnnotationWidth] = useState(640)
   const [showBadge, setShowBadge] = useState(true)
+  const [arrowStyle, setArrowStyle] = useState(() => {
+    const savedStyle = localStorage.getItem(ARROW_STYLE_KEY)
+    return savedStyle || 'classic'
+  })
   const slideWrapperRef = useRef<HTMLDivElement>(null)
 
   // Save to LocalStorage whenever htmlSource changes
@@ -56,6 +69,11 @@ function App() {
   useEffect(() => {
     localStorage.setItem(MODE_KEY, inputMode)
   }, [inputMode])
+
+  // Save arrow style preference
+  useEffect(() => {
+    localStorage.setItem(ARROW_STYLE_KEY, arrowStyle)
+  }, [arrowStyle])
 
   // Save annotations to LocalStorage
   useEffect(() => {
@@ -71,6 +89,17 @@ function App() {
   useEffect(() => {
     saveMetadata(metadata)
   }, [metadata])
+
+  // Global keyboard shortcuts for undo/redo (disabled in form inputs)
+  useHotkeys('ctrl+z, cmd+z', (e) => {
+    e.preventDefault()
+    undoAnnotations()
+  }, { enableOnFormTags: false }, [undoAnnotations])
+
+  useHotkeys('ctrl+shift+z, ctrl+y, cmd+shift+z', (e) => {
+    e.preventDefault()
+    redoAnnotations()
+  }, { enableOnFormTags: false }, [redoAnnotations])
 
   // Calculate scale factor for "fit to screen" mode
   useEffect(() => {
@@ -206,6 +235,10 @@ function App() {
               />
               <span className="width-value">{annotationWidth}px</span>
             </div>
+            <ArrowStyleSelector
+              currentStyle={arrowStyle}
+              onStyleChange={setArrowStyle}
+            />
             <button
               onClick={() => setViewMode('edit')}
               className="back-to-edit-button"
@@ -228,9 +261,10 @@ function App() {
               showBadge={showBadge}
             >
               <EmailColumn htmlSource={htmlSource} annotations={annotations} />
-              <AnnotationColumn 
+              <AnnotationColumn
                 annotations={annotations}
                 width={annotationWidth}
+                arrowStyle={arrowStyle}
               />
             </SlideWrapper>
           </div>
@@ -270,6 +304,22 @@ function App() {
         </div>
         <p>Phishing Email Annotation Tool</p>
         <div className="header-actions">
+          <button
+            onClick={undoAnnotations}
+            disabled={!canUndoAnnotations}
+            title="Undo (Ctrl+Z / Cmd+Z)"
+            type="button"
+          >
+            Undo
+          </button>
+          <button
+            onClick={redoAnnotations}
+            disabled={!canRedoAnnotations}
+            title="Redo (Ctrl+Shift+Z / Ctrl+Y)"
+            type="button"
+          >
+            Redo
+          </button>
           <button
             onClick={() => setViewMode('preview')}
             className="preview-mode-button"
