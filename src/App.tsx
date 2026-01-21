@@ -263,7 +263,6 @@ function App() {
               <EmailColumn htmlSource={htmlSource} annotations={annotations} />
               <AnnotationColumn
                 annotations={annotations}
-                width={annotationWidth}
                 arrowStyle={arrowStyle}
               />
             </SlideWrapper>
