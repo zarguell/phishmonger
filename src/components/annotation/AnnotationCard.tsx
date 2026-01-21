@@ -1,40 +1,49 @@
 import type { Annotation, Technique } from '../../types/annotations'
 import techniques from '../../data/techniques.json' with { type: 'json' }
+import persuasionPrinciples from '../../data/persuasion.json' with { type: 'json' }
 
 interface AnnotationCardProps {
   annotation: Annotation
-  annotationNumber?: number
+}
+
+function getTechniqueName(id: string): string {
+  const technique = (techniques as Technique[]).find((t: Technique) => t.id === id)
+  return technique ? `${id} - ${technique.name}` : id
+}
+
+function getPersuasionName(id: string): string {
+  const principle = persuasionPrinciples.find((p: any) => p.id === id)
+  return principle?.name || id
 }
 
 export function AnnotationCard({
   annotation,
-  annotationNumber,
 }: AnnotationCardProps) {
-  // Find technique name from techniques.json
-  const technique = (techniques as Technique[]).find((t: Technique) => t.id === annotation.techniqueId)
-  const techniqueName = technique?.name || annotation.techniqueId
-
   return (
     <div
       className="annotation-card"
       data-card-id={annotation.lureId}
     >
-      <div className="annotation-card-header">
-        {annotationNumber && (
-          <span className="annotation-card-number-badge">
-            {annotationNumber}
+      {annotation.title && (
+        <div className="annotation-title">
+          {annotation.title}
+        </div>
+      )}
+      <div className="annotation-tags">
+        {annotation.techniqueId && (
+          <span className="mitre-tag">
+            ({getTechniqueName(annotation.techniqueId)})
           </span>
         )}
-        <h3 className="annotation-card-title">
-          {techniqueName}
-        </h3>
+        {annotation.persuasionPrincipleId && (
+          <span className="persuasion-tag">
+            (Persuasion: {getPersuasionName(annotation.persuasionPrincipleId)})
+          </span>
+        )}
       </div>
-      <span className="annotation-card-badge">
-        {annotation.techniqueId}
-      </span>
-      <p className="annotation-card-explanation">
+      <div className="annotation-description">
         {annotation.explanation}
-      </p>
+      </div>
     </div>
   )
 }
