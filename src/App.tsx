@@ -11,7 +11,8 @@ import { AnnotationColumn } from './components/preview/AnnotationColumn'
 import { ExportButton } from './components/export/ExportButton'
 import type { Annotation } from './types/annotations'
 import type { ScoringData } from './types/scoring'
-import { loadAnnotations, saveAnnotations, loadScoring, saveScoring } from './utils/storage'
+import type { ProjectMetadata } from './types/project'
+import { loadAnnotations, saveAnnotations, loadScoring, saveScoring, loadMetadata, saveMetadata } from './utils/storage'
 import './index.css'
 
 const STORAGE_KEY = 'phishmonger-html-source'
@@ -34,6 +35,9 @@ function App() {
   })
   const [scoring, setScoring] = useState<ScoringData>(() => {
     return loadScoring()
+  })
+  const [metadata, setMetadata] = useState<ProjectMetadata>(() => {
+    return loadMetadata()
   })
   const [viewMode, setViewMode] = useState<ViewMode>('edit')
   const [scaleMode, setScaleMode] = useState<ScaleMode>('fit')
@@ -60,6 +64,11 @@ function App() {
   useEffect(() => {
     saveScoring(scoring)
   }, [scoring])
+
+  // Save metadata to LocalStorage
+  useEffect(() => {
+    saveMetadata(metadata)
+  }, [metadata])
 
   // Calculate scale factor for "fit to screen" mode
   useEffect(() => {
@@ -136,6 +145,13 @@ function App() {
       const { [lureId]: removed, ...rest } = prev
       return rest
     })
+  }
+
+  const handleUpdateMetadata = (updates: Partial<ProjectMetadata>) => {
+    setMetadata(prev => ({
+      ...prev,
+      ...updates
+    }))
   }
 
   if (viewMode === 'preview') {
