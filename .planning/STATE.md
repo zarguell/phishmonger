@@ -2,14 +2,14 @@
 
 **Last Updated:** 2026-01-21
 **Current Phase:** 08-deferred-v1-0-work
-**Status:** In progress (Plan 5 of 8 complete)
+**Status:** In progress (Plan 6 of 8 complete)
 
-**Last activity:** 2026-01-21 - Completed 08-02-PLAN.md (Keyboard shortcuts help system)
+**Last activity:** 2026-01-21 - Completed 08-06-PLAN.md (Custom technique editor)
 
-**Progress:** ████████████░░░░░░░░░ 62.5% (08-01: Undo/Redo, 08-02: Keyboard shortcuts, 08-03: Arrow styles, 08-04: Layout templates, 08-05: Custom techniques complete)
+**Progress:** █████████████░░░░░░░░ 75% (08-01: Undo/Redo, 08-02: Keyboard shortcuts, 08-03: Arrow styles, 08-04: Layout templates, 08-05: Custom techniques, 08-06: Custom technique editor complete)
 
 **Current Focus:** Executing deferred v1.0 features (undo/redo, keyboard shortcuts, arrow styles, layout templates, custom techniques)
-**Next Step:** Continue with plan 08-05 (Custom technique library with LocalStorage persistence) or audit milestone
+**Next Step:** Continue with plan 08-07 (Custom techniques portability) or audit milestone
 
 ---
 
@@ -158,8 +158,8 @@
 
 ## Session Continuity
 
-**Last Session:** 2026-01-21 (Completed 08-05-PLAN.md)
-**Current Session:** 2026-01-21 (Phase 08 plan 05 execution complete with custom technique system)
+**Last Session:** 2026-01-21 (Completed 08-06-PLAN.md)
+**Current Session:** 2026-01-21 (Phase 08 plan 06 execution complete with custom technique editor)
 
 **What Was Done:**
 - Defined 27 v1 requirements across 5 categories
@@ -232,14 +232,21 @@
      - Cycle 3: Reduced gap in Compact, fixed NIST badge toggle connection
    - All issues resolved, plan complete
    - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-04-SUMMARY.md
-- **Phase 8 (08-05) complete:** Custom technique library with LocalStorage persistence
-   - Created CustomTechnique type extending Technique with optional URL and organization fields
-   - Implemented useCustomTechniques hook with full CRUD operations and automatic LocalStorage persistence
-   - Added getAllTechniques() merge operation for combining built-in and custom techniques
-   - Fixed TypeScript compilation errors in integrated components
-   - **Deviation handling:** Applied Rule 3 (blocking issues) to resolve 3 compilation errors
-   - Commits: 1075bfc, 51d308e, 6595765
-   - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-05-SUMMARY.md
+ - **Phase 8 (08-05) complete:** Custom technique library with LocalStorage persistence
+    - Created CustomTechnique type extending Technique with optional URL and organization fields
+    - Implemented useCustomTechniques hook with full CRUD operations and automatic LocalStorage persistence
+    - Added getAllTechniques() merge operation for combining built-in and custom techniques
+    - Fixed TypeScript compilation errors in integrated components
+    - **Deviation handling:** Applied Rule 3 (blocking issues) to resolve 3 compilation errors
+    - Commits: 1075bfc, 51d308e, 6595765
+    - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-05-SUMMARY.md
+ - **Phase 8 (08-06) complete:** Custom technique editor modal
+    - Created CustomTechniqueEditor component with comprehensive form validation
+    - Integrated editor into annotation workflow with "+" button next to technique dropdown
+    - Added visual distinction for custom techniques with "[Custom]" prefix
+    - Implemented unique ID validation and URL format checking
+    - Commits: 84b305f, a9f12f7
+    - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-06-SUMMARY.md
 
 **What's Next:**
 - Continue with Phase 08 deferred features (08-06 through 08-08)
@@ -265,18 +272,39 @@
 **Current Session:** 2026-01-21 (Phase 8 in progress - 3 of 8 plans complete)
 
 **What Was Done:**
-- **Phase 8 (08-03) complete:** Arrow badge style customization
-  - Created src/styles/arrows.module.css with three badge variants (Classic, Square, Diamond)
-  - Created ArrowStyleSelector component with live preview
-  - Integrated arrowStyle state with LocalStorage persistence
-  - Updated AnnotationCard to use CSS module badges instead of inline classes
-  - Commits: 5b432c5, 2892ff7, 66a6dca, 10ac2fb, 6dbd5eb, e19a78b
-  - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-03-SUMMARY.md
+ - **Phase 8 (08-03) complete:** Arrow badge style customization
+   - Created src/styles/arrows.module.css with three badge variants (Classic, Square, Diamond)
+   - Created ArrowStyleSelector component with live preview
+   - Integrated arrowStyle state with LocalStorage persistence
+   - Updated AnnotationCard to use CSS module badges instead of inline classes
+   - Commits: 5b432c5, 2892ff7, 66a6dca, 10ac2fb, 6dbd5eb, e19a78b
+   - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-03-SUMMARY.md
+ - **Phase 8 (08-04) complete:** Layout template presets with user refinements
+   - Created layout templates with Balanced, Wide Email, Wide Annotations, Compact presets
+   - Implemented LayoutTemplateSelector with visual SVG icons
+   - Added VisibilityToggles for Show Tags and Show NIST Badge
+   - Integrated LocalStorage persistence for all layout preferences
+   - Applied user feedback: reduced Compact template gap, refined proportions
+   - Commits: various (integrated across multiple cycles)
+   - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-04-SUMMARY.md
+ - **Phase 8 (08-05) complete:** Custom technique library with LocalStorage persistence
+   - Created CustomTechnique type extending base Technique
+   - Implemented useCustomTechniques hook with full CRUD operations
+   - Added merge operation for built-in + custom techniques
+   - Fixed TypeScript compilation errors
+   - Commits: 1075bfc, 51d308e, 6595765
+   - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-05-SUMMARY.md
+ - **Phase 8 (08-06) complete:** Custom technique editor modal
+   - Created CustomTechniqueEditor component with form validation
+   - Integrated "+" button next to technique dropdown
+   - Added "[Custom]" prefix for visual distinction
+   - Implemented unique ID and URL validation
+   - Commits: 84b305f, a9f12f7
+   - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-06-SUMMARY.md
 
 **What's Next:**
-- Continue with Phase 08 deferred features (08-04 through 08-08)
-- Dev server running on http://localhost:5174/ for verification
-- Plans 08-02, 08-03, 08-04, 08-05 already executed in parallel
-- Ready for v2 planning or audit milestone
+ - Continue with Phase 08 deferred features (08-07 through 08-08)
+ - Dev server running on http://localhost:5174/ for verification
+ - Ready for v2 planning or audit milestone
 
 ---
