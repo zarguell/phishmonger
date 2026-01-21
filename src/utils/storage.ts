@@ -1,4 +1,5 @@
 import type { Annotation } from '../types/annotations'
+import type { ProjectMetadata } from '../types/project'
 import type { ScoringData } from '../types/scoring'
 
 const ANNOTATIONS_KEY = 'phishmonger-annotations'
@@ -53,5 +54,49 @@ export function saveScoring(scoring: ScoringData): void {
     localStorage.setItem('phishmonger-scoring', JSON.stringify(scoring))
   } catch (error) {
     console.error('Failed to save scoring:', error)
+  }
+}
+
+const METADATA_KEY = 'phishmonger-metadata'
+
+/**
+ * Load project metadata from LocalStorage
+ * Returns default metadata if no saved data exists
+ */
+export const loadMetadata = (): ProjectMetadata => {
+  try {
+    const saved = localStorage.getItem(METADATA_KEY)
+    if (saved) {
+      const parsed = JSON.parse(saved)
+      return {
+        title: parsed.title || 'Untitled Project',
+        author: parsed.author || '',
+        createdAt: parsed.createdAt || new Date().toISOString()
+      }
+    }
+  } catch (error) {
+    console.error('Failed to load metadata:', error)
+  }
+  // Default metadata for new projects
+  return {
+    title: 'Untitled Project',
+    author: '',
+    createdAt: new Date().toISOString()
+  }
+}
+
+/**
+ * Save project metadata to LocalStorage
+ * Automatically adds updatedAt timestamp
+ */
+export const saveMetadata = (metadata: ProjectMetadata) => {
+  try {
+    const toSave = {
+      ...metadata,
+      updatedAt: new Date().toISOString()
+    }
+    localStorage.setItem(METADATA_KEY, JSON.stringify(toSave))
+  } catch (error) {
+    console.error('Failed to save metadata:', error)
   }
 }
