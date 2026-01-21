@@ -5,6 +5,7 @@ import type { InputMode } from './components/ModeToggle'
 import { Preview } from './components/Preview'
 import { LureList } from './components/LureList'
 import { ScoringPanel } from './components/ScoringPanel'
+import { ProjectSettings } from './components/ProjectSettings'
 import { SlideWrapper } from './components/preview/SlideWrapper'
 import { EmailColumn } from './components/preview/EmailColumn'
 import { AnnotationColumn } from './components/preview/AnnotationColumn'
@@ -12,7 +13,8 @@ import { ExportButton } from './components/export/ExportButton'
 import type { Annotation } from './types/annotations'
 import type { ScoringData } from './types/scoring'
 import type { ProjectMetadata } from './types/project'
-import { loadAnnotations, saveAnnotations, loadScoring, saveScoring, loadMetadata, saveMetadata } from './utils/storage'
+import { loadAnnotations, saveAnnotations, loadScoring, saveScoring, loadMetadata, saveMetadata, exportProjectJSON, downloadProjectJSON, importProjectJSON } from './utils/storage'
+import type { ProjectJSON } from './utils/storage'
 import './index.css'
 
 const STORAGE_KEY = 'phishmonger-html-source'
@@ -147,12 +149,25 @@ function App() {
     })
   }
 
-  // @ts-expect-error - handleUpdateMetadata will be used by ProjectSettings in 05-03
   const handleUpdateMetadata = (updates: Partial<ProjectMetadata>) => {
     setMetadata(prev => ({
       ...prev,
       ...updates
     }))
+  }
+
+  const handleExportJSON = () => {
+    const jsonString = exportProjectJSON(metadata, htmlSource, annotations, scoring, inputMode)
+    const filename = `${metadata.title.replace(/[^a-z0-9]/gi, '-').toLowerCase()}-${new Date().toISOString().split('T')[0]}`
+    downloadProjectJSON(jsonString, filename)
+  }
+
+  const handleImportJSON = (project: ProjectJSON) => {
+    setMetadata(project.metadata)
+    setHtmlSource(project.htmlSource)
+    setAnnotations(project.annotations)
+    setScoring(project.scoring)
+    setInputMode(project.inputMode)
   }
 
   if (viewMode === 'preview') {
@@ -227,7 +242,32 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Phish Monger</h1>
+        <div className="header-top">
+          <h1>Phish Monger</h1>
+          <ProjectSettings
+            metadata={metadata}
+            onUpdate={handleUpdateMetadata}
+            onExport={handleExportJSON}
+            onImportFromFile={(file: File) => {
+              const reader = new FileReader()
+              reader.onload = (e) => {
+                try {
+                  const json = e.target?.result as string
+                  const project = importProjectJSON(json)
+                  handleImportJSON(project)
+                } catch (error) {
+                  // Error handled in ProjectSettings
+                  throw error
+                }
+              }
+              reader.readAsText(file)
+            }}
+            onImportFromText={(jsonText: string) => {
+              const project = importProjectJSON(jsonText)
+              handleImportJSON(project)
+            }}
+          />
+        </div>
         <p>Phishing Email Annotation Tool</p>
         <div className="header-actions">
           <button
