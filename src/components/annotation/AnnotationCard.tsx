@@ -8,6 +8,7 @@ interface AnnotationCardProps {
   annotationNumber?: number
   arrowStyle?: string
   showTags?: boolean
+  showNistBadge?: boolean
 }
 
 function getTechniqueName(id: string): string {
@@ -25,13 +26,14 @@ export function AnnotationCard({
   annotationNumber,
   arrowStyle = 'classic',
   showTags = true,
+  showNistBadge = true,
 }: AnnotationCardProps) {
   return (
     <div
       className="annotation-card"
       data-card-id={annotation.lureId}
     >
-      {annotationNumber && (
+      {showNistBadge && annotationNumber && (
         <div className={`${styles.arrowBadge} ${styles[arrowStyle]}`}>
           <span>{annotationNumber}</span>
         </div>

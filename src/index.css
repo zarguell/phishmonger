@@ -1225,6 +1225,16 @@ body {
   border-radius: 4px;
 }
 
+/* Visibility Toggles (combined container) */
+.visibility-toggles {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 4px 12px;
+  background: #e9ecef;
+  border-radius: 4px;
+}
+
 .toggle-label {
   display: flex;
   align-items: center;

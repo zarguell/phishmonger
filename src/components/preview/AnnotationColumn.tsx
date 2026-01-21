@@ -5,9 +5,10 @@ interface AnnotationColumnProps {
   annotations: Record<string, Annotation>
   arrowStyle?: string
   showTags?: boolean
+  showNistBadge?: boolean
 }
 
-export function AnnotationColumn({ annotations, arrowStyle = 'classic', showTags = true }: AnnotationColumnProps) {
+export function AnnotationColumn({ annotations, arrowStyle = 'classic', showTags = true, showNistBadge = true }: AnnotationColumnProps) {
   const hasAnnotations = Object.keys(annotations).length > 0
 
   if (!hasAnnotations) {
@@ -41,6 +42,7 @@ export function AnnotationColumn({ annotations, arrowStyle = 'classic', showTags
           annotationNumber={index + 1}
           arrowStyle={arrowStyle}
           showTags={showTags}
+          showNistBadge={showNistBadge}
         />
       ))}
     </div>
