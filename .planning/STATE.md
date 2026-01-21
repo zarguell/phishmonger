@@ -25,13 +25,13 @@
 ## Current Position
 
 **Phase:** 08-deferred-v1-0-work
-**Status:** In progress (Plan 3 of 8 complete - checkpoint fixes applied)
-**Last activity:** 2026-01-21 - Completed checkpoint fixes for 08-03-PLAN.md (arrow badge positioning, styling, red circle option)
+**Status:** In progress (Plan 4 of 8 complete)
+**Last activity:** 2026-01-21 - Completed 08-04-PLAN.md (layout templates with Compact mode, tags toggle, NIST badge toggle)
 
-**Progress:** ██████████░░░░░░░░░░░ 38% (08-01: Undo/Redo, 08-02: Arrow styles checkpoint fixes, 08-03: Arrow styles + fixes, 08-04: Layout templates complete)
+**Progress:** ██████████░░░░░░░░░░░ 50% (08-01: Undo/Redo, 08-02: Keyboard shortcuts, 08-03: Arrow styles, 08-04: Layout templates complete)
 
-**Current Focus:** Executing deferred v1.0 features (undo/redo, arrow styles, layout templates, custom techniques)
-**Next Step:** Continue with remaining 08-X plans or await user re-verification of 08-03 checkpoint fixes
+**Current Focus:** Executing deferred v1.0 features (undo/redo, keyboard shortcuts, arrow styles, layout templates, custom techniques)
+**Next Step:** Continue with plan 08-05 (Custom technique library with LocalStorage persistence) or audit milestone
 
 ---
 
@@ -100,7 +100,10 @@
 | Diamond text counter-rotation | Nested span with -45deg transform keeps numbers upright despite 45deg parent rotation | 08-03: Badge rendering |
 | Template-based layout UX | Presets reduce cognitive load compared to pixel-level slider control | 08-04: Layout templates |
 | Flexbox with flex-grow for email column | Allows responsive sizing while keeping annotation column at fixed width | 08-04: Layout system |
-| CSS Modules for layout templates | Prevents global style conflicts, scoped to SlideWrapper component | 08-04: Layout styling |
+| CSS Modules with :global() selectors | Targets existing global classes while preventing style conflicts | 08-04: CSS architecture |
+| CSS custom properties for template values | Used --layout-gap for template-specific gap values (40px standard, 16px compact) | 08-04: Dynamic styling |
+| Compact template 50/50 split | User feedback: 0.5fr/600px too extreme, adjusted to equal 1fr/1fr for balance | 08-04: User refinement |
+| Tags and NIST badge visibility toggles | Independent LocalStorage-persistent preferences for cleaner visuals | 08-04: User control |
 
 ### Requirements Coverage
 
@@ -157,8 +160,11 @@
 - [x] Install react-hotkeys-hook dependency (08-01)
 - [x] Create useUndoRedo hook with history management (08-01)
 - [x] Integrate undo/redo into App.tsx with keyboard shortcuts (08-01)
-- [x] Create layout templates CSS module with three presets (08-04)
+- [x] Create layout templates CSS module with four presets including Compact (08-04)
 - [x] Create LayoutTemplateSelector component with visual icons (08-04)
+- [x] Fix CSS selector incompatibility with :global() selectors (08-04)
+- [x] Add Compact template with 50/50 split, 14px text, 16px gap (08-04)
+- [x] Create VisibilityToggles component (Show Tags, Show NIST Badge) (08-04)
 - [x] Integrate layout template system with LocalStorage persistence (08-04)
 
 ### Blockers
@@ -170,7 +176,7 @@
 ## Session Continuity
 
 **Last Session:** 2026-01-21 (Completed 08-04-PLAN.md)
-**Current Session:** 2026-01-21 (Phase 08 plan 04 execution complete)
+**Current Session:** 2026-01-21 (Phase 08 plan 04 execution complete with user-driven enhancements)
 
 **What Was Done:**
 - Defined 27 v1 requirements across 5 categories
@@ -226,18 +232,27 @@
     - Round 2: Fixed annotation title overlapping badge (added 30px left padding to title)
   - All issues resolved, plan complete
   - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-03-SUMMARY.md
-- **Phase 8 (08-04) complete:** Layout template presets
-  - Created layouts.module.css with Balanced, Wide Email, and Wide Annotations templates
-  - Created LayoutTemplateSelector component with visual SVG icons
+- **Phase 8 (08-04) complete:** Layout template presets with user-driven enhancements
+  - Created layouts.module.css with four templates: Balanced, Wide Email, Wide Annotations, Compact
+  - Created LayoutTemplateSelector component with four visual SVG icons
   - Replaced annotation width slider with template buttons
   - Added LocalStorage persistence for layout template (LAYOUT_TEMPLATE_KEY)
-  - Updated SlideWrapper to accept layoutTemplate prop and apply CSS module classes
-  - Updated EmailColumn and AnnotationColumn to use CSS module classes
+  - Fixed CSS selector bug using :global() selectors to target existing global classes
+  - Created VisibilityToggles component with Show Tags and Show NIST Badge checkboxes
+  - Added LocalStorage persistence for tags (SHOW_TAGS_KEY) and badge (SHOW_BADGE_KEY)
+  - Compact template: 50/50 split, 14px text, 16px gap (CSS custom property --layout-gap)
   - Flexbox layout with flex-grow for responsive email column sizing
+  - All preferences persist across browser refresh
+  - **User-driven enhancements (3 checkpoint cycles):**
+    - Cycle 1: Fixed templates not working (CSS selector bug)
+    - Cycle 2: Added Compact template, Tags toggle, refined proportions to 50/50
+    - Cycle 3: Reduced gap in Compact, fixed NIST badge toggle connection
+  - All issues resolved, plan complete
   - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-04-SUMMARY.md
 
 **What's Next:**
-- Phase 3 (Visualizer & Export): Continue with SVG overlay component for arrow annotations
+- Phase 8 plan 08-05: Custom technique library with LocalStorage persistence (next plan in phase)
+- Or: Audit milestone - review phase 08 progress and remaining work
 
 **Context to Preserve:**
 - Each phase builds on the previous (vertical slices, not horizontal layers)
