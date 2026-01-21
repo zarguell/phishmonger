@@ -13,6 +13,8 @@ export interface Annotation {
   persuasionPrincipleId?: string // Optional ID from persuasion.json (e.g., "CIAL-02")
   explanation: string            // User-written explanation
   createdAt: string              // ISO timestamp
+  annotationNumber?: number      // Sequential number for display (1-based)
+  manualY?: number               // Manual Y position for drag reordering
 }
 
 /**

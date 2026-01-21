@@ -122,6 +122,23 @@ body {
   border-bottom: 2px solid #ffc107;
   padding: 2px 4px;
   border-radius: 2px;
+  position: relative;
+}
+
+.lure-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background: #FF4500;
+  color: white;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: bold;
+  margin-left: 4px;
+  vertical-align: super;
+  flex-shrink: 0;
 }
 
 .preview-pane .lure-flash {
