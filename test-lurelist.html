@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LureList Test Cases</title>
+</head>
+<body>
+    <h1>LureList Test Scenarios</h1>
+
+    <h2>Test Case 1: Cross-element marking (3 spans, same UUID)</h2>
+    <p>This should appear as <strong>ONE</strong> lure entry in LureList with combined text.</p>
+
+    <div id="test1">
+        <p>
+            <span data-lure-id="test-uuid-123">URGENT:</span>
+            <span data-lure-id="test-uuid-123"> Click here </span>
+            <span data-lure-id="test-uuid-123">now! Action required.</span>
+        </p>
+    </div>
+
+    <h3>Expected Result:</h3>
+    <ul>
+        <li>LureList shows: 1 entry (not 3)</li>
+        <li>Text preview: "URGENT: Click here now! Action required."</li>
+        <li>UUID: test-uuid-123 (truncated to 8 chars)</li>
+    </ul>
+
+    <hr>
+
+    <h2>Test Case 2: Remove lure button</h2>
+    <p>Click the × button next to a lure to remove it.</p>
+
+    <div id="test2">
+        <p>
+            This is <span data-lure-id="remove-test-456">highlighted text</span> that should be removed.
+        </p>
+    </div>
+
+    <h3>Expected Result:</h3>
+    <ul>
+        <li>Click × button next to lure</li>
+        <li>All spans with matching UUID are removed from HTML</li>
+        <li>Text content is preserved: "This is highlighted text that should be removed."</li>
+        <li>Preview re-renders without yellow highlights</li>
+        <li>LureList updates to show one less lure</li>
+    </ul>
+
+    <hr>
+
+    <h2>Test Case 3: Multiple lures, different UUIDs</h2>
+    <p>Multiple separate lures should appear as separate entries.</p>
+
+    <div id="test3">
+        <p>
+            <span data-lure-id="lure-a-first">First lure</span> and
+            <span data-lure-id="lure-b-second">Second lure</span> and
+            <span data-lure-id="lure-c-third">Third lure</span>
+        </p>
+    </div>
+
+    <h3>Expected Result:</h3>
+    <ul>
+        <li>LureList shows: 3 separate entries</li>
+        <li>Each has its own UUID</li>
+        <li>Each has its own remove button</li>
+    </ul>
+
+    <hr>
+
+    <h2>How to Test in App:</h2>
+    <ol>
+        <li>Open app at http://localhost:5176/</li>
+        <li>Switch to "HTML Input" mode</li>
+        <li>Paste one of the test cases above into the textarea</li>
+        <li>Observe the LureList in the right sidebar</li>
+        <li>Click the × button to test removal</li>
+        <li>Check HTML source to verify spans are removed</li>
+    </ol>
+</body>
+</html>

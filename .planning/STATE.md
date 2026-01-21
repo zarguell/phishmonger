@@ -26,11 +26,11 @@
 **Phase:** 3 of 5 (Visualizer & Export)
 **Plan:** 8 of 8
 **Status:** Phase 3 complete pending verification
-**Last activity:** 2026-01-20 - Completed 03-08-PLAN.md (layout collapse fix)
+**Last activity:** 2026-01-20 - Completed 03-08-VISUAL-BUG-FIXES (Bus Line geometry)
 
 **Progress:** ███████████████ 60% (3 of 5 phases complete)
 
-**Current Focus:** Phase 3 (Visualizer & Export) all plans executed. Layout collapse fixed (flexbox layout, deleted useCardLayout). Awaiting human verification checkpoint.
+**Current Focus:** Phase 3 (Visualizer & Export) all plans executed. Layout collapse fixed (flexbox), arrow geometry fixed (Bus Line pattern), visual bugs resolved. Awaiting human verification checkpoint.
 
 **Next Step:** Complete verification checkpoint, then begin Phase 4 (NIST Phish Scale Scoring).
 
@@ -54,6 +54,8 @@
 | NIST Phish Scale methodology | Industry-standard for phishing difficulty assessment | Scoring (Phase 4) |
 | Flexbox over absolute positioning for cards | Simpler, more maintainable, responsive layout; no manual Y calculations | Visualizer (Phase 3) |
 | Deleted useCardLayout hook | No longer needed with flexbox gap handling; simplifies codebase | Visualizer (Phase 3) |
+| Bus Line arrow geometry (X=980px) | All vertical movement on fixed line between columns; arrows never cross text | Visualizer (Phase 3) |
+| 3-segment arrow routing | Right from lure → vertical on bus line → left to card; clean visual path | Visualizer (Phase 3) |
 | Manual project setup vs create-vite | Non-empty directory blocked create-vite; manual files match template exactly | 01-01: Project initialized |
 | Latest Tiptap 2.27.2 over ^2.8.0 | Latest stable version with all bug fixes and features | 01-01: Tiptap installed |
 | Lure Mark as atom Node extension | Prevents cursor issues, simplest implementation for span wrapping | 01-02: Lure Mark extension |

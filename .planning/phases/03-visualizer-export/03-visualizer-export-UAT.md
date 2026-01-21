@@ -80,7 +80,7 @@ skipped: 3
   reason: "User reported: Layout collapse - text is completely on top of each other. Annotation cards are invisible/displaced, EmailColumn shrunk to nothing. Flexbox/grid layout broken causing cards to fly off into void. Arrows drawing big empty rectangles to coordinates that don't visually exist."
   severity: blocker
   test: 1
-  root_cause: ""
+  root_cause: "AnnotationColumn uses absolute positioning for cards without establishing a positioned context (position: relative) on parent. This causes parent to collapse to height: 0, and cards position relative to nearest positioned ancestor (slide-wrapper or viewport) instead of the column. Cards render outside visible area, causing arrow calculations to fail with invalid coordinates."
   artifacts: []
   missing: []
-  debug_session: ""
+  debug_session: ".planning/debug/layout-collapse-diagnosis.md"

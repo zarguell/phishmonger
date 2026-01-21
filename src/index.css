@@ -516,16 +516,6 @@ body {
 }
 
 /* Arrow Overlay */
-.arrow-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none; /* Allow text selection underneath */
-  z-index: 10; /* Above content but below modals */
-}
-
 /* Preview Mode Layout */
 .app-preview-mode {
   width: 100%;
