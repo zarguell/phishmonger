@@ -2,33 +2,11 @@
 
 **Last Updated:** 2026-01-21
 **Current Phase:** 08-deferred-v1-0-work
-**Status:** In progress (Plan 4 of 8 complete)
+**Status:** In progress (Plan 5 of 8 complete)
 
----
+**Last activity:** 2026-01-21 - Completed 08-05-PLAN.md (Custom technique library with LocalStorage persistence)
 
-## Project Reference
-
-**Core Value:** Security trainers can create visual, annotated phishing training materials that clearly highlight deceptive techniques with educational context — without manual layout work.
-
-**What We're Building:** A client-side Single Page Application that enables security trainers to annotate phishing emails with technique explanations, generate visual slides with numbered badges, and calculate phishing difficulty using the NIST Phish Scale.
-
-**Tech Stack:** React + Vite, Tiptap editor, html2canvas, DOMPurify
-
-**Key Constraints:**
-- Static hosting only (Netlify/GitHub Pages)
-- LocalStorage only (no cloud sync, no user accounts)
-- Single-user tool
-- Modern browsers (ES2020+)
-
----
-
-## Current Position
-
-**Phase:** 08-deferred-v1-0-work
-**Status:** In progress (Plan 4 of 8 complete)
-**Last activity:** 2026-01-21 - Completed 08-04-PLAN.md (layout templates with Compact mode, tags toggle, NIST badge toggle)
-
-**Progress:** ██████████░░░░░░░░░░░ 50% (08-01: Undo/Redo, 08-02: Keyboard shortcuts, 08-03: Arrow styles, 08-04: Layout templates complete)
+**Progress:** ████████████░░░░░░░░░ 62.5% (08-01: Undo/Redo, 08-02: Keyboard shortcuts, 08-03: Arrow styles, 08-04: Layout templates, 08-05: Custom techniques complete)
 
 **Current Focus:** Executing deferred v1.0 features (undo/redo, keyboard shortcuts, arrow styles, layout templates, custom techniques)
 **Next Step:** Continue with plan 08-05 (Custom technique library with LocalStorage persistence) or audit milestone
@@ -104,6 +82,7 @@
 | CSS custom properties for template values | Used --layout-gap for template-specific gap values (40px standard, 16px compact) | 08-04: Dynamic styling |
 | Compact template 50/50 split | User feedback: 0.5fr/600px too extreme, adjusted to equal 1fr/1fr for balance | 08-04: User refinement |
 | Tags and NIST badge visibility toggles | Independent LocalStorage-persistent preferences for cleaner visuals | 08-04: User control |
+| CustomTechnique extends base Technique | Allows optional URL field for user-defined techniques without MITRE links | 08-05: Type safety |
 
 ### Requirements Coverage
 
@@ -166,6 +145,10 @@
 - [x] Add Compact template with 50/50 split, 14px text, 16px gap (08-04)
 - [x] Create VisibilityToggles component (Show Tags, Show NIST Badge) (08-04)
 - [x] Integrate layout template system with LocalStorage persistence (08-04)
+- [x] Create CustomTechnique type extending base Technique (08-05)
+- [x] Create useCustomTechniques hook with LocalStorage persistence (08-05)
+- [x] Implement merge operation for built-in + custom techniques (08-05)
+- [x] Fix TypeScript compilation errors in custom technique system (08-05)
 
 ### Blockers
 
@@ -175,8 +158,8 @@
 
 ## Session Continuity
 
-**Last Session:** 2026-01-21 (Completed 08-04-PLAN.md)
-**Current Session:** 2026-01-21 (Phase 08 plan 04 execution complete with user-driven enhancements)
+**Last Session:** 2026-01-21 (Completed 08-05-PLAN.md)
+**Current Session:** 2026-01-21 (Phase 08 plan 05 execution complete with custom technique system)
 
 **What Was Done:**
 - Defined 27 v1 requirements across 5 categories
@@ -242,16 +225,24 @@
   - Added LocalStorage persistence for tags (SHOW_TAGS_KEY) and badge (SHOW_BADGE_KEY)
   - Compact template: 50/50 split, 14px text, 16px gap (CSS custom property --layout-gap)
   - Flexbox layout with flex-grow for responsive email column sizing
-  - All preferences persist across browser refresh
-  - **User-driven enhancements (3 checkpoint cycles):**
-    - Cycle 1: Fixed templates not working (CSS selector bug)
-    - Cycle 2: Added Compact template, Tags toggle, refined proportions to 50/50
-    - Cycle 3: Reduced gap in Compact, fixed NIST badge toggle connection
-  - All issues resolved, plan complete
-  - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-04-SUMMARY.md
+   - All preferences persist across browser refresh
+   - **User-driven enhancements (3 checkpoint cycles):**
+     - Cycle 1: Fixed templates not working (CSS selector bug)
+     - Cycle 2: Added Compact template, Tags toggle, refined proportions to 50/50
+     - Cycle 3: Reduced gap in Compact, fixed NIST badge toggle connection
+   - All issues resolved, plan complete
+   - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-04-SUMMARY.md
+- **Phase 8 (08-05) complete:** Custom technique library with LocalStorage persistence
+   - Created CustomTechnique type extending Technique with optional URL and organization fields
+   - Implemented useCustomTechniques hook with full CRUD operations and automatic LocalStorage persistence
+   - Added getAllTechniques() merge operation for combining built-in and custom techniques
+   - Fixed TypeScript compilation errors in integrated components
+   - **Deviation handling:** Applied Rule 3 (blocking issues) to resolve 3 compilation errors
+   - Commits: 1075bfc, 51d308e, 6595765
+   - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-05-SUMMARY.md
 
 **What's Next:**
-- Phase 8 plan 08-05: Custom technique library with LocalStorage persistence (next plan in phase)
+- Continue with Phase 08 deferred features (08-06 through 08-08)
 - Or: Audit milestone - review phase 08 progress and remaining work
 
 **Context to Preserve:**
