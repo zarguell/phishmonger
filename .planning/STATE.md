@@ -23,15 +23,15 @@
 
 ## Current Position
 
-**Phase:** Gap closure Phase 6 (annotation badges missing)
-**Status:** Gap identified, plan created
-**Last activity:** 2026-01-21 - Created 06-05-PLAN.md for badge restoration
+**Phase:** Gap closure Phase 6 (annotation badges restored)
+**Status:** Complete - v1.1 ready for deployment
+**Last activity:** 2026-01-21 - Completed 06-05-PLAN.md badge restoration
 
-**Progress:** ████████████████████ 100% (v1.1 core complete, gap closure pending)
+**Progress:** ████████████████████ 100% (v1.1 complete)
 
-**Current Focus:** Restore numbered annotation badges in visualizer
+**Current Focus:** Ready for v2 planning
 
-**Next Step:** Execute 06-05-PLAN.md
+**Next Step:** Plan v2 development phases
 
 ---
 
@@ -143,7 +143,7 @@
 - [x] Create AnnotationCard component with tag display (06-03)
 - [x] Add Persuasion tag display to AnnotationCard (06-03)
 - [x] Add title input field to AnnotationPanel (06-04)
-- [ ] Restore numbered annotation badges in visualizer cards (06-05)
+- [x] Restore numbered annotation badges in visualizer cards (06-05)
 
 ### Blockers
 
@@ -207,8 +207,9 @@
 - **Phase 6 (06-02) complete:** Made techniqueId optional in Annotation type
 - **Phase 6 (06-03) complete:** Created AnnotationCard component with combined MITRE and Persuasion tag display
 - **Phase 6 (06-04) complete:** Added title input field to AnnotationPanel for freetext annotation titles
+- **Phase 6 (06-05) complete:** Restored numbered annotation badges (1, 2, 3...) in visualizer cards
 - All 5 ANN requirements satisfied for v1.1 (ANN-08 through ANN-12)
-- Project complete: v1.1 shipped with enhanced annotation data model
+- Gap closure complete: v1.1 fully shipped with enhanced annotation data model
 
 **What's Next:**
 - Ready for v2 planning and development
