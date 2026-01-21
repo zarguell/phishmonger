@@ -4,9 +4,10 @@ import { AnnotationCard } from '../annotation/AnnotationCard'
 interface AnnotationColumnProps {
   annotations: Record<string, Annotation>
   arrowStyle?: string
+  showTags?: boolean
 }
 
-export function AnnotationColumn({ annotations, arrowStyle = 'classic' }: AnnotationColumnProps) {
+export function AnnotationColumn({ annotations, arrowStyle = 'classic', showTags = true }: AnnotationColumnProps) {
   const hasAnnotations = Object.keys(annotations).length > 0
 
   if (!hasAnnotations) {
@@ -39,6 +40,7 @@ export function AnnotationColumn({ annotations, arrowStyle = 'classic' }: Annota
           annotation={annotation}
           annotationNumber={index + 1}
           arrowStyle={arrowStyle}
+          showTags={showTags}
         />
       ))}
     </div>

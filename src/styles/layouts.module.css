@@ -8,6 +8,7 @@
  * - Balanced: Default 60/40 split (1fr for email, 400px for annotations)
  * - Wide Email: More email space (1.5fr for email, 300px for annotations)
  * - Wide Annotations: More annotation space (1fr for email, 500px for annotations)
+ * - Compact: Maximum annotation density (0.5fr email, 600px annotations, 14px text)
  */
 
 /* Base slide wrapper styles */
@@ -70,4 +71,40 @@
 .wideAnnotations :global(.annotation-column) {
   width: 500px;
   transition: width 0.3s ease;
+}
+
+/*
+ * Compact Layout (Maximum annotation density)
+ * Email: 0.5fr (minimal space, just enough to see context)
+ * Annotations: 600px fixed width (maximum space)
+ * Text: 14px (smaller than default 16px for more content)
+ * Use case: Many annotations, training materials with detailed technique explanations
+ */
+.compact :global(.email-column) {
+  flex: 0.5;
+  width: auto;
+  transition: flex 0.3s ease;
+}
+
+.compact :global(.annotation-column) {
+  width: 600px;
+  transition: width 0.3s ease;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.compact :global(.annotation-card) {
+  font-size: 14px;
+}
+
+.compact :global(.annotation-card-title) {
+  font-size: 15px;
+}
+
+.compact :global(.annotation-card-description) {
+  font-size: 14px;
+}
+
+.compact :global(.annotation-card-tags) {
+  font-size: 12px;
 }

@@ -13,6 +13,7 @@ import { AnnotationColumn } from './components/preview/AnnotationColumn'
 import { ExportButton } from './components/export/ExportButton'
 import { ArrowStyleSelector } from './components/visualizer/ArrowStyleSelector'
 import { LayoutTemplateSelector, type LayoutTemplate } from './components/visualizer/LayoutTemplateSelector'
+import { TagsToggle } from './components/visualizer/TagsToggle'
 import { useUndoRedo } from './hooks/useUndoRedo'
 import type { Annotation } from './types/annotations'
 import type { ScoringData } from './types/scoring'
@@ -25,6 +26,7 @@ const STORAGE_KEY = 'phishmonger-html-source'
 const MODE_KEY = 'phishmonger-input-mode'
 const ARROW_STYLE_KEY = 'phishmonger-arrow-style'
 const LAYOUT_TEMPLATE_KEY = 'phishmonger-layout-template'
+const SHOW_TAGS_KEY = 'phishmonger-show-tags'
 
 type ViewMode = 'edit' | 'preview'
 type ScaleMode = 'scroll' | 'fit'
@@ -58,6 +60,10 @@ function App() {
     const savedTemplate = localStorage.getItem(LAYOUT_TEMPLATE_KEY) as LayoutTemplate | null
     return savedTemplate || 'balanced'
   })
+  const [showTags, setShowTags] = useState(() => {
+    const savedShowTags = localStorage.getItem(SHOW_TAGS_KEY)
+    return savedShowTags === null ? true : savedShowTags === 'true'
+  })
   const [showBadge, setShowBadge] = useState(true)
   const [arrowStyle, setArrowStyle] = useState(() => {
     const savedStyle = localStorage.getItem(ARROW_STYLE_KEY)
@@ -84,6 +90,11 @@ function App() {
   useEffect(() => {
     localStorage.setItem(LAYOUT_TEMPLATE_KEY, layoutTemplate)
   }, [layoutTemplate])
+
+  // Save show tags preference
+  useEffect(() => {
+    localStorage.setItem(SHOW_TAGS_KEY, showTags.toString())
+  }, [showTags])
 
   // Save annotations to LocalStorage
   useEffect(() => {
@@ -235,6 +246,10 @@ function App() {
               currentTemplate={layoutTemplate}
               onTemplateChange={setLayoutTemplate}
             />
+            <TagsToggle
+              showTags={showTags}
+              onToggle={setShowTags}
+            />
             <ArrowStyleSelector
               currentStyle={arrowStyle}
               onStyleChange={setArrowStyle}
@@ -265,6 +280,7 @@ function App() {
               <AnnotationColumn
                 annotations={annotations}
                 arrowStyle={arrowStyle}
+                showTags={showTags}
               />
             </SlideWrapper>
           </div>

@@ -7,6 +7,7 @@ interface AnnotationCardProps {
   annotation: Annotation
   annotationNumber?: number
   arrowStyle?: string
+  showTags?: boolean
 }
 
 function getTechniqueName(id: string): string {
@@ -23,6 +24,7 @@ export function AnnotationCard({
   annotation,
   annotationNumber,
   arrowStyle = 'classic',
+  showTags = true,
 }: AnnotationCardProps) {
   return (
     <div
@@ -39,18 +41,20 @@ export function AnnotationCard({
           {annotation.title}
         </div>
       )}
-      <div className="annotation-tags">
-        {annotation.techniqueId && (
-          <span className="mitre-tag">
-            ({getTechniqueName(annotation.techniqueId)})
-          </span>
-        )}
-        {annotation.persuasionPrincipleId && (
-          <span className="persuasion-tag">
-            (Persuasion: {getPersuasionName(annotation.persuasionPrincipleId)})
-          </span>
-        )}
-      </div>
+      {showTags && (
+        <div className="annotation-tags">
+          {annotation.techniqueId && (
+            <span className="mitre-tag">
+              ({getTechniqueName(annotation.techniqueId)})
+            </span>
+          )}
+          {annotation.persuasionPrincipleId && (
+            <span className="persuasion-tag">
+              (Persuasion: {getPersuasionName(annotation.persuasionPrincipleId)})
+            </span>
+          )}
+        </div>
+      )}
       <div className="annotation-description">
         {annotation.explanation}
       </div>
