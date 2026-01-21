@@ -16,6 +16,7 @@ import { LayoutTemplateSelector, type LayoutTemplate } from './components/visual
 import { VisibilityToggles } from './components/visualizer/VisibilityToggles'
 import { useUndoRedo } from './hooks/useUndoRedo'
 import { useCustomTechniques } from './hooks/useCustomTechniques'
+import KeyboardShortcutHelp from './components/shortcuts/KeyboardShortcutHelp'
 import type { Annotation } from './types/annotations'
 import type { ScoringData } from './types/scoring'
 import type { ProjectMetadata } from './types/project'
@@ -116,6 +117,7 @@ function App() {
     const savedStyle = localStorage.getItem(ARROW_STYLE_KEY)
     return savedStyle || 'classic'
   })
+  const [showShortcutHelp, setShowShortcutHelp] = useState(false)
   const slideWrapperRef = useRef<HTMLDivElement>(null)
 
   // Save to LocalStorage whenever htmlSource changes
@@ -173,6 +175,12 @@ function App() {
     e.preventDefault()
     redoAnnotations()
   }, { enableOnFormTags: false }, [redoAnnotations])
+
+  // Keyboard shortcut to open help modal
+  useHotkeys('ctrl+/, cmd+/', (e) => {
+    e.preventDefault()
+    setShowShortcutHelp(true)
+  }, { enableOnFormTags: true }, [])
 
   // Calculate scale factor for "fit to screen" mode
   useEffect(() => {
@@ -476,6 +484,10 @@ function App() {
           />
         </div>
       </main>
+      <KeyboardShortcutHelp
+        isOpen={showShortcutHelp}
+        onClose={() => setShowShortcutHelp(false)}
+      />
     </div>
   )
 }
