@@ -124,6 +124,8 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 ## Phase 4 - NIST Phish Scale Scoring
 
 **Goal:** Users can calculate phishing difficulty scores using NIST Phish Scale methodology
+**Status:** In Progress
+**Plans:** 2 plans in 2 waves
 
 **Dependencies:** Phase 3 (scoring displayed on exported slides)
 
@@ -142,6 +144,10 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 4. Application automatically calculates difficulty score: Premise Alignment - (Visual Cues + Language Cues)
 5. Application displays traffic light badge: Green (Easy ≥3), Yellow (Moderate 1-2), Red (Hard ≤0)
 6. Badge appears on exported PNG in the corner
+
+**Plans:**
+- [ ] 04-01-PLAN.md — Create scoring types, calculation utility, and ScoringPanel component
+- [ ] 04-02-PLAN.md — Integrate ScoringPanel into App, add persistence, badge on export
 
 ---
 
@@ -176,7 +182,7 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 | Phase 1 - Editor Foundation | ✓ Complete | 100% |
 | Phase 2 - Technique Annotations | ✓ Complete | 100% |
 | Phase 3 - Visualizer & Export | ✓ Complete | 100% |
-| Phase 4 - NIST Phish Scale Scoring | Not Started | 0% |
+| Phase 4 - NIST Phish Scale Scoring | In Progress | 0% (2 plans created) |
 | Phase 5 - Data & Persistence | Not Started | 0% |
 
 ---
