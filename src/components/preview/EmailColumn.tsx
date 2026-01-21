@@ -1,5 +1,4 @@
 import type { Annotation } from '../../types/annotations'
-import styles from '../../styles/layouts.module.css'
 import arrowStyles from '../../styles/arrows.module.css'
 
 interface EmailColumnProps {
@@ -60,7 +59,7 @@ export function EmailColumn({ htmlSource, annotations, arrowStyle = 'classic' }:
   }
 
   return (
-    <div className={styles.emailColumn}>
+    <div className="email-column">
       {/* Inner container ensures width: 100% and proper padding */}
       <div
         className="email-content"

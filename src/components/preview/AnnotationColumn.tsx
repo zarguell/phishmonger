@@ -1,6 +1,5 @@
 import type { Annotation } from '../../types/annotations'
 import { AnnotationCard } from '../annotation/AnnotationCard'
-import styles from '../../styles/layouts.module.css'
 
 interface AnnotationColumnProps {
   annotations: Record<string, Annotation>
@@ -12,7 +11,7 @@ export function AnnotationColumn({ annotations, arrowStyle = 'classic' }: Annota
 
   if (!hasAnnotations) {
     return (
-      <div className={styles.annotationColumn}>
+      <div className="annotation-column">
         <div className="ghost-card">
           No annotations yet. Switch to Edit Mode to highlight lures.
         </div>

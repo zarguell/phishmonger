@@ -21,38 +21,21 @@
   position: relative;
 }
 
-/* Email column base styles */
-.emailColumn {
-  flex-shrink: 0;
-  padding: 40px;
-  box-sizing: border-box;
-  background: #fff;
-}
-
-/* Annotation column base styles */
-.annotationColumn {
-  flex-shrink: 0;
-  padding: 40px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  transition: width 0.3s ease;
-}
-
 /*
  * Balanced Layout (Default)
  * Email: 1fr (flex grow to fill available space)
  * Annotations: 400px fixed width
  * Split: Approximately 60/40 ratio at 1600px total width
  */
-.balanced .emailColumn {
+.balanced :global(.email-column) {
   flex: 1;
   width: auto;
+  transition: flex 0.3s ease;
 }
 
-.balanced .annotationColumn {
+.balanced :global(.annotation-column) {
   width: 400px;
+  transition: width 0.3s ease;
 }
 
 /*
@@ -61,13 +44,15 @@
  * Annotations: 300px fixed width (reduced from balanced)
  * Use case: Long phishing emails, complex HTML structure, wide tables
  */
-.wideEmail .emailColumn {
+.wideEmail :global(.email-column) {
   flex: 1.5;
   width: auto;
+  transition: flex 0.3s ease;
 }
 
-.wideEmail .annotationColumn {
+.wideEmail :global(.annotation-column) {
   width: 300px;
+  transition: width 0.3s ease;
 }
 
 /*
@@ -76,29 +61,13 @@
  * Annotations: 500px fixed width (increased from balanced)
  * Use case: Detailed technique explanations, comprehensive notes
  */
-.wideAnnotations .emailColumn {
+.wideAnnotations :global(.email-column) {
   flex: 1;
   width: auto;
-}
-
-.wideAnnotations .annotationColumn {
-  width: 500px;
-}
-
-/* Smooth transitions for layout changes */
-.emailColumn {
   transition: flex 0.3s ease;
 }
 
-/* Ensure email content behaves properly within flexible container */
-.emailColumn .email-content {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: auto;
-  word-wrap: break-word;
-  word-break: break-word;
-  overflow-wrap: break-word;
-  color: #333;
-  font-size: 16px;
-  line-height: 1.6;
+.wideAnnotations :global(.annotation-column) {
+  width: 500px;
+  transition: width 0.3s ease;
 }
