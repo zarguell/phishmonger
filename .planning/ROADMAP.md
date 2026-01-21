@@ -6,12 +6,12 @@
 
 ## Overview
 
-Post-v1.0 roadmap for Phish Monger. v1.1 focuses on annotation flexibility (freetext titles, optional tags) based on UX testing feedback.
+Post-v1.0 roadmap for Phish Monger. v1.1 focuses on annotation flexibility (freetext titles, optional tags) and deferred v1.0 features (undo/redo, keyboard shortcuts, visual customization, custom techniques).
 
 ## Milestones
 
 - ✅ **v1.0 MVP** — Phases 1-5 (shipped 2026-01-21)
-- 🔄 **v1.1 Annotation Flexibility** — Phases 6-7 (planning complete, execution ready)
+- 🔄 **v1.1 Enhanced** — Phases 6-8 (planning complete, execution ready)
 - 🔮 **v2.0** — Future major release (TBD)
 
 ## Phases
@@ -54,9 +54,17 @@ Post-v1.0 roadmap for Phish Monger. v1.1 focuses on annotation flexibility (free
 
 ### 📋 Phase 8: Deferred v1.0 Work
 
-**Goal:** Original v1.1 features deferred
-**Status:** Not started
-**Plans:** TBD
+**Goal:** Advanced UX features and extensibility
+**Status:** Ready for execution
+**Plans:**
+- [ ] `08-01-PLAN.md`: Undo/redo with keyboard shortcuts (Ctrl+Z/Cmd+Z)
+- [ ] `08-02-PLAN.md`: Keyboard shortcuts help modal
+- [ ] `08-03-PLAN.md`: Custom arrow badge styles (Classic, Square, Diamond)
+- [ ] `08-04-PLAN.md`: Layout templates (Balanced, Wide Email, Wide Annotations)
+- [ ] `08-05-PLAN.md`: Custom technique library data model
+- [ ] `08-06-PLAN.md`: Custom technique editor
+- [ ] `08-07-PLAN.md`: Project export includes custom techniques
+- [ ] `08-08-PLAN.md`: Technique library view with management
 
 **Requirements:**
 - EDIT-07: Undo/redo functionality
@@ -68,6 +76,8 @@ Post-v1.0 roadmap for Phish Monger. v1.1 focuses on annotation flexibility (free
 
 **Dependencies:** Phase 7
 
+**Research:** `08-DEFERRED-V1-0-WORK-RESEARCH.md` (complete)
+
 ---
 
 ## Progress
@@ -77,8 +87,8 @@ Post-v1.0 roadmap for Phish Monger. v1.1 focuses on annotation flexibility (free
 | 1-5 | v1.0 | ✅ Complete |
 | 6 | v1.1 | ✅ Complete |
 | 7 | v1.1 | Not started |
-| 8 | v1.1 | Not started |
+| 8 | v1.1 | Ready for execution |
 
 ---
 
-**Coverage:** v1.0 and v1.1 (annotation flexibility) shipped. Ready for v2.0 planning.
+**Coverage:** v1.0 shipped, v1.1 planning complete (annotation flexibility + advanced UX features). Phase 8 has 8 plans in 3 waves ready for execution.
