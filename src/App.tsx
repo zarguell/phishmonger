@@ -147,6 +147,7 @@ function App() {
     })
   }
 
+  // @ts-expect-error - handleUpdateMetadata will be used by ProjectSettings in 05-03
   const handleUpdateMetadata = (updates: Partial<ProjectMetadata>) => {
     setMetadata(prev => ({
       ...prev,
