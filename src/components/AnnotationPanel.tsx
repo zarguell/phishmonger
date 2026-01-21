@@ -1,6 +1,9 @@
-import type { Annotation, Technique, PersuasionPrinciple } from '../types/annotations'
+import type { Annotation, PersuasionPrinciple } from '../types/annotations'
 import techniques from '../data/techniques.json'
 import persuasionPrinciples from '../data/persuasion.json'
+import { useCustomTechniques } from '../hooks/useCustomTechniques'
+import { CustomTechniqueEditor } from './library/CustomTechniqueEditor'
+import { useState } from 'react'
 
 interface AnnotationPanelProps {
   lureId: string
@@ -10,6 +13,17 @@ interface AnnotationPanelProps {
 }
 
 export function AnnotationPanel({ lureId, lureText, annotation, onUpdate }: AnnotationPanelProps) {
+  const { addCustomTechnique, getAllTechniques } = useCustomTechniques()
+  const [isEditorOpen, setIsEditorOpen] = useState(false)
+
+  const allTechniques = getAllTechniques(techniques)
+
+  const handleCreateCustomTechnique = (techniqueData: Omit<import('../types/library').CustomTechnique, 'id' | 'isCustom' | 'createdAt'>) => {
+    const newId = addCustomTechnique(techniqueData)
+    // Optionally select the newly created technique
+    onUpdate({ techniqueId: newId })
+  }
+
   return (
     <div className="annotation-panel">
       <h3>Annotate: "{lureText}"</h3>
@@ -32,19 +46,38 @@ export function AnnotationPanel({ lureId, lureText, annotation, onUpdate }: Anno
         <label htmlFor={`technique-${lureId}`} className="annotation-label">
           Technical Technique (What)
         </label>
-        <select
-          id={`technique-${lureId}`}
-          className="annotation-select"
-          value={annotation?.techniqueId || ''}
-           onChange={(e) => onUpdate({ techniqueId: e.target.value || undefined })}
-        >
-          <option value="">Select technique...</option>
-          {techniques.map((technique: Technique) => (
-            <option key={technique.id} value={technique.id}>
-              {technique.id}: {technique.name}
-            </option>
-          ))}
-        </select>
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+          <select
+            id={`technique-${lureId}`}
+            className="annotation-select"
+            value={annotation?.techniqueId || ''}
+             onChange={(e) => onUpdate({ techniqueId: e.target.value || undefined })}
+            style={{ flex: 1 }}
+          >
+            <option value="">Select technique...</option>
+            {allTechniques.map((technique) => (
+              <option key={technique.id} value={technique.id}>
+                {'isCustom' in technique ? '[Custom] ' : ''}{technique.id}: {technique.name}
+              </option>
+            ))}
+          </select>
+          <button
+            type="button"
+            onClick={() => setIsEditorOpen(true)}
+            style={{
+              padding: '6px 12px',
+              backgroundColor: '#f0f0f0',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '12px',
+              whiteSpace: 'nowrap'
+            }}
+            title="Create custom technique"
+          >
+            +
+          </button>
+        </div>
       </div>
 
       <div className="annotation-section">
@@ -79,6 +112,13 @@ export function AnnotationPanel({ lureId, lureText, annotation, onUpdate }: Anno
           placeholder="Enter your analysis..."
         />
       </div>
+
+      <CustomTechniqueEditor
+        isOpen={isEditorOpen}
+        onClose={() => setIsEditorOpen(false)}
+        onSave={handleCreateCustomTechnique}
+        existingIds={allTechniques.map(t => t.id)}
+      />
     </div>
   )
 }
