@@ -1,18 +1,28 @@
 import React, { useRef, forwardRef } from 'react'
 import type { ScoringData } from '../../types/scoring'
 import { calculateDifficulty, getDifficultyBadge } from '../../utils/scoring'
+import styles from '../../styles/layouts.module.css'
+import type { LayoutTemplate } from '../visualizer/LayoutTemplateSelector'
 
 interface SlideWrapperProps {
   children: React.ReactNode
   annotations: Record<string, import('../../types/annotations').Annotation>
   scoring?: ScoringData
   showBadge?: boolean
+  layoutTemplate?: LayoutTemplate
 }
 
 export const SlideWrapper = forwardRef<HTMLDivElement, SlideWrapperProps>(
-  ({ children, scoring, showBadge = true }, ref) => {
+  ({ children, scoring, showBadge = true, layoutTemplate = 'balanced' }, ref) => {
     const internalRef = useRef<HTMLDivElement>(null)
     const containerRef = (ref as React.RefObject<HTMLDivElement>) || internalRef
+
+    // Determine CSS classes based on layout template
+    const getSlideWrapperClasses = (): string => {
+      const baseClass = styles.slideWrapper
+      const templateClass = styles[layoutTemplate]
+      return `${baseClass} ${templateClass}`.trim()
+    }
 
     // Calculate difficulty if scoring provided
     let badge: { letter: string, color: string, breakdown: React.ReactNode } | null = null
@@ -41,7 +51,7 @@ export const SlideWrapper = forwardRef<HTMLDivElement, SlideWrapperProps>(
     }
 
     return (
-      <div ref={containerRef} className="slide-wrapper">
+      <div ref={containerRef} className={getSlideWrapperClasses()}>
         {children}
         {badge && (
           <div className="difficulty-badge-overlay" style={{ backgroundColor: badge.color }}>

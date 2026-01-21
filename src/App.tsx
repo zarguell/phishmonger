@@ -12,6 +12,7 @@ import { EmailColumn } from './components/preview/EmailColumn'
 import { AnnotationColumn } from './components/preview/AnnotationColumn'
 import { ExportButton } from './components/export/ExportButton'
 import { ArrowStyleSelector } from './components/visualizer/ArrowStyleSelector'
+import { LayoutTemplateSelector, type LayoutTemplate } from './components/visualizer/LayoutTemplateSelector'
 import { useUndoRedo } from './hooks/useUndoRedo'
 import type { Annotation } from './types/annotations'
 import type { ScoringData } from './types/scoring'
@@ -23,6 +24,7 @@ import './index.css'
 const STORAGE_KEY = 'phishmonger-html-source'
 const MODE_KEY = 'phishmonger-input-mode'
 const ARROW_STYLE_KEY = 'phishmonger-arrow-style'
+const LAYOUT_TEMPLATE_KEY = 'phishmonger-layout-template'
 
 type ViewMode = 'edit' | 'preview'
 type ScaleMode = 'scroll' | 'fit'
@@ -52,7 +54,10 @@ function App() {
   })
   const [viewMode, setViewMode] = useState<ViewMode>('edit')
   const [scaleMode, setScaleMode] = useState<ScaleMode>('fit')
-  const [annotationWidth, setAnnotationWidth] = useState(640)
+  const [layoutTemplate, setLayoutTemplate] = useState<LayoutTemplate>(() => {
+    const savedTemplate = localStorage.getItem(LAYOUT_TEMPLATE_KEY) as LayoutTemplate | null
+    return savedTemplate || 'balanced'
+  })
   const [showBadge, setShowBadge] = useState(true)
   const [arrowStyle, setArrowStyle] = useState(() => {
     const savedStyle = localStorage.getItem(ARROW_STYLE_KEY)
@@ -74,6 +79,11 @@ function App() {
   useEffect(() => {
     localStorage.setItem(ARROW_STYLE_KEY, arrowStyle)
   }, [arrowStyle])
+
+  // Save layout template preference
+  useEffect(() => {
+    localStorage.setItem(LAYOUT_TEMPLATE_KEY, layoutTemplate)
+  }, [layoutTemplate])
 
   // Save annotations to LocalStorage
   useEffect(() => {
@@ -221,20 +231,10 @@ function App() {
                 Full Width
               </button>
             </div>
-            <div className="width-slider-container">
-              <label htmlFor="annotation-width-slider">Annotation Width</label>
-              <input
-                id="annotation-width-slider"
-                type="range"
-                min="400"
-                max="800"
-                step="20"
-                value={annotationWidth}
-                onChange={(e) => setAnnotationWidth(Number(e.target.value))}
-                className="width-slider"
-              />
-              <span className="width-value">{annotationWidth}px</span>
-            </div>
+            <LayoutTemplateSelector
+              currentTemplate={layoutTemplate}
+              onTemplateChange={setLayoutTemplate}
+            />
             <ArrowStyleSelector
               currentStyle={arrowStyle}
               onStyleChange={setArrowStyle}
@@ -259,6 +259,7 @@ function App() {
               annotations={annotations}
               scoring={scoring}
               showBadge={showBadge}
+              layoutTemplate={layoutTemplate}
             >
               <EmailColumn htmlSource={htmlSource} annotations={annotations} />
               <AnnotationColumn
