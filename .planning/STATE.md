@@ -215,16 +215,16 @@
   - Listed all available shortcuts with descriptions
   - Escape key and click-outside to dismiss modal
   - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-02-SUMMARY.md
-- **Phase 8 (08-03) complete:** Custom arrow badge styles with checkpoint fixes
+- **Phase 8 (08-03) complete:** Custom arrow badge styles with all checkpoint fixes
   - Created arrows.module.css with Classic Blue, Classic Red, Square, and Diamond variants
   - Created ArrowStyleSelector component with live preview badges
   - Integrated arrowStyle state with LocalStorage persistence (ARROW_STYLE_KEY)
   - Updated AnnotationCard to use CSS module badges
   - Diamond style counter-rotates text to keep numbers upright
-  - **Checkpoint fixes applied:**
-    - Fixed badge positioning to avoid text overlap (increased size, better spacing, middle alignment)
-    - Applied arrow styles to inline badges in email content (EmailColumn integration)
-    - Added Classic Red option (original red circle design)
+  - **Checkpoint fixes applied (2 rounds):**
+    - Round 1: Fixed badge positioning in email content, applied arrow styles to inline badges, added Classic Red option
+    - Round 2: Fixed annotation title overlapping badge (added 30px left padding to title)
+  - All issues resolved, plan complete
   - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-03-SUMMARY.md
 - **Phase 8 (08-04) complete:** Layout template presets
   - Created layouts.module.css with Balanced, Wide Email, and Wide Annotations templates
