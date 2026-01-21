@@ -522,6 +522,7 @@ body {
   font-weight: bold;
   margin-bottom: 8px;
   font-size: 1.1em;
+  padding-left: 30px;
 }
 
 .annotation-tags {
