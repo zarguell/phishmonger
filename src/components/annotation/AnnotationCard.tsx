@@ -1,10 +1,12 @@
 import type { Annotation, Technique } from '../../types/annotations'
 import techniques from '../../data/techniques.json' with { type: 'json' }
 import persuasionPrinciples from '../../data/persuasion.json' with { type: 'json' }
+import styles from '../../styles/arrows.module.css'
 
 interface AnnotationCardProps {
   annotation: Annotation
   annotationNumber?: number
+  arrowStyle?: string
 }
 
 function getTechniqueName(id: string): string {
@@ -20,6 +22,7 @@ function getPersuasionName(id: string): string {
 export function AnnotationCard({
   annotation,
   annotationNumber,
+  arrowStyle = 'classic',
 }: AnnotationCardProps) {
   return (
     <div
@@ -27,7 +30,9 @@ export function AnnotationCard({
       data-card-id={annotation.lureId}
     >
       {annotationNumber && (
-        <span className="annotation-card-number-badge">{annotationNumber}</span>
+        <div className={`${styles.arrowBadge} ${styles[arrowStyle]}`}>
+          <span>{annotationNumber}</span>
+        </div>
       )}
       {annotation.title && (
         <div className="annotation-title">
