@@ -261,7 +261,7 @@ function App() {
               showBadge={showBadge}
               layoutTemplate={layoutTemplate}
             >
-              <EmailColumn htmlSource={htmlSource} annotations={annotations} />
+              <EmailColumn htmlSource={htmlSource} annotations={annotations} arrowStyle={arrowStyle} />
               <AnnotationColumn
                 annotations={annotations}
                 arrowStyle={arrowStyle}

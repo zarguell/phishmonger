@@ -7,7 +7,8 @@ interface ArrowStyleSelectorProps {
 
 export function ArrowStyleSelector({ currentStyle, onStyleChange }: ArrowStyleSelectorProps) {
   const styleOptions = [
-    { name: 'classic', label: 'Classic' },
+    { name: 'classic', label: 'Classic Blue' },
+    { name: 'red', label: 'Classic Red' },
     { name: 'square', label: 'Square' },
     { name: 'diamond', label: 'Diamond' }
   ]

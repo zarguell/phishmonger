@@ -1,12 +1,14 @@
 import type { Annotation } from '../../types/annotations'
 import styles from '../../styles/layouts.module.css'
+import arrowStyles from '../../styles/arrows.module.css'
 
 interface EmailColumnProps {
   htmlSource: string
   annotations: Record<string, Annotation>
+  arrowStyle?: string
 }
 
-export function EmailColumn({ htmlSource, annotations }: EmailColumnProps) {
+export function EmailColumn({ htmlSource, annotations, arrowStyle = 'classic' }: EmailColumnProps) {
   // Post-process HTML to add numbered badges to lure marks
   const getHtmlWithBadges = (): string => {
     // Parse HTML to DOM
@@ -40,7 +42,9 @@ export function EmailColumn({ htmlSource, annotations }: EmailColumnProps) {
         // Only add badge if annotation exists
         if (annotations[lureId]) {
           const badge = doc.createElement('span')
-          badge.className = 'lure-badge'
+          // Apply arrow style class to badge
+          const styleClass = `lure-badge-${arrowStyle}`
+          badge.className = `lure-badge ${arrowStyles[styleClass] || ''}`
           badge.textContent = annotationNumber.toString()
           badge.setAttribute('data-annotation-number', annotationNumber.toString())
 
