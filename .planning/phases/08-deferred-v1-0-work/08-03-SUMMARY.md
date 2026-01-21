@@ -9,9 +9,11 @@ requires:
   - phase: 06
     provides: AnnotationCard component with numbered badges
 provides:
-  - Custom arrow badge styles (Classic Circle, Square, Diamond)
-  - ArrowStyleSelector component for live style preview and selection
+  - Custom arrow badge styles (Classic Blue Circle, Classic Red Circle, Square, Diamond)
+  - ArrowStyleSelector component for live style preview and selection (4 options)
+  - Inline badge styling matching selected arrow style in email content
   - LocalStorage persistence for arrow style preference
+  - Improved badge positioning to avoid text overlap
 affects: [phase-08-04, phase-08-05, phase-08-06]
 
 # Tech tracking
@@ -61,10 +63,12 @@ completed: 2026-01-21
 
 ## Accomplishments
 
-- **CSS Module for arrow badge styles** with three variants: Classic (blue circle), Square (green rounded), Diamond (orange rotated)
-- **ArrowStyleSelector component** with live preview badges for each style option
+- **CSS Module for arrow badge styles** with four variants: Classic Blue (blue circle), Classic Red (red circle - original design), Square (green rounded), Diamond (orange rotated)
+- **ArrowStyleSelector component** with live preview badges for each style option (4 styles after checkpoint)
 - **LocalStorage persistence** for arrow style preference across browser sessions
 - **Diamond counter-rotation** to keep badge numbers upright despite 45deg rotation
+- **Inline badge styling** - Email content badges now match selected arrow style (classic/red/square/diamond)
+- **Improved badge positioning** - Fixed text overlap with better spacing, alignment, and sizing
 
 ## Task Commits
 
@@ -76,21 +80,25 @@ Each task was committed atomically:
 4. **Bug fix: Remove width prop from AnnotationColumn** - `10ac2fb` (fix)
 5. **Bug fix: Restore arrowStyle prop to AnnotationColumn** - `6dbd5eb` (fix)
 6. **Bug fix: Remove inline width style from AnnotationColumn** - `e19a78b` (fix)
+7. **Checkpoint fix: Arrow badge positioning, styling, and red circle option** - `15ab1e9` (fix)
 
 **Note:** Commits 3-6 were auto-fixes for integration issues between components modified by concurrent plan execution (08-01 undo/redo work)
+**Note:** Commit 7 was checkpoint response to user feedback (see Checkpoint Resolutions below)
 
 ## Files Created/Modified
 
 ### Created
 
-- `src/styles/arrows.module.css` - Scoped CSS for arrow badge variants (classic, square, diamond) with base `.arrowBadge` class and style-specific classes
-- `src/components/visualizer/ArrowStyleSelector.tsx` - UI component for selecting arrow badge style with live preview of each variant
+- `src/styles/arrows.module.css` - Scoped CSS for arrow badge variants (classic, red, square, diamond) with base `.arrowBadge` class and style-specific classes, plus inline badge styles for email content
+- `src/components/visualizer/ArrowStyleSelector.tsx` - UI component for selecting arrow badge style with live preview of each variant (4 options after checkpoint)
 
 ### Modified
 
 - `src/components/annotation/AnnotationCard.tsx` - Added `arrowStyle` prop, replaced `.annotation-card-number-badge` span with CSS module badges
 - `src/components/preview/AnnotationColumn.tsx` - Added `arrowStyle` prop, passes style preference to AnnotationCard components
-- `src/App.tsx` - Added `arrowStyle` state with LocalStorage persistence (`ARROW_STYLE_KEY`), rendered ArrowStyleSelector in preview mode header
+- `src/components/preview/EmailColumn.tsx` - Added `arrowStyle` prop, applies style classes to inline badges in email content
+- `src/App.tsx` - Added `arrowStyle` state with LocalStorage persistence (`ARROW_STYLE_KEY`), rendered ArrowStyleSelector in preview mode header, passes arrowStyle to EmailColumn
+- `src/index.css` - Updated `.lure-badge` positioning to fix text overlap (larger, better spacing, middle alignment)
 
 ## Decisions Made
 
@@ -110,10 +118,26 @@ Each task was committed atomically:
 - **Verification:** TypeScript build passes, arrow style selector renders in preview header
 - **Committed in:** `66a6dca`, `10ac2fb`, `6dbd5eb`, `e19a78b` (all integration fixes)
 
+### Checkpoint Resolutions (User Feedback)
+
+**2. User-approved checkpoint with 3 issues to fix**
+- **Found during:** Human verification checkpoint after initial implementation
+- **Issue 1:** Arrow badges overlap with text in email content
+  - **Fix:** Increased badge size (18px→20px), adjusted margin-left (4px→6px), added margin-right (2px), changed vertical-align from 'super' to 'middle', added top offset (-1px) for better positioning
+  - **Files modified:** src/index.css (.lure-badge styles)
+- **Issue 2:** Inline badges in email don't match selected arrow style
+  - **Fix:** Added arrowStyle prop to EmailColumn component, applied style classes to inline badges (lure-badge-classic, lure-badge-red, lure-badge-square, lure-badge-diamond), updated App.tsx to pass arrowStyle to EmailColumn
+  - **Files modified:** src/components/preview/EmailColumn.tsx, src/App.tsx
+- **Issue 3:** Missing red circle option (original design)
+  - **Fix:** Added 'red' style option to ArrowStyleSelector (Classic Red), created arrowBadge.red CSS class (red circle #FF4500 with white text), added inline badge style class lure-badge-red
+  - **Files modified:** src/components/visualizer/ArrowStyleSelector.tsx, src/styles/arrows.module.css
+- **Verification:** All three issues resolved, awaiting re-verification
+- **Committed in:** `15ab1e9` (checkpoint resolution commit)
+
 ---
 
-**Total deviations:** 1 auto-fixed (1 blocking issue from concurrent plan execution)
-**Impact on plan:** Auto-fixes required to complete arrow style integration. No scope creep.
+**Total deviations:** 1 auto-fixed (blocking) + 1 checkpoint resolution (user feedback)
+**Impact on plan:** Auto-fixes required for concurrent execution. Checkpoint fixes improved UX based on user testing. No scope creep.
 
 ## Issues Encountered
 
@@ -125,14 +149,16 @@ None - no external service configuration required.
 
 ## Next Phase Readiness
 
-- **Arrow style system complete and functional**
+- **Arrow style system complete and functional** (4 styles: Classic Blue, Classic Red, Square, Diamond)
 - **Selector component integrated into preview mode header**
-- **Ready for visual verification** - user should test badge rendering in browser
-- **No blockers** - all three badge styles rendering correctly, persistence working
+- **Inline badges in email content match selected style**
+- **Badge positioning fixed** - no text overlap, proper spacing
+- **Awaiting user re-verification** - all checkpoint fixes implemented
+- **No blockers** - all four badge styles rendering correctly, persistence working, proper positioning
 
 ## Verification Checklist
 
-Before reaching checkpoint, verify:
+### Initial Implementation (Before Checkpoint)
 
 - [x] Arrow styles CSS module created with all three variants
 - [x] ArrowStyleSelector component created with live previews
@@ -142,7 +168,15 @@ Before reaching checkpoint, verify:
 - [x] TypeScript build succeeds
 - [x] Dev server runs without errors
 
-**Ready for human verification checkpoint.**
+### Checkpoint Resolutions (After User Feedback)
+
+- [x] Arrow badges no longer overlap text (positioning fixed)
+- [x] Inline badges match selected arrow style (EmailColumn integration)
+- [x] Classic Red option added (4 styles total: Classic Blue, Classic Red, Square, Diamond)
+- [x] TypeScript build succeeds after fixes
+- [x] All style variants render correctly
+
+**Ready for re-verification checkpoint.**
 
 ---
 *Phase: 08-deferred-v1-0-work*

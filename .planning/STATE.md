@@ -25,13 +25,13 @@
 ## Current Position
 
 **Phase:** 08-deferred-v1-0-work
-**Status:** In progress (Plan 4 of 8 complete)
-**Last activity:** 2026-01-21 - Completed 08-04-PLAN.md (layout template presets)
+**Status:** In progress (Plan 3 of 8 complete - checkpoint fixes applied)
+**Last activity:** 2026-01-21 - Completed checkpoint fixes for 08-03-PLAN.md (arrow badge positioning, styling, red circle option)
 
-**Progress:** █████████░░░░░░░░░░░░ 50% (08-01: Undo/Redo, 08-02: Keyboard shortcuts, 08-03: Arrow styles, 08-04: Layout templates complete)
+**Progress:** ██████████░░░░░░░░░░░ 38% (08-01: Undo/Redo, 08-02: Arrow styles checkpoint fixes, 08-03: Arrow styles + fixes, 08-04: Layout templates complete)
 
-**Current Focus:** Executing deferred v1.0 features (undo/redo, keyboard shortcuts, arrow styles, layout templates, custom techniques)
-**Next Step:** Plan 08-05 (Custom technique library with LocalStorage persistence) or audit milestone
+**Current Focus:** Executing deferred v1.0 features (undo/redo, arrow styles, layout templates, custom techniques)
+**Next Step:** Continue with remaining 08-X plans or await user re-verification of 08-03 checkpoint fixes
 
 ---
 
@@ -215,12 +215,16 @@
   - Listed all available shortcuts with descriptions
   - Escape key and click-outside to dismiss modal
   - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-02-SUMMARY.md
-- **Phase 8 (08-03) complete:** Custom arrow badge styles
-  - Created arrows.module.css with Classic Circle, Square, and Diamond variants
+- **Phase 8 (08-03) complete:** Custom arrow badge styles with checkpoint fixes
+  - Created arrows.module.css with Classic Blue, Classic Red, Square, and Diamond variants
   - Created ArrowStyleSelector component with live preview badges
   - Integrated arrowStyle state with LocalStorage persistence (ARROW_STYLE_KEY)
   - Updated AnnotationCard to use CSS module badges
   - Diamond style counter-rotates text to keep numbers upright
+  - **Checkpoint fixes applied:**
+    - Fixed badge positioning to avoid text overlap (increased size, better spacing, middle alignment)
+    - Applied arrow styles to inline badges in email content (EmailColumn integration)
+    - Added Classic Red option (original red circle design)
   - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-03-SUMMARY.md
 - **Phase 8 (08-04) complete:** Layout template presets
   - Created layouts.module.css with Balanced, Wide Email, and Wide Annotations templates
