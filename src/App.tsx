@@ -15,6 +15,7 @@ import { ArrowStyleSelector } from './components/visualizer/ArrowStyleSelector'
 import { LayoutTemplateSelector, type LayoutTemplate } from './components/visualizer/LayoutTemplateSelector'
 import { VisibilityToggles } from './components/visualizer/VisibilityToggles'
 import { useUndoRedo } from './hooks/useUndoRedo'
+import { useCustomTechniques } from './hooks/useCustomTechniques'
 import type { Annotation } from './types/annotations'
 import type { ScoringData } from './types/scoring'
 import type { ProjectMetadata } from './types/project'
@@ -28,6 +29,45 @@ const ARROW_STYLE_KEY = 'phishmonger-arrow-style'
 const LAYOUT_TEMPLATE_KEY = 'phishmonger-layout-template'
 const SHOW_TAGS_KEY = 'phishmonger-show-tags'
 const SHOW_BADGE_KEY = 'phishmonger-show-badge'
+
+/**
+ * Merge custom techniques from imported project with existing local techniques
+ *
+ * Strategy:
+ * - If imported technique ID doesn't exist locally, add it
+ * - If imported technique ID exists locally, keep the newer one (based on createdAt timestamp)
+ * - This allows sharing techniques across projects without data loss
+ *
+ * @param existing - Existing custom techniques from LocalStorage
+ * @param imported - Custom techniques from imported project JSON
+ * @returns Merged custom techniques
+ */
+function mergeCustomTechniques(
+  existing: Record<string, any>,
+  imported: Record<string, any>
+): Record<string, any> {
+  const merged = { ...existing }
+
+  for (const [id, importedTechnique] of Object.entries(imported)) {
+    const existingTechnique = merged[id]
+
+    if (!existingTechnique) {
+      // Add new technique
+      merged[id] = importedTechnique
+    } else {
+      // Keep the newer version based on createdAt timestamp
+      const importedTime = new Date(importedTechnique.createdAt).getTime()
+      const existingTime = new Date(existingTechnique.createdAt).getTime()
+
+      if (importedTime > existingTime) {
+        merged[id] = importedTechnique
+      }
+      // If existing is newer, keep it (no action needed)
+    }
+  }
+
+  return merged
+}
 
 type ViewMode = 'edit' | 'preview'
 type ScaleMode = 'scroll' | 'fit'
@@ -55,6 +95,9 @@ function App() {
   const [metadata, setMetadata] = useState<ProjectMetadata>(() => {
     return loadMetadata()
   })
+
+  // Custom techniques management
+  const { customTechniques, getAllTechniques } = useCustomTechniques()
   const [viewMode, setViewMode] = useState<ViewMode>('edit')
   const [scaleMode, setScaleMode] = useState<ScaleMode>('fit')
   const [layoutTemplate, setLayoutTemplate] = useState<LayoutTemplate>(() => {
@@ -216,7 +259,7 @@ function App() {
   }
 
   const handleExportJSON = () => {
-    const jsonString = exportProjectJSON(metadata, htmlSource, annotations, scoring, inputMode)
+    const jsonString = exportProjectJSON(metadata, htmlSource, annotations, scoring, inputMode, customTechniques)
     const filename = `${metadata.title.replace(/[^a-z0-9]/gi, '-').toLowerCase()}-${new Date().toISOString().split('T')[0]}`
     downloadProjectJSON(jsonString, filename)
   }
@@ -227,6 +270,23 @@ function App() {
     setAnnotations(project.annotations)
     setScoring(project.scoring)
     setInputMode(project.inputMode)
+
+    // Merge custom techniques from imported project
+    if (project.customTechniques) {
+      const mergedTechniques = mergeCustomTechniques(customTechniques, project.customTechniques)
+
+      // Save merged techniques to LocalStorage directly
+      // The useCustomTechniques hook will pick up the changes on its next render cycle
+      try {
+        localStorage.setItem('phishmonger-custom-techniques', JSON.stringify(mergedTechniques))
+
+        // Force the hook to reload by triggering a storage event
+        // This causes useCustomTechniques' useEffect to run and load the merged data
+        window.dispatchEvent(new Event('storage'))
+      } catch (error) {
+        console.error('Failed to merge custom techniques from imported project:', error)
+      }
+    }
   }
 
   if (viewMode === 'preview') {

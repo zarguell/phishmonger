@@ -7,7 +7,7 @@
  */
 
 import { useState, useEffect, useCallback } from 'react';
-import { CustomTechnique, TechniqueLibrary, isCustomTechnique } from '../types/library';
+import { CustomTechnique } from '../types/library';
 import { Technique } from '../types/annotations';
 
 /**
@@ -156,14 +156,14 @@ export function useCustomTechniques() {
    * static src/data/techniques.json). Custom techniques are merged in
    * from LocalStorage state.
    *
-   * Type narrowing: Result is Technique[] since CustomTechnique extends
-   * Technique. Use isCustomTechnique() type guard to identify custom
+   * Type narrowing: Result is AnyTechnique[] since custom techniques have
+   * optional url. Use isCustomTechnique() type guard to identify custom
    * techniques in the merged array.
    *
    * @param builtIns - Built-in techniques from techniques.json
    * @returns Merged array of all techniques
    */
-  const getAllTechniques = useCallback((builtIns: Technique[]): Technique[] => {
+   const getAllTechniques = useCallback((builtIns: Technique[]): (Technique | CustomTechnique)[] => {
     return [...builtIns, ...Object.values(customTechniques)];
   }, [customTechniques]);
 

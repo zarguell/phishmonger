@@ -189,16 +189,17 @@ export const importProjectJSON = (jsonString: string): ProjectJSON => {
         if (typeof technique !== 'object' || technique === null) {
           throw new Error(`Invalid project JSON: custom technique "${id}" is not an object`)
         }
-        if (!technique.id || typeof technique.id !== 'string') {
+        const tech = technique as any; // Type assertion for validation
+        if (!tech.id || typeof tech.id !== 'string') {
           throw new Error(`Invalid project JSON: custom technique "${id}" missing id`)
         }
-        if (!technique.name || typeof technique.name !== 'string') {
+        if (!tech.name || typeof tech.name !== 'string') {
           throw new Error(`Invalid project JSON: custom technique "${id}" missing name`)
         }
-        if (technique.isCustom !== true) {
+        if (tech.isCustom !== true) {
           throw new Error(`Invalid project JSON: custom technique "${id}" must have isCustom: true`)
         }
-        if (!technique.createdAt || typeof technique.createdAt !== 'string') {
+        if (!tech.createdAt || typeof tech.createdAt !== 'string') {
           throw new Error(`Invalid project JSON: custom technique "${id}" missing createdAt`)
         }
       }

@@ -15,15 +15,17 @@ import { Technique } from './annotations';
  * - isCustom: Discriminator field for type narrowing (always true for custom techniques)
  * - createdAt: ISO timestamp when the custom technique was created
  * - organization: Optional org-specific context (e.g., "Acme Corp - CEO fraud variant")
+ * - url: Optional (custom techniques may not have official MITRE URLs)
  *
  * Custom techniques can have any ID format (not limited to MITRE T####.### pattern)
  * and may not have a valid MITRE URL since they represent organization-specific
  * scenarios or training materials.
  */
-export interface CustomTechnique extends Technique {
+export interface CustomTechnique extends Omit<Technique, 'url'> {
   isCustom: true;
   createdAt: string;
   organization?: string;
+  url?: string;
 }
 
 /**
@@ -34,7 +36,7 @@ export interface CustomTechnique extends Technique {
  *     console.log(technique.organization); // TypeScript knows this is safe
  *   }
  */
-export function isCustomTechnique(technique: Technique): technique is CustomTechnique {
+export function isCustomTechnique(technique: Technique | CustomTechnique): technique is CustomTechnique {
   return 'isCustom' in technique && technique.isCustom === true;
 }
 
