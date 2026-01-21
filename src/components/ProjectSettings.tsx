@@ -1,21 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import type { ProjectMetadata } from '../types/project'
 
 interface ProjectSettingsProps {
   metadata: ProjectMetadata
   onUpdate: (metadata: ProjectMetadata) => void
+  onExport?: () => void
+  onImportFromFile?: (file: File) => void
+  onImportFromText?: (jsonText: string) => void
 }
 
 /**
  * ProjectSettings component for managing project metadata
  *
  * Provides UI for editing project title and author,
- * and displays read-only creation timestamp.
+ * displaying read-only creation timestamp, and export/import functionality.
  */
 export const ProjectSettings: React.FC<ProjectSettingsProps> = ({
   metadata,
-  onUpdate
+  onUpdate,
+  onExport,
+  onImportFromFile,
+  onImportFromText
 }) => {
+  const [importText, setImportText] = useState('')
+  const [importError, setImportError] = useState<string | null>(null)
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onUpdate({
       ...metadata,
@@ -42,6 +50,48 @@ export const ProjectSettings: React.FC<ProjectSettingsProps> = ({
       })
     } catch {
       return isoString
+    }
+  }
+
+  const handleFileImport = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file && onImportFromFile) {
+      const reader = new FileReader()
+      reader.onload = () => {
+        onImportFromFile(file)
+        setImportError(null)
+      }
+      reader.onerror = () => {
+        setImportError('Failed to read file')
+      }
+      reader.readAsText(file)
+    }
+    // Reset input so same file can be selected again
+    e.target.value = ''
+  }
+
+  const handleTextImport = () => {
+    if (onImportFromText && importText.trim()) {
+      try {
+        onImportFromText(importText)
+        setImportText('')
+        setImportError(null)
+      } catch (error) {
+        setImportError(error instanceof Error ? error.message : 'Import failed')
+      }
+    }
+  }
+
+  const handleExportClick = () => {
+    if (onExport) {
+      onExport()
+    }
+  }
+
+  const handleImportTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setImportText(e.target.value)
+    if (importError) {
+      setImportError(null)
     }
   }
 
@@ -75,6 +125,56 @@ export const ProjectSettings: React.FC<ProjectSettingsProps> = ({
         <label>Created</label>
         <div className="created-date">
           {formatDate(metadata.createdAt)}
+        </div>
+      </div>
+
+      <hr className="settings-divider" />
+
+      <div className="settings-export-import">
+        <h4>Export / Import</h4>
+        
+        <div className="export-import-section">
+          <button
+            onClick={handleExportClick}
+            disabled={!onExport}
+            className="export-json-button"
+            type="button"
+          >
+            Export JSON
+          </button>
+        </div>
+
+        <div className="export-import-section">
+          <label htmlFor="import-file" className="import-file-label">
+            Import from File
+          </label>
+          <input
+            id="import-file"
+            type="file"
+            accept=".json"
+            onChange={handleFileImport}
+            className="import-file-input"
+          />
+        </div>
+
+        <div className="export-import-section">
+          <label htmlFor="import-text">Import from Pasted JSON</label>
+          <textarea
+            id="import-text"
+            value={importText}
+            onChange={handleImportTextChange}
+            placeholder="Paste project JSON here..."
+            className="import-textarea"
+          />
+          <button
+            onClick={handleTextImport}
+            disabled={!onImportFromText || !importText.trim()}
+            className="import-text-button"
+            type="button"
+          >
+            Import
+          </button>
+          {importError && <div className="import-error">{importError}</div>}
         </div>
       </div>
     </div>
