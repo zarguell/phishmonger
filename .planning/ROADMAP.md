@@ -154,6 +154,8 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 ## Phase 5 - Data & Persistence
 
 **Goal:** Users can save, load, and export complete project data
+**Status:** Planned
+**Plans:** 3 plans in 3 waves
 
 **Dependencies:** Phase 4 (all features integrated before final persistence)
 
@@ -164,6 +166,7 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 - DATA-04: Application loads project from LocalStorage on return visit
 - DATA-05: User can export project as JSON with full structure
 - DATA-06: User can import project from JSON file
+- DATA-07: User can import project from JSON file (pasted in a text box, without need for file)
 
 **Success Criteria:**
 1. User can set project title and author in project settings
@@ -172,6 +175,12 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 4. When user revisits application, previous project loads automatically from LocalStorage
 5. User can export complete project as JSON file containing all marks, techniques, scoring, and metadata
 6. User can import a project from JSON file and restore full editing state
+7. User can import a project from pasted JSON text (no file required)
+
+**Plans:**
+- [ ] 05-01-PLAN.md — Create project metadata types, ProjectSettings component, and storage utilities
+- [ ] 05-02-PLAN.md — Integrate metadata state in App and add JSON export/import utilities
+- [ ] 05-03-PLAN.md — Create Export/Import UI components with dual import methods
 
 ---
 
@@ -183,7 +192,7 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 | Phase 2 - Technique Annotations | ✓ Complete | 100% |
 | Phase 3 - Visualizer & Export | ✓ Complete | 100% |
 | Phase 4 - NIST Phish Scale Scoring | In Progress | 0% (2 plans created) |
-| Phase 5 - Data & Persistence | Not Started | 0% |
+| Phase 5 - Data & Persistence | Planned | 0% (3 plans created) |
 
 ---
 
