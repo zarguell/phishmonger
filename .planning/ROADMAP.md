@@ -16,16 +16,16 @@ Post-v1.0 roadmap for Phish Monger. v1.1 focuses on annotation flexibility (free
 
 ## Phases
 
-### 🔄 Phase 6: Annotation Data Model
+### ✅ Phase 6: Annotation Data Model
 
 **Goal:** Freetext title and optional MITRE/Persuasion tags
-**Status:** Gap closure in progress
+**Status:** ✅ Complete
 **Plans:**
 - [x] `06-01-PLAN.md`: Extend Annotation type with optional title field
 - [x] `06-02-PLAN.md`: Add optional MITRE ATT&CK tag to annotation
 - [x] `06-03-PLAN.md`: Add optional Persuasion Principle tag to annotation
 - [x] `06-04-PLAN.md`: Add title input field to AnnotationPanel (gap closure)
-- [ ] `06-05-PLAN.md`: Restore numbered annotation badges (gap closure)
+- [x] `06-05-PLAN.md`: Restore numbered annotation badges (gap closure)
 
 **Requirements:**
 - ANN-09: Freetext title field
@@ -75,10 +75,10 @@ Post-v1.0 roadmap for Phish Monger. v1.1 focuses on annotation flexibility (free
 | Phase | Milestone | Status |
 |-------|-----------|--------|
 | 1-5 | v1.0 | ✅ Complete |
-| 6 | v1.1 | 📋 Planned |
+| 6 | v1.1 | ✅ Complete |
 | 7 | v1.1 | Not started |
 | 8 | v1.1 | Not started |
 
 ---
 
-**Coverage:** v1.0 shipped. v1.1 (annotation flexibility) phase 6 planned.
+**Coverage:** v1.0 and v1.1 (annotation flexibility) shipped. Ready for v2.0 planning.

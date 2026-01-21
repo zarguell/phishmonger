@@ -1,13 +1,12 @@
 ---
 phase: 06-annotation-data-model
-verified: 2026-01-21T19:35:00Z
+verified: 2026-01-21T20:00:00Z
 status: passed
 score: 9/9 must-haves verified
 re_verification:
-  previous_status: gaps_found
-  previous_score: 8/9
-  gaps_closed:
-    - "User can add a freetext title to any annotation"
+  previous_status: passed
+  previous_score: 9/9
+  gaps_closed: []
   gaps_remaining: []
   regressions: []
 ---
@@ -15,9 +14,9 @@ re_verification:
 # Phase 6: Annotation Data Model Verification Report
 
 **Phase Goal:** Freetext title and optional MITRE/Persuasion tags
-**Verified:** 2026-01-21T19:35:00Z
+**Verified:** 2026-01-21T20:00:00Z
 **Status:** passed
-**Re-verification:** Yes — after gap closure
+**Re-verification:** Yes — regression check
 
 ## Goal Achievement
 
@@ -25,7 +24,7 @@ re_verification:
 
 | #   | Truth   | Status     | Evidence       |
 | --- | ------- | ---------- | -------------- |
-| 1   | User can add a freetext title to any annotation | ✓ VERIFIED | Title input field added to AnnotationPanel.tsx, binds to annotation.title |
+| 1   | User can add a freetext title to any annotation | ✓ VERIFIED | Title input field in AnnotationPanel.tsx binds to annotation.title |
 | 2   | Title appears in bold at the top of the annotation card | ✓ VERIFIED | AnnotationCard renders annotation.title conditionally in .annotation-title div |
 | 3   | Existing annotations without titles work correctly | ✓ VERIFIED | title optional in Annotation type, conditional rendering in AnnotationCard |
 | 4   | User can create annotations without selecting a MITRE technique | ✓ VERIFIED | techniqueId optional, selector allows empty value |
@@ -72,13 +71,13 @@ re_verification:
 
 ### Human Verification Required
 
-None - all verification completed programmatically. The previously missing title input has been implemented and verified.
+None - all verification completed programmatically.
 
 ### Gaps Summary
 
-**All gaps from previous verification have been closed.**
+**No gaps found. All must-haves verified.**
 
-The annotation data model is now fully implemented:
+The annotation data model remains fully implemented:
 - ✅ Freetext title input field in AnnotationPanel
 - ✅ Optional MITRE ATT&CK technique tags with proper formatting
 - ✅ Optional Persuasion Principle tags with proper formatting
@@ -89,5 +88,5 @@ Phase goal "Freetext title and optional MITRE/Persuasion tags" is achieved.
 
 ---
 
-_Verified: 2026-01-21T19:35:00Z_
+_Verified: 2026-01-21T20:00:00Z_
 _Verifier: OpenCode (gsd-verifier)_
