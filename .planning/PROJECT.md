@@ -28,12 +28,9 @@ Security trainers can create visual, annotated phishing training materials that 
 
 ### Active
 
-- [ ] Undo/redo functionality in editor
-- [ ] Keyboard shortcuts for common actions
-- [ ] Custom techniques in library
-- [ ] Technique library persistence to LocalStorage
-- [ ] Custom arrow styles (colors, thickness)
-- [ ] Multiple layout templates (side panel, bottom panel, overlay)
+- [ ] Flexible annotations with freetext title and optional MITRE/Persuasion tags
+- [ ] Visualizer card displays title, inline tags, and full description
+- [ ] Technique library remains available but selection is optional
 
 ### Out of Scope
 
@@ -72,4 +69,4 @@ Shipped v1.0 with 3,101 LOC TypeScript. Tech stack: React + Vite, Tiptap editor,
 
 ---
 
-*Last updated: 2026-01-21 after v1.0 milestone*
+*Last updated: 2026-01-21 after v1.1 UX reprioritization*

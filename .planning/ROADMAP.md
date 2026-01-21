@@ -6,41 +6,58 @@
 
 ## Overview
 
-Post-v1.0 roadmap for Phish Monger. All v1.0 requirements shipped. Next milestone focuses on editor improvements, visualizer enhancements, and technical debt.
+Post-v1.0 roadmap for Phish Monger. v1.1 focuses on annotation flexibility (freetext titles, optional tags) based on UX testing feedback.
 
 ## Milestones
 
 - ✅ **v1.0 MVP** — Phases 1-5 (shipped 2026-01-21)
-- 📋 **v1.1 Editor & Visualizer** — Phases 6-8 (planned)
+- 📋 **v1.1 Annotation Flexibility** — Phases 6-7 (planned)
 - 🔮 **v2.0** — Future major release (TBD)
 
 ## Phases
 
-### 📋 Phase 6: Editor Improvements
+### 📋 Phase 6: Annotation Data Model
 
-**Goal:** Add undo/redo and keyboard shortcuts
+**Goal:** Freetext title and optional MITRE/Persuasion tags
 **Status:** Not started
 **Plans:** TBD
+
+**Requirements:**
+- ANN-09: Freetext title field
+- ANN-10: Optional MITRE ATT&CK tag
+- ANN-11: Optional Persuasion Principle tag
 
 **Dependencies:** Phase 5
 
 ---
 
-### 📋 Phase 7: Visualizer Enhancements
+### 📋 Phase 7: Visualizer & Lure List Updates
 
-**Goal:** Multiple layout templates and custom arrow styles
+**Goal:** Updated card display and list summary
 **Status:** Not started
 **Plans:** TBD
+
+**Requirements:**
+- ANN-12: Visualizer card layout (title, inline tags, description)
+- ANN-13: Lure list shows title/description
 
 **Dependencies:** Phase 6
 
 ---
 
-### 📋 Phase 8: Library Persistence
+### 📋 Phase 8: Deferred v1.0 Work
 
-**Goal:** Custom techniques persist to LocalStorage
+**Goal:** Original v1.1 features deferred
 **Status:** Not started
 **Plans:** TBD
+
+**Requirements:**
+- EDIT-07: Undo/redo functionality
+- EDIT-08: Keyboard shortcuts
+- VIS-07: Custom arrow styles
+- VIS-08: Layout templates
+- ANN-07: Custom techniques in library
+- ANN-08: Library persistence
 
 **Dependencies:** Phase 7
 
@@ -57,4 +74,4 @@ Post-v1.0 roadmap for Phish Monger. All v1.0 requirements shipped. Next mileston
 
 ---
 
-**Coverage:** v1.0 shipped. v1.1 requirements TBD.
+**Coverage:** v1.0 shipped. v1.1 (annotation flexibility) in planning.
