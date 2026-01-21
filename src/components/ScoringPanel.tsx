@@ -1,5 +1,5 @@
 import type { ScoringData } from '../types/scoring'
-import { calculateDifficulty, getDifficultyLevel, getDifficultyBadge } from '../utils/scoring'
+import { calculateDifficulty, getDifficultyBadge } from '../utils/scoring'
 
 interface ScoringPanelProps {
   scoring: ScoringData
@@ -9,8 +9,7 @@ interface ScoringPanelProps {
 }
 
 export function ScoringPanel({ scoring, onUpdate, showBadge = true, onBadgeToggle }: ScoringPanelProps) {
-  const score = calculateDifficulty(scoring)
-  const difficulty = getDifficultyLevel(score)
+  const difficulty = calculateDifficulty(scoring)
   const badge = getDifficultyBadge(difficulty)
 
   // Counter widget component
@@ -54,12 +53,12 @@ export function ScoringPanel({ scoring, onUpdate, showBadge = true, onBadgeToggl
             <strong>{scoring.premiseAlignment}</strong>
           </div>
           <div className="score-row">
-            <span>Cues Total:</span>
-            <strong>({scoring.visualCues} + {scoring.languageCues}) = {scoring.visualCues + scoring.languageCues}</strong>
+            <span>Cues (Visual + Language):</span>
+            <strong>{scoring.visualCues} + {scoring.languageCues} = {scoring.visualCues + scoring.languageCues}</strong>
           </div>
           <div className="score-row score-total">
-            <span>Difficulty:</span>
-            <strong>{score}</strong>
+            <span>Difficulty Zone:</span>
+            <strong>{badge.label}</strong>
           </div>
         </div>
       </div>
