@@ -1,7 +1,9 @@
-import type { Annotation, Technique } from '../../types/annotations'
-import techniques from '../../data/techniques.json' with { type: 'json' }
+import type { Annotation } from '../../types/annotations'
 import persuasionPrinciples from '../../data/persuasion.json' with { type: 'json' }
 import styles from '../../styles/arrows.module.css'
+import { useCustomTechniques } from '../../hooks/useCustomTechniques'
+import { useMemo } from 'react'
+import techniques from '../../data/techniques.json' with { type: 'json' }
 
 interface AnnotationCardProps {
   annotation: Annotation
@@ -10,9 +12,9 @@ interface AnnotationCardProps {
   showTags?: boolean
 }
 
-function getTechniqueName(id: string): string {
-  const technique = (techniques as Technique[]).find((t: Technique) => t.id === id)
-  return technique ? `${id} - ${technique.name}` : id
+function getTechniqueName(id: string, allTechniques: any[]): string {
+  const technique = allTechniques.find((t: any) => t.id === id)
+  return technique ? `${id} - ${technique.name}` : `(Unknown Technique)`
 }
 
 function getPersuasionName(id: string): string {
@@ -26,6 +28,13 @@ export function AnnotationCard({
   arrowStyle = 'classic',
   showTags = true,
 }: AnnotationCardProps) {
+  const { getAllTechniques } = useCustomTechniques()
+
+  // Get all techniques (built-in + custom)
+  const allTechniques = useMemo(() => {
+    return getAllTechniques(techniques)
+  }, [getAllTechniques])
+
   return (
     <div
       className="annotation-card"
@@ -45,7 +54,7 @@ export function AnnotationCard({
         <div className="annotation-tags">
           {annotation.techniqueId && (
             <span className="mitre-tag">
-              ({getTechniqueName(annotation.techniqueId)})
+              ({getTechniqueName(annotation.techniqueId, allTechniques)})
             </span>
           )}
           {annotation.persuasionPrincipleId && (

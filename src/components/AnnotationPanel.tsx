@@ -18,6 +18,10 @@ export function AnnotationPanel({ lureId, lureText, annotation, onUpdate }: Anno
 
   const allTechniques = getAllTechniques(techniques)
 
+  // Check if current annotation's technique still exists
+  const currentTechniqueExists = annotation?.techniqueId ?
+    allTechniques.some(t => t.id === annotation.techniqueId) : true
+
   const handleCreateCustomTechnique = (techniqueData: Omit<import('../types/library').CustomTechnique, 'id' | 'isCustom' | 'createdAt'>) => {
     const newId = addCustomTechnique(techniqueData)
     // Optionally select the newly created technique
@@ -42,43 +46,56 @@ export function AnnotationPanel({ lureId, lureText, annotation, onUpdate }: Anno
         />
       </div>
 
-      <div className="annotation-section">
-        <label htmlFor={`technique-${lureId}`} className="annotation-label">
-          Technical Technique (What)
-        </label>
-        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-          <select
-            id={`technique-${lureId}`}
-            className="annotation-select"
-            value={annotation?.techniqueId || ''}
-             onChange={(e) => onUpdate({ techniqueId: e.target.value || undefined })}
-            style={{ flex: 1 }}
-          >
-            <option value="">Select technique...</option>
-            {allTechniques.map((technique) => (
-              <option key={technique.id} value={technique.id}>
-                {'isCustom' in technique ? '[Custom] ' : ''}{technique.id}: {technique.name}
-              </option>
-            ))}
-          </select>
-          <button
-            type="button"
-            onClick={() => setIsEditorOpen(true)}
-            style={{
-              padding: '6px 12px',
-              backgroundColor: '#f0f0f0',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              fontSize: '12px',
-              whiteSpace: 'nowrap'
-            }}
-            title="Create custom technique"
-          >
-            +
-          </button>
-        </div>
-      </div>
+       <div className="annotation-section">
+         <label htmlFor={`technique-${lureId}`} className="annotation-label">
+           Technical Technique (What)
+         </label>
+         {annotation?.techniqueId && !currentTechniqueExists && (
+           <div style={{
+             color: '#d32f2f',
+             fontSize: '14px',
+             marginBottom: '8px',
+             padding: '8px',
+             backgroundColor: '#ffebee',
+             borderRadius: '4px',
+             border: '1px solid #ffcdd2'
+           }}>
+             Technique not found: {annotation.techniqueId}. Please select a different technique.
+           </div>
+         )}
+         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+           <select
+             id={`technique-${lureId}`}
+             className="annotation-select"
+             value={annotation?.techniqueId || ''}
+              onChange={(e) => onUpdate({ techniqueId: e.target.value || undefined })}
+             style={{ flex: 1 }}
+           >
+             <option value="">Select technique...</option>
+             {allTechniques.map((technique) => (
+               <option key={technique.id} value={technique.id}>
+                 {'isCustom' in technique ? '[Custom] ' : ''}{technique.id}: {technique.name}
+               </option>
+             ))}
+           </select>
+           <button
+             type="button"
+             onClick={() => setIsEditorOpen(true)}
+             style={{
+               padding: '6px 12px',
+               backgroundColor: '#f0f0f0',
+               border: '1px solid #ccc',
+               borderRadius: '4px',
+               cursor: 'pointer',
+               fontSize: '12px',
+               whiteSpace: 'nowrap'
+             }}
+             title="Create custom technique"
+           >
+             +
+           </button>
+         </div>
+       </div>
 
       <div className="annotation-section">
         <label htmlFor={`persuasion-${lureId}`} className="annotation-label">
