@@ -2,7 +2,7 @@
 
 **Last Updated:** 2026-01-21
 **Current Phase:** 08-deferred-v1-0-work
-**Status:** In progress (Plan 3 of 8 complete)
+**Status:** In progress (Plan 4 of 8 complete)
 
 ---
 
@@ -25,13 +25,13 @@
 ## Current Position
 
 **Phase:** 08-deferred-v1-0-work
-**Status:** In progress (Plan 3 of 8 complete)
-**Last activity:** 2026-01-21 - Completed 08-03-PLAN.md (arrow badge styles)
+**Status:** In progress (Plan 4 of 8 complete)
+**Last activity:** 2026-01-21 - Completed 08-04-PLAN.md (layout template presets)
 
-**Progress:** ███████░░░░░░░░░░░░░░ 37.5% (08-01: Undo/Redo, 08-02: Keyboard shortcuts, 08-03: Arrow styles complete)
+**Progress:** █████████░░░░░░░░░░░░ 50% (08-01: Undo/Redo, 08-02: Keyboard shortcuts, 08-03: Arrow styles, 08-04: Layout templates complete)
 
 **Current Focus:** Executing deferred v1.0 features (undo/redo, keyboard shortcuts, arrow styles, layout templates, custom techniques)
-**Next Step:** Plan 08-04 (Layout template selector) or audit milestone
+**Next Step:** Plan 08-05 (Custom technique library with LocalStorage persistence) or audit milestone
 
 ---
 
@@ -98,6 +98,9 @@
 | CSS Modules for badge styling | Scoped styles, lighter than CSS-in-JS, already in project | 08-03: Arrow badge styles |
 | Arrow style as user preference | Stored in LocalStorage globally, not per-project (simpler UX) | 08-03: Style persistence |
 | Diamond text counter-rotation | Nested span with -45deg transform keeps numbers upright despite 45deg parent rotation | 08-03: Badge rendering |
+| Template-based layout UX | Presets reduce cognitive load compared to pixel-level slider control | 08-04: Layout templates |
+| Flexbox with flex-grow for email column | Allows responsive sizing while keeping annotation column at fixed width | 08-04: Layout system |
+| CSS Modules for layout templates | Prevents global style conflicts, scoped to SlideWrapper component | 08-04: Layout styling |
 
 ### Requirements Coverage
 
@@ -154,6 +157,9 @@
 - [x] Install react-hotkeys-hook dependency (08-01)
 - [x] Create useUndoRedo hook with history management (08-01)
 - [x] Integrate undo/redo into App.tsx with keyboard shortcuts (08-01)
+- [x] Create layout templates CSS module with three presets (08-04)
+- [x] Create LayoutTemplateSelector component with visual icons (08-04)
+- [x] Integrate layout template system with LocalStorage persistence (08-04)
 
 ### Blockers
 
@@ -163,8 +169,8 @@
 
 ## Session Continuity
 
-**Last Session:** 2026-01-21 (Completed 08-01-PLAN.md)
-**Current Session:** 2026-01-21 (Phase 08 plan 01 execution complete)
+**Last Session:** 2026-01-21 (Completed 08-04-PLAN.md)
+**Current Session:** 2026-01-21 (Phase 08 plan 04 execution complete)
 
 **What Was Done:**
 - Defined 27 v1 requirements across 5 categories
@@ -216,8 +222,15 @@
   - Updated AnnotationCard to use CSS module badges
   - Diamond style counter-rotates text to keep numbers upright
   - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-03-SUMMARY.md
- - **Executed 03-01:** Installed html2canvas@^1.4.1 and @types/html2canvas for DOM-to-image export functionality
- - **Executed 03-02:** Three-column slide layout components (SlideWrapper, EmailColumn, AnnotationColumn) with fixed 1600px width and ghost card empty state
+- **Phase 8 (08-04) complete:** Layout template presets
+  - Created layouts.module.css with Balanced, Wide Email, and Wide Annotations templates
+  - Created LayoutTemplateSelector component with visual SVG icons
+  - Replaced annotation width slider with template buttons
+  - Added LocalStorage persistence for layout template (LAYOUT_TEMPLATE_KEY)
+  - Updated SlideWrapper to accept layoutTemplate prop and apply CSS module classes
+  - Updated EmailColumn and AnnotationColumn to use CSS module classes
+  - Flexbox layout with flex-grow for responsive email column sizing
+  - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-04-SUMMARY.md
 
 **What's Next:**
 - Phase 3 (Visualizer & Export): Continue with SVG overlay component for arrow annotations
