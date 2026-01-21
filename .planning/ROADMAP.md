@@ -11,19 +11,19 @@ Post-v1.0 roadmap for Phish Monger. v1.1 focuses on annotation flexibility (free
 ## Milestones
 
 - ✅ **v1.0 MVP** — Phases 1-5 (shipped 2026-01-21)
-- 📋 **v1.1 Annotation Flexibility** — Phases 6-7 (planned)
+- 🔄 **v1.1 Annotation Flexibility** — Phases 6-7 (planning complete, execution ready)
 - 🔮 **v2.0** — Future major release (TBD)
 
 ## Phases
 
-### 📋 Phase 6: Annotation Data Model
+### ✅ Phase 6: Annotation Data Model
 
 **Goal:** Freetext title and optional MITRE/Persuasion tags
-**Status:** Not started
+**Status:** Planned
 **Plans:**
-- `06-01`: Extend Annotation type with optional title field
-- `06-02`: Add optional MITRE ATT&CK tag to annotation
-- `06-03`: Add optional Persuasion Principle tag to annotation
+- [x] `06-01-PLAN.md`: Extend Annotation type with optional title field
+- [x] `06-02-PLAN.md`: Add optional MITRE ATT&CK tag to annotation
+- [x] `06-03-PLAN.md`: Add optional Persuasion Principle tag to annotation
 
 **Requirements:**
 - ANN-09: Freetext title field
@@ -73,10 +73,10 @@ Post-v1.0 roadmap for Phish Monger. v1.1 focuses on annotation flexibility (free
 | Phase | Milestone | Status |
 |-------|-----------|--------|
 | 1-5 | v1.0 | ✅ Complete |
-| 6 | v1.1 | Not started |
+| 6 | v1.1 | 📋 Planned |
 | 7 | v1.1 | Not started |
 | 8 | v1.1 | Not started |
 
 ---
 
-**Coverage:** v1.0 shipped. v1.1 (annotation flexibility) in planning.
+**Coverage:** v1.0 shipped. v1.1 (annotation flexibility) phase 6 planned.
