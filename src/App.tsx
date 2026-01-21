@@ -99,7 +99,7 @@ function App() {
   })
 
   // Custom techniques management
-  const { customTechniques, getAllTechniques } = useCustomTechniques()
+  const { customTechniques } = useCustomTechniques()
   const [viewMode, setViewMode] = useState<ViewMode>('edit')
   const [scaleMode, setScaleMode] = useState<ScaleMode>('fit')
   const [layoutTemplate, setLayoutTemplate] = useState<LayoutTemplate>(() => {
