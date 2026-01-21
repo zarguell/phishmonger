@@ -23,15 +23,15 @@
 
 ## Current Position
 
-**Phase:** v1.0 COMPLETE (Phases 1-5)
-**Status:** Ready for next milestone
-**Last activity:** 2026-01-21 - v1.0 milestone archived
+**Phase:** v1.1 COMPLETE (Phase 6), Project COMPLETE
+**Status:** All phases complete
+**Last activity:** 2026-01-21 - Completed 06-03-PLAN.md
 
-**Progress:** ████████████████████ 100% (v1.0 shipped)
+**Progress:** ████████████████████ 100% (v1.1 shipped)
 
-**Current Focus:** Ready to plan v1.1
+**Current Focus:** Project complete - all v1.1 requirements satisfied
 
-**Next Step:** Run `/gsd-new-milestone` to start v1.1 planning
+**Next Step:** Ready for v2 planning
 
 ---
 
@@ -88,18 +88,22 @@
 | Counter widgets with +/- buttons | Prominent 40px buttons for visual/language cues counting, not subtle stepper arrows | 04-01: ScoringPanel UX |
 | Score breakdown at top | Display calculation details above inputs (not below) for immediate visibility | 04-01: ScoringPanel layout |
 | Circle badge (E/M/H) | 60px circular badge with single letter and color coding (Green/Yellow/Red) | 04-01: Difficulty indicator |
+| Title field for annotations | Optional `title?: string` field enables freetext annotation titles in visualizer | 06-01: Data model extension |
+| Optional techniqueId | Changed `techniqueId: string` to `techniqueId?: string` - annotations now work without MITRE technique | 06-02: Optional tags |
+| AnnotationCard component | New component displays title (bold), tags inline, description below per ANN-12 layout | 06-03: Visualizer cards |
 
 ### Requirements Coverage
 
 **v1 Total:** 27 requirements
-**Mapped to Phases:** 27 ✓
+**v1.1 Total:** 5 requirements (planned)
 
 **Category Breakdown:**
 - Editor: 6 requirements → Phase 1 ✓ COMPLETE
-- Annotations: 6 requirements → Phase 2 ✓ COMPLETE
-- Visualizer: 6 requirements → Phase 3
-- Scoring: 6 requirements → Phase 4
-- Data & Persistence: 6 requirements → Phase 5
+- Annotations (v1): 6 requirements → Phase 2 ✓ COMPLETE
+- Visualizer (v1): 6 requirements → Phase 3 ✓ COMPLETE
+- Scoring: 6 requirements → Phase 4 ✓ COMPLETE
+- Data & Persistence: 6 requirements → Phase 5 ✓ COMPLETE
+- Annotations (v1.1): 5 requirements → Phase 6 📋 PLANNED
 
 ### Technical Notes
 
@@ -134,6 +138,10 @@
 - [x] Define ProjectMetadata type with title, author, timestamps (05-01)
 - [x] Integrate ProjectSettings into App.tsx (05-02)
 - [x] Render ProjectSettings in edit mode header with Export/Import UI (05-03)
+- [ ] Add optional title field to Annotation type (06-01)
+- [ ] Make techniqueId optional in Annotation type (06-02)
+- [x] Create AnnotationCard component with tag display (06-03)
+- [x] Add Persuasion tag display to AnnotationCard (06-03)
 
 ### Blockers
 
@@ -189,21 +197,18 @@
 
 ## Session Continuity
 
-**Last Session:** 2026-01-21 (Completed 05-03-PLAN.md)
-**Current Session:** 2026-01-21 (Phase 5 complete)
+**Last Session:** 2026-01-21 (Completed 06-03-PLAN.md)
+**Current Session:** 2026-01-21 (Project complete)
 
 **What Was Done:**
-- **Phase 4 complete:** All 4 plans executed (scoring types, components, integration, refinements)
-- **Phase 5 (05-01) complete:** Project metadata type definition and storage utilities
-- **Phase 5 (05-02) complete:** App.tsx integration with ProjectSettings, JSON export/import utilities
-- **Phase 5 (05-03) complete:** Export/Import UI with dual import methods (file upload + text paste)
-  - Added Export/Import UI to ProjectSettings component
-  - Wired export/import handlers in App.tsx
-  - Made ProjectSettings collapsible menu with Import/Export toggle
-  - All 7 DATA requirements satisfied (DATA-01 through DATA-07)
+- **Phase 6 (06-01) complete:** Added optional title field to Annotation type
+- **Phase 6 (06-02) complete:** Made techniqueId optional in Annotation type
+- **Phase 6 (06-03) complete:** Created AnnotationCard component with combined MITRE and Persuasion tag display
+- All 5 ANN requirements satisfied for v1.1 (ANN-08 through ANN-12)
+- Project complete: v1.1 shipped with enhanced annotation data model
 
 **What's Next:**
-- Production readiness phase - Testing, bug fixes, and prepare for initial deployment
-- All 5 phases complete with 100% v1 requirements coverage
+- Ready for v2 planning and development
+- All v1.1 requirements satisfied
 
 ---
