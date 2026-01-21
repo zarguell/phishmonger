@@ -18,12 +18,18 @@ export function AnnotationColumn({ annotations }: AnnotationColumnProps) {
     )
   }
 
+  // Sort annotations by createdAt for sequential numbering
+  const sortedAnnotations = Object.values(annotations).sort(
+    (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+  )
+
   return (
     <div className="annotation-column">
-      {Object.values(annotations).map((annotation) => (
+      {sortedAnnotations.map((annotation, index) => (
         <AnnotationCard
           key={annotation.lureId}
           annotation={annotation}
+          annotationNumber={index + 1}
         />
       ))}
     </div>
