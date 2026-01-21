@@ -22,7 +22,7 @@ export function AnnotationPanel({ lureId, lureText, annotation, onUpdate }: Anno
           id={`technique-${lureId}`}
           className="annotation-select"
           value={annotation?.techniqueId || ''}
-          onChange={(e) => onUpdate({ techniqueId: e.target.value })}
+           onChange={(e) => onUpdate({ techniqueId: e.target.value || undefined })}
         >
           <option value="">Select technique...</option>
           {techniques.map((technique: Technique) => (
