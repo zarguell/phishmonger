@@ -1,7 +1,7 @@
 # State: Phish Monger
 
-**Last Updated:** 2026-01-20
-**Current Phase:** 4 of 5 (NIST Phish Scale Scoring)
+**Last Updated:** 2026-01-21
+**Current Phase:** 3 of 5 (Visualizer & Export)
 
 ---
 
@@ -26,11 +26,11 @@
 **Phase:** 3 of 5 (Visualizer & Export)
 **Plan:** 8 of 8
 **Status:** Phase 3 complete pending verification
-**Last activity:** 2026-01-20 - Completed 03-08-VISUAL-BUG-FIXES (Bus Line geometry)
+**Last activity:** 2026-01-21 - Completed 03-08-NUMBERED-ANNOTATIONS (Numbered badges + draggable cards)
 
 **Progress:** ███████████████ 60% (3 of 5 phases complete)
 
-**Current Focus:** Phase 3 (Visualizer & Export) all plans executed. Layout collapse fixed (flexbox), arrow geometry fixed (Bus Line pattern), visual bugs resolved. Awaiting human verification checkpoint.
+**Current Focus:** Phase 3 (Visualizer & Export) all plans executed. Replaced arrow system with numbered badges (industry standard), implemented draggable cards for manual reordering. Awaiting human verification checkpoint.
 
 **Next Step:** Complete verification checkpoint, then begin Phase 4 (NIST Phish Scale Scoring).
 
@@ -54,8 +54,8 @@
 | NIST Phish Scale methodology | Industry-standard for phishing difficulty assessment | Scoring (Phase 4) |
 | Flexbox over absolute positioning for cards | Simpler, more maintainable, responsive layout; no manual Y calculations | Visualizer (Phase 3) |
 | Deleted useCardLayout hook | No longer needed with flexbox gap handling; simplifies codebase | Visualizer (Phase 3) |
-| Bus Line arrow geometry (X=980px) | All vertical movement on fixed line between columns; arrows never cross text | Visualizer (Phase 3) |
-| 3-segment arrow routing | Right from lure → vertical on bus line → left to card; clean visual path | Visualizer (Phase 3) |
+| Numbered badges over arrows | Simpler, industry standard (Microsoft Attack Simulator, NIST), lower cognitive load for presenters, better scalability | Visualizer (Phase 3) |
+| HTML5 drag/drop for card reordering | Native browser support without additional dependencies, uses manualY field for sort order persistence | Visualizer (Phase 3) |
 | Manual project setup vs create-vite | Non-empty directory blocked create-vite; manual files match template exactly | 01-01: Project initialized |
 | Latest Tiptap 2.27.2 over ^2.8.0 | Latest stable version with all bug fixes and features | 01-01: Tiptap installed |
 | Lure Mark as atom Node extension | Prevents cursor issues, simplest implementation for span wrapping | 01-02: Lure Mark extension |
@@ -181,16 +181,19 @@
 
 ## Session Continuity
 
-**Last Session:** 2026-01-20 (Completed 03-08-PLAN.md)
-**Current Session:** 2026-01-20 (Phase 3 plan 08 execution complete)
+**Last Session:** 2026-01-20 (Completed 03-08-PLAN.md tasks 1-3)
+**Current Session:** 2026-01-21 (Phase 3 plan 08 continued with numbered annotations)
 
 **What Was Done:**
 - **Phase 3 complete:** All 8 plans executed
-- **Executed 03-08:** Fixed layout collapse in preview mode
-  - Added position: relative to .annotation-column CSS
-  - Removed absolute positioning from AnnotationColumn component
-  - Deleted useCardLayout hook (no longer needed)
-  - Replaced with flexbox layout for simpler, more maintainable code
+- **Executed 03-08 (continued):** Replaced arrow system with numbered annotations
+  - Added numbered badge CSS (orange circle, superscript)
+  - Modified EmailColumn to inject badges after lure highlights
+  - Added matching numbered badges to AnnotationCard headers
+  - Removed all arrow code (ArrowOverlay, useArrowCalculations, useDebouncedResize)
+  - Implemented draggable annotation cards using HTML5 drag/drop API
+  - Added drag handle (⋮⋮) and visual feedback for dragging
+  - Added manualY field to Annotation interface for sort order persistence
 - **Phase 3 plans:**
   - 03-01: Installed html2canvas
   - 03-02: Three-column slide layout components
