@@ -43,7 +43,7 @@ function App() {
     redo: redoAnnotations,
     canUndo: canUndoAnnotations,
     canRedo: canRedoAnnotations
-  } = useUndoRedo<Record<string, Annotation>>(() => loadAnnotations())
+  } = useUndoRedo<Record<string, Annotation>>(loadAnnotations())
   const [scoring, setScoring] = useState<ScoringData>(() => {
     return loadScoring()
   })

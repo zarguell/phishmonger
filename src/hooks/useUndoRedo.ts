@@ -17,7 +17,7 @@ type HistoryAction<T> =
 function historyReducer<T>(state: HistoryState<T>, action: HistoryAction<T>): HistoryState<T> {
   switch (action.type) {
     case 'SET': {
-      const { past, present, future } = state
+      const { past, present } = state
 
       // If the new state is the same as the present, do nothing
       if (present === action.payload) {
