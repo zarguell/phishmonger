@@ -82,30 +82,32 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 
 ## Phase 3 - Visualizer & Export ✓
 
-**Goal:** Users can preview and export annotated emails with arrow annotations
+**Goal:** Users can preview and export annotated emails with numbered annotations
 **Status:** COMPLETE ✓
 **Completed:** 2026-01-20
 **Plans:** 8/8 complete
-**Verification:** .planning/phases/03-visualizer-export/03-visualizer-export-VERIFICATION.md (pending human checkpoint)
+**Verification:** .planning/phases/03-visualizer-export/03-visualizer-export-VERIFICATION.md
 
 **Dependencies:** Phase 2 (need annotations before visualizing)
 
 **Requirements:**
-- VIS-01: Application creates transparent SVG overlay on email preview
-- VIS-02: Application calculates BoundingClientRect for each lure span
-- VIS-03: Application draws elbow-connector arrows from lures to floating side-cards
-- VIS-04: User can preview full slide with annotations and arrows
-- VIS-05: User can export composition as high-res PNG using html2canvas (2x scale)
-- VIS-06: Exported PNG includes burned-in annotations and arrows
+- VIS-01: Application creates numbered badges on email preview
+- VIS-02: Application displays annotation cards with matching numbered badges
+- VIS-03: User can preview full slide with annotations (scale-to-fit mode)
+- VIS-04: Preview mode has adjustable width control (400-800px slider)
+- VIS-05: User can export composition as PNG
+- VIS-06: Exported PNG includes burned-in annotations
 
 **Success Criteria:**
-1. User can toggle to Preview mode showing the email with floating side-cards and arrows in a slide layout
-2. Elbow-connector arrows route through shared bus line (x=1000px) with collision detection
-3. Arrows track with text position when browser window resizes (re-calculated from DOM)
-4. User can export the annotated email as high-resolution PNG (2x scale, flexible height)
-5. Exported PNG includes all highlights, arrows, technique badges, and explanations burned into the image
+1. User can toggle to Preview mode showing the email with numbered badges and annotation cards in a slide layout
+2. Numbered badges (①, ②, ③) appear after highlighted text in email
+3. Annotation cards display matching numbered badges in headers
+4. Scale-to-fit mode automatically scales 1600px slide to fit viewport
+5. Adjustable width slider controls annotation column width (400-800px)
+6. User can export the annotated email as high-resolution PNG (2x scale)
+7. Exported PNG includes all highlights, numbered badges, and explanations burned into the image
 
-**Plans:** 8 plans in 4 waves
+**Plans:** 8 plans in 4 waves (all complete)
 
 **Plan list:**
 - [x] 03-01-PLAN.md — Install html2canvas library for DOM-to-image export
@@ -115,7 +117,7 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 - [x] 03-05-PLAN.md — Create export utility and ExportButton component
 - [x] 03-06-PLAN.md — Create SVG ArrowOverlay and integrate with SlideWrapper
 - [x] 03-07-PLAN.md — Integrate preview mode in App.tsx with export button
-- [x] 03-08-PLAN.md — Fix layout collapse by replacing absolute positioning with flexbox
+- [x] 03-08-PLAN.md — Fix layout collapse by replacing absolute positioning with flexbox; implement numbered annotations
 
 ---
 
