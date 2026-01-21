@@ -2,11 +2,11 @@
 
 **Last Updated:** 2026-01-21
 **Current Phase:** 08-deferred-v1-0-work
-**Status:** In progress (Plan 6 of 8 complete)
+**Status:** Complete (All 8 plans complete)
 
-**Last activity:** 2026-01-21 - Completed 08-06-PLAN.md (Custom technique editor)
+**Last activity:** 2026-01-21 - Completed 08-08-PLAN.md (Technique library management)
 
-**Progress:** █████████████░░░░░░░░ 75% (08-01: Undo/Redo, 08-02: Keyboard shortcuts, 08-03: Arrow styles, 08-04: Layout templates, 08-05: Custom techniques, 08-06: Custom technique editor complete)
+**Progress:** ████████████████████ 100% (08-01: Undo/Redo, 08-02: Keyboard shortcuts, 08-03: Arrow styles, 08-04: Layout templates, 08-05: Custom techniques, 08-06: Custom technique editor, 08-07: Export with custom techniques, 08-08: Technique library complete)
 
 **Current Focus:** Executing deferred v1.0 features (undo/redo, keyboard shortcuts, arrow styles, layout templates, custom techniques)
 **Next Step:** Continue with plan 08-07 (Custom techniques portability) or audit milestone
@@ -158,153 +158,21 @@
 
 ## Session Continuity
 
-**Last Session:** 2026-01-21 (Completed 08-06-PLAN.md)
-**Current Session:** 2026-01-21 (Phase 08 plan 06 execution complete with custom technique editor)
+**Last Session:** 2026-01-21 (Completed 08-08-PLAN.md)
+**Current Session:** 2026-01-21 (Phase 8 complete - all 8 plans finished)
 
 **What Was Done:**
-- Defined 27 v1 requirements across 5 categories
-- Created 5-phase roadmap (Editor → Annotations → Visualizer → Scoring → Data)
-- Validated 100% requirement coverage
-- Initialized project state tracking
-- Executed 01-01: Project initialization with Vite + React + TypeScript
-- Installed Tiptap editor and DOMPurify dependencies
-- Executed 01-02: Lure Mark Tiptap extension with UUID generation
-- Executed 01-02: DOMPurify sanitization preserving email layout
-- Executed 01-03: Editor component with toolbar and LocalStorage persistence
-- Executed 01-04: Architectural decision checkpoint (split Editor/Viewer)
-- Executed 01-05: Mode toggle with HTML input and Rich Text editor
-- Executed 01-06: Live Preview pane with selection-based Lure marking and LureList sidebar
-- Executed 01-07: Cross-element text marking fix using TreeWalker and splitText()
-- **Phase 1 complete:** All 6 requirements verified (6/6 passed)
-- **Verification report:** .planning/phases/01-editor-foundation/01-editor-foundation-VERIFICATION.md
-- **Phase 2 (02-01) complete:** Static technique and persuasion libraries with TypeScript types
-- **Phase 2 (02-02) complete:** Annotation state management and AnnotationPanel component
-- **Phase 2 (02-03) complete:** Annotation integration with LureList, LocalStorage persistence, and cleanup
-- **Phase 2 complete:** All 6 requirements verified (11/11 must-haves passed)
-- **Verification report:** .planning/phases/02-technique-annotations/02-TECHNIQUE-ANNOTATIONS-VERIFICATION.md
-- **Phase 6 (06-01) complete:** Added optional title field to Annotation type
-- **Phase 6 (06-02) complete:** Made techniqueId optional in Annotation type
-- **Phase 6 (06-03) complete:** Created AnnotationCard component with combined MITRE and Persuasion tag display
-- **Phase 6 (06-04) complete:** Added title input field to AnnotationPanel for freetext annotation titles
-- **Phase 6 (06-05) complete:** Restored numbered annotation badges (1, 2, 3...) in visualizer cards
-- All 5 ANN requirements satisfied for v1.1 (ANN-08 through ANN-12)
-- Gap closure complete: v1.1 fully shipped with enhanced annotation data model
-- **Phase 8 (08-01) complete:** Undo/redo functionality with keyboard shortcuts
-  - Installed react-hotkeys-hook@5.2.3 for global keyboard shortcuts
-  - Created useUndoRedo hook with useReducer pattern and MAX_HISTORY=50
-  - Wrapped annotations state with undo/redo history tracking
-  - Added Ctrl+Z/Cmd+Z for undo, Ctrl+Shift+Z/Ctrl+Y for redo
-  - Configured enableOnFormTags:false to prevent form input interference
-  - Added visual undo/redo buttons to header with disabled states
-  - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-01-SUMMARY.md
-- **Phase 8 (08-02) complete:** Keyboard shortcuts help modal
-  - Created KeyboardShortcutHelp component with modal overlay
-  - Created ShortcutKey component for visual key cap styling
-  - Added Ctrl+/ or Cmd+/ shortcut to open help modal
-  - Listed all available shortcuts with descriptions
-  - Escape key and click-outside to dismiss modal
-  - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-02-SUMMARY.md
-- **Phase 8 (08-03) complete:** Custom arrow badge styles with all checkpoint fixes
-  - Created arrows.module.css with Classic Blue, Classic Red, Square, and Diamond variants
-  - Created ArrowStyleSelector component with live preview badges
-  - Integrated arrowStyle state with LocalStorage persistence (ARROW_STYLE_KEY)
-  - Updated AnnotationCard to use CSS module badges
-  - Diamond style counter-rotates text to keep numbers upright
-  - **Checkpoint fixes applied (2 rounds):**
-    - Round 1: Fixed badge positioning in email content, applied arrow styles to inline badges, added Classic Red option
-    - Round 2: Fixed annotation title overlapping badge (added 30px left padding to title)
-  - All issues resolved, plan complete
-  - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-03-SUMMARY.md
-- **Phase 8 (08-04) complete:** Layout template presets with user-driven enhancements
-  - Created layouts.module.css with four templates: Balanced, Wide Email, Wide Annotations, Compact
-  - Created LayoutTemplateSelector component with four visual SVG icons
-  - Replaced annotation width slider with template buttons
-  - Added LocalStorage persistence for layout template (LAYOUT_TEMPLATE_KEY)
-  - Fixed CSS selector bug using :global() selectors to target existing global classes
-  - Created VisibilityToggles component with Show Tags and Show NIST Badge checkboxes
-  - Added LocalStorage persistence for tags (SHOW_TAGS_KEY) and badge (SHOW_BADGE_KEY)
-  - Compact template: 50/50 split, 14px text, 16px gap (CSS custom property --layout-gap)
-  - Flexbox layout with flex-grow for responsive email column sizing
-   - All preferences persist across browser refresh
-   - **User-driven enhancements (3 checkpoint cycles):**
-     - Cycle 1: Fixed templates not working (CSS selector bug)
-     - Cycle 2: Added Compact template, Tags toggle, refined proportions to 50/50
-     - Cycle 3: Reduced gap in Compact, fixed NIST badge toggle connection
-   - All issues resolved, plan complete
-   - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-04-SUMMARY.md
- - **Phase 8 (08-05) complete:** Custom technique library with LocalStorage persistence
-    - Created CustomTechnique type extending Technique with optional URL and organization fields
-    - Implemented useCustomTechniques hook with full CRUD operations and automatic LocalStorage persistence
-    - Added getAllTechniques() merge operation for combining built-in and custom techniques
-    - Fixed TypeScript compilation errors in integrated components
-    - **Deviation handling:** Applied Rule 3 (blocking issues) to resolve 3 compilation errors
-    - Commits: 1075bfc, 51d308e, 6595765
-    - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-05-SUMMARY.md
- - **Phase 8 (08-06) complete:** Custom technique editor modal
-    - Created CustomTechniqueEditor component with comprehensive form validation
-    - Integrated editor into annotation workflow with "+" button next to technique dropdown
-    - Added visual distinction for custom techniques with "[Custom]" prefix
-    - Implemented unique ID validation and URL format checking
-    - Commits: 84b305f, a9f12f7
-    - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-06-SUMMARY.md
+  - **Phase 8 (08-08) complete:** Technique library management system
+    - Created TechniqueLibrary component with search, filter, CRUD operations
+    - Integrated modal into ProjectSettings menu
+    - Added orphaned technique reference handling in annotations
+    - Clear distinction between built-in (read-only) and custom (editable) techniques
+    - Commits: 6742825, 0545545, 849dce8
+    - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-08-SUMMARY.md
 
 **What's Next:**
-- Continue with Phase 08 deferred features (08-06 through 08-08)
-- Or: Audit milestone - review phase 08 progress and remaining work
-
-**Context to Preserve:**
-- Each phase builds on the previous (vertical slices, not horizontal layers)
-- DOM-based positioning (not coordinate-based) for arrow annotations
-- Static JSON for technique library (v1) — MITRE ATT&CK API integration deferred to v2
-- Export format is high-res PNG with burned-in annotations (not editable layers)
-- **Split Editor/Viewer architecture (01-04):**
-  - Lure marks created by selecting text in Preview pane (not editor)
-  - Lure storage as `<span data-lure-id="UUID">` in HTML source
-  - Mode toggle: HTML input mode (textarea) OR rich text mode (Tiptap)
-  - Live Preview pane always visible, shows rendered email with highlights
-  - Tiptap simplified (no LureMark extension needed)
-
----
-
-## Session Continuity
-
-**Last Session:** 2026-01-21 (Completed 08-03-PLAN.md)
-**Current Session:** 2026-01-21 (Phase 8 in progress - 3 of 8 plans complete)
-
-**What Was Done:**
- - **Phase 8 (08-03) complete:** Arrow badge style customization
-   - Created src/styles/arrows.module.css with three badge variants (Classic, Square, Diamond)
-   - Created ArrowStyleSelector component with live preview
-   - Integrated arrowStyle state with LocalStorage persistence
-   - Updated AnnotationCard to use CSS module badges instead of inline classes
-   - Commits: 5b432c5, 2892ff7, 66a6dca, 10ac2fb, 6dbd5eb, e19a78b
-   - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-03-SUMMARY.md
- - **Phase 8 (08-04) complete:** Layout template presets with user refinements
-   - Created layout templates with Balanced, Wide Email, Wide Annotations, Compact presets
-   - Implemented LayoutTemplateSelector with visual SVG icons
-   - Added VisibilityToggles for Show Tags and Show NIST Badge
-   - Integrated LocalStorage persistence for all layout preferences
-   - Applied user feedback: reduced Compact template gap, refined proportions
-   - Commits: various (integrated across multiple cycles)
-   - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-04-SUMMARY.md
- - **Phase 8 (08-05) complete:** Custom technique library with LocalStorage persistence
-   - Created CustomTechnique type extending base Technique
-   - Implemented useCustomTechniques hook with full CRUD operations
-   - Added merge operation for built-in + custom techniques
-   - Fixed TypeScript compilation errors
-   - Commits: 1075bfc, 51d308e, 6595765
-   - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-05-SUMMARY.md
- - **Phase 8 (08-06) complete:** Custom technique editor modal
-   - Created CustomTechniqueEditor component with form validation
-   - Integrated "+" button next to technique dropdown
-   - Added "[Custom]" prefix for visual distinction
-   - Implemented unique ID and URL validation
-   - Commits: 84b305f, a9f12f7
-   - SUMMARY: .planning/phases/08-deferred-v1-0-work/08-06-SUMMARY.md
-
-**What's Next:**
- - Continue with Phase 08 deferred features (08-07 through 08-08)
- - Dev server running on http://localhost:5174/ for verification
- - Ready for v2 planning or audit milestone
+  - Phase 8 complete - all deferred v1.0 features shipped
+  - Ready for Phase 7 (Visualizer updates) or v2 planning
+  - v1.1 milestone achieved (annotation flexibility + advanced UX)
 
 ---
