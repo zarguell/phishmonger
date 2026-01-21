@@ -129,8 +129,9 @@
 - [x] Link Lure Marks to technique annotations (02-03)
 - [x] Install html2canvas and TypeScript types (03-01)
 - [x] Create export utility and ExportButton component (03-05)
-- [ ] Create SVG overlay component for visualizer (03-02)
-- [ ] Implement NIST Phish Scale calculation logic (04-01)
+- [x] Create SVG overlay component for visualizer (03-02)
+- [x] Implement NIST Phish Scale calculation logic (04-01)
+- [x] Integrate ScoringPanel into App with persistence (04-02)
 
 ### Blockers
 
