@@ -27,7 +27,7 @@ const MODE_KEY = 'phishmonger-input-mode'
 const ARROW_STYLE_KEY = 'phishmonger-arrow-style'
 const LAYOUT_TEMPLATE_KEY = 'phishmonger-layout-template'
 const SHOW_TAGS_KEY = 'phishmonger-show-tags'
-const SHOW_NIST_BADGE_KEY = 'phishmonger-show-nist-badge'
+const SHOW_BADGE_KEY = 'phishmonger-show-badge'
 
 type ViewMode = 'edit' | 'preview'
 type ScaleMode = 'scroll' | 'fit'
@@ -65,11 +65,10 @@ function App() {
     const savedShowTags = localStorage.getItem(SHOW_TAGS_KEY)
     return savedShowTags === null ? true : savedShowTags === 'true'
   })
-  const [showNistBadge, setShowNistBadge] = useState(() => {
-    const savedShowNistBadge = localStorage.getItem(SHOW_NIST_BADGE_KEY)
-    return savedShowNistBadge === null ? true : savedShowNistBadge === 'true'
+  const [showBadge, setShowBadge] = useState(() => {
+    const savedShowBadge = localStorage.getItem(SHOW_BADGE_KEY)
+    return savedShowBadge === null ? true : savedShowBadge === 'true'
   })
-  const [showBadge, setShowBadge] = useState(true)
   const [arrowStyle, setArrowStyle] = useState(() => {
     const savedStyle = localStorage.getItem(ARROW_STYLE_KEY)
     return savedStyle || 'classic'
@@ -101,10 +100,10 @@ function App() {
     localStorage.setItem(SHOW_TAGS_KEY, showTags.toString())
   }, [showTags])
 
-  // Save show NIST badge preference
+  // Save show badge preference
   useEffect(() => {
-    localStorage.setItem(SHOW_NIST_BADGE_KEY, showNistBadge.toString())
-  }, [showNistBadge])
+    localStorage.setItem(SHOW_BADGE_KEY, showBadge.toString())
+  }, [showBadge])
 
   // Save annotations to LocalStorage
   useEffect(() => {
@@ -259,8 +258,8 @@ function App() {
             <VisibilityToggles
               showTags={showTags}
               onTagsToggle={setShowTags}
-              showNistBadge={showNistBadge}
-              onNistBadgeToggle={setShowNistBadge}
+              showNistBadge={showBadge}
+              onNistBadgeToggle={setShowBadge}
             />
             <ArrowStyleSelector
               currentStyle={arrowStyle}
@@ -293,7 +292,6 @@ function App() {
                 annotations={annotations}
                 arrowStyle={arrowStyle}
                 showTags={showTags}
-                showNistBadge={showNistBadge}
               />
             </SlideWrapper>
           </div>
