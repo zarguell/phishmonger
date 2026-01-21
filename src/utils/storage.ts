@@ -1,6 +1,7 @@
 import type { Annotation } from '../types/annotations'
 import type { ProjectMetadata } from '../types/project'
 import type { ScoringData } from '../types/scoring'
+import type { InputMode } from '../components/ModeToggle'
 
 const ANNOTATIONS_KEY = 'phishmonger-annotations'
 
@@ -99,4 +100,80 @@ export const saveMetadata = (metadata: ProjectMetadata) => {
   } catch (error) {
     console.error('Failed to save metadata:', error)
   }
+}
+
+/**
+ * Project export/import interface
+ */
+export interface ProjectJSON {
+  metadata: ProjectMetadata
+  htmlSource: string
+  annotations: Record<string, Annotation>
+  scoring: ScoringData
+  inputMode: InputMode
+}
+
+/**
+ * Export project data as JSON string
+ */
+export const exportProjectJSON = (
+  metadata: ProjectMetadata,
+  htmlSource: string,
+  annotations: Record<string, Annotation>,
+  scoring: ScoringData,
+  inputMode: InputMode
+): string => {
+  const project: ProjectJSON = {
+    metadata,
+    htmlSource,
+    annotations,
+    scoring,
+    inputMode
+  }
+  return JSON.stringify(project, null, 2)
+}
+
+/**
+ * Import project data from JSON string with validation
+ */
+export const importProjectJSON = (jsonString: string): ProjectJSON => {
+  try {
+    const parsed = JSON.parse(jsonString)
+
+    // Validate structure
+    if (!parsed.metadata || !parsed.htmlSource || !parsed.annotations || !parsed.scoring) {
+      throw new Error('Invalid project JSON: missing required fields')
+    }
+
+    // Validate metadata fields
+    if (!parsed.metadata.title || typeof parsed.metadata.title !== 'string') {
+      throw new Error('Invalid project JSON: metadata.title is required')
+    }
+
+    if (!parsed.metadata.createdAt || typeof parsed.metadata.createdAt !== 'string') {
+      throw new Error('Invalid project JSON: metadata.createdAt is required')
+    }
+
+    return parsed
+  } catch (error) {
+    if (error instanceof SyntaxError) {
+      throw new Error('Invalid JSON format')
+    }
+    throw error
+  }
+}
+
+/**
+ * Download project JSON as file
+ */
+export const downloadProjectJSON = (jsonString: string, filename: string) => {
+  const blob = new Blob([jsonString], { type: 'application/json' })
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  link.download = `${filename}.json`
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+  URL.revokeObjectURL(url)
 }
