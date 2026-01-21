@@ -494,65 +494,37 @@ body {
 
 /* Annotation Cards */
 .annotation-card {
-  background: #FFFFFF;
+  padding: 12px;
+  background: #f8f9fa;
   border: 1px solid #dee2e6;
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.2s;
+  border-radius: 4px;
 }
 
-.annotation-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.annotation-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 1.1em;
 }
 
-.annotation-card-header {
-  display: flex;
-  align-items: center;
+.annotation-tags {
+  display: inline;
   gap: 8px;
   margin-bottom: 8px;
 }
 
-.annotation-card-number-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  background: #FF4500;
-  color: white;
-  border-radius: 50%;
-  font-size: 12px;
-  font-weight: bold;
-  flex-shrink: 0;
-}
-
-.annotation-card-title {
-  margin: 0;
-  font-size: 16px;
-  font-weight: bold;
-  color: #212529;
-  flex: 1;
-}
-
-.annotation-card-badge {
-  display: inline-block;
-  border: 1px solid #FF4500;
-  color: #FF4500;
-  background: #FFF5F5;
-  border-radius: 12px;
-  padding: 2px 8px;
-  font-size: 12px;
-  font-weight: bold;
-  margin-bottom: 12px;
-}
-
-.annotation-card-explanation {
-  margin: 0;
-  font-size: 14px;
+.mitre-tag,
+.persuasion-tag {
+  display: inline;
+  font-size: 0.85em;
   color: #495057;
-  line-height: 1.5;
-  word-wrap: break-word;
+  background: #e9ecef;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-right: 8px;
+}
+
+.annotation-description {
+  white-space: pre-wrap;
 }
 
 /* Arrow Overlay */
