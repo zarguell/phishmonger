@@ -7,6 +7,7 @@ interface ProjectSettingsProps {
   onExport?: () => void
   onImportFromFile?: (file: File) => void
   onImportFromText?: (jsonText: string) => void
+  onOpenTechniqueLibrary?: () => void
 }
 
 export const ProjectSettings: React.FC<ProjectSettingsProps> = ({
@@ -14,7 +15,8 @@ export const ProjectSettings: React.FC<ProjectSettingsProps> = ({
   onUpdate,
   onExport,
   onImportFromFile,
-  onImportFromText
+  onImportFromText,
+  onOpenTechniqueLibrary
 }) => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [importText, setImportText] = useState('')
@@ -134,9 +136,21 @@ export const ProjectSettings: React.FC<ProjectSettingsProps> = ({
             </div>
           </div>
 
-          <hr className="settings-divider" />
+           <hr className="settings-divider" />
 
-          <div className="settings-export-import">
+           {onOpenTechniqueLibrary && (
+             <div className="settings-field">
+               <button
+                 onClick={onOpenTechniqueLibrary}
+                 className="manage-techniques-button"
+                 type="button"
+               >
+                 Manage Techniques
+               </button>
+             </div>
+           )}
+
+           <div className="settings-export-import">
             <div className="export-import-section">
               <button
                 onClick={handleExportClick}

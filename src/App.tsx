@@ -7,6 +7,7 @@ import { Preview } from './components/Preview'
 import { LureList } from './components/LureList'
 import { ScoringPanel } from './components/ScoringPanel'
 import { ProjectSettings } from './components/ProjectSettings'
+import { TechniqueLibrary } from './components/library/TechniqueLibrary'
 import { SlideWrapper } from './components/preview/SlideWrapper'
 import { EmailColumn } from './components/preview/EmailColumn'
 import { AnnotationColumn } from './components/preview/AnnotationColumn'
@@ -118,6 +119,7 @@ function App() {
     return savedStyle || 'classic'
   })
   const [showShortcutHelp, setShowShortcutHelp] = useState(false)
+  const [showTechniqueLibrary, setShowTechniqueLibrary] = useState(false)
   const slideWrapperRef = useRef<HTMLDivElement>(null)
 
   // Save to LocalStorage whenever htmlSource changes
@@ -373,29 +375,30 @@ function App() {
       <header className="app-header">
         <div className="header-top">
           <h1>Phish Monger</h1>
-          <ProjectSettings
-            metadata={metadata}
-            onUpdate={handleUpdateMetadata}
-            onExport={handleExportJSON}
-            onImportFromFile={(file: File) => {
-              const reader = new FileReader()
-              reader.onload = (e) => {
-                try {
-                  const json = e.target?.result as string
-                  const project = importProjectJSON(json)
-                  handleImportJSON(project)
-                } catch (error) {
-                  // Error handled in ProjectSettings
-                  throw error
-                }
-              }
-              reader.readAsText(file)
-            }}
-            onImportFromText={(jsonText: string) => {
-              const project = importProjectJSON(jsonText)
-              handleImportJSON(project)
-            }}
-          />
+           <ProjectSettings
+             metadata={metadata}
+             onUpdate={handleUpdateMetadata}
+             onExport={handleExportJSON}
+             onImportFromFile={(file: File) => {
+               const reader = new FileReader()
+               reader.onload = (e) => {
+                 try {
+                   const json = e.target?.result as string
+                   const project = importProjectJSON(json)
+                   handleImportJSON(project)
+                 } catch (error) {
+                   // Error handled in ProjectSettings
+                   throw error
+                 }
+               }
+               reader.readAsText(file)
+             }}
+             onImportFromText={(jsonText: string) => {
+               const project = importProjectJSON(jsonText)
+               handleImportJSON(project)
+             }}
+             onOpenTechniqueLibrary={() => setShowTechniqueLibrary(true)}
+           />
         </div>
         <p>Phishing Email Annotation Tool</p>
         <div className="header-actions">
@@ -488,6 +491,11 @@ function App() {
         isOpen={showShortcutHelp}
         onClose={() => setShowShortcutHelp(false)}
       />
+      {showTechniqueLibrary && (
+        <TechniqueLibrary
+          onClose={() => setShowTechniqueLibrary(false)}
+        />
+      )}
     </div>
   )
 }
