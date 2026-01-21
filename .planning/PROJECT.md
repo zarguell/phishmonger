@@ -2,7 +2,7 @@
 
 ## What This Is
 
-A client-side Single Page Application that enables security trainers to annotate phishing emails with technique explanations, generate visual slides with arrow annotations, and calculate phishing difficulty using the NIST Phish Scale. Users mark text in emails, map techniques to MITRE ATT&CK, and export high-res PNGs for training materials.
+A client-side Single Page Application that enables security trainers to annotate phishing emails with technique explanations, generate visual slides with numbered badges, and calculate phishing difficulty using the NIST Phish Scale. Users mark text in emails, map techniques to MITRE ATT&CK, and export high-res PNGs for training materials.
 
 ## Core Value
 
@@ -12,21 +12,28 @@ Security trainers can create visual, annotated phishing training materials that 
 
 ### Validated
 
-(None yet — ship to validate)
+- ✅ Editor with Tiptap integration for email composition — v1.0
+- ✅ Custom "Lure Mark" extension wrapping text in spans with IDs — v1.0
+- ✅ Sanitized paste feature using DOMPurify — v1.0
+- ✅ Technique library sidebar with pre-loaded common techniques — v1.0
+- ✅ MITRE ATT&CK ID mapping for each annotation — v1.0
+- ✅ NIST Phish Scale scoring interface (cues + premise alignment) — v1.0
+- ✅ Visualizer with numbered badge overlay connecting lures to explanations — v1.0
+- ✅ html2canvas export to PNG with burned-in annotations — v1.0
+- ✅ JSON export with full project structure — v1.0
+- ✅ LocalStorage persistence for projects — v1.0
+- ✅ Full preview mode before export — v1.0
+- ✅ Project metadata (title, author, timestamps) — v1.0
+- ✅ JSON import (file + text paste) — v1.0
 
 ### Active
 
-- [ ] Editor with Tiptap integration for email composition
-- [ ] Custom "Lure Mark" extension wrapping text in spans with IDs
-- [ ] Sanitized paste feature using DOMPurify
-- [ ] Technique library sidebar with pre-loaded common techniques
-- [ ] MITRE ATT&CK ID mapping for each annotation
-- [ ] NIST Phish Scale scoring interface (cues + premise alignment)
-- [ ] Visualizer with SVG arrow overlay connecting lures to explanations
-- [ ] html2canvas export to PNG with burned-in annotations
-- [ ] JSON export with full project structure
-- [ ] LocalStorage persistence for projects
-- [ ] Full preview mode before export
+- [ ] Undo/redo functionality in editor
+- [ ] Keyboard shortcuts for common actions
+- [ ] Custom techniques in library
+- [ ] Technique library persistence to LocalStorage
+- [ ] Custom arrow styles (colors, thickness)
+- [ ] Multiple layout templates (side panel, bottom panel, overlay)
 
 ### Out of Scope
 
@@ -38,7 +45,9 @@ Security trainers can create visual, annotated phishing training materials that 
 
 ## Context
 
-Built for security teams creating phishing awareness training materials. The tool bridges the gap between raw phishing emails and educational slides by automating annotation layout and providing standard technique references (MITRE ATT&CK, NIST Phish Scale). DOM-based association ensures arrows track with text across screen sizes.
+Built for security teams creating phishing awareness training materials. The tool bridges the gap between raw phishing emails and educational slides by automating annotation layout and providing standard technique references (MITRE ATT&CK, NIST Phish Scale). DOM-based association ensures badges track with text across screen sizes.
+
+Shipped v1.0 with 3,101 LOC TypeScript. Tech stack: React + Vite, Tiptap editor, html2canvas, DOMPurify.
 
 ## Constraints
 
@@ -52,9 +61,15 @@ Built for security teams creating phishing awareness training materials. The too
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Tiptap over other editors | Mark API makes span wrapping trivial; headless allows custom UI | — Pending |
-| DOM-based annotation over coordinate-based | Arrows track with text layout changes; more robust | — Pending |
-| Client-side only with LocalStorage | Privacy (no data leaves browser), no infra complexity | — Pending |
+| Tiptap over other editors | Mark API makes span wrapping trivial; headless allows custom UI | ✅ Confirmed in v1.0 |
+| DOM-based annotation over coordinate-based | Badges track with text layout changes; more robust | ✅ Confirmed in v1.0 |
+| Client-side only with LocalStorage | Privacy (no data leaves browser), no infra complexity | ✅ Confirmed in v1.0 |
+| Split Editor/Viewer architecture | Users paste HTML, mark lures in preview, not editor | ✅ Confirmed in v1.0 |
+| Numbered badges over arrows | Simpler, industry standard, better scalability | ✅ Confirmed in v1.0 |
+| Flexbox over absolute positioning | Simpler, more maintainable, responsive layout | ✅ Confirmed in v1.0 |
+| Static JSON for technique library | MITRE ATT&CK API deferred to v2 | ⚠️ Revisit v2 |
+| NIST zone-based matrix | More accurate than subtraction formula | ✅ Confirmed in v1.0 |
 
 ---
-*Last updated: 2025-01-20 after initialization*
+
+*Last updated: 2026-01-21 after v1.0 milestone*

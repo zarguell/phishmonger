@@ -1,76 +1,30 @@
 # Requirements: Phish Monger
 
-**Defined:** 2025-01-20
+**Defined:** 2026-01-21
 **Core Value:** Security trainers can create visual, annotated phishing training materials that clearly highlight deceptive techniques with educational context — without manual layout work.
 
 ## v1 Requirements
 
-Requirements for initial release. Each maps to roadmap phases.
+**All shipped in v1.0** — see `.planning/milestones/v1.0-REQUIREMENTS.md`
+
+## v1.1 Requirements
+
+Requirements for next release. Editor improvements, visualizer enhancements, and library persistence.
 
 ### Editor
 
-- [ ] **EDIT-01**: User can compose and edit email content in Tiptap rich text editor
-- [ ] **EDIT-02**: User can select text and wrap it in Lure Mark span with unique UUID
-- [ ] **EDIT-03**: Lure Mark spans render with yellow highlight styling
-- [ ] **EDIT-04**: User can paste HTML content sanitized with DOMPurify
-- [ ] **EDIT-05**: Sanitized paste preserves layout tables and inline styles
-- [ ] **EDIT-06**: Sanitized paste strips scripts and on-click events
-
-### Annotations
-
-- [x] **ANN-01**: Application displays sidebar panel listing all marked lures
-- [x] **ANN-02**: Each lure in sidebar shows corresponding text preview
-- [x] **ANN-03**: User can select technique from pre-loaded boilerplate library
-- [x] **ANN-04**: User can enter custom MITRE ATT&CK ID for each lure
-- [x] **ANN-05**: User can write explanation text for each lure
-- [x] **ANN-06**: Application loads static JSON of common phishing techniques
+- [ ] **EDIT-07**: Undo/redo functionality in editor
+- [ ] **EDIT-08**: Keyboard shortcuts for common actions
 
 ### Visualizer
 
-- [x] **VIS-01**: Application creates transparent SVG overlay on email preview
-- [x] **VIS-02**: Application calculates BoundingClientRect for each lure span
-- [x] **VIS-03**: Application draws elbow-connector arrows from lures to floating side-cards
-- [x] **VIS-04**: User can preview full slide with annotations and arrows
-- [x] **VIS-05**: User can export composition as high-res PNG using html2canvas (2x scale)
-- [x] **VIS-06**: Exported PNG includes burned-in annotations and arrows
-
-### Scoring
-
-- [ ] **SCOR-01**: User can input count of visual cues (e.g., logo pixelation)
-- [ ] **SCOR-02**: User can input count of language cues (e.g., grammar errors)
-- [ ] **SCOR-03**: User can select premise alignment level (1-5 scale)
-- [ ] **SCOR-04**: Application calculates difficulty: Premise Alignment - Cue Count
-- [ ] **SCOR-05**: Application displays traffic light badge (Easy/Moderate/Hard)
-- [ ] **SCOR-06**: Badge is appended to exported PNG
-
-### Data & Persistence
-
-- [x] **DATA-01**: User can input project metadata (title, author)
-- [x] **DATA-02**: Application auto-generates created timestamp
-- [x] **DATA-03**: Application saves project state to LocalStorage
-- [x] **DATA-04**: Application loads project from LocalStorage on return visit
-- [x] **DATA-05**: User can export project as JSON with full structure
-- [x] **DATA-06**: User can import project from JSON file
-- [x] **DATA-07**: User can import project from JSON file (pasted in a text box, without need for file)
-
-## v2 Requirements
-
-Deferred to future release. Tracked but not in current roadmap.
-
-### Editor
-
-- **EDIT-07**: Undo/redo functionality in editor
-- **EDIT-08**: Keyboard shortcuts for common actions
+- [ ] **VIS-07**: Custom arrow styles (colors, thickness)
+- [ ] **VIS-08**: Multiple layout templates (side panel, bottom panel, overlay)
 
 ### Annotations
 
-- **ANN-07**: User can add custom techniques to boilerplate library
-- **ANN-08**: Technique library persists to LocalStorage
-
-### Visualizer
-
-- **VIS-07**: Custom arrow styles (colors, thickness)
-- **VIS-08**: Multiple layout templates (side panel, bottom panel, overlay)
+- [ ] **ANN-07**: User can add custom techniques to boilerplate library
+- [ ] **ANN-08**: Technique library persists to LocalStorage
 
 ## Out of Scope
 
@@ -87,47 +41,15 @@ Explicitly excluded. Documented to prevent scope creep.
 
 ## Traceability
 
-Which phases cover which requirements. Updated during roadmap creation.
-
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| EDIT-01 | Phase 1 | Complete |
-| EDIT-02 | Phase 1 | Complete |
-| EDIT-03 | Phase 1 | Complete |
-| EDIT-04 | Phase 1 | Complete |
-| EDIT-05 | Phase 1 | Complete |
-| EDIT-06 | Phase 1 | Complete |
-| ANN-01 | Phase 2 | Complete |
-| ANN-02 | Phase 2 | Complete |
-| ANN-03 | Phase 2 | Complete |
-| ANN-04 | Phase 2 | Complete |
-| ANN-05 | Phase 2 | Complete |
-| ANN-06 | Phase 2 | Complete |
-| VIS-01 | Phase 3 | Complete |
-| VIS-02 | Phase 3 | Complete |
-| VIS-03 | Phase 3 | Complete |
-| VIS-04 | Phase 3 | Complete |
-| VIS-05 | Phase 3 | Complete |
-| VIS-06 | Phase 3 | Complete |
-| SCOR-01 | Phase 4 | Pending |
-| SCOR-02 | Phase 4 | Pending |
-| SCOR-03 | Phase 4 | Pending |
-| SCOR-04 | Phase 4 | Pending |
-| SCOR-05 | Phase 4 | Pending |
-| SCOR-06 | Phase 4 | Pending |
-| DATA-01 | Phase 5 | Complete |
-| DATA-02 | Phase 5 | Complete |
-| DATA-03 | Phase 5 | Complete |
-| DATA-04 | Phase 5 | Complete |
-| DATA-05 | Phase 5 | Complete |
-| DATA-06 | Phase 5 | Complete |
-| DATA-07 | Phase 5 | Complete |
-
-**Coverage:**
-- v1 requirements: 28 total
-- Mapped to phases: 28
-- Unmapped: 0 ✓
+| EDIT-07 | Phase 6 | Pending |
+| EDIT-08 | Phase 6 | Pending |
+| VIS-07 | Phase 7 | Pending |
+| VIS-08 | Phase 7 | Pending |
+| ANN-07 | Phase 8 | Pending |
+| ANN-08 | Phase 8 | Pending |
 
 ---
-*Requirements defined: 2025-01-20*
-*Last updated: 2025-01-20 after roadmap creation*
+
+*Requirements defined: 2026-01-21 for v1.1 milestone*
