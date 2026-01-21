@@ -1,7 +1,7 @@
 # State: Phish Monger
 
 **Last Updated:** 2026-01-21
-**Current Phase:** v1.0 COMPLETE
+**Current Phase:** Gap closure Phase 6
 
 ---
 
@@ -23,15 +23,15 @@
 
 ## Current Position
 
-**Phase:** v1.1 COMPLETE (Phase 6), Project COMPLETE
-**Status:** All phases complete
-**Last activity:** 2026-01-21 - Completed 06-04-PLAN.md
+**Phase:** Gap closure Phase 6 (annotation badges missing)
+**Status:** Gap identified, plan created
+**Last activity:** 2026-01-21 - Created 06-05-PLAN.md for badge restoration
 
-**Progress:** ████████████████████ 100% (v1.1 shipped)
+**Progress:** ████████████████████ 100% (v1.1 core complete, gap closure pending)
 
-**Current Focus:** Project complete - all v1.1 requirements satisfied
+**Current Focus:** Restore numbered annotation badges in visualizer
 
-**Next Step:** Ready for v2 planning
+**Next Step:** Execute 06-05-PLAN.md
 
 ---
 
@@ -143,6 +143,7 @@
 - [x] Create AnnotationCard component with tag display (06-03)
 - [x] Add Persuasion tag display to AnnotationCard (06-03)
 - [x] Add title input field to AnnotationPanel (06-04)
+- [ ] Restore numbered annotation badges in visualizer cards (06-05)
 
 ### Blockers
 
