@@ -25,7 +25,7 @@
 
 **Phase:** v1.1 COMPLETE (Phase 6), Project COMPLETE
 **Status:** All phases complete
-**Last activity:** 2026-01-21 - Completed 06-03-PLAN.md
+**Last activity:** 2026-01-21 - Completed 06-04-PLAN.md
 
 **Progress:** ████████████████████ 100% (v1.1 shipped)
 
@@ -138,10 +138,11 @@
 - [x] Define ProjectMetadata type with title, author, timestamps (05-01)
 - [x] Integrate ProjectSettings into App.tsx (05-02)
 - [x] Render ProjectSettings in edit mode header with Export/Import UI (05-03)
-- [ ] Add optional title field to Annotation type (06-01)
-- [ ] Make techniqueId optional in Annotation type (06-02)
+- [x] Add optional title field to Annotation type (06-01)
+- [x] Make techniqueId optional in Annotation type (06-02)
 - [x] Create AnnotationCard component with tag display (06-03)
 - [x] Add Persuasion tag display to AnnotationCard (06-03)
+- [x] Add title input field to AnnotationPanel (06-04)
 
 ### Blockers
 
@@ -197,13 +198,14 @@
 
 ## Session Continuity
 
-**Last Session:** 2026-01-21 (Completed 06-03-PLAN.md)
+**Last Session:** 2026-01-21 (Completed 06-04-PLAN.md)
 **Current Session:** 2026-01-21 (Project complete)
 
 **What Was Done:**
 - **Phase 6 (06-01) complete:** Added optional title field to Annotation type
 - **Phase 6 (06-02) complete:** Made techniqueId optional in Annotation type
 - **Phase 6 (06-03) complete:** Created AnnotationCard component with combined MITRE and Persuasion tag display
+- **Phase 6 (06-04) complete:** Added title input field to AnnotationPanel for freetext annotation titles
 - All 5 ANN requirements satisfied for v1.1 (ANN-08 through ANN-12)
 - Project complete: v1.1 shipped with enhanced annotation data model
 
