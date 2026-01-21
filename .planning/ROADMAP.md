@@ -124,8 +124,8 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 ## Phase 4 - NIST Phish Scale Scoring
 
 **Goal:** Users can calculate phishing difficulty scores using NIST Phish Scale methodology
-**Status:** Planned
-**Plans:** 2 plans in 2 waves
+**Status:** In progress (2/4 plans complete)
+**Plans:** 4 plans in 2 waves
 
 **Dependencies:** Phase 3 (scoring displayed on exported slides)
 
@@ -133,21 +133,26 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 - SCOR-01: User can input count of visual cues (e.g., logo pixelation)
 - SCOR-02: User can input count of language cues (e.g., grammar errors)
 - SCOR-03: User can select premise alignment level (1-5 scale)
-- SCOR-04: Application calculates difficulty: Premise Alignment - Cue Count
-- SCOR-05: Application displays traffic light badge (Easy/Moderate/Hard)
-- SCOR-06: Badge is appended to exported PNG
+- SCOR-04: Application calculates difficulty using NIST zone-based matrix (not subtraction formula)
+- SCOR-05: Application displays badge: Least Difficult (LD), Moderately Difficult (MD), Very Difficult (VD)
+- SCOR-06: Badge shows NIST Phish Scale breakdown (difficulty label + cue/alignment zones)
+- SCOR-07: Badge appears on exported PNG with toggle control
 
 **Success Criteria:**
-1. User can input number of visual cues observed in the phishing email (0+)
-2. User can input number of language cues observed in the phishing email (0+)
+1. User can input number of visual cues observed in phishing email (0+)
+2. User can input number of language cues observed in phishing email (0+)
 3. User can select premise alignment on 1-5 Likert scale (1=low alignment, 5=high alignment)
-4. Application automatically calculates difficulty score: Premise Alignment - (Visual Cues + Language Cues)
-5. Application displays traffic light badge: Green (Easy ≥3), Yellow (Moderate 1-2), Red (Hard ≤0)
-6. Badge appears on exported PNG in the corner
+4. Application calculates difficulty using zone-based matrix (Low/Med/High cues × Low/Med/High alignment → LD/MD/VD)
+5. Application displays badge: Least Difficult (LD, green), Moderately Difficult (MD, yellow), Very Difficult (VD, red)
+6. Badge appears on exported PNG in corner (when toggle enabled)
+7. Badge shows NIST Phish Score formula breakdown (total cues + alignment zones)
+8. User can toggle badge visibility for export
 
 **Plans:**
-- [ ] 04-01-PLAN.md — Create scoring types, calculation utility, and ScoringPanel component
-- [ ] 04-02-PLAN.md — Integrate ScoringPanel into App, add persistence, badge on export
+- [x] 04-01-PLAN.md — Create scoring types, calculation utility, and ScoringPanel component
+- [x] 04-02-PLAN.md — Integrate ScoringPanel into App, add persistence, badge on export
+- [ ] 04-03-PLAN.md — Export refinements (quality improvements, filename handling)
+- [ ] 04-04-PLAN.md — Export settings (resolution, scale, metadata)
 
 ---
 
@@ -196,4 +201,4 @@ Phish Monger delivers a client-side tool for security trainers to annotate phish
 
 ---
 
-**Coverage:** 27/27 v1 requirements mapped ✓
+**Coverage:** 28/28 v1 requirements mapped ✓ (DATA-07 added)
