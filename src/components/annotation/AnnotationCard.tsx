@@ -19,12 +19,16 @@ function getPersuasionName(id: string): string {
 
 export function AnnotationCard({
   annotation,
+  annotationNumber,
 }: AnnotationCardProps) {
   return (
     <div
       className="annotation-card"
       data-card-id={annotation.lureId}
     >
+      {annotationNumber && (
+        <span className="annotation-card-number-badge">{annotationNumber}</span>
+      )}
       {annotation.title && (
         <div className="annotation-title">
           {annotation.title}
