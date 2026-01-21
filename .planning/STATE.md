@@ -25,8 +25,8 @@
 
 **Phase:** 3 of 5 (Visualizer & Export)
 **Plan:** 8 of 8
-**Status:** Phase 3 complete pending verification
-**Last activity:** 2026-01-21 - Completed 03-08-NUMBERED-ANNOTATIONS (Numbered badges + draggable cards)
+**Status:** Phase 3 complete - pending final user approval
+**Last activity:** 2026-01-20 - Completed 03-08 (Numbered badges + draggable cards + email clipping fixes)
 
 **Progress:** ███████████████ 60% (3 of 5 phases complete)
 
@@ -54,8 +54,9 @@
 | NIST Phish Scale methodology | Industry-standard for phishing difficulty assessment | Scoring (Phase 4) |
 | Flexbox over absolute positioning for cards | Simpler, more maintainable, responsive layout; no manual Y calculations | Visualizer (Phase 3) |
 | Deleted useCardLayout hook | No longer needed with flexbox gap handling; simplifies codebase | Visualizer (Phase 3) |
-| Numbered badges over arrows | Simpler, industry standard (Microsoft Attack Simulator, NIST), lower cognitive load for presenters, better scalability | Visualizer (Phase 3) |
-| HTML5 drag/drop for card reordering | Native browser support without additional dependencies, uses manualY field for sort order persistence | Visualizer (Phase 3) |
+ | Numbered badges over arrows | Simpler, industry standard (Microsoft Attack Simulator, NIST), lower cognitive load for presenters, better scalability | Visualizer (Phase 3) |
+ | HTML5 drag/drop for card reordering | Native browser support without additional dependencies, uses manualY field for sort order persistence | Visualizer (Phase 3) |
+ | Overflow handling for wide email content | Added overflow-x: auto to .app-preview-mode and .email-content to handle wide phishing emails (tables, images) without clipping | Visualizer (Phase 3) |
 | Manual project setup vs create-vite | Non-empty directory blocked create-vite; manual files match template exactly | 01-01: Project initialized |
 | Latest Tiptap 2.27.2 over ^2.8.0 | Latest stable version with all bug fixes and features | 01-01: Tiptap installed |
 | Lure Mark as atom Node extension | Prevents cursor issues, simplest implementation for span wrapping | 01-02: Lure Mark extension |
