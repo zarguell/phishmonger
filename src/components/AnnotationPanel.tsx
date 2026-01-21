@@ -15,6 +15,20 @@ export function AnnotationPanel({ lureId, lureText, annotation, onUpdate }: Anno
       <h3>Annotate: "{lureText}"</h3>
 
       <div className="annotation-section">
+        <label htmlFor={`title-${lureId}`} className="annotation-label">
+          Title
+        </label>
+        <input
+          type="text"
+          id={`title-${lureId}`}
+          className="annotation-input"
+          value={annotation?.title || ''}
+          onChange={(e) => onUpdate({ title: e.target.value })}
+          placeholder="Optional title..."
+        />
+      </div>
+
+      <div className="annotation-section">
         <label htmlFor={`technique-${lureId}`} className="annotation-label">
           Technical Technique (What)
         </label>
