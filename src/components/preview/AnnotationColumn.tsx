@@ -3,10 +3,10 @@ import { AnnotationCard } from '../annotation/AnnotationCard'
 
 interface AnnotationColumnProps {
   annotations: Record<string, Annotation>
-  width?: number
+  arrowStyle?: string
 }
 
-export function AnnotationColumn({ annotations, width = 640 }: AnnotationColumnProps) {
+export function AnnotationColumn({ annotations, arrowStyle = 'classic' }: AnnotationColumnProps) {
   const hasAnnotations = Object.keys(annotations).length > 0
 
   if (!hasAnnotations) {
@@ -41,6 +41,7 @@ export function AnnotationColumn({ annotations, width = 640 }: AnnotationColumnP
           key={annotation.lureId}
           annotation={annotation}
           annotationNumber={index + 1}
+          arrowStyle={arrowStyle}
         />
       ))}
     </div>
