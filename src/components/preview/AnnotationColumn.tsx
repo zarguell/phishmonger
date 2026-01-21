@@ -32,10 +32,7 @@ export function AnnotationColumn({ annotations, arrowStyle = 'classic' }: Annota
   })
 
   return (
-    <div 
-      className="annotation-column"
-      style={{ width: `${width}px` }}
-    >
+    <div className="annotation-column">
       {sortedAnnotations.map((annotation, index) => (
         <AnnotationCard
           key={annotation.lureId}
