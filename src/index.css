@@ -553,6 +553,8 @@ body {
   width: 100%;
   min-height: 100vh;
   background: #f8f9fa;
+  overflow-x: auto;
+  /* Allow horizontal scroll for wide slide content (1600px) */
 }
 
 .app-main-preview {
