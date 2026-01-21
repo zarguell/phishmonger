@@ -4,6 +4,7 @@ import persuasionPrinciples from '../../data/persuasion.json' with { type: 'json
 
 interface AnnotationCardProps {
   annotation: Annotation
+  annotationNumber?: number
 }
 
 function getTechniqueName(id: string): string {
