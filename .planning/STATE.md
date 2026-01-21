@@ -24,15 +24,15 @@
 ## Current Position
 
 **Phase:** 4 of 5 (NIST Phish Scale Scoring)
-**Plan:** Not started
-**Status:** Phase 3 complete (UAT PASS)
-**Last activity:** 2026-01-21 - Phase 3 verified (6/6 must-haves passed, user fixed layout issues with scale-to-fit mode and width slider)
+**Plan:** 1 of 4 in current phase
+**Status:** In progress
+**Last activity:** 2026-01-21 - Completed 04-01-PLAN.md (scoring types, calculation utility, ScoringPanel component)
 
-**Progress:** ███████████████ 60% (3 of 5 phases complete)
+**Progress:** ███████████████ 65% (3 of 5 phases complete, 1/4 plans in phase 4)
 
-**Current Focus:** Phase 3 (Visualizer & Export) complete with numbered badge system replacing arrows. Scale-to-fit preview mode and adjustable annotation width implemented. User confirmed UAT PASS. Ready to begin Phase 4 (NIST Phish Scale Scoring).
+**Current Focus:** Phase 4 (NIST Phish Scale Scoring) - Scoring types and calculation complete. ScoringPanel component with counter widgets and slider ready for App integration.
 
-**Next Step:** Begin Phase 4 planning with `/gsd-plan-phase 4`
+**Next Step:** Execute 04-02-PLAN.md (App integration)
 
 ---
 
@@ -85,6 +85,10 @@
 | LocalStorage utility functions | Centralized persistence logic with error handling for reusability | 02-03: Storage utilities |
 | Expandable annotation panels | Toggle button (▶/▼) expands/collapses AnnotationPanel for each lure | 02-03: LureList integration |
 | Orphaned annotation cleanup | Remove annotation when lure is deleted to prevent memory leaks | 02-03: Cleanup logic |
+| NIST Phish Scale calculation | Formula: Premise Alignment (1-5) - (Visual Cues + Language Cues) = Difficulty Score | 04-01: Scoring logic |
+| Counter widgets with +/- buttons | Prominent 40px buttons for visual/language cues counting, not subtle stepper arrows | 04-01: ScoringPanel UX |
+| Score breakdown at top | Display calculation details above inputs (not below) for immediate visibility | 04-01: ScoringPanel layout |
+| Circle badge (E/M/H) | 60px circular badge with single letter and color coding (Green/Yellow/Red) | 04-01: Difficulty indicator |
 
 ### Requirements Coverage
 
@@ -182,32 +186,21 @@
 
 ## Session Continuity
 
-**Last Session:** 2026-01-20 (Completed 03-08-PLAN.md tasks 1-3)
-**Current Session:** 2026-01-21 (Phase 3 plan 08 continued with numbered annotations)
+**Last Session:** 2026-01-21 (Completed 04-01-PLAN.md)
+**Current Session:** 2026-01-21 (Phase 4 plan 01 execution)
 
 **What Was Done:**
 - **Phase 3 complete:** All 8 plans executed
-- **Executed 03-08 (continued):** Replaced arrow system with numbered annotations
-  - Added numbered badge CSS (orange circle, superscript)
-  - Modified EmailColumn to inject badges after lure highlights
-  - Added matching numbered badges to AnnotationCard headers
-  - Removed all arrow code (ArrowOverlay, useArrowCalculations, useDebouncedResize)
-  - Implemented draggable annotation cards using HTML5 drag/drop API
-  - Added drag handle (⋮⋮) and visual feedback for dragging
-  - Added manualY field to Annotation interface for sort order persistence
-- **Phase 3 plans:**
-  - 03-01: Installed html2canvas
-  - 03-02: Three-column slide layout components
-  - 03-03: Arrow overlay SVG component
-  - 03-04: getBoundingClientRect positioning for arrows
-  - 03-05: Export utility and ExportButton component
-  - 03-06: Color-coded technique badges
-  - 03-07: Preview mode integration
-  - 03-08: Layout collapse fix (flexbox over absolute positioning)
+- **Phase 4 (04-01) complete:** Scoring types, calculation utility, and ScoringPanel component
+  - Created ScoringData, DifficultyLevel, DifficultyBadge types
+  - Implemented calculateDifficulty(), getDifficultyLevel(), getDifficultyBadge() utilities
+  - Built ScoringPanel component with counter widgets and premise alignment slider
+  - Added comprehensive CSS styling for scoring controls
+  - Verified TypeScript compilation and component structure
 
 **What's Next:**
-- Human verification checkpoint: Confirm cards render correctly in preview mode
-- Phase 4 (NIST Phish Scale Scoring): Implement scoring calculation logic
+- Execute 04-02-PLAN.md (App integration - add ScoringPanel to main layout)
+- Phase 4 remaining: Badge on export (04-03), Export settings (04-04)
 
 ---
 
