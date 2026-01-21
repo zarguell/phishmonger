@@ -8,18 +8,36 @@
  * - Balanced: Default 60/40 split (1fr for email, 400px for annotations)
  * - Wide Email: More email space (1.5fr for email, 300px for annotations)
  * - Wide Annotations: More annotation space (1fr for email, 500px for annotations)
- * - Compact: 50/50 split with smaller text (1fr each, 14px text)
+ * - Compact: 50/50 split with smaller text (1fr each, 14px text, 16px gap)
  */
 
 /* Base slide wrapper styles */
 .slideWrapper {
   display: flex;
-  gap: 40px;
+  gap: var(--layout-gap, 40px);
   width: 1600px;
   min-height: 900px;
   background: #FFFFFF;
   margin: 0 auto;
   position: relative;
+  transition: gap 0.3s ease;
+}
+
+/* Set gap for each template */
+.balanced {
+  --layout-gap: 40px;
+}
+
+.wideEmail {
+  --layout-gap: 40px;
+}
+
+.wideAnnotations {
+  --layout-gap: 40px;
+}
+
+.compact {
+  --layout-gap: 16px;
 }
 
 /*
