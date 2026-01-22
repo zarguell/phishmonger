@@ -70,13 +70,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CMP-01 | Phase 9 | Pending |
-| CMP-02 | Phase 9 | Pending |
-| CMP-03 | Phase 9 | Pending |
-| CMP-04 | Phase 9 | Pending |
-| CMP-05 | Phase 9 | Pending |
-| CMP-06 | Phase 9 | Pending |
-| CMP-07 | Phase 9 | Pending |
+| CMP-01 | Phase 10 | Pending |
+| CMP-02 | Phase 10 | Pending |
+| CMP-03 | Phase 10 | Pending |
+| CMP-04 | Phase 10 | Pending |
+| CMP-05 | Phase 10 | Pending |
+| CMP-06 | Phase 10 | Pending |
+| CMP-07 | Phase 10 | Pending |
 | SCH-01 | Phase 10 | Pending |
 | SCH-02 | Phase 10 | Pending |
 | SCH-03 | Phase 11 | Pending |
@@ -85,11 +85,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | VIS-02 | Phase 13 | Pending |
 | VIS-03 | Phase 14 | Pending |
 | VIS-04 | Phase 14 | Pending |
-| DAT-01 | Phase 11 | Pending |
-| DAT-02 | Phase 11 | Pending |
-| DAT-03 | Phase 11 | Pending |
-| DAT-04 | Phase 10 | Pending |
-| DAT-05 | Phase 10 | Pending |
+| DAT-01 | Phase 10 | Pending |
+| DAT-02 | Phase 10 | Pending |
+| DAT-03 | Phase 10 | Pending |
+| DAT-04 | Phase 9 | Pending |
+| DAT-05 | Phase 9 | Pending |
 | DEP-01 | Phase 15 | Pending |
 | DEP-02 | Phase 15 | Pending |
 | DEP-03 | Phase 15 | Pending |
@@ -103,6 +103,15 @@ Which phases cover which requirements. Updated during roadmap creation.
 - Mapped to phases: 28
 - Unmapped: 0 ✓
 
+**Phase Distribution:**
+- Phase 9 (Data Model & Storage): 2 requirements (DAT-04, DAT-05)
+- Phase 10 (Campaign Manager UI): 11 requirements (CMP-01 through CMP-07, SCH-01, SCH-02, DAT-01, DAT-02, DAT-03)
+- Phase 11 (iCal Export): 2 requirements (SCH-03, SCH-04)
+- Phase 12 (Detail Carousel): 1 requirement (VIS-01)
+- Phase 13 (Compact Layout): 1 requirement (VIS-02)
+- Phase 14 (Sample Campaign): 2 requirements (VIS-03, VIS-04)
+- Phase 15 (Dependency Upgrades): 7 requirements (DEP-01 through DEP-07)
+
 ---
 *Requirements defined: 2026-01-22*
-*Last updated: 2026-01-22 after initial definition*
+*Last updated: 2026-01-22 after roadmap creation*
