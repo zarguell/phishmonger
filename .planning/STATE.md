@@ -1,15 +1,15 @@
 # State: Phish Monger
 
 **Last Updated:** 2026-01-22
-**Current Phase:** 07-visualizer-lurelist
-**Status:** 📋 In Progress (Plan 2 of 2 complete)
+**Current Phase:** 07-visualizer-lure-list-updates
+**Status:** ✅ Complete (All 2 plans complete)
 
-**Last activity:** 2026-01-22 - Phase 07 Plan 02 complete (Lure list annotation-aware display)
+**Last activity:** 2026-01-22 - Phase 07 Plan 01 verification passed (AnnotationCard layout)
 
-**Progress:** ████████████████░░░░ 87.5% (Phase 1 ✅, Phase 2 ✅, Phase 3 ✅, Phase 4 ✅, Phase 5 ✅, Phase 6 ✅, Phase 7: 07-02 ✅, Phase 8 ✅)
+**Progress:** ████████████████░░░░ 87.5% (Phase 1 ✅, Phase 2 ✅, Phase 3 ✅, Phase 4 ✅, Phase 5 ✅, Phase 6 ✅, Phase 7 ✅, Phase 8 ✅)
 
-**Current Focus:** Phase 7 nearly complete - one plan remaining (07-01)
-**Next Step:** Execute Phase 7 Plan 01 (Animation modes) or complete Phase 7 verification
+**Current Focus:** Phase 7 complete - annotation card layout verified and lure list annotation-aware display implemented
+**Next Step:** Execute Phase 9 or verify v1.1 milestone complete
 
 ---
 
@@ -160,30 +160,28 @@
 
 ## Session Continuity
 
-**Last Session:** 2026-01-21 (Phase 8 verification passed)
-**Current Session:** 2026-01-22 (Phase 7 Plan 02 complete)
+**Last Session:** 2026-01-22 (Phase 7 Plan 01 complete)
+**Current Session:** 2026-01-22 (Phase 7 complete - both plans done)
 
 **What Was Done:**
-  - **Phase 8 execution complete:** All 8 deferred v1.0 features shipped
-    - 08-01: Undo/redo system with 50-step history limit
-    - 08-02: Keyboard shortcuts help modal (Ctrl+/)
-    - 08-03: 4 custom arrow badge styles (Classic Blue/Red, Square, Diamond)
-    - 08-04: 4 layout templates (Balanced, Wide Email, Wide Annotations, Compact)
-    - 08-05: CustomTechnique type and useCustomTechniques hook
-    - 08-06: Custom technique editor modal with validation
-    - 08-07: Project export/import with custom techniques
-    - 08-08: Technique library management UI
-  - **Phase 8 verification:** 8/8 must-haves verified, no gaps found
+  - **Phase 7 Plan 01:** AnnotationCard layout verification (per ANN-12)
+    - Verified title displays in bold on first line when present
+    - Confirmed MITRE tag format "(TXXXX - Name)" renders inline
+    - Confirmed Persuasion tag format "(Persuasion: Name)" renders inline
+    - Confirmed description displays below tags
+    - All edge cases validated (missing title, missing tags, both present)
+    - User approved: layout meets all requirements
   - **Phase 7 Plan 02:** Lure list annotation-aware display
     - Updated LureList.tsx to show annotation title when present
     - Falls back to description preview (100 chars) when no title
     - Falls back to lure.text when no annotation exists
     - Text truncated with ellipsis (50 chars for title, 100 for description)
     - Commit: 3672b3e
+  - **Phase 8 complete:** All 8 deferred v1.0 features shipped and verified
 
 **What's Next:**
-  - Phase 7 Plan 01 (Animation modes) - 1 plan remaining
-  - v1.1 milestone at 93.75% complete (7 of 8 phases mostly done)
-  - Ready to execute Phase 7 Plan 01 or verify Phase 7
+  - Phase 7 complete (2/2 plans done)
+  - v1.1 milestone at 87.5% complete (7 of 8 phases done)
+  - Ready to execute Phase 9 or verify v1.1 milestone
 
 ---
