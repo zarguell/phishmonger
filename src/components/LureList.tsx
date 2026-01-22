@@ -75,7 +75,17 @@ export function LureList({ htmlSource, onRemoveLure, annotations, onUpdateAnnota
                   type="button"
                 >
                   <span className="lure-id">{lure.id.slice(0, 8)}</span>
-                  <span className="lure-text">"{lure.text}"</span>
+                  <span className="lure-text">
+                    {annotations[lure.id]?.title
+                      ? (annotations[lure.id].title!.length > 50
+                          ? annotations[lure.id].title!.slice(0, 50) + '...'
+                          : annotations[lure.id].title!)
+                      : annotations[lure.id]?.explanation
+                        ? (annotations[lure.id].explanation.length > 100
+                            ? annotations[lure.id].explanation.slice(0, 100) + '...'
+                            : annotations[lure.id].explanation)
+                        : lure.text}
+                  </span>
                 </button>
                 <button
                   onClick={() => setExpandedLureId(expandedLureId === lure.id ? null : lure.id)}
