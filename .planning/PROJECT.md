@@ -25,12 +25,20 @@ Security trainers can create visual, annotated phishing training materials that 
 - ✅ Full preview mode before export — v1.0
 - ✅ Project metadata (title, author, timestamps) — v1.0
 - ✅ JSON import (file + text paste) — v1.0
+- ✅ Flexible annotations with freetext title and optional MITRE/Persuasion tags — v1.1
+- ✅ Visualizer card displays title, inline tags, and full description — v1.1
+- ✅ Lure list shows annotation titles instead of UUIDs — v1.1
+- ✅ Undo/redo with 50-step history and keyboard shortcuts — v1.1
+- ✅ Custom arrow badge styles (Classic, Square, Diamond) — v1.1
+- ✅ Layout templates (Balanced, Compact, Wide) — v1.1
+- ✅ Custom technique library with LocalStorage persistence — v1.1
+- ✅ Technique library management interface (CRUD operations) — v1.1
+- ✅ Keyboard shortcuts help modal — v1.1
+- ✅ NIST badge visibility toggle — v1.1
 
 ### Active
 
-- [ ] Flexible annotations with freetext title and optional MITRE/Persuasion tags
-- [ ] Visualizer card displays title, inline tags, and full description
-- [ ] Technique library remains available but selection is optional
+(None — all v1.1 requirements shipped)
 
 ### Out of Scope
 
@@ -45,6 +53,7 @@ Security trainers can create visual, annotated phishing training materials that 
 Built for security teams creating phishing awareness training materials. The tool bridges the gap between raw phishing emails and educational slides by automating annotation layout and providing standard technique references (MITRE ATT&CK, NIST Phish Scale). DOM-based association ensures badges track with text across screen sizes.
 
 Shipped v1.0 with 3,101 LOC TypeScript. Tech stack: React + Vite, Tiptap editor, html2canvas, DOMPurify.
+Shipped v1.1 with 4,146 LOC TypeScript. Added: react-hotkeys-hook for keyboard shortcuts.
 
 ## Constraints
 
@@ -66,7 +75,13 @@ Shipped v1.0 with 3,101 LOC TypeScript. Tech stack: React + Vite, Tiptap editor,
 | Flexbox over absolute positioning | Simpler, more maintainable, responsive layout | ✅ Confirmed in v1.0 |
 | Static JSON for technique library | MITRE ATT&CK API deferred to v2 | ⚠️ Revisit v2 |
 | NIST zone-based matrix | More accurate than subtraction formula | ✅ Confirmed in v1.0 |
+| useReducer for undo/redo | Single update point prevents race conditions, easier to enforce history limit | ✅ Confirmed in v1.1 |
+| 50-step undo history limit | Prevents memory leaks while providing sufficient workflow depth | ✅ Confirmed in v1.1 |
+| react-hotkeys-hook for shortcuts | Declarative API with form tag scoping, handles cross-platform differences | ✅ Confirmed in v1.1 |
+| Optional techniqueId in annotations | Enables freetext annotations without MITRE technique mapping | ✅ Confirmed in v1.1 |
+| Modal overlay for technique library | Consistent UX pattern with other tools (settings, shortcuts) | ✅ Confirmed in v1.1 |
+| Orphaned technique warnings | Preserve user annotations even when custom techniques deleted | ✅ Confirmed in v1.1 |
 
 ---
 
-*Last updated: 2026-01-21 after v1.1 UX reprioritization*
+*Last updated: 2026-01-22 after v1.1 milestone*

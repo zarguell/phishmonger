@@ -1,15 +1,15 @@
 # State: Phish Monger
 
 **Last Updated:** 2026-01-22
-**Current Phase:** 07-visualizer-lure-list-updates
-**Status:** ✅ Verified (All 2 plans complete, 11/11 must-haves verified)
+**Current Phase:** Milestone v1.1 Complete
+**Status:** ✅ Shipped (Phases 6-8 complete, 15 plans, all requirements delivered)
 
-**Last activity:** 2026-01-22 - Phase 7 verification passed (11/11 must-haves)
+**Last activity:** 2026-01-22 - v1.1 milestone complete and archived
 
-**Progress:** ████████████████████ 100% (Phase 1 ✅, Phase 2 ✅, Phase 3 ✅, Phase 4 ✅, Phase 5 ✅, Phase 6 ✅, Phase 7 ✅, Phase 8 ✅)
+**Progress:** ████████████████████ 100% (Phases 1-5 ✅ v1.0, Phases 6-8 ✅ v1.1)
 
-**Current Focus:** v1.1 milestone complete - all 8 phases executed and verified
-**Next Step:** Audit v1.1 milestone or complete milestone directly
+**Current Focus:** Planning next milestone (TBD - user to decide)
+**Next Step:** Run /gsd:new-milestone to begin next milestone planning
 
 ---
 
@@ -87,8 +87,8 @@
 
 ### Requirements Coverage
 
-**v1 Total:** 27 requirements
-**v1.1 Total:** 5 requirements (planned)
+**v1 Total:** 27 requirements → ✅ COMPLETE (shipped 2026-01-21)
+**v1.1 Total:** 13 requirements → ✅ COMPLETE (shipped 2026-01-22)
 
 **Category Breakdown:**
 - Editor: 6 requirements → Phase 1 ✓ COMPLETE
@@ -96,7 +96,9 @@
 - Visualizer (v1): 6 requirements → Phase 3 ✓ COMPLETE
 - Scoring: 6 requirements → Phase 4 ✓ COMPLETE
 - Data & Persistence: 6 requirements → Phase 5 ✓ COMPLETE
-- Annotations (v1.1): 5 requirements → Phase 6 📋 PLANNED
+- Annotations (v1.1): 5 requirements → Phase 6 ✓ COMPLETE
+- Visualizer & Lure List (v1.1): 2 requirements → Phase 7 ✓ COMPLETE
+- Advanced UX (v1.1): 6 requirements → Phase 8 ✓ COMPLETE
 
 ### Technical Notes
 
@@ -160,26 +162,25 @@
 
 ## Session Continuity
 
-**Last Session:** 2026-01-22 (Phase 7 complete)
-**Current Session:** 2026-01-22 (Phase 7 verified, v1.1 milestone complete)
+**Last Session:** 2026-01-22 (v1.1 milestone complete)
+**Current Session:** 2026-01-22 (v1.1 milestone archived and shipped)
 
 **What Was Done:**
-  - **Phase 7 execution complete:** Visualizer & Lure List updates
-    - 07-01: AnnotationCard layout verification (6 must-haves)
-    - 07-02: LureList annotation-aware display (5 must-haves)
-    - Commits: 3672b3e, 5e72306
-  - **Phase 7 verification:** 11/11 must-haves verified, no gaps found
-    - VERIFICATION: .planning/phases/07-visualizer-lure-list-updates/07-VERIFICATION.md
-    - Status: passed
-    - All structural and functional requirements met
-  - **v1.1 milestone complete:** All 8 phases executed and verified
-    - Phases 1-5: v1.0 MVP ✅
-    - Phase 6: Annotation data model ✅
-    - Phase 7: Visualizer & Lure List updates ✅
-    - Phase 8: Deferred v1.0 work ✅
+  - **v1.1 milestone complete:** All phases 6-8 executed and verified
+    - Phase 6: Annotation data model (5 plans) ✅
+    - Phase 7: Visualizer & Lure List updates (2 plans) ✅
+    - Phase 8: Deferred v1.0 work (8 plans) ✅
+  - **v1.1 archived:**
+    - MILESTONES.md entry created
+    - PROJECT.md evolved (requirements → Validated, decisions updated)
+    - ROADMAP.md collapsed to one-line summary
+    - Requirements archived to milestones/v1.1-REQUIREMENTS.md
+    - Roadmap archived to milestones/v1.1-ROADMAP.md
+    - REQUIREMENTS.md deleted (fresh for next milestone)
 
 **What's Next:**
-  - v1.1 milestone complete (all 8 phases done)
-  - Ready to audit milestone or complete directly
+  - v1.1 shipped with 13 requirements delivered
+  - Ready to start next milestone: /gsd:new-milestone
+  - User to decide next milestone goals (TBD)
 
 ---
