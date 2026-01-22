@@ -16,8 +16,8 @@ Requirements for annotation flexibility. Freetext titles, optional MITRE/Persuas
 - [x] **ANN-09**: Annotation has freetext title field (appears bold in visualizer)
 - [x] **ANN-10**: Annotation optionally shows MITRE ATT&CK tag (e.g., "T1598 - Phishing for Information")
 - [x] **ANN-11**: Annotation optionally shows Persuasion Principle tag
-- [ ] **ANN-12**: Visualizer card displays: Title on first line, tags inline on second, full description below
-- [ ] **ANN-13**: Lure list shows annotation title (or first words of description if no title)
+- [x] **ANN-12**: Visualizer card displays: Title on first line, tags inline on second, full description below
+- [x] **ANN-13**: Lure list shows annotation title (or first words of description if no title)
 
 ## Out of Scope
 
@@ -39,8 +39,8 @@ Explicitly excluded. Documented to prevent scope creep.
 | ANN-09 | Phase 6 | Complete |
 | ANN-10 | Phase 6 | Complete |
 | ANN-11 | Phase 6 | Complete |
-| ANN-12 | Phase 7 | Pending |
-| ANN-13 | Phase 7 | Pending |
+| ANN-12 | Phase 7 | Complete |
+| ANN-13 | Phase 7 | Complete |
 | EDIT-07 | Phase 8 | Complete |
 | EDIT-08 | Phase 8 | Complete |
 | VIS-07 | Phase 8 | Complete |

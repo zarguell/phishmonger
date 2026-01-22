@@ -36,19 +36,21 @@ Post-v1.0 roadmap for Phish Monger. v1.1 focuses on annotation flexibility (free
 
 ---
 
-### 📋 Phase 7: Visualizer & Lure List Updates
+### ✅ Phase 7: Visualizer & Lure List Updates
 
 **Goal:** Updated card display and list summary
-**Status:** Not started
+**Status:** ✅ Complete
 **Plans:**
-- [ ] `07-01-PLAN.md`: Verify visualizer card layout (title, tags, description) — verification only, ANN-12 already implemented
-- [ ] `07-02-PLAN.md`: Update lure list to show title/description instead of UUID
+- [x] `07-01-PLAN.md`: Verify visualizer card layout (title, tags, description) — verification only, ANN-12 already implemented
+- [x] `07-02-PLAN.md`: Update lure list to show title/description instead of UUID
 
 **Requirements:**
 - ANN-12: Visualizer card layout
 - ANN-13: Lure list summary
 
 **Dependencies:** Phase 6
+
+**Verification:** `07-VERIFICATION.md` (passed: 11/11 must-haves)
 
 ---
 
@@ -89,9 +91,9 @@ Post-v1.0 roadmap for Phish Monger. v1.1 focuses on annotation flexibility (free
 |-------|-----------|--------|
 | 1-5 | v1.0 | ✅ Complete |
 | 6 | v1.1 | ✅ Complete |
-| 7 | v1.1 | Not started |
+| 7 | v1.1 | ✅ Complete |
 | 8 | v1.1 | ✅ Complete |
 
 ---
 
-**Coverage:** v1.0 shipped, v1.1 mostly complete (annotation flexibility + advanced UX features). Phase 7 (visualizer updates) remaining.
+**Coverage:** v1.0 shipped, v1.1 complete (annotation flexibility + advanced UX features + visualizer updates).
