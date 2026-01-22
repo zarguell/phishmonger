@@ -23,6 +23,7 @@ import type { ScoringData } from './types/scoring'
 import type { ProjectMetadata } from './types/project'
 import { loadAnnotations, saveAnnotations, loadScoring, saveScoring, loadMetadata, saveMetadata, exportProjectJSON, downloadProjectJSON, importProjectJSON } from './utils/storage'
 import type { ProjectJSON } from './utils/storage'
+import { initializeSchema } from './utils/schemaVersion'
 import './index.css'
 
 const STORAGE_KEY = 'phishmonger-html-source'
@@ -75,6 +76,11 @@ type ViewMode = 'edit' | 'preview'
 type ScaleMode = 'scroll' | 'fit'
 
 function App() {
+  // Initialize schema version on app mount
+  useEffect(() => {
+    initializeSchema();
+  }, []);
+
   const [inputMode, setInputMode] = useState<InputMode>(() => {
     const savedMode = localStorage.getItem(MODE_KEY) as InputMode | null
     return savedMode || 'html'

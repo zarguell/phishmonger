@@ -1,64 +1,53 @@
 /**
  * Schema version management for Phish Monger
  *
- * Tracks the LocalStorage schema version to enable future migrations.
- * v1.2 uses schema version 2. Future versions can increment this and
- * run migration logic on app load when version mismatch is detected.
+ * Phish Monger uses a global schema version to track data structure changes
+ * and enable future migrations. The schema version is stored in LocalStorage
+ * and checked on app mount.
  *
- * No v1.1 -> v1.2 migration needed (zero existing users), but we establish
- * the schemaVersion field now for future migrations.
+ * Schema versions:
+ * - v1: Initial schema (implicit, no version field)
+ * - v2: Campaign data model with campaigns array and scheduledDate (v1.2)
  */
 
 const SCHEMA_VERSION_KEY = 'phishmonger-schema-version';
 
-/**
- * Current schema version for this codebase
- * Increment this when LocalStorage structure changes in a way that
- * requires migration
- */
+/** Current schema version (v1.2) */
 export const CURRENT_SCHEMA_VERSION = 2;
 
 /**
- * Load schema version from LocalStorage
- * Returns 1 (v1.1) as default if not set (assumes pre-v1.2 install)
- */
-export function loadSchemaVersion(): number {
-  try {
-    const saved = localStorage.getItem(SCHEMA_VERSION_KEY);
-    if (saved) {
-      const parsed = parseInt(saved, 10);
-      return isNaN(parsed) ? 1 : parsed;
-    }
-  } catch (error) {
-    console.error('Failed to load schema version:', error);
-  }
-  return 1; // Default to v1.1 schema
-}
-
-/**
- * Save schema version to LocalStorage
- */
-export function saveSchemaVersion(version: number): void {
-  try {
-    localStorage.setItem(SCHEMA_VERSION_KEY, version.toString());
-  } catch (error) {
-    console.error('Failed to save schema version:', error);
-  }
-}
-
-/**
- * Initialize schema version on first run or update
- * Sets the schema version to CURRENT_SCHEMA_VERSION
+ * Initialize schema version in LocalStorage
  *
- * Call this on app mount to ensure schema version is set.
- * Future migrations will check loadSchemaVersion() against
- * CURRENT_SCHEMA_VERSION and run migrations if mismatch.
+ * Sets the schema version to CURRENT_SCHEMA_VERSION if not already set.
+ * This is called on app mount to establish the schema version for
+ * future migrations.
+ *
+ * For v1.2: No existing users, so we can set version 2 directly.
+ * Future migrations will check the version and run migration logic if needed.
  */
 export function initializeSchema(): void {
-  const currentVersion = loadSchemaVersion();
-  if (currentVersion !== CURRENT_SCHEMA_VERSION) {
-    // Future: Run migration here based on currentVersion
-    // For now, just set to current version
-    saveSchemaVersion(CURRENT_SCHEMA_VERSION);
+  const storedVersion = localStorage.getItem(SCHEMA_VERSION_KEY);
+
+  if (!storedVersion) {
+    // First run - set current schema version
+    localStorage.setItem(SCHEMA_VERSION_KEY, CURRENT_SCHEMA_VERSION.toString());
+    console.log(`Schema initialized to v${CURRENT_SCHEMA_VERSION}`);
+  } else {
+    const version = parseInt(storedVersion, 10);
+    if (version < CURRENT_SCHEMA_VERSION) {
+      // Schema migration needed (not needed for v1.2 since no existing users)
+      console.log(`Schema migration needed: v${version} → v${CURRENT_SCHEMA_VERSION}`);
+      localStorage.setItem(SCHEMA_VERSION_KEY, CURRENT_SCHEMA_VERSION.toString());
+    }
   }
+}
+
+/**
+ * Get current schema version from LocalStorage
+ *
+ * @returns Current schema version (or CURRENT_SCHEMA_VERSION if not set)
+ */
+export function getSchemaVersion(): number {
+  const stored = localStorage.getItem(SCHEMA_VERSION_KEY);
+  return stored ? parseInt(stored, 10) : CURRENT_SCHEMA_VERSION;
 }
