@@ -3,6 +3,7 @@ import type { ProjectMetadata } from '../types/project'
 import type { ScoringData } from '../types/scoring'
 import type { InputMode } from '../components/ModeToggle'
 import type { CustomTechnique } from '../types/library'
+import type { Campaign } from '../types/campaign'
 
 const ANNOTATIONS_KEY = 'phishmonger-annotations'
 
@@ -228,3 +229,45 @@ export const downloadProjectJSON = (jsonString: string, filename: string) => {
   document.body.removeChild(link)
   URL.revokeObjectURL(url)
 }
+
+// Campaign storage
+
+const CAMPAIGNS_KEY = 'phishmonger-campaigns';
+
+/**
+ * Load campaigns from LocalStorage
+ * Returns empty array if no saved data exists
+ */
+export const loadCampaigns = (): Campaign[] => {
+  try {
+    const saved = localStorage.getItem(CAMPAIGNS_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      // Validate that parsed data is an array
+      if (Array.isArray(parsed)) {
+        return parsed;
+      }
+      console.warn('Invalid campaigns data in LocalStorage, starting fresh');
+      return [];
+    }
+  } catch (error) {
+    console.error('Failed to load campaigns from LocalStorage:', error);
+  }
+  return [];
+};
+
+/**
+ * Save campaigns to LocalStorage
+ * Throws QuotaExceededError if storage is full
+ */
+export const saveCampaigns = (campaigns: Campaign[]): void => {
+  try {
+    localStorage.setItem(CAMPAIGNS_KEY, JSON.stringify(campaigns));
+  } catch (error) {
+    if (error instanceof Error && error.name === 'QuotaExceededError') {
+      throw error; // Re-throw for useCampaigns to handle
+    }
+    console.error('Failed to save campaigns to LocalStorage:', error);
+    throw error;
+  }
+};
