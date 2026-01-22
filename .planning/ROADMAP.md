@@ -6,14 +6,14 @@ Phish Monger delivers campaign management capabilities through a progressive bui
 
 ## Milestones
 
-- ✅ **v1.0 MVP** - Phases 1-5 (shipped 2026-01-21)
-- ✅ **v1.1 Enhanced** - Phases 6-8 (shipped 2026-01-22)
-- 🚧 **v1.2 Campaign Management** - Phases 9-15 (in progress)
+- **v1.0 MVP** - Phases 1-5 (shipped 2026-01-21)
+- **v1.1 Enhanced** - Phases 6-8 (shipped 2026-01-22)
+- **v1.2 Campaign Management** - Phases 9-15 (in progress)
 
 ## Phases
 
 <details>
-<summary>✅ v1.0 MVP (Phases 1-5) - SHIPPED 2026-01-21</summary>
+<summary>v1.0 MVP (Phases 1-5) - SHIPPED 2026-01-21</summary>
 
 ### Phase 1: Foundation
 **Goal**: Project scaffolding, build pipeline, and core infrastructure
@@ -63,7 +63,7 @@ Plans:
 </details>
 
 <details>
-<summary>✅ v1.1 Enhanced (Phases 6-8) - SHIPPED 2026-01-22</summary>
+<summary>v1.1 Enhanced (Phases 6-8) - SHIPPED 2026-01-22</summary>
 
 ### Phase 6: Flexible Annotations
 **Goal**: Users can create freetext annotations with optional technique tags
@@ -97,7 +97,7 @@ Plans:
 
 </details>
 
-### ✅ v1.2 Campaign Management (In Progress)
+### v1.2 Campaign Management (In Progress)
 
 **Milestone Goal:** Enable security teams to organize multiple phishing exercises into campaigns, schedule them, and export to external calendars.
 
@@ -124,23 +124,26 @@ Plans:
 #### Phase 10: Campaign Manager UI
 **Goal**: Users can create, edit, and manage campaigns through intuitive interface
 **Depends on**: Phase 9
-**Requirements**: SCH-01, SCH-02, DAT-01, DAT-02, DAT-03
+**Requirements**: SCH-01, SCH-02, DAT-01, DAT-02, DAT-03, CMP-01, CMP-02, CMP-03, CMP-04, CMP-05, CMP-06, CMP-07
 **Success Criteria** (what must be TRUE):
   1. User can view list of all campaigns with metadata (name, description, project count, date range)
   2. User can create new campaign with name and description
   3. User can edit campaign name and description
   4. User can delete campaign (with confirmation)
-  5. User can add existing phishing projects to campaign via multi-select interface
+  5. User can add current phishing project to campaign
   6. User can remove phishing projects from campaign
   7. User can assign scheduled date to each phish in campaign via date picker
   8. System auto-calculates and displays campaign duration (earliest to latest phish dates)
-**Plans**: TBD
+  9. User can export campaign as JSON
+  10. User can import campaign from JSON file
+  11. System handles duplicate detection on import (by campaign ID)
+**Plans**: 4 plans in 3 waves
 
 Plans:
-- [ ] 10-01: Campaign list view component with campaign cards
-- [ ] 10-02: Campaign settings modal (metadata, project assignment, scheduling)
-- [ ] 10-03: App navigation between project mode and campaign mode
-- [ ] 10-04: Campaign JSON export/import with duplicate detection
+- [ ] 10-01-PLAN.md — CampaignCard and CampaignPhishItem display components (wave 1)
+- [ ] 10-02-PLAN.md — CampaignManager modal with campaign list, search, create, import (wave 2)
+- [ ] 10-03-PLAN.md — CampaignEditor modal with metadata form, phish list, scheduling (wave 2)
+- [ ] 10-04-PLAN.md — App.tsx integration with Campaigns button and state management (wave 3)
 
 #### Phase 11: iCal Export & Integration
 **Goal**: Users can export campaign schedules to external calendar applications
