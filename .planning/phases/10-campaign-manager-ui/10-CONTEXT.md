@@ -1,12 +1,15 @@
 # Phase 10: Campaign Manager UI - Context
 
 **Gathered:** 2026-01-22
+**Updated:** 2026-01-22 (aligned with research findings on single-project architecture)
 **Status:** Ready for planning
 
 <domain>
 ## Phase Boundary
 
-Users can create, edit, and manage campaigns through intuitive interface. Users view campaign lists, create new campaigns, assign projects, schedule dates, and export/import campaigns as JSON. Detail carousel and iCal export are separate phases.
+Users can create, edit, and manage campaigns through intuitive interface. Users view campaign lists, create new campaigns, assign the current project to campaigns, schedule dates, and export/import campaigns as JSON. Detail carousel and iCal export are separate phases.
+
+**Important:** Phish Monger is a single-project editor. Users work on one project at a time (stored in `phishmonger-*` LocalStorage keys). When adding projects to campaigns, users copy the current working project into campaigns via "Add Current Project" button.
 
 </domain>
 
@@ -30,16 +33,19 @@ Users can create, edit, and manage campaigns through intuitive interface. Users 
 - Import includes duplicate detection (unique IDs prevent conflicts)
 
 ### Project assignment interface
-- Tag-style picker for multi-select (dropdown with search, badges for selected)
-- Projects show visual badge if already in other campaigns
-- Clicking badge shows which campaigns include that project
+- **"Add Current Project" button** (not multi-select dropdown)
+- Phish Monger is a single-project editor - users work on one project at a time
+- Current project title displayed above button
+- Button copies current working project into campaign via copyPhishForCampaign utility
+- Duplicate detection prevents adding same project twice to same campaign
 - Assigned projects displayed as compact badges in campaign detail
 - Badges show project name, X to remove, click to view project
+
+**Note:** Original specification mentioned "tag-style picker for multi-select" but research confirmed Phish Monger's single-project architecture makes this inappropriate. Users add projects by loading them one at a time and clicking "Add to campaign."
 
 ### Claude's Discretion
 - Card visual design (shadows, border radius, spacing)
 - Modal animation and placement
-- Tag picker search algorithm and sorting
 - JSON import error handling and validation messaging
 - Export filename format and default location
 
@@ -51,8 +57,8 @@ Users can create, edit, and manage campaigns through intuitive interface. Users 
 - JSON import/export critical for campaign portability and backup
 - Type-to-confirm deletion prevents accidental campaign loss
 - Educational empty state helps users understand campaign value
-- Tag-style picker feels modern and works well for multi-select
-- Visual badges for multi-campaign projects prevent confusion
+- Single-project model means "Add Current Project" button is the right UX (not multi-select picker)
+- Users can add the same project to multiple campaigns by loading it and adding to each campaign separately
 
 </specifics>
 
@@ -62,8 +68,10 @@ Users can create, edit, and manage campaigns through intuitive interface. Users 
 - Date scheduling experience — user chose to let Claude decide this, can be refined during planning
 - Campaign detail view depth — can be determined during implementation based on space
 - Bulk operations on campaigns (delete multiple, export multiple) — future enhancement
+- Project library browser — would enable true multi-select, but is a separate feature beyond phase scope
 
 ---
 
 *Phase: 10-campaign-manager-ui*
 *Context gathered: 2026-01-22*
+*Updated: 2026-01-22 to align with single-project architecture findings*
