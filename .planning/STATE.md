@@ -1,15 +1,15 @@
 # State: Phish Monger
 
-**Last Updated:** 2026-01-21
-**Current Phase:** 08-deferred-v1-0-work
-**Status:** ✅ Verified (All 8 plans complete, 8/8 must-haves verified)
+**Last Updated:** 2026-01-22
+**Current Phase:** 07-visualizer-lurelist
+**Status:** 📋 In Progress (Plan 2 of 2 complete)
 
-**Last activity:** 2026-01-21 - Phase 8 verification passed (8/8 must-haves)
+**Last activity:** 2026-01-22 - Phase 07 Plan 02 complete (Lure list annotation-aware display)
 
-**Progress:** ████████████████████ 100% (08-01: Undo/Redo, 08-02: Keyboard shortcuts, 08-03: Arrow styles, 08-04: Layout templates, 08-05: Custom techniques, 08-06: Custom technique editor, 08-07: Export with custom techniques, 08-08: Technique library complete)
+**Progress:** ████████████████░░░░ 87.5% (Phase 1 ✅, Phase 2 ✅, Phase 3 ✅, Phase 4 ✅, Phase 5 ✅, Phase 6 ✅, Phase 7: 07-02 ✅, Phase 8 ✅)
 
-**Current Focus:** Phase 8 complete and verified - all deferred v1.0 features shipped
-**Next Step:** Execute Phase 7 (Visualizer & Lure List updates) or audit v1.1 milestone
+**Current Focus:** Phase 7 nearly complete - one plan remaining (07-01)
+**Next Step:** Execute Phase 7 Plan 01 (Animation modes) or complete Phase 7 verification
 
 ---
 
@@ -83,6 +83,7 @@
 | Compact template 50/50 split | User feedback: 0.5fr/600px too extreme, adjusted to equal 1fr/1fr for balance | 08-04: User refinement |
 | Tags and NIST badge visibility toggles | Independent LocalStorage-persistent preferences for cleaner visuals | 08-04: User control |
 | CustomTechnique extends base Technique | Allows optional URL field for user-defined techniques without MITRE links | 08-05: Type safety |
+| Lure list shows annotation title | Display priority: title → description preview → lure.text | 07-02: Human-readable lure list per ANN-13 |
 
 ### Requirements Coverage
 
@@ -149,6 +150,7 @@
 - [x] Create useCustomTechniques hook with LocalStorage persistence (08-05)
 - [x] Implement merge operation for built-in + custom techniques (08-05)
 - [x] Fix TypeScript compilation errors in custom technique system (08-05)
+- [x] Update LureList display to show annotation title (07-02)
 
 ### Blockers
 
@@ -159,7 +161,7 @@
 ## Session Continuity
 
 **Last Session:** 2026-01-21 (Phase 8 verification passed)
-**Current Session:** 2026-01-21 (Phase 8 complete and verified)
+**Current Session:** 2026-01-22 (Phase 7 Plan 02 complete)
 
 **What Was Done:**
   - **Phase 8 execution complete:** All 8 deferred v1.0 features shipped
@@ -172,15 +174,16 @@
     - 08-07: Project export/import with custom techniques
     - 08-08: Technique library management UI
   - **Phase 8 verification:** 8/8 must-haves verified, no gaps found
-    - VERIFICATION: .planning/phases/08-deferred-v1-0-work/08-VERIFICATION.md
-    - Status: passed
-    - 1,676 lines of production code across 11 files
-    - 0 TODOs/FIXMEs/stubs found
-    - Build passes in 1.59s with no TypeScript errors
+  - **Phase 7 Plan 02:** Lure list annotation-aware display
+    - Updated LureList.tsx to show annotation title when present
+    - Falls back to description preview (100 chars) when no title
+    - Falls back to lure.text when no annotation exists
+    - Text truncated with ellipsis (50 chars for title, 100 for description)
+    - Commit: 3672b3e
 
 **What's Next:**
-  - Phase 7 remaining (Visualizer & Lure List updates)
-  - v1.1 milestone nearly complete (6 of 7 phases done)
-  - Ready to execute Phase 7 or complete v1.1 milestone
+  - Phase 7 Plan 01 (Animation modes) - 1 plan remaining
+  - v1.1 milestone at 93.75% complete (7 of 8 phases mostly done)
+  - Ready to execute Phase 7 Plan 01 or verify Phase 7
 
 ---
