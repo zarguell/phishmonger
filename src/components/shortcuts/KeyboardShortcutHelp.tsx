@@ -123,15 +123,15 @@ const KeyboardShortcutHelp: React.FC<KeyboardShortcutHelpProps> = ({ isOpen, onC
           <h3 style={sectionTitleStyle}>Editing</h3>
           <div style={shortcutRowStyle}>
             <ShortcutKey keys={['Ctrl', 'Z']} />
-            <p style={descriptionStyle}>Undo last action</p>
+            <p style={descriptionStyle}>Undo annotation edits</p>
           </div>
           <div style={shortcutRowStyle}>
             <ShortcutKey keys={['Ctrl', 'Shift', 'Z']} />
-            <p style={descriptionStyle}>Redo last undone action</p>
+            <p style={descriptionStyle}>Redo annotation edits</p>
           </div>
           <div style={shortcutRowStyle}>
             <ShortcutKey keys={['Ctrl', 'Y']} />
-            <p style={descriptionStyle}>Redo last undone action</p>
+            <p style={descriptionStyle}>Redo annotation edits</p>
           </div>
           <div style={shortcutRowLastStyle}>
             <ShortcutKey keys={['Ctrl', 'B']} />

@@ -405,18 +405,18 @@ function App() {
           <button
             onClick={undoAnnotations}
             disabled={!canUndoAnnotations}
-            title="Undo (Ctrl+Z / Cmd+Z)"
+            title="Undo annotation edits (Ctrl+Z / Cmd+Z)"
             type="button"
           >
-            Undo
+            Undo Annotation
           </button>
           <button
             onClick={redoAnnotations}
             disabled={!canRedoAnnotations}
-            title="Redo (Ctrl+Shift+Z / Ctrl+Y)"
+            title="Redo annotation edits (Ctrl+Shift+Z / Ctrl+Y)"
             type="button"
           >
-            Redo
+            Redo Annotation
           </button>
           <button
             onClick={() => setViewMode('preview')}
@@ -425,6 +425,14 @@ function App() {
             disabled={Object.keys(annotations).length === 0}
           >
             Preview Mode
+          </button>
+          <button
+            onClick={() => setShowShortcutHelp(true)}
+            className="help-shortcuts-button"
+            title="Press F1 for keyboard shortcuts"
+            type="button"
+          >
+            ?
           </button>
         </div>
       </header>
