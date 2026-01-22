@@ -24,6 +24,7 @@ import type { ProjectMetadata } from './types/project'
 import { loadAnnotations, saveAnnotations, loadScoring, saveScoring, loadMetadata, saveMetadata, exportProjectJSON, downloadProjectJSON, importProjectJSON } from './utils/storage'
 import type { ProjectJSON } from './utils/storage'
 import { initializeSchema } from './utils/schemaVersion'
+import { getStoragePercentage, isStorageNearQuota, formatBytes } from './utils/storageQuota'
 import './index.css'
 
 const STORAGE_KEY = 'phishmonger-html-source'
@@ -81,6 +82,21 @@ function App() {
     initializeSchema();
   }, []);
 
+  // Monitor storage quota usage
+  useEffect(() => {
+    // Update storage percentage on LocalStorage changes
+    const updateStorage = () => {
+      setStoragePercent(getStoragePercentage());
+    };
+
+    // Initial check
+    updateStorage();
+
+    // Listen for storage events (changes in other tabs)
+    window.addEventListener('storage', updateStorage);
+    return () => window.removeEventListener('storage', updateStorage);
+  }, []);
+
   const [inputMode, setInputMode] = useState<InputMode>(() => {
     const savedMode = localStorage.getItem(MODE_KEY) as InputMode | null
     return savedMode || 'html'
@@ -103,6 +119,7 @@ function App() {
   const [metadata, setMetadata] = useState<ProjectMetadata>(() => {
     return loadMetadata()
   })
+  const [storagePercent, setStoragePercent] = useState<number>(0)
 
   // Custom techniques management
   const { customTechniques } = useCustomTechniques()
@@ -308,6 +325,12 @@ function App() {
   if (viewMode === 'preview') {
     return (
       <div className="app app-preview-mode">
+        {isStorageNearQuota() && (
+          <div className="bg-amber-50 border-b border-amber-200 px-4 py-2 text-amber-900 text-sm">
+            <strong>Storage Warning:</strong> Using {storagePercent.toFixed(0)}% of available storage.
+            Delete old campaigns or export data to free up space.
+          </div>
+        )}
         <header className="app-header">
           <h1>Phish Monger - Preview Mode</h1>
           <div className="header-actions">
@@ -378,6 +401,12 @@ function App() {
 
   return (
     <div className="app">
+      {isStorageNearQuota() && (
+        <div className="bg-amber-50 border-b border-amber-200 px-4 py-2 text-amber-900 text-sm">
+          <strong>Storage Warning:</strong> Using {storagePercent.toFixed(0)}% of available storage.
+          Delete old campaigns or export data to free up space.
+        </div>
+      )}
       <header className="app-header">
         <div className="header-top">
           <h1>Phish Monger</h1>
