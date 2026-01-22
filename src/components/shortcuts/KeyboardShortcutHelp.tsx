@@ -110,7 +110,7 @@ const KeyboardShortcutHelp: React.FC<KeyboardShortcutHelpProps> = ({ isOpen, onC
         <div style={sectionStyle}>
           <h3 style={sectionTitleStyle}>General</h3>
           <div style={shortcutRowStyle}>
-            <ShortcutKey keys={['Ctrl', '/']} />
+            <ShortcutKey keys="F1" />
             <p style={descriptionStyle}>Open keyboard shortcuts help</p>
           </div>
           <div style={shortcutRowLastStyle}>

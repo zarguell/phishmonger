@@ -178,8 +178,8 @@ function App() {
     redoAnnotations()
   }, { enableOnFormTags: false }, [redoAnnotations])
 
-  // Keyboard shortcut to open help modal
-  useHotkeys('ctrl+/, cmd+/', (e) => {
+  // Keyboard shortcut to open help modal (F1 = universal help key)
+  useHotkeys('f1', (e) => {
     e.preventDefault()
     setShowShortcutHelp(true)
   }, { enableOnFormTags: true }, [])
