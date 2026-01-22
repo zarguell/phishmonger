@@ -111,13 +111,13 @@ Plans:
   3. System enforces referential integrity (deleting project updates all campaigns, deleting campaign doesn't delete projects)
   4. System migrates existing v1.1 projects to v1.2 schema without data loss
   5. System monitors LocalStorage quota and warns before hitting ~5MB limit
-**Plans**: TBD
+**Plans**: 4 plans in 2 waves
 
 Plans:
-- [ ] 09-01: Campaign and Project type definitions with scheduledDate field
-- [ ] 09-02: LocalStorage schema extension and migration logic (v1.1 → v1.2)
-- [ ] 09-03: useCampaigns hook with CRUD operations and referential integrity
-- [ ] 09-04: Storage quota monitoring and warning system
+- [ ] 09-01-PLAN.md — Campaign and Phish type definitions (wave 1)
+- [ ] 09-02-PLAN.md — LocalStorage schema extension and schema versioning (wave 2)
+- [ ] 09-03-PLAN.md — useCampaigns hook with CRUD operations and phish copying (wave 2)
+- [ ] 09-04-PLAN.md — Storage quota monitoring and warning system (wave 2)
 
 #### Phase 10: Campaign Manager UI
 **Goal**: Users can create, edit, and manage campaigns through intuitive interface
@@ -247,7 +247,7 @@ Phases execute in numeric order: 9 → 10 → 11 → 12 → 13 → 14 → 15
 | 6. Flexible Annotations | v1.1 | 4/4 | Complete | 2026-01-22 |
 | 7. Undo/Redo & Visual Enhancements | v1.1 | 5/5 | Complete | 2026-01-22 |
 | 8. Custom Technique Library | v1.1 | 3/3 | Complete | 2026-01-22 |
-| 9. Campaign Data Model & Storage | v1.2 | 0/4 | Not started | - |
+| 9. Campaign Data Model & Storage | v1.2 | 0/4 | Planning complete | - |
 | 10. Campaign Manager UI | v1.2 | 0/4 | Not started | - |
 | 11. iCal Export & Integration | v1.2 | 0/4 | Not started | - |
 | 12. Detail Carousel | v1.2 | 0/4 | Not started | - |
