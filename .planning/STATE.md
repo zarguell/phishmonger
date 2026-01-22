@@ -1,15 +1,15 @@
 # State: Phish Monger
 
 **Last Updated:** 2026-01-22
-**Current Phase:** Milestone v1.1 Complete
-**Status:** ✅ Shipped (Phases 6-8 complete, 15 plans, all requirements delivered)
+**Current Phase:** Milestone v1.2 Campaign Management
+**Status:** 📋 Researching (defining requirements)
 
-**Last activity:** 2026-01-22 - v1.1 milestone complete and archived
+**Last activity:** 2026-01-22 - Milestone v1.2 initiated
 
-**Progress:** ████████████████████ 100% (Phases 1-5 ✅ v1.0, Phases 6-8 ✅ v1.1)
+**Progress:** ████████░░░░░░░░░░░░░ 40% (Phases 1-8 ✅ v1.0-v1.1, Phase 9 🔮 v1.2)
 
-**Current Focus:** Planning next milestone (TBD - user to decide)
-**Next Step:** Run /gsd:new-milestone to begin next milestone planning
+**Current Focus:** Researching calendar UI and iCal export patterns
+**Next Step:** Define requirements after research complete
 
 ---
 
@@ -162,10 +162,20 @@
 
 ## Session Continuity
 
-**Last Session:** 2026-01-22 (v1.1 milestone complete)
-**Current Session:** 2026-01-22 (v1.1 milestone archived and shipped)
+**Last Session:** 2026-01-22 (v1.1 milestone archived)
+**Current Session:** 2026-01-22 (v1.2 milestone initiated)
 
 **What Was Done:**
+  - **v1.2 milestone initiated:**
+    - PROJECT.md updated with campaign management goals
+    - Research phase starting (calendar UI, iCal export)
+    - Features: Campaign manager, many-to-many relationships, detail carousel, scheduling, calendar view, iCal export
+
+**What's Next:**
+  - Research calendar UI libraries for React
+  - Research iCal/ics file generation libraries
+  - Define requirements for campaign management
+  - Create roadmap for v1.2
   - **v1.1 milestone complete:** All phases 6-8 executed and verified
     - Phase 6: Annotation data model (5 plans) ✅
     - Phase 7: Visualizer & Lure List updates (2 plans) ✅

@@ -38,7 +38,19 @@ Security trainers can create visual, annotated phishing training materials that 
 
 ### Active
 
-(None — all v1.1 requirements shipped)
+**Current Milestone: v1.2 Campaign Management**
+
+**Goal:** Enable security teams to organize multiple phishing exercises into campaigns, schedule them, and export to external calendars.
+
+**Target features:**
+- Campaign manager interface (create/edit campaigns, add phishes)
+- Many-to-many phish↔campaign relationships
+- Campaign JSON export/import (single file as array of phishes)
+- Detail carousel for browsing campaign phishes (prev/next navigation)
+- Per-phish scheduled date field
+- Calendar view showing campaign-level summaries
+- iCal/ics export for external calendar integration (Outlook, Google Calendar)
+- Dependency updates (careful upgrade of major version bumps)
 
 ### Out of Scope
 
@@ -84,4 +96,4 @@ Shipped v1.1 with 4,146 LOC TypeScript. Added: react-hotkeys-hook for keyboard s
 
 ---
 
-*Last updated: 2026-01-22 after v1.1 milestone*
+*Last updated: 2026-01-22 after v1.2 milestone initiated*
