@@ -41,8 +41,8 @@ Post-v1.0 roadmap for Phish Monger. v1.1 focuses on annotation flexibility (free
 **Goal:** Updated card display and list summary
 **Status:** Not started
 **Plans:**
-- `07-01`: Update visualizer card layout (title, tags, description)
-- `07-02`: Update lure list to show title/description
+- [ ] `07-01-PLAN.md`: Verify visualizer card layout (title, tags, description) — verification only, ANN-12 already implemented
+- [ ] `07-02-PLAN.md`: Update lure list to show title/description instead of UUID
 
 **Requirements:**
 - ANN-12: Visualizer card layout
