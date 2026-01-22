@@ -88,8 +88,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DAT-01 | Phase 10 | Pending |
 | DAT-02 | Phase 10 | Pending |
 | DAT-03 | Phase 10 | Pending |
-| DAT-04 | Phase 9 | Pending |
-| DAT-05 | Phase 9 | Pending |
+| DAT-04 | Phase 9 | Complete |
+| DAT-05 | Phase 9 | Complete |
 | DEP-01 | Phase 15 | Pending |
 | DEP-02 | Phase 15 | Pending |
 | DEP-03 | Phase 15 | Pending |
