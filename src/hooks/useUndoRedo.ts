@@ -92,9 +92,10 @@ export function useUndoRedo<T>(initialState: T) {
   })
 
   const setState = useCallback((newState: T | ((prev: T) => T)) => {
+    const payload = typeof newState === 'function' ? (newState as (prev: T) => T)(state.present) : newState
     dispatch({
       type: 'SET',
-      payload: typeof newState === 'function' ? (newState as (prev: T) => T)(state.present) : newState,
+      payload,
     })
   }, [state.present])
 
