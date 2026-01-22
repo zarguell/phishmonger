@@ -52,19 +52,19 @@ Post-v1.0 roadmap for Phish Monger. v1.1 focuses on annotation flexibility (free
 
 ---
 
-### 📋 Phase 8: Deferred v1.0 Work
+### ✅ Phase 8: Deferred v1.0 Work
 
 **Goal:** Advanced UX features and extensibility
-**Status:** Ready for execution
+**Status:** ✅ Complete
 **Plans:**
-- [ ] `08-01-PLAN.md`: Undo/redo with keyboard shortcuts (Ctrl+Z/Cmd+Z)
-- [ ] `08-02-PLAN.md`: Keyboard shortcuts help modal
-- [ ] `08-03-PLAN.md`: Custom arrow badge styles (Classic, Square, Diamond)
-- [ ] `08-04-PLAN.md`: Layout templates (Balanced, Wide Email, Wide Annotations)
-- [ ] `08-05-PLAN.md`: Custom technique library data model
-- [ ] `08-06-PLAN.md`: Custom technique editor
-- [ ] `08-07-PLAN.md`: Project export includes custom techniques
-- [ ] `08-08-PLAN.md`: Technique library view with management
+- [x] `08-01-PLAN.md`: Undo/redo with keyboard shortcuts (Ctrl+Z/Cmd+Z)
+- [x] `08-02-PLAN.md`: Keyboard shortcuts help modal
+- [x] `08-03-PLAN.md`: Custom arrow badge styles (Classic, Square, Diamond)
+- [x] `08-04-PLAN.md`: Layout templates (Balanced, Wide Email, Wide Annotations)
+- [x] `08-05-PLAN.md`: Custom technique library data model
+- [x] `08-06-PLAN.md`: Custom technique editor
+- [x] `08-07-PLAN.md`: Project export includes custom techniques
+- [x] `08-08-PLAN.md`: Technique library view with management
 
 **Requirements:**
 - EDIT-07: Undo/redo functionality
@@ -73,10 +73,13 @@ Post-v1.0 roadmap for Phish Monger. v1.1 focuses on annotation flexibility (free
 - VIS-08: Layout templates
 - ANN-07: Custom techniques in library
 - ANN-08: Library persistence
+- VIS-09: Tags visibility toggle
+- VIS-10: NIST badge toggle
 
 **Dependencies:** Phase 7
 
 **Research:** `08-DEFERRED-V1-0-WORK-RESEARCH.md` (complete)
+**Verification:** `08-VERIFICATION.md` (passed: 8/8 must-haves)
 
 ---
 
@@ -87,8 +90,8 @@ Post-v1.0 roadmap for Phish Monger. v1.1 focuses on annotation flexibility (free
 | 1-5 | v1.0 | ✅ Complete |
 | 6 | v1.1 | ✅ Complete |
 | 7 | v1.1 | Not started |
-| 8 | v1.1 | Ready for execution |
+| 8 | v1.1 | ✅ Complete |
 
 ---
 
-**Coverage:** v1.0 shipped, v1.1 planning complete (annotation flexibility + advanced UX features). Phase 8 has 8 plans in 3 waves ready for execution.
+**Coverage:** v1.0 shipped, v1.1 mostly complete (annotation flexibility + advanced UX features). Phase 7 (visualizer updates) remaining.

@@ -41,12 +41,14 @@ Explicitly excluded. Documented to prevent scope creep.
 | ANN-11 | Phase 6 | Complete |
 | ANN-12 | Phase 7 | Pending |
 | ANN-13 | Phase 7 | Pending |
-| EDIT-07 | Phase 8 | Deferred |
-| EDIT-08 | Phase 8 | Deferred |
-| VIS-07 | Phase 8 | Deferred |
-| VIS-08 | Phase 8 | Deferred |
-| ANN-07 | Phase 8 | Deferred |
-| ANN-08 | Phase 8 | Deferred |
+| EDIT-07 | Phase 8 | Complete |
+| EDIT-08 | Phase 8 | Complete |
+| VIS-07 | Phase 8 | Complete |
+| VIS-08 | Phase 8 | Complete |
+| VIS-09 | Phase 8 | Complete |
+| VIS-10 | Phase 8 | Complete |
+| ANN-07 | Phase 8 | Complete |
+| ANN-08 | Phase 8 | Complete |
 
 ---
 
