@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-22)
 
 **Core value:** Security trainers can create visual, annotated phishing training materials that clearly highlight deceptive techniques with educational context — without manual layout work.
-**Current focus:** Phase 12: Detail Carousel
+**Current focus:** Phase 13: Compact Annotation Layout
 
 ## Current Position
 
 Phase: 12 of 15 (Detail Carousel)
 Plan: 4 of 4 in current phase
 Status: Phase complete
-Last activity: 2026-01-23 — Completed 12-04: Campaign list integration with keyboard navigation
+Last activity: 2026-01-23 — Completed 12-04: carousel integration with keyboard navigation
 
-Progress: [██████████████░░░░] 79% (38/48 plans complete)
+Progress: [██████████████░░░░] 81% (38/47 plans complete)
 
 ## Performance Metrics
 
