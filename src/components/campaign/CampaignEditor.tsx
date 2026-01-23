@@ -107,8 +107,15 @@ export function CampaignEditor({ campaign, onClose, onSave, currentProject, onEd
       annotations: {},
       metadata: {
         title: `New Phish ${newPhishNumber}`,
+        author: '',
         createdAt: new Date().toISOString(),
       },
+      scoring: {
+        visualCues: 0,
+        languageCues: 0,
+        premiseAlignment: 3,
+      },
+      inputMode: 'html',
       scheduledDate: undefined,
     };
     setCampaignPhishes(prev => [...prev, newPhish]);
