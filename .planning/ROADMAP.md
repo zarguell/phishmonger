@@ -176,13 +176,13 @@ Plans:
   4. Carousel shows phish metadata (title, scheduled date, annotation count)
   5. Carousel maintains scroll position and selected card state
   6. Carousel handles 20+ phishes without performance degradation
-**Plans**: TBD
+**Plans**: 4 plans in 2 waves
 
 Plans:
-- [ ] 12-01: DetailCarousel component with horizontal scroll and snap points
-- [ ] 12-02: Carousel card design with metadata display
-- [ ] 12-03: Prev/next navigation with keyboard support (arrow keys)
-- [ ] 12-04: Editor component readOnly mode for viewing phishes from carousel
+- [ ] 12-01-PLAN.md — CarouselCard and CampaignCarousel components (wave 1)
+- [ ] 12-02-PLAN.md — ReadOnlyEditor component for viewing phishes (wave 1)
+- [ ] 12-03-PLAN.md — CampaignCarouselModal with view state management (wave 2)
+- [ ] 12-04-PLAN.md — App.tsx integration with keyboard navigation (wave 2)
 
 #### Phase 13: Compact Annotation Layout
 **Goal**: Users can toggle denser annotation display for carousel browsing
@@ -257,7 +257,7 @@ Phases execute in numeric order: 9 → 10 → 11 → 12 → 13 → 14 → 15
 | 9. Campaign Data Model & Storage | v1.2 | 4/4 | Complete | 2026-01-22 |
 | 10. Campaign Manager UI | v1.2 | 4/4 | Complete | 2026-01-22 |
 | 11. iCal Export & Integration | v1.2 | 2/2 | Complete | 2026-01-23 |
-| 12. Detail Carousel | v1.2 | 0/4 | Not started | - |
+| 12. Detail Carousel | v1.2 | 0/4 | Ready to start | - |
 | 13. Compact Annotation Layout | v1.2 | 0/3 | Not started | - |
 | 14. Sample Campaign & Demo Data | v1.2 | 0/3 | Not started | - |
 | 15. Dependency Upgrades & Polish | v1.2 | 0/5 | Not started | - |
