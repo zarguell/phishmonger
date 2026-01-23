@@ -354,6 +354,17 @@ function App() {
     setShowCampaignManager(false) // Close list, open editor
   }
 
+  const handleCloseEditor = () => {
+    setEditingCampaign(undefined)
+    setShowCampaignManager(true) // Return to campaign list
+  }
+
+  const handleSaveCampaign = (campaignId: string, updates: Partial<Omit<Campaign, 'id' | 'createdAt'>>) => {
+    updateCampaign(campaignId, updates)
+    setEditingCampaign(undefined)
+    setShowCampaignManager(true) // Return to campaign list after save
+  }
+
   if (viewMode === 'preview') {
     return (
       <div className="app app-preview-mode">
@@ -582,6 +593,14 @@ function App() {
           isOpen={showCampaignManager}
           onClose={() => setShowCampaignManager(false)}
           onEditCampaign={handleEditCampaign}
+          currentProject={currentProject}
+        />
+      )}
+      {editingCampaign && (
+        <CampaignEditor
+          campaign={editingCampaign}
+          onClose={handleCloseEditor}
+          onSave={handleSaveCampaign}
           currentProject={currentProject}
         />
       )}
