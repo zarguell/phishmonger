@@ -9,7 +9,7 @@ interface CampaignEditorProps {
   onClose: () => void;
   onSave: (campaignId: string, updates: Partial<Omit<Campaign, 'id' | 'createdAt'>>) => void;
   currentProject: Phish;
-  onEditPhish?: (phish: CampaignPhish) => void;
+  onEditPhish?: (campaignId: string, phish: CampaignPhish) => void;
 }
 
 interface FormData {
@@ -326,7 +326,8 @@ export function CampaignEditor({ campaign, onClose, onSave, currentProject, onEd
                       phish={phish}
                       onDateChange={handleDateChange}
                       onRemove={handleRemovePhish}
-                      onEdit={onEditPhish}
+                      onEdit={(phish) => onEditPhish && onEditPhish(campaign.id, phish)}
+                      campaignId={campaign.id}
                     />
                   ))}
                 </div>

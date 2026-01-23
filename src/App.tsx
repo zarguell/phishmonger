@@ -134,6 +134,7 @@ function App() {
   const [editingCampaign, setEditingCampaign] = useState<Campaign | undefined>(undefined)
   const [showCampaignCarousel, setShowCampaignCarousel] = useState(false)
   const [carouselCampaign, setCarouselCampaign] = useState<Campaign | undefined>(undefined)
+  const [editingCampaignPhish, setEditingCampaignPhish] = useState<{campaignId: string, phishId: string} | undefined>(undefined)
   const [viewMode, setViewMode] = useState<ViewMode>('edit')
   const [scaleMode, setScaleMode] = useState<ScaleMode>('fit')
   const [layoutTemplate, setLayoutTemplate] = useState<LayoutTemplate>(() => {
@@ -368,24 +369,58 @@ function App() {
     setShowCampaignManager(true) // Return to campaign list after save
   }
 
-  const handleEditPhish = (campaignPhish: CampaignPhish) => {
+  const handleEditPhish = (campaignId: string, phish: CampaignPhish) => {
     // Load phish data into main editor state
-    setHtmlSource(campaignPhish.htmlSource)
-    setAnnotations(campaignPhish.annotations)
+    setHtmlSource(phish.htmlSource)
+    setAnnotations(phish.annotations)
     setMetadata({
-      title: campaignPhish.metadata?.title || 'Untitled Phish',
-      createdAt: campaignPhish.metadata?.createdAt || new Date().toISOString(),
+      title: phish.metadata?.title || 'Untitled Phish',
+      createdAt: phish.metadata?.createdAt || new Date().toISOString(),
     })
-    if (campaignPhish.scoring) {
-      setScoring(campaignPhish.scoring)
+    if (phish.scoring) {
+      setScoring(phish.scoring)
     }
 
     // Store project ID for consistent identity
-    localStorage.setItem('phishmonger-project-id', campaignPhish.id)
+    localStorage.setItem('phishmonger-project-id', phish.id)
+
+    // Track which campaign phish is being edited for save-to-campaign workflow
+    setEditingCampaignPhish({ campaignId, phishId: phish.id })
 
     // Close campaign editor and return to main editor
     setEditingCampaign(undefined)
     setShowCampaignManager(false)
+  }
+
+  const handleSaveToCampaign = () => {
+    if (!editingCampaignPhish) return
+
+    const { campaignId, phishId } = editingCampaignPhish
+
+    // Build updated phish from current editor state
+    const updatedPhish: CampaignPhish = {
+      id: phishId,
+      htmlSource,
+      annotations,
+      metadata: {
+        title: metadata.title,
+        createdAt: metadata.createdAt,
+      },
+      scoring,
+    }
+
+    // Update the campaign
+    updateCampaign(campaignId, {
+      campaignPhishes: (editingCampaign?.campaignPhishes || []).map(p =>
+        p.id === phishId ? updatedPhish : p
+      ),
+    })
+
+    // Clear editing state
+    setEditingCampaignPhish(undefined)
+
+    // Show success feedback
+    alert('Saved to campaign!')
   }
 
   const handleViewCarousel = (campaign: Campaign) => {
@@ -486,7 +521,19 @@ function App() {
       )}
       <header className="app-header">
         <div className="header-top">
-          <h1>Phish Monger</h1>
+          <h1>
+            Phish Monger
+            {editingCampaignPhish && (
+              <span style={{
+                fontSize: '14px',
+                marginLeft: '16px',
+                color: '#28a745',
+                fontWeight: 'normal',
+              }}>
+                Editing Campaign Phish
+              </span>
+            )}
+          </h1>
            <ProjectSettings
              metadata={metadata}
              onUpdate={handleUpdateMetadata}
@@ -530,6 +577,23 @@ function App() {
           >
             Redo Annotation
           </button>
+          {editingCampaignPhish && (
+            <button
+              onClick={handleSaveToCampaign}
+              style={{
+                backgroundColor: '#28a745',
+                color: 'white',
+                border: 'none',
+                borderRadius: '4px',
+                padding: '8px 16px',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+              }}
+              type="button"
+            >
+              Save to Campaign
+            </button>
+          )}
           <button
             onClick={() => setShowCampaignManager(true)}
             type="button"

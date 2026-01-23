@@ -5,9 +5,10 @@ interface CampaignPhishItemProps {
   onDateChange: (phishId: string, date: string | undefined) => void;
   onRemove: (phishId: string) => void;
   onEdit?: (phish: CampaignPhish) => void;
+  campaignId?: string;
 }
 
-export function CampaignPhishItem({ phish, onDateChange, onRemove, onEdit }: CampaignPhishItemProps) {
+export function CampaignPhishItem({ phish, onDateChange, onRemove, onEdit, campaignId }: CampaignPhishItemProps) {
   // Convert ISO date string to YYYY-MM-DD format for date input
   const getDateInputValue = (isoDate: string | undefined): string => {
     if (!isoDate) return '';
@@ -59,7 +60,7 @@ export function CampaignPhishItem({ phish, onDateChange, onRemove, onEdit }: Cam
 
       {onEdit && (
         <button
-          onClick={() => onEdit(phish)}
+          onClick={() => campaignId && onEdit(phish)}
           style={{
             padding: '6px 12px',
             fontSize: '13px',
