@@ -29,7 +29,7 @@ import type { Phish } from './types/phish'
 import { loadAnnotations, saveAnnotations, loadScoring, saveScoring, loadMetadata, saveMetadata, exportProjectJSON, downloadProjectJSON, importProjectJSON } from './utils/storage'
 import type { ProjectJSON } from './utils/storage'
 import { initializeSchema } from './utils/schemaVersion'
-import { getStoragePercentage, isStorageNearQuota, formatBytes } from './utils/storageQuota'
+import { getStoragePercentage, isStorageNearQuota } from './utils/storageQuota'
 import './index.css'
 
 const STORAGE_KEY = 'phishmonger-html-source'
@@ -128,7 +128,7 @@ function App() {
 
   // Custom techniques management
   const { customTechniques } = useCustomTechniques()
-  const { campaigns, addCampaign, updateCampaign, deleteCampaign, addPhishToCampaign, removePhishFromCampaign, updatePhishInCampaign } = useCampaigns()
+  const { updateCampaign } = useCampaigns()
   const [showCampaignManager, setShowCampaignManager] = useState(false)
   const [editingCampaign, setEditingCampaign] = useState<Campaign | undefined>(undefined)
   const [viewMode, setViewMode] = useState<ViewMode>('edit')

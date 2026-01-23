@@ -11,7 +11,6 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import type { Campaign, CampaignInput, CampaignPhish } from '../types/campaign';
-import type { Phish } from '../types/phish';
 import { loadCampaigns, saveCampaigns } from '../utils/storage';
 
 /**
