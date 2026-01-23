@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import { Campaign } from '../../types/campaign';
 import { CampaignCard } from './CampaignCard';
 import { useCampaigns } from '../../hooks/useCampaigns';
@@ -11,8 +11,10 @@ interface CampaignManagerProps {
 }
 
 export function CampaignManager({ isOpen, onClose, onEditCampaign }: CampaignManagerProps) {
-  const { campaigns } = useCampaigns();
+  const { campaigns, addCampaign, deleteCampaign } = useCampaigns();
   const [searchQuery, setSearchQuery] = useState('');
+  const [importError, setImportError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Filter campaigns based on search query
   const filteredCampaigns = useMemo(() => {
@@ -30,6 +32,68 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign }: CampaignMan
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       onClose();
+    }
+  };
+
+  const handleDelete = (campaign: Campaign) => {
+    if (window.confirm(`Delete "${campaign.name}"? This action cannot be undone.`)) {
+      deleteCampaign(campaign.id);
+    }
+  };
+
+  const handleExport = (campaign: Campaign) => {
+    const jsonString = JSON.stringify(campaign, null, 2);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${campaign.name.replace(/[^a-z0-9]/gi, '-').toLowerCase()}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+  };
+
+  const handleImportClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    try {
+      const text = await file.text();
+      const imported = JSON.parse(text) as Campaign;
+
+      // Validate structure
+      if (!imported.id || !imported.name || typeof imported.description !== 'string' || !Array.isArray(imported.campaignPhishes)) {
+        throw new Error('Invalid campaign file structure');
+      }
+
+      // Check for duplicate ID
+      if (campaigns.some(c => c.id === imported.id)) {
+        // Generate new ID and add "(copy)" suffix
+        imported.id = crypto.randomUUID();
+        imported.name = imported.name.endsWith(' (copy)') ? imported.name : `${imported.name} (copy)`;
+      }
+
+      addCampaign({
+        name: imported.name,
+        description: imported.description,
+        campaignPhishes: imported.campaignPhishes,
+      });
+
+      setImportError(null);
+    } catch (error) {
+      setImportError(error instanceof Error ? error.message : 'Failed to import campaign');
+    }
+
+    // Reset file input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
     }
   };
 
@@ -117,7 +181,7 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign }: CampaignMan
             />
           </div>
           <button
-            onClick={() => {/* Will be wired in task 2 */}}
+            onClick={() => {/* Will be wired in task 3 */}}
             style={{
               padding: '8px 16px',
               backgroundColor: '#0066cc',
@@ -132,7 +196,7 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign }: CampaignMan
             Create New Campaign
           </button>
           <button
-            onClick={() => {/* Will be wired in task 2 */}}
+            onClick={handleImportClick}
             style={{
               padding: '8px 16px',
               backgroundColor: '#f8f9fa',
@@ -146,6 +210,18 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign }: CampaignMan
           >
             Import
           </button>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".json"
+            style={{ display: 'none' }}
+            onChange={handleFileChange}
+          />
+          {importError && (
+            <div style={{ color: '#dc2626', fontSize: '13px', maxWidth: '300px' }}>
+              {importError}
+            </div>
+          )}
         </div>
 
         {/* Content area */}
@@ -169,8 +245,8 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign }: CampaignMan
                   key={campaign.id}
                   campaign={campaign}
                   onEdit={() => onEditCampaign(campaign)}
-                  onDelete={() => {/* Will be wired in task 2 */}}
-                  onExport={() => {/* Will be wired in task 2 */}}
+                  onDelete={() => handleDelete(campaign)}
+                  onExport={() => handleExport(campaign)}
                 />
               ))}
             </div>
@@ -193,7 +269,7 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign }: CampaignMan
               </div>
               {!searchQuery.trim() && (
                 <button
-                  onClick={() => {/* Will be wired in task 2 */}}
+                  onClick={() => {/* Will be wired in task 3 */}}
                   style={{
                     padding: '10px 20px',
                     backgroundColor: '#0066cc',
