@@ -127,3 +127,49 @@
 .compact :global(.annotation-card-tags) {
   font-size: 12px;
 }
+
+/*
+ * Compact Annotations Layout
+ * Annotation cards with smaller font (12px vs 14px default)
+ * Tighter spacing (reduced padding and margins)
+ * Use case: Carousel browsing, quick review of many annotations
+ */
+.compact-annotations {
+  --layout-gap: 16px;
+}
+
+.compact-annotations :global(.annotation-column) {
+  gap: 16px;
+  padding: 24px;
+}
+
+.compact-annotations :global(.annotation-card) {
+  padding: 8px;
+}
+
+.compact-annotations :global(.annotation-title) {
+  font-size: 14px;
+  margin-bottom: 6px;
+  padding-left: 24px;
+}
+
+.compact-annotations :global(.annotation-tags) {
+  margin-bottom: 6px;
+}
+
+.compact-annotations :global(.mitre-tag),
+.compact-annotations :global(.persuasion-tag) {
+  font-size: 11px;
+  padding: 1px 5px;
+}
+
+.compact-annotations :global(.annotation-description) {
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.compact-annotations :global(.arrow-badge) {
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+}
