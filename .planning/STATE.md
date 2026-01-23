@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-22)
 ## Current Position
 
 Phase: 14 of 15 (Sample Campaign & Demo Data)
-Plan: 1 of 2 in current phase
-Status: In progress
-Last activity: 2026-01-23 — Completed 14-01: sample campaign JSON with TypeScript wrapper
+Plan: 2 of 2 in current phase
+Status: Phase complete
+Last activity: 2026-01-23 — Completed 14-02: Load Sample Campaign button
 
-Progress: [███████████████░░░░] 87% (41/47 plans complete)
+Progress: [███████████████░░░░] 89% (42/47 plans complete)
 
 ## Performance Metrics
 
@@ -105,6 +105,10 @@ Recent decisions affecting current work:
 - Phase 14: Sample campaign includes scheduled dates (2026-03-15 through 2026-03-18) for calendar export demo
 - Phase 14: All lure IDs in sample campaign HTML validated to match annotation lureId fields
 - Phase 14: All technique and persuasion principle IDs in sample campaign validated against existing data files
+- Phase 14: Load Sample Campaign button added to CampaignManager with purple color (#8b5cf6) for visual distinction
+- Phase 14: Duplicate detection checks for exact name match OR 'Sample Campaign' OR 'Demo' to prevent multiple loads
+- Phase 14: Direct button action (no modal) for simplicity and faster access to demo content
+- Phase 14: User-friendly alert message explains next steps when sample already exists
 
 ### Pending Todos
 
@@ -116,6 +120,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-23 (plan 14-01 execution)
-Stopped at: Completed 14-01-PLAN.md - Sample campaign JSON with 4 diverse phishing examples and TypeScript wrapper
+Last session: 2026-01-23 (plan 14-02 execution)
+Stopped at: Completed 14-02-PLAN.md - Load Sample Campaign button with duplicate detection
 Resume file: None
