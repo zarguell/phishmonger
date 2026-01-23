@@ -199,8 +199,10 @@ Plans:
 **Plans**: 2 plans in 2 waves
 
 Plans:
-- [ ] 13-01-PLAN.md — Storage utilities and compact-annotations CSS variant (wave 1)
-- [ ] 13-02-PLAN.md — ReadOnlyEditor toggle button with state persistence (wave 2)
+- [x] 13-01-PLAN.md — Storage utilities and compact-annotations CSS variant (wave 1)
+- [x] 13-02-PLAN.md — ReadOnlyEditor toggle button with state persistence (wave 2)
+
+**Status**: Complete — Verified 2026-01-23
 
 #### Phase 14: Sample Campaign & Demo Data
 **Goal**: Users can load sample campaign to explore features without manual setup
@@ -259,12 +261,12 @@ Phases execute in numeric order: 9 → 10 → 11 → 12 → 13 → 14 → 15
 | 10. Campaign Manager UI | v1.2 | 4/4 | Complete | 2026-01-22 |
 | 11. iCal Export & Integration | v1.2 | 2/2 | Complete | 2026-01-23 |
 | 12. Detail Carousel | v1.2 | 4/4 | Complete | 2026-01-23 |
-| 13. Compact Annotation Layout | v1.2 | 0/2 | Planned | - |
+| 13. Compact Annotation Layout | v1.2 | 2/2 | Complete | 2026-01-23 |
 | 14. Sample Campaign & Demo Data | v1.2 | 0/3 | Not started | - |
 | 15. Dependency Upgrades & Polish | v1.2 | 0/5 | Not started | - |
 
 **Overall Progress:**
 - **Total Plans:** 47
-- **Completed:** 38 (81%)
-- **Remaining:** 9
-- **v1.2 Progress:** 18/27 plans complete (67%)
+- **Completed:** 40 (85%)
+- **Remaining:** 7
+- **v1.2 Progress:** 20/27 plans complete (74%)

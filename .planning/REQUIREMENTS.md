@@ -26,8 +26,8 @@ Requirements for Campaign Management milestone. Each maps to roadmap phases.
 
 ### Visual & Browsing
 
-- [ ] **VIS-01**: User can browse campaign phishes via detail carousel (horizontal scroll, prev/next)
-- [ ] **VIS-02**: User can toggle compact annotation layout (smaller font, tighter spacing, reduced padding)
+- [x] **VIS-01**: User can browse campaign phishes via detail carousel (horizontal scroll, prev/next)
+- [x] **VIS-02**: User can toggle compact annotation layout (smaller font, tighter spacing, reduced padding)
 - [ ] **VIS-03**: System includes sample campaign JSON (3-4 well-annotated demo phishes)
 - [ ] **VIS-04**: User can load sample campaign via "Load Sample Campaign" option
 
@@ -81,8 +81,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SCH-02 | Phase 10 | Complete |
 | SCH-03 | Phase 11 | Complete |
 | SCH-04 | Phase 11 | Complete |
-| VIS-01 | Phase 12 | Pending |
-| VIS-02 | Phase 13 | Pending |
+| VIS-01 | Phase 12 | Complete |
+| VIS-02 | Phase 13 | Complete |
 | VIS-03 | Phase 14 | Pending |
 | VIS-04 | Phase 14 | Pending |
 | DAT-01 | Phase 10 | Complete |
