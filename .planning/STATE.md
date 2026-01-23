@@ -10,9 +10,9 @@ See: .planning/PROJECT.md (updated 2026-01-22)
 ## Current Position
 
 Phase: 12 of 15 (Detail Carousel)
-Plan: 2 of 3 in current phase
+Plan: 1 of 4 in current phase
 Status: In progress
-Last activity: 2026-01-23 — Completed 12-02: ReadOnlyEditor component for campaign phish viewing
+Last activity: 2026-01-23 — Completed 12-01: Detail Carousel Components with CSS scroll snap
 
 Progress: [█████████████░░░░░] 73% (35/48 plans complete)
 
@@ -75,6 +75,12 @@ Recent decisions affecting current work:
 - Phase 11: Show alert message instead of disabling button - maintains button visibility for discoverability
 - Phase 11: Filter campaign.campaignPhishes for scheduledDate truthy values to validate export eligibility
 - Phase 11: Green button color (#28a745) distinguishes export from Edit (blue) and Delete (red)
+- Phase 12: Carousel uses CSS scroll-snap-type for native horizontal scrolling (no external libraries)
+- Phase 12: CarouselCard displays thumbnail, title, date, and annotation count in 200px compact card
+- Phase 12: Selected card indicator: Blue border (#007bff) matching existing UI patterns
+- Phase 12: Hover effect uses GPU-accelerated transform (not box-shadow animation) for performance
+- Phase 12: Prev/Next buttons scroll 80% of viewport width with smooth behavior
+- Phase 12: CarouselCard placeholder icon (🎣) when no screenshot available
 - Phase 12: ReadOnlyEditor uses full-screen overlay (z-index: 50) with fixed positioning
 - Phase 12: Reuse existing preview components (EmailColumn, AnnotationColumn, SlideWrapper) for consistency
 - Phase 12: Read-only mode displays phish content without editing controls (no lure creation, no annotation editing, no scoring changes)
@@ -89,6 +95,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-23 (plan 12-02 execution)
-Stopped at: Completed 12-02-PLAN.md - ReadOnlyEditor component created
+Last session: 2026-01-23 (plan 12-01 execution)
+Stopped at: Completed 12-01-PLAN.md - Carousel components created with CSS scroll snap
 Resume file: None
