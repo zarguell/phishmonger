@@ -88,13 +88,15 @@ export function useCampaigns() {
    * @param updates - Partial campaign data to merge
    */
   const updateCampaign = useCallback((id: string, updates: Partial<Omit<Campaign, 'id' | 'createdAt'>>): void => {
-    const existing = campaigns.find(c => c.id === id);
+    // Load fresh data from localStorage to avoid stale closure issues
+    const freshCampaigns = loadCampaigns();
+    const existing = freshCampaigns.find(c => c.id === id);
     if (!existing) {
       console.warn(`Cannot update non-existent campaign: ${id}`);
       return;
     }
 
-    const updated = campaigns.map(c =>
+    const updated = freshCampaigns.map(c =>
       c.id === id
         ? { ...c, ...updates }
         : c
@@ -102,7 +104,7 @@ export function useCampaigns() {
 
     setCampaigns(updated);
     saveToStorage(updated);
-  }, [campaigns, saveToStorage]);
+  }, [saveToStorage]);
 
   /**
    * Delete a campaign
