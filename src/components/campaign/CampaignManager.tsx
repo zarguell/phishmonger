@@ -8,10 +8,11 @@ interface CampaignManagerProps {
   isOpen: boolean;
   onClose: () => void;
   onEditCampaign: (campaign: Campaign) => void;
+  onCarousel?: (campaign: Campaign) => void;
   currentProject?: any; // Optional - for future "add current project" feature
 }
 
-export function CampaignManager({ isOpen, onClose, onEditCampaign }: CampaignManagerProps) {
+export function CampaignManager({ isOpen, onClose, onEditCampaign, onCarousel }: CampaignManagerProps) {
   const { campaigns, addCampaign, deleteCampaign } = useCampaigns();
   const [searchQuery, setSearchQuery] = useState('');
   const [importError, setImportError] = useState<string | null>(null);
@@ -309,6 +310,7 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign }: CampaignMan
                   onDelete={() => handleDelete(campaign)}
                   onExport={() => handleExport(campaign)}
                   onExportICal={() => handleExportICal(campaign)}
+                  onViewCarousel={onCarousel ? () => onCarousel(campaign) : undefined}
                 />
               ))}
             </div>

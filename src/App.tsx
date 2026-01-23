@@ -21,6 +21,7 @@ import { useCampaigns } from './hooks/useCampaigns'
 import KeyboardShortcutHelp from './components/shortcuts/KeyboardShortcutHelp'
 import { CampaignManager } from './components/campaign/CampaignManager'
 import { CampaignEditor } from './components/campaign/CampaignEditor'
+import { CampaignCarouselModal } from './components/campaign/CampaignCarouselModal'
 import type { Annotation } from './types/annotations'
 import type { ScoringData } from './types/scoring'
 import type { ProjectMetadata } from './types/project'
@@ -131,6 +132,8 @@ function App() {
   const { updateCampaign } = useCampaigns()
   const [showCampaignManager, setShowCampaignManager] = useState(false)
   const [editingCampaign, setEditingCampaign] = useState<Campaign | undefined>(undefined)
+  const [showCampaignCarousel, setShowCampaignCarousel] = useState(false)
+  const [carouselCampaign, setCarouselCampaign] = useState<Campaign | undefined>(undefined)
   const [viewMode, setViewMode] = useState<ViewMode>('edit')
   const [scaleMode, setScaleMode] = useState<ScaleMode>('fit')
   const [layoutTemplate, setLayoutTemplate] = useState<LayoutTemplate>(() => {
@@ -365,6 +368,17 @@ function App() {
     setShowCampaignManager(true) // Return to campaign list after save
   }
 
+  const handleViewCarousel = (campaign: Campaign) => {
+    setCarouselCampaign(campaign)
+    setShowCampaignCarousel(true)
+    setShowCampaignManager(false) // Close campaign list when opening carousel
+  }
+
+  const handleCloseCarousel = () => {
+    setShowCampaignCarousel(false)
+    setCarouselCampaign(undefined)
+  }
+
   if (viewMode === 'preview') {
     return (
       <div className="app app-preview-mode">
@@ -593,6 +607,7 @@ function App() {
           isOpen={showCampaignManager}
           onClose={() => setShowCampaignManager(false)}
           onEditCampaign={handleEditCampaign}
+          onCarousel={handleViewCarousel}
           currentProject={currentProject}
         />
       )}
@@ -602,6 +617,13 @@ function App() {
           onClose={handleCloseEditor}
           onSave={handleSaveCampaign}
           currentProject={currentProject}
+        />
+      )}
+      {showCampaignCarousel && carouselCampaign && (
+        <CampaignCarouselModal
+          isOpen={showCampaignCarousel}
+          onClose={handleCloseCarousel}
+          campaign={carouselCampaign}
         />
       )}
     </div>
