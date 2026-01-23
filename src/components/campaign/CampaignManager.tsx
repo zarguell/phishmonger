@@ -2,6 +2,7 @@ import { useState, useMemo, useRef } from 'react';
 import { Campaign } from '../../types/campaign';
 import { CampaignCard } from './CampaignCard';
 import { useCampaigns } from '../../hooks/useCampaigns';
+import { downloadCampaignICal } from '../../utils/icalExport';
 
 interface CampaignManagerProps {
   isOpen: boolean;
@@ -59,6 +60,14 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign }: CampaignMan
     document.body.removeChild(link);
 
     URL.revokeObjectURL(url);
+  };
+
+  const handleExportICal = (campaign: Campaign) => {
+    try {
+      downloadCampaignICal(campaign);
+    } catch (error) {
+      console.error('Failed to export iCal:', error);
+    }
   };
 
   const handleImportClick = () => {
@@ -291,6 +300,7 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign }: CampaignMan
                   onEdit={() => onEditCampaign(campaign)}
                   onDelete={() => handleDelete(campaign)}
                   onExport={() => handleExport(campaign)}
+                  onExportICal={() => handleExportICal(campaign)}
                 />
               ))}
             </div>
