@@ -5,9 +5,10 @@ interface CampaignCardProps {
   onEdit: () => void;
   onDelete: () => void;
   onExport: () => void;
+  onExportICal: () => void;
 }
 
-export function CampaignCard({ campaign, onEdit, onDelete, onExport }: CampaignCardProps) {
+export function CampaignCard({ campaign, onEdit, onDelete, onExport, onExportICal }: CampaignCardProps) {
   // Calculate date range from campaign phishes
   const getDateRange = () => {
     const scheduledDates = campaign.campaignPhishes
@@ -149,6 +150,20 @@ export function CampaignCard({ campaign, onEdit, onDelete, onExport }: CampaignC
           }}
         >
           Export
+        </button>
+        <button
+          onClick={onExportICal}
+          style={{
+            padding: '6px 12px',
+            fontSize: '13px',
+            backgroundColor: '#28a745',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+          }}
+        >
+          Export Calendar
         </button>
       </div>
     </div>
