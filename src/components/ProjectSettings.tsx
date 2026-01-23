@@ -112,7 +112,7 @@ export const ProjectSettings: React.FC<ProjectSettingsProps> = ({
             <input
               id="project-title"
               type="text"
-              value={metadata.title}
+              value={metadata.title || ''}
               onChange={handleTitleChange}
               placeholder="Enter project title"
             />
@@ -123,7 +123,7 @@ export const ProjectSettings: React.FC<ProjectSettingsProps> = ({
             <input
               id="project-author"
               type="text"
-              value={metadata.author}
+              value={metadata.author || ''}
               onChange={handleAuthorChange}
               placeholder="Enter author name"
             />
