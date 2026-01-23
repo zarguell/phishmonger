@@ -217,10 +217,10 @@ Plans:
 **Plans**: 2 plans in 2 waves
 
 Plans:
-- [ ] 14-01-PLAN.md — Create sample campaign JSON with TypeScript wrapper (wave 1)
-- [ ] 14-02-PLAN.md — Add Load Sample Campaign button to CampaignManager (wave 2)
+- [x] 14-01-PLAN.md — Create sample campaign JSON with TypeScript wrapper (wave 1)
+- [x] 14-02-PLAN.md — Add Load Sample Campaign button to CampaignManager (wave 2)
 
-**Status**: Planning complete
+**Status**: Complete — Verified 2026-01-23
 
 #### Phase 15: Dependency Upgrades & Polish
 **Goal**: All major dependencies upgraded and verified working
@@ -263,11 +263,11 @@ Phases execute in numeric order: 9 → 10 → 11 → 12 → 13 → 14 → 15
 | 11. iCal Export & Integration | v1.2 | 2/2 | Complete | 2026-01-23 |
 | 12. Detail Carousel | v1.2 | 4/4 | Complete | 2026-01-23 |
 | 13. Compact Annotation Layout | v1.2 | 2/2 | Complete | 2026-01-23 |
-| 14. Sample Campaign & Demo Data | v1.2 | 0/2 | Planning complete | - |
+| 14. Sample Campaign & Demo Data | v1.2 | 2/2 | Complete | 2026-01-23 |
 | 15. Dependency Upgrades & Polish | v1.2 | 0/5 | Not started | - |
 
 **Overall Progress:**
 - **Total Plans:** 47
-- **Completed:** 40 (85%)
-- **Remaining:** 7
-- **v1.2 Progress:** 20/27 plans complete (74%)
+- **Completed:** 42 (89%)
+- **Remaining:** 5
+- **v1.2 Progress:** 22/27 plans complete (81%)
