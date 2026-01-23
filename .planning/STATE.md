@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-22)
 ## Current Position
 
 Phase: 10 of 15 (Campaign Manager UI)
-Plan: 3 of 5 in current phase
+Plan: 2 of 5 in current phase
 Status: In progress
-Last activity: 2026-01-23 — Completed 10-03: CampaignEditor modal with phish management
+Last activity: 2026-01-23 — Completed 10-02: CampaignManager modal with CRUD operations
 
-Progress: [████████████░░░░░░] 62% (30/48 plans complete)
+Progress: [███████████░░░░░░░] 60% (29/48 plans complete)
 
 ## Performance Metrics
 
@@ -58,6 +58,11 @@ Recent decisions affecting current work:
 - Phase 10: Inline styles for UI components follow TechniqueLibrary pattern
 - Phase 10: Controlled form components with useState (no external form libraries)
 - Phase 10: Immutable state updates for array operations
+- Phase 10: Use window.confirm() for delete confirmation in list view (simpler UX than type-to-confirm)
+- Phase 10: File import uses FileReader API with hidden input trigger pattern
+- Phase 10: Export uses URL.createObjectURL pattern for JSON downloads
+- Phase 10: Duplicate imports get new ID + " (copy)" suffix
+- Phase 10: Nested modals use higher z-index (60 vs 50 for parent)
 - Phase 15: Dependency upgrades deferred to final phase to reduce risk
 
 ### Pending Todos
@@ -70,6 +75,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-23 (plan 10-03 execution)
-Stopped at: Completed 10-03-PLAN.md - CampaignEditor modal complete
+Last session: 2026-01-23 (plan 10-02 execution)
+Stopped at: Completed 10-02-PLAN.md - CampaignManager modal complete
 Resume file: None
