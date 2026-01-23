@@ -70,24 +70,24 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CMP-01 | Phase 10 | Pending |
-| CMP-02 | Phase 10 | Pending |
-| CMP-03 | Phase 10 | Pending |
-| CMP-04 | Phase 10 | Pending |
-| CMP-05 | Phase 10 | Pending |
-| CMP-06 | Phase 10 | Pending |
-| CMP-07 | Phase 10 | Pending |
-| SCH-01 | Phase 10 | Pending |
-| SCH-02 | Phase 10 | Pending |
+| CMP-01 | Phase 10 | Complete |
+| CMP-02 | Phase 10 | Complete |
+| CMP-03 | Phase 10 | Complete |
+| CMP-04 | Phase 10 | Complete |
+| CMP-05 | Phase 10 | Complete |
+| CMP-06 | Phase 10 | Complete |
+| CMP-07 | Phase 10 | Complete |
+| SCH-01 | Phase 10 | Complete |
+| SCH-02 | Phase 10 | Complete |
 | SCH-03 | Phase 11 | Pending |
 | SCH-04 | Phase 11 | Pending |
 | VIS-01 | Phase 12 | Pending |
 | VIS-02 | Phase 13 | Pending |
 | VIS-03 | Phase 14 | Pending |
 | VIS-04 | Phase 14 | Pending |
-| DAT-01 | Phase 10 | Pending |
-| DAT-02 | Phase 10 | Pending |
-| DAT-03 | Phase 10 | Pending |
+| DAT-01 | Phase 10 | Complete |
+| DAT-02 | Phase 10 | Complete |
+| DAT-03 | Phase 10 | Complete |
 | DAT-04 | Phase 9 | Complete |
 | DAT-05 | Phase 9 | Complete |
 | DEP-01 | Phase 15 | Pending |
