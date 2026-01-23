@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-22)
 ## Current Position
 
 Phase: 11 of 15 (iCal Export & Integration)
-Plan: 1 of 2 in current phase
-Status: In progress
-Last activity: 2026-01-23 — Completed 11-01: iCal export foundation
+Plan: 2 of 2 in current phase
+Status: Phase complete
+Last activity: 2026-01-23 — Completed 11-02: iCal export UI integration
 
-Progress: [████████████░░░░░░] 69% (33/48 plans complete)
+Progress: [█████████████░░░░░] 71% (34/48 plans complete)
 
 ## Performance Metrics
 
@@ -72,6 +72,9 @@ Recent decisions affecting current work:
 - Phase 11: Use UTC times instead of VTIMEZONE components to avoid timezone complexity
 - Phase 11: iCal export uses ical-generator library for RFC 5545 compliance
 - Phase 11: Client-side file generation with Blob and URL.createObjectURL pattern
+- Phase 11: Show alert message instead of disabling button - maintains button visibility for discoverability
+- Phase 11: Filter campaign.campaignPhishes for scheduledDate truthy values to validate export eligibility
+- Phase 11: Green button color (#28a745) distinguishes export from Edit (blue) and Delete (red)
 
 ### Pending Todos
 
@@ -83,6 +86,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-23 (plan 11-01 execution)
-Stopped at: Completed 11-01-PLAN.md - iCal export foundation complete
+Last session: 2026-01-23 (plan 11-02 execution)
+Stopped at: Completed 11-02-PLAN.md - iCal export UI integration complete with validation
 Resume file: None
