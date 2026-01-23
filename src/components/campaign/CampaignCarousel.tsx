@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useHotkeys } from 'react-hotkeys-hook';
 import { Campaign } from '../../types/campaign';
 import { CarouselCard } from './CarouselCard';
 
@@ -30,6 +31,17 @@ export function CampaignCarousel({ campaign, onCardClick }: CampaignCarouselProp
       });
     }
   };
+
+  // Keyboard navigation with arrow keys
+  useHotkeys('arrowleft', (e) => {
+    e.preventDefault();
+    scrollLeft();
+  }, { enableOnFormTags: true }, [scrollContainerRef]);
+
+  useHotkeys('arrowright', (e) => {
+    e.preventDefault();
+    scrollRight();
+  }, { enableOnFormTags: true }, [scrollContainerRef]);
 
   const handleCardClick = (phish: CampaignPhish) => {
     setSelectedPhishId(phish.id);
@@ -156,6 +168,7 @@ export function CampaignCarousel({ campaign, onCardClick }: CampaignCarouselProp
       {/* Scroll container */}
       <div
         ref={scrollContainerRef}
+        tabIndex={0}
         style={{
           display: 'flex',
           overflowX: 'scroll',
@@ -164,6 +177,14 @@ export function CampaignCarousel({ campaign, onCardClick }: CampaignCarouselProp
           padding: '16px 56px', // Extra padding for navigation buttons
           scrollbarWidth: 'none', // Firefox
           msOverflowStyle: 'none', // IE/Edge
+          outline: 'none',
+        }}
+        onFocus={(e) => {
+          e.currentTarget.style.outline = '2px solid #007bff';
+          e.currentTarget.style.outlineOffset = '2px';
+        }}
+        onBlur={(e) => {
+          e.currentTarget.style.outline = 'none';
         }}
       >
         <style>{`
