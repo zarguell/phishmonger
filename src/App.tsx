@@ -129,7 +129,7 @@ function App() {
 
   // Custom techniques management
   const { customTechniques } = useCustomTechniques()
-  const { updateCampaign } = useCampaigns()
+  const { updateCampaign, updatePhishInCampaign } = useCampaigns()
   const [showCampaignManager, setShowCampaignManager] = useState(false)
   const [editingCampaign, setEditingCampaign] = useState<Campaign | undefined>(undefined)
   const [showCampaignCarousel, setShowCampaignCarousel] = useState(false)
@@ -397,9 +397,10 @@ function App() {
 
     const { campaignId, phishId } = editingCampaignPhish
 
+    console.log('🐛 [SaveToCampaign] Starting save:', { campaignId, phishId })
+
     // Build updated phish from current editor state
-    const updatedPhish: CampaignPhish = {
-      id: phishId,
+    const updatedPhish: Partial<CampaignPhish> = {
       htmlSource,
       annotations,
       metadata: {
@@ -407,14 +408,15 @@ function App() {
         createdAt: metadata.createdAt,
       },
       scoring,
+      inputMode,
     }
 
-    // Update the campaign
-    updateCampaign(campaignId, {
-      campaignPhishes: (editingCampaign?.campaignPhishes || []).map(p =>
-        p.id === phishId ? updatedPhish : p
-      ),
-    })
+    console.log('🐛 [SaveToCampaign] Updated phish data:', updatedPhish)
+
+    // Update the phish within the campaign using the dedicated hook function
+    updatePhishInCampaign(campaignId, phishId, updatedPhish)
+
+    console.log('🐛 [SaveToCampaign] Called updatePhishInCampaign')
 
     // Clear editing state
     setEditingCampaignPhish(undefined)

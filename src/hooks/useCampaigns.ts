@@ -180,21 +180,35 @@ export function useCampaigns() {
    * @param updates - Partial phish data to merge
    */
   const updatePhishInCampaign = useCallback((campaignId: string, phishId: string, updates: Partial<Omit<CampaignPhish, 'id'>>): void => {
+    console.log('🐛 [updatePhishInCampaign] Input:', { campaignId, phishId, updates })
+    console.log('🐛 [updatePhishInCampaign] Current campaigns:', campaigns)
+
     const campaign = campaigns.find(c => c.id === campaignId);
     if (!campaign) {
       console.warn(`Cannot update phish in non-existent campaign: ${campaignId}`);
       return;
     }
 
+    console.log('🐛 [updatePhishInCampaign] Found campaign:', campaign.name, 'with', campaign.campaignPhishes.length, 'phishes')
+    console.log('🐛 [updatePhishInCampaign] Looking for phish ID:', phishId)
+
     const updated = campaigns.map(c => {
       if (c.id === campaignId) {
-        const updatedPhishes = c.campaignPhishes.map(p =>
-          p.id === phishId ? { ...p, ...updates } : p
-        );
+        const updatedPhishes = c.campaignPhishes.map(p => {
+          const match = p.id === phishId
+          if (match) {
+            console.log('🐛 [updatePhishInCampaign] Found matching phish:', p.metadata.title)
+            console.log('🐛 [updatePhishInCampaign] Merging with updates:', updates)
+          }
+          return match ? { ...p, ...updates } : p
+        });
+        console.log('🐛 [updatePhishInCampaign] Updated phishes array length:', updatedPhishes.length)
         return { ...c, campaignPhishes: updatedPhishes };
       }
       return c;
     });
+
+    console.log('🐛 [updatePhishInCampaign] Final updated campaigns:', updated)
 
     setCampaigns(updated);
     saveToStorage(updated);

@@ -96,7 +96,16 @@ export function CampaignEditor({ campaign, onClose, onSave, currentProject, onEd
     }
 
     const copiedPhish = copyPhishForCampaign(currentProject);
-    setCampaignPhishes(prev => [...prev, copiedPhish]);
+    const updatedPhishes = [...campaignPhishes, copiedPhish];
+    setCampaignPhishes(updatedPhishes);
+
+    // Immediately save the campaign with the new phish
+    // Use campaign props (not form state) to ensure we don't overwrite with stale form data
+    onSave(campaign.id, {
+      name: campaign.name,
+      description: campaign.description,
+      campaignPhishes: updatedPhishes,
+    });
   };
 
   const handleCreateNewPhish = () => {
@@ -118,7 +127,17 @@ export function CampaignEditor({ campaign, onClose, onSave, currentProject, onEd
       inputMode: 'html',
       scheduledDate: undefined,
     };
-    setCampaignPhishes(prev => [...prev, newPhish]);
+
+    const updatedPhishes = [...campaignPhishes, newPhish];
+    setCampaignPhishes(updatedPhishes);
+
+    // Immediately save the campaign with the new phish
+    // Use campaign props (not form state) to ensure we don't overwrite with stale form data
+    onSave(campaign.id, {
+      name: campaign.name,
+      description: campaign.description,
+      campaignPhishes: updatedPhishes,
+    });
   };
 
   const isCurrentProjectInCampaign = campaignPhishes.some(p => p.id === currentProject.id);
