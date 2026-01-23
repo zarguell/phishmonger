@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-22)
 
 ## Current Position
 
-Phase: 11 of 15 (iCal Export & Integration)
-Plan: 2 of 2 in current phase
-Status: Phase complete
-Last activity: 2026-01-23 — Completed 11-02: iCal export UI integration with validation
+Phase: 12 of 15 (Detail Carousel)
+Plan: 2 of 3 in current phase
+Status: In progress
+Last activity: 2026-01-23 — Completed 12-02: ReadOnlyEditor component for campaign phish viewing
 
-Progress: [█████████████░░░░░] 71% (34/48 plans complete)
+Progress: [█████████████░░░░░] 73% (35/48 plans complete)
 
 ## Performance Metrics
 
@@ -75,6 +75,9 @@ Recent decisions affecting current work:
 - Phase 11: Show alert message instead of disabling button - maintains button visibility for discoverability
 - Phase 11: Filter campaign.campaignPhishes for scheduledDate truthy values to validate export eligibility
 - Phase 11: Green button color (#28a745) distinguishes export from Edit (blue) and Delete (red)
+- Phase 12: ReadOnlyEditor uses full-screen overlay (z-index: 50) with fixed positioning
+- Phase 12: Reuse existing preview components (EmailColumn, AnnotationColumn, SlideWrapper) for consistency
+- Phase 12: Read-only mode displays phish content without editing controls (no lure creation, no annotation editing, no scoring changes)
 
 ### Pending Todos
 
@@ -86,6 +89,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-23 (plan 11-02 execution)
-Stopped at: Completed 11-02-PLAN.md - iCal export UI integration complete with validation
+Last session: 2026-01-23 (plan 12-02 execution)
+Stopped at: Completed 12-02-PLAN.md - ReadOnlyEditor component created
 Resume file: None
