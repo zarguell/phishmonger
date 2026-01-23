@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { CampaignPhish } from '../../types/campaign'
 import { SlideWrapper } from '../preview/SlideWrapper'
 import { EmailColumn } from '../preview/EmailColumn'
@@ -15,7 +16,18 @@ interface ReadOnlyEditorProps {
  * Users can browse phish content but cannot modify lures, annotations, or scoring.
  */
 export function ReadOnlyEditor({ phish, onBack }: ReadOnlyEditorProps) {
+  const [showAnnotations, setShowAnnotations] = useState(true)
   const hasContent = phish.htmlSource && phish.htmlSource.trim().length > 0
+
+  const handleCopyHTML = async () => {
+    try {
+      await navigator.clipboard.writeText(phish.htmlSource)
+      alert('HTML copied to clipboard!')
+    } catch (error) {
+      console.error('Failed to copy HTML:', error)
+      alert('Failed to copy HTML')
+    }
+  }
 
   return (
     <div
@@ -31,7 +43,7 @@ export function ReadOnlyEditor({ phish, onBack }: ReadOnlyEditorProps) {
         zIndex: 50,
       }}
     >
-      {/* Header with back button */}
+      {/* Header with back button and controls */}
       <div
         style={{
           display: 'flex',
@@ -41,6 +53,7 @@ export function ReadOnlyEditor({ phish, onBack }: ReadOnlyEditorProps) {
           borderBottom: '1px solid #e1e5e9',
           backgroundColor: '#ffffff',
           boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
+          gap: '12px',
         }}
       >
         <button
@@ -75,11 +88,50 @@ export function ReadOnlyEditor({ phish, onBack }: ReadOnlyEditorProps) {
             color: '#2c3e50',
             flex: 1,
             textAlign: 'center',
-            paddingRight: '140px', // Balance the back button width
           }}
         >
           {phish.metadata.title || 'Untitled Phish'}
         </h2>
+
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <button
+            onClick={() => setShowAnnotations(!showAnnotations)}
+            type="button"
+            style={{
+              backgroundColor: showAnnotations ? '#6c757d' : '#28a745',
+              color: '#ffffff',
+              border: 'none',
+              padding: '8px 16px',
+              borderRadius: '4px',
+              fontSize: '13px',
+              fontWeight: '500',
+              cursor: 'pointer',
+              transition: 'background-color 0.2s',
+            }}
+            title={showAnnotations ? 'Hide annotations' : 'Show annotations'}
+          >
+            {showAnnotations ? 'Hide Annotations' : 'Show Annotations'}
+          </button>
+
+          <button
+            onClick={handleCopyHTML}
+            type="button"
+            style={{
+              backgroundColor: '#17a2b8',
+              color: '#ffffff',
+              border: 'none',
+              padding: '8px 16px',
+              borderRadius: '4px',
+              fontSize: '13px',
+              fontWeight: '500',
+              cursor: 'pointer',
+              transition: 'background-color 0.2s',
+            }}
+            title="Copy raw HTML to clipboard"
+          >
+            Copy HTML
+          </button>
+        </div>
       </div>
 
       {/* Main content area */}
@@ -117,20 +169,22 @@ export function ReadOnlyEditor({ phish, onBack }: ReadOnlyEditorProps) {
             }}
           >
             <SlideWrapper
-              annotations={phish.annotations}
+              annotations={showAnnotations ? phish.annotations : {}}
               scoring={phish.scoring}
-              showBadge={!!phish.scoring}
+              showBadge={!!phish.scoring && showAnnotations}
             >
               <EmailColumn
                 htmlSource={phish.htmlSource}
-                annotations={phish.annotations}
+                annotations={showAnnotations ? phish.annotations : {}}
                 arrowStyle="classic"
               />
-              <AnnotationColumn
-                annotations={phish.annotations}
-                arrowStyle="classic"
-                showTags={true}
-              />
+              {showAnnotations && (
+                <AnnotationColumn
+                  annotations={phish.annotations}
+                  arrowStyle="classic"
+                  showTags={true}
+                />
+              )}
             </SlideWrapper>
           </div>
         )}
