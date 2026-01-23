@@ -214,12 +214,13 @@ Plans:
   3. User can load sample campaign via "Load Sample Campaign" option
   4. Sample campaign imports without duplicate conflicts (unique IDs)
   5. Sample campaign appears in campaign list after loading
-**Plans**: TBD
+**Plans**: 2 plans in 2 waves
 
 Plans:
-- [ ] 14-01: Create sample campaign JSON with 3-4 diverse, well-annotated phishes
-- [ ] 14-02: Add "Load Sample Campaign" button to campaign list view
-- [ ] 14-03: Implement sample campaign import logic with duplicate detection
+- [ ] 14-01-PLAN.md — Create sample campaign JSON with TypeScript wrapper (wave 1)
+- [ ] 14-02-PLAN.md — Add Load Sample Campaign button to CampaignManager (wave 2)
+
+**Status**: Planning complete
 
 #### Phase 15: Dependency Upgrades & Polish
 **Goal**: All major dependencies upgraded and verified working
@@ -262,7 +263,7 @@ Phases execute in numeric order: 9 → 10 → 11 → 12 → 13 → 14 → 15
 | 11. iCal Export & Integration | v1.2 | 2/2 | Complete | 2026-01-23 |
 | 12. Detail Carousel | v1.2 | 4/4 | Complete | 2026-01-23 |
 | 13. Compact Annotation Layout | v1.2 | 2/2 | Complete | 2026-01-23 |
-| 14. Sample Campaign & Demo Data | v1.2 | 0/3 | Not started | - |
+| 14. Sample Campaign & Demo Data | v1.2 | 0/2 | Planning complete | - |
 | 15. Dependency Upgrades & Polish | v1.2 | 0/5 | Not started | - |
 
 **Overall Progress:**
