@@ -5,21 +5,21 @@
 See: .planning/PROJECT.md (updated 2026-01-22)
 
 **Core value:** Security trainers can create visual, annotated phishing training materials that clearly highlight deceptive techniques with educational context — without manual layout work.
-**Current focus:** Phase 10: Campaign Manager UI
+**Current focus:** Phase 11: iCal Export & Integration
 
 ## Current Position
 
-Phase: 10 of 15 (Campaign Manager UI)
-Plan: 4 of 4 in current phase
-Status: Phase complete
-Last activity: 2026-01-22 — Completed 10-04: Campaign management integration with App.tsx
+Phase: 11 of 15 (iCal Export & Integration)
+Plan: 1 of 2 in current phase
+Status: In progress
+Last activity: 2026-01-23 — Completed 11-01: iCal export foundation
 
-Progress: [████████████░░░░░░] 67% (32/48 plans complete)
+Progress: [████████████░░░░░░] 69% (33/48 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 30
+- Total plans completed: 33
 - Average duration: TBD
 - Total execution time: TBD
 
@@ -28,7 +28,7 @@ Progress: [████████████░░░░░░] 67% (32/48 pl
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1-8 | 24 | TBD | TBD |
-| 9-15 | 6 | - | - |
+| 9-15 | 9 | - | - |
 
 **Recent Trend:**
 - Last 5 plans: TBD
@@ -68,6 +68,10 @@ Recent decisions affecting current work:
 - Phase 10: Duplicate imports get new ID + " (copy)" suffix
 - Phase 10: Nested modals use higher z-index (60 vs 50 for parent)
 - Phase 15: Dependency upgrades deferred to final phase to reduce risk
+- Phase 11: Use 9:00 AM UTC for all iCal events (arbitrary time - only date matters for training campaigns)
+- Phase 11: Use UTC times instead of VTIMEZONE components to avoid timezone complexity
+- Phase 11: iCal export uses ical-generator library for RFC 5545 compliance
+- Phase 11: Client-side file generation with Blob and URL.createObjectURL pattern
 
 ### Pending Todos
 
@@ -79,6 +83,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-23 (plan 10-04 execution)
-Stopped at: Completed 10-04-PLAN.md - Campaign management fully integrated
+Last session: 2026-01-23 (plan 11-01 execution)
+Stopped at: Completed 11-01-PLAN.md - iCal export foundation complete
 Resume file: None
