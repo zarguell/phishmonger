@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { HTMLInput } from './components/HTMLInput'
 import { Editor } from './components/Editor'
@@ -17,10 +17,15 @@ import { LayoutTemplateSelector, type LayoutTemplate } from './components/visual
 import { VisibilityToggles } from './components/visualizer/VisibilityToggles'
 import { useUndoRedo } from './hooks/useUndoRedo'
 import { useCustomTechniques } from './hooks/useCustomTechniques'
+import { useCampaigns } from './hooks/useCampaigns'
 import KeyboardShortcutHelp from './components/shortcuts/KeyboardShortcutHelp'
+import { CampaignManager } from './components/campaign/CampaignManager'
+import { CampaignEditor } from './components/campaign/CampaignEditor'
 import type { Annotation } from './types/annotations'
 import type { ScoringData } from './types/scoring'
 import type { ProjectMetadata } from './types/project'
+import type { Campaign } from './types/campaign'
+import type { Phish } from './types/phish'
 import { loadAnnotations, saveAnnotations, loadScoring, saveScoring, loadMetadata, saveMetadata, exportProjectJSON, downloadProjectJSON, importProjectJSON } from './utils/storage'
 import type { ProjectJSON } from './utils/storage'
 import { initializeSchema } from './utils/schemaVersion'
@@ -123,6 +128,9 @@ function App() {
 
   // Custom techniques management
   const { customTechniques } = useCustomTechniques()
+  const { campaigns, addCampaign, updateCampaign, deleteCampaign, addPhishToCampaign, removePhishFromCampaign, updatePhishInCampaign } = useCampaigns()
+  const [showCampaignManager, setShowCampaignManager] = useState(false)
+  const [editingCampaign, setEditingCampaign] = useState<Campaign | undefined>(undefined)
   const [viewMode, setViewMode] = useState<ViewMode>('edit')
   const [scaleMode, setScaleMode] = useState<ScaleMode>('fit')
   const [layoutTemplate, setLayoutTemplate] = useState<LayoutTemplate>(() => {
@@ -189,6 +197,25 @@ function App() {
   useEffect(() => {
     saveMetadata(metadata)
   }, [metadata])
+
+  // Build currentProject Phish object from App state for campaign integration
+  const currentProject = useMemo<Phish>(() => {
+    // Get or generate project ID from localStorage
+    let projectId = localStorage.getItem('phishmonger-project-id')
+    if (!projectId) {
+      projectId = crypto.randomUUID()
+      localStorage.setItem('phishmonger-project-id', projectId)
+    }
+
+    return {
+      id: projectId,
+      metadata,
+      htmlSource,
+      annotations,
+      scoring,
+      inputMode,
+    }
+  }, [metadata, htmlSource, annotations, scoring, inputMode])
 
   // Global keyboard shortcuts for undo/redo (disabled in form inputs)
   useHotkeys('ctrl+z, cmd+z', (e) => {
