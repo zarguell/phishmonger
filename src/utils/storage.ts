@@ -230,6 +230,35 @@ export const downloadProjectJSON = (jsonString: string, filename: string) => {
   URL.revokeObjectURL(url)
 }
 
+// Compact layout preference
+
+const COMPACT_LAYOUT_KEY = 'phishmonger-compact-layout';
+
+/**
+ * Load compact layout preference from LocalStorage
+ * Returns false by default (disabled)
+ */
+export function loadCompactLayout(): boolean {
+  try {
+    const saved = localStorage.getItem(COMPACT_LAYOUT_KEY);
+    return saved === 'true';
+  } catch (error) {
+    console.error('Failed to load compact layout preference:', error);
+    return false;
+  }
+}
+
+/**
+ * Save compact layout preference to LocalStorage
+ */
+export function saveCompactLayout(enabled: boolean): void {
+  try {
+    localStorage.setItem(COMPACT_LAYOUT_KEY, String(enabled));
+  } catch (error) {
+    console.error('Failed to save compact layout preference:', error);
+  }
+}
+
 // Campaign storage
 
 const CAMPAIGNS_KEY = 'phishmonger-campaigns';
