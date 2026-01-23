@@ -39,8 +39,8 @@ export function generateCampaignICal(campaign: Campaign): string {
       calendar.createEvent({
         start: startDate,
         end: endDate,
-        summary: `${campaign.name}: ${phish.title}`,
-        description: phish.description || '',
+        summary: `${campaign.name}: ${phish.metadata.title}`,
+        description: phish.metadata.description || '',
         uid: crypto.randomUUID(),
         stamp: new Date()
       });
