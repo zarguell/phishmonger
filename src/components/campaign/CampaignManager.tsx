@@ -63,6 +63,14 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign }: CampaignMan
   };
 
   const handleExportICal = (campaign: Campaign) => {
+    // Check if campaign has any phishes with scheduled dates
+    const scheduledPhishes = campaign.campaignPhishes.filter(phish => phish.scheduledDate);
+
+    if (scheduledPhishes.length === 0) {
+      alert('This campaign has no scheduled phishes. Add dates to phishes in the campaign editor before exporting to calendar.');
+      return;
+    }
+
     try {
       downloadCampaignICal(campaign);
     } catch (error) {
