@@ -6,9 +6,10 @@ interface CampaignCardProps {
   onDelete: () => void;
   onExport: () => void;
   onExportICal: () => void;
+  onViewCarousel?: () => void;
 }
 
-export function CampaignCard({ campaign, onEdit, onDelete, onExport, onExportICal }: CampaignCardProps) {
+export function CampaignCard({ campaign, onEdit, onDelete, onExport, onExportICal, onViewCarousel }: CampaignCardProps) {
   // Calculate date range from campaign phishes
   const getDateRange = () => {
     const scheduledDates = campaign.campaignPhishes
@@ -123,6 +124,23 @@ export function CampaignCard({ campaign, onEdit, onDelete, onExport, onExportICa
         >
           Edit
         </button>
+        {onViewCarousel && campaign.campaignPhishes.length > 0 && (
+          <button
+            onClick={onViewCarousel}
+            style={{
+              padding: '6px 12px',
+              fontSize: '13px',
+              backgroundColor: '#8b5cf6',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontWeight: '500',
+            }}
+          >
+            View Carousel
+          </button>
+        )}
         <button
           onClick={onDelete}
           style={{
