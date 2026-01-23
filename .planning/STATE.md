@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-22)
 
 **Core value:** Security trainers can create visual, annotated phishing training materials that clearly highlight deceptive techniques with educational context — without manual layout work.
-**Current focus:** Phase 13: Compact Annotation Layout
+**Current focus:** Phase 14: Sample Campaign & Demo Data
 
 ## Current Position
 
-Phase: 13 of 15 (Compact Annotation Layout)
-Plan: 2 of 2 in current phase
-Status: Phase complete
-Last activity: 2026-01-23 — Completed 13-02: compact layout toggle
+Phase: 14 of 15 (Sample Campaign & Demo Data)
+Plan: 1 of 2 in current phase
+Status: In progress
+Last activity: 2026-01-23 — Completed 14-01: sample campaign JSON with TypeScript wrapper
 
-Progress: [███████████████░░░░] 85% (40/47 plans complete)
+Progress: [███████████████░░░░] 87% (41/47 plans complete)
 
 ## Performance Metrics
 
@@ -98,6 +98,13 @@ Recent decisions affecting current work:
 - Phase 13: useState lazy initialization pattern useState(() => loadCompactLayout()) - loads preference once on mount, not every render
 - Phase 13: Toggle button color scheme: purple (#8b5cf6) when expanded, gray (#6c757d) when compact - matches existing UI patterns
 - Phase 13: Toggle button placement between annotation toggle and copy button - logical grouping of display controls
+- Phase 14: Sample campaign created with 4 phishes demonstrating urgency (IT Support), BEC (CEO fraud), service impersonation (SharePoint), and reciprocity (refund scam)
+- Phase 14: Annotation density in sample campaign is 2 per phish (light, not overwhelming) per CONTEXT.md requirements
+- Phase 14: Email content in sample campaign kept brief (2-3 sentences) focused on the lure itself
+- Phase 14: Annotation tone in sample campaign is casual, friendly, and educational (not overly technical)
+- Phase 14: Sample campaign includes scheduled dates (2026-03-15 through 2026-03-18) for calendar export demo
+- Phase 14: All lure IDs in sample campaign HTML validated to match annotation lureId fields
+- Phase 14: All technique and persuasion principle IDs in sample campaign validated against existing data files
 
 ### Pending Todos
 
@@ -109,6 +116,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-23 (plan 13-02 execution)
-Stopped at: Completed 13-02-PLAN.md - Compact layout toggle with localStorage persistence and conditional CSS application
+Last session: 2026-01-23 (plan 14-01 execution)
+Stopped at: Completed 14-01-PLAN.md - Sample campaign JSON with 4 diverse phishing examples and TypeScript wrapper
 Resume file: None
