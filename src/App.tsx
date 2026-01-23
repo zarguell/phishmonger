@@ -349,6 +349,11 @@ function App() {
     }
   }
 
+  const handleEditCampaign = (campaign: Campaign) => {
+    setEditingCampaign(campaign)
+    setShowCampaignManager(false) // Close list, open editor
+  }
+
   if (viewMode === 'preview') {
     return (
       <div className="app app-preview-mode">
@@ -481,6 +486,12 @@ function App() {
             Redo Annotation
           </button>
           <button
+            onClick={() => setShowCampaignManager(true)}
+            type="button"
+          >
+            Campaigns
+          </button>
+          <button
             onClick={() => setViewMode('preview')}
             className="preview-mode-button"
             type="button"
@@ -564,6 +575,14 @@ function App() {
       {showTechniqueLibrary && (
         <TechniqueLibrary
           onClose={() => setShowTechniqueLibrary(false)}
+        />
+      )}
+      {showCampaignManager && (
+        <CampaignManager
+          isOpen={showCampaignManager}
+          onClose={() => setShowCampaignManager(false)}
+          onEditCampaign={handleEditCampaign}
+          currentProject={currentProject}
         />
       )}
     </div>
