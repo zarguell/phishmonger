@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-22)
 ## Current Position
 
 Phase: 12 of 15 (Detail Carousel)
-Plan: 3 of 4 in current phase
-Status: In progress
-Last activity: 2026-01-23 — Completed 12-03: CampaignCarouselModal with view state management
+Plan: 4 of 4 in current phase
+Status: Phase complete
+Last activity: 2026-01-23 — Completed 12-04: Campaign list integration with keyboard navigation
 
-Progress: [█████████████░░░░░] 75% (36/48 plans complete)
+Progress: [██████████████░░░░] 79% (38/48 plans complete)
 
 ## Performance Metrics
 
@@ -87,6 +87,9 @@ Recent decisions affecting current work:
 - Phase 12: CampaignCarouselModal uses conditional rendering to prevent component remounting during view switches
 - Phase 12: Scroll position preserved via ref and state when switching between carousel and editor views
 - Phase 12: Modal backdrop click-to-close pattern follows CampaignManager implementation
+- Phase 12: Keyboard navigation uses react-hotkeys-hook for arrow key carousel scrolling (216px = card + gap)
+- Phase 12: View Carousel button (purple #8b5cf6) provides campaign list access to carousel modal
+- Phase 12: Create New Phish button (green #28a745) enables rapid phish creation for improved testing workflow
 
 ### Pending Todos
 
@@ -98,6 +101,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-23 (plan 12-03 execution)
-Stopped at: Completed 12-03-PLAN.md - CampaignCarouselModal integration complete with view state management
+Last session: 2026-01-23 (plan 12-04 execution)
+Stopped at: Completed 12-04-PLAN.md - Phase 12 complete with full carousel integration and keyboard navigation
 Resume file: None
