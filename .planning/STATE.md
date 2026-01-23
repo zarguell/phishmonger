@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-22)
 ## Current Position
 
 Phase: 10 of 15 (Campaign Manager UI)
-Plan: 2 of 5 in current phase
+Plan: 4 of 5 in current phase
 Status: In progress
-Last activity: 2026-01-23 — Completed 10-02: CampaignManager modal with CRUD operations
+Last activity: 2026-01-23 — Completed 10-04: Campaign management integration with App.tsx
 
-Progress: [███████████░░░░░░░] 60% (29/48 plans complete)
+Progress: [████████████░░░░░░░] 62% (30/48 plans complete)
 
 ## Performance Metrics
 
@@ -53,6 +53,10 @@ Recent decisions affecting current work:
 - Phase 9: Schema version 2 initialized on app mount for future migration support
 - Phase 9: Warn users at 80% LocalStorage usage (~4MB of 5MB quota)
 - Phase 10: Campaign manager UI follows existing modal overlay pattern from technique library
+- Phase 10: Mutually exclusive modal state for CampaignManager and CampaignEditor (only one visible at a time)
+- Phase 10: currentProject Phish constructed from App state using useMemo for performance
+- Phase 10: Project ID persisted to localStorage as 'phishmonger-project-id' for consistent identity
+- Phase 10: CampaignManager calls useCampaigns hook internally (App.tsx doesn't need campaigns state)
 - Phase 10: Use native Date API for date calculations (no external date libraries)
 - Phase 10: Native HTML5 date input for date picker (no component libraries)
 - Phase 10: Inline styles for UI components follow TechniqueLibrary pattern
@@ -75,6 +79,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-23 (plan 10-02 execution)
-Stopped at: Completed 10-02-PLAN.md - CampaignManager modal complete
+Last session: 2026-01-23 (plan 10-04 execution)
+Stopped at: Completed 10-04-PLAN.md - Campaign management fully integrated
 Resume file: None
