@@ -3,6 +3,7 @@ import { Campaign } from '../../types/campaign';
 import { CampaignCard } from './CampaignCard';
 import { useCampaigns } from '../../hooks/useCampaigns';
 import { downloadCampaignICal } from '../../utils/icalExport';
+import { SAMPLE_CAMPAIGN } from '../../data/sampleCampaign';
 
 interface CampaignManagerProps {
   isOpen: boolean;
@@ -159,6 +160,27 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign, onCarousel }:
     setCreateErrors({});
   };
 
+  const handleLoadSample = () => {
+    // Check if sample campaign already exists
+    const existing = campaigns.find(c =>
+      c.name === SAMPLE_CAMPAIGN.name ||
+      c.name.includes('Sample Campaign') ||
+      c.name.includes('Demo')
+    );
+
+    if (existing) {
+      alert('Sample campaign already loaded. Edit the existing one or delete it first.');
+      return;
+    }
+
+    // Use existing addCampaign function
+    addCampaign({
+      name: SAMPLE_CAMPAIGN.name,
+      description: SAMPLE_CAMPAIGN.description,
+      campaignPhishes: SAMPLE_CAMPAIGN.campaignPhishes,
+    });
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -271,6 +293,21 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign, onCarousel }:
             }}
           >
             Import
+          </button>
+          <button
+            onClick={handleLoadSample}
+            style={{
+              padding: '8px 16px',
+              backgroundColor: '#8b5cf6',
+              color: 'white',
+              border: 'none',
+              borderRadius: '6px',
+              fontSize: '14px',
+              fontWeight: '500',
+              cursor: 'pointer',
+            }}
+          >
+            Load Sample Campaign
           </button>
           <input
             ref={fileInputRef}
