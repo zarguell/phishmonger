@@ -16,6 +16,11 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign }: CampaignMan
   const [importError, setImportError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Create modal state
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [createForm, setCreateForm] = useState({ name: '', description: '' });
+  const [createErrors, setCreateErrors] = useState<{ name?: string }>({});
+
   // Filter campaigns based on search query
   const filteredCampaigns = useMemo(() => {
     if (!searchQuery.trim()) {
@@ -95,6 +100,45 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign }: CampaignMan
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
+  };
+
+  const handleCreateClick = () => {
+    setShowCreateModal(true);
+    setCreateForm({ name: '', description: '' });
+    setCreateErrors({});
+  };
+
+  const handleCreateSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Validate
+    const errors: { name?: string } = {};
+    if (!createForm.name.trim()) {
+      errors.name = 'Campaign name is required';
+    }
+
+    setCreateErrors(errors);
+
+    if (Object.keys(errors).length > 0) {
+      return;
+    }
+
+    // Create campaign
+    addCampaign({
+      name: createForm.name.trim(),
+      description: createForm.description.trim(),
+      campaignPhishes: [],
+    });
+
+    // Reset and close
+    setCreateForm({ name: '', description: '' });
+    setShowCreateModal(false);
+  };
+
+  const handleCreateCancel = () => {
+    setShowCreateModal(false);
+    setCreateForm({ name: '', description: '' });
+    setCreateErrors({});
   };
 
   if (!isOpen) return null;
@@ -181,7 +225,7 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign }: CampaignMan
             />
           </div>
           <button
-            onClick={() => {/* Will be wired in task 3 */}}
+            onClick={handleCreateClick}
             style={{
               padding: '8px 16px',
               backgroundColor: '#0066cc',
@@ -269,7 +313,7 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign }: CampaignMan
               </div>
               {!searchQuery.trim() && (
                 <button
-                  onClick={() => {/* Will be wired in task 3 */}}
+                  onClick={handleCreateClick}
                   style={{
                     padding: '10px 20px',
                     backgroundColor: '#0066cc',
@@ -288,6 +332,151 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign }: CampaignMan
           )}
         </div>
       </div>
+
+      {/* Create Campaign Modal */}
+      {showCreateModal && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 60,
+          }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              handleCreateCancel();
+            }
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: 'white',
+              borderRadius: '8px',
+              padding: '24px',
+              maxWidth: '500px',
+              width: '90%',
+              maxHeight: '90vh',
+              overflow: 'auto',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            }}
+          >
+            <h2 style={{ marginTop: 0, marginBottom: '20px', fontSize: '20px', fontWeight: '600' }}>
+              Create New Campaign
+            </h2>
+
+            <form onSubmit={handleCreateSubmit}>
+              {/* Name Field */}
+              <div style={{ marginBottom: '16px' }}>
+                <label
+                  htmlFor="campaign-name"
+                  style={{
+                    display: 'block',
+                    marginBottom: '4px',
+                    fontWeight: 'bold',
+                    fontSize: '14px',
+                  }}
+                >
+                  Campaign Name <span style={{ color: 'red' }}>*</span>
+                </label>
+                <input
+                  type="text"
+                  id="campaign-name"
+                  value={createForm.name}
+                  onChange={(e) => {
+                    setCreateForm({ ...createForm, name: e.target.value });
+                    if (createErrors.name) {
+                      setCreateErrors({});
+                    }
+                  }}
+                  placeholder="e.g., Q1 Security Training"
+                  style={{
+                    width: '100%',
+                    padding: '8px',
+                    border: `1px solid ${createErrors.name ? 'red' : '#ccc'}`,
+                    borderRadius: '4px',
+                    fontSize: '14px',
+                    boxSizing: 'border-box',
+                  }}
+                />
+                {createErrors.name && (
+                  <div style={{ color: 'red', fontSize: '12px', marginTop: '4px' }}>{createErrors.name}</div>
+                )}
+              </div>
+
+              {/* Description Field */}
+              <div style={{ marginBottom: '24px' }}>
+                <label
+                  htmlFor="campaign-description"
+                  style={{
+                    display: 'block',
+                    marginBottom: '4px',
+                    fontWeight: 'bold',
+                    fontSize: '14px',
+                  }}
+                >
+                  Description
+                </label>
+                <textarea
+                  id="campaign-description"
+                  value={createForm.description}
+                  onChange={(e) => setCreateForm({ ...createForm, description: e.target.value })}
+                  placeholder="Optional description of this campaign..."
+                  rows={4}
+                  style={{
+                    width: '100%',
+                    padding: '8px',
+                    border: '1px solid #ccc',
+                    borderRadius: '4px',
+                    fontSize: '14px',
+                    boxSizing: 'border-box',
+                    fontFamily: 'inherit',
+                    resize: 'vertical',
+                  }}
+                />
+              </div>
+
+              {/* Action Buttons */}
+              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
+                <button
+                  type="button"
+                  onClick={handleCreateCancel}
+                  style={{
+                    padding: '8px 16px',
+                    border: '1px solid #ccc',
+                    borderRadius: '4px',
+                    backgroundColor: 'white',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={!createForm.name.trim()}
+                  style={{
+                    padding: '8px 16px',
+                    border: 'none',
+                    borderRadius: '4px',
+                    backgroundColor: !createForm.name.trim() ? '#ccc' : '#0066cc',
+                    color: 'white',
+                    cursor: !createForm.name.trim() ? 'not-allowed' : 'pointer',
+                    fontSize: '14px',
+                  }}
+                >
+                  Create
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
