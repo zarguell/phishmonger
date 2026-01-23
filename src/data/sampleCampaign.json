@@ -1,0 +1,152 @@
+{
+  "id": "sample-campaign-001",
+  "name": "Sample Campaign (Demo)",
+  "description": "Example phishing emails demonstrating urgency, authority, and service impersonation techniques. Load this to explore Phish Monger's annotation and campaign features.",
+  "createdAt": "2026-01-23T10:00:00.000Z",
+  "campaignPhishes": [
+    {
+      "id": "sample-phish-001",
+      "metadata": {
+        "title": "Urgent Account Verification",
+        "author": "Phish Monger Team",
+        "createdAt": "2026-01-23T10:00:00.000Z"
+      },
+      "htmlSource": "<div>\n  <p>Hi there,</p>\n  <p>\n    Your account will be suspended in 24 hours unless you\n    <span data-lure-id=\"lure-1\" class=\"lure-mark\">verify your credentials</span>\n    immediately.\n  </p>\n  <p>\n    Click <span data-lure-id=\"lure-2\" class=\"lure-mark\">here</span> to sign in.\n  </p>\n  <p>IT Support Team</p>\n</div>",
+      "annotations": {
+        "lure-1": {
+          "lureId": "lure-1",
+          "techniqueId": "T1566.002",
+          "persuasionPrincipleId": "CIAL-02",
+          "title": "Urgency Timeline",
+          "explanation": "Creates false urgency with '24 hours' deadline to pressure you into acting without thinking. Legitimate IT support rarely uses such aggressive time pressure.",
+          "createdAt": "2026-01-23T10:00:00.000Z",
+          "annotationNumber": 1
+        },
+        "lure-2": {
+          "lureId": "lure-2",
+          "techniqueId": "T1204.001",
+          "persuasionPrincipleId": "CIAL-02",
+          "title": "Vague Call to Action",
+          "explanation": "Generic 'click here' link without showing the actual URL. This hides the malicious destination. Always hover over links to see where they really go.",
+          "createdAt": "2026-01-23T10:00:00.000Z",
+          "annotationNumber": 2
+        }
+      },
+      "scoring": {
+        "visualCues": 2,
+        "languageCues": 1,
+        "premiseAlignment": 4
+      },
+      "inputMode": "richtext",
+      "scheduledDate": "2026-03-15"
+    },
+    {
+      "id": "sample-phish-002",
+      "metadata": {
+        "title": "CEO Document Request",
+        "author": "Phish Monger Team",
+        "createdAt": "2026-01-23T10:00:00.000Z"
+      },
+      "htmlSource": "<div>\n  <p>Hi,</p>\n  <p>\n    I need you to send me the <span data-lure-id=\"lure-1\" class=\"lure-mark\">Q1 financial reports</span>\n    right away.\n  </p>\n  <p>\n    Working from home today and can't access the server. Just\n    <span data-lure-id=\"lure-2\" class=\"lure-mark\">reply to this email</span>\n    with the files attached.\n  </p>\n  <p>Thanks,<br>Sarah Johnson<br>CEO</p>\n</div>",
+      "annotations": {
+        "lure-1": {
+          "lureId": "lure-1",
+          "techniqueId": "T1598",
+          "persuasionPrincipleId": "CIAL-01",
+          "title": "Unusual Executive Request",
+          "explanation": "Business Email Compromise (BEC) attack impersonating a CEO. Executives rarely ask employees to email sensitive financial reports directly. This is a common pattern for data theft.",
+          "createdAt": "2026-01-23T10:00:00.000Z",
+          "annotationNumber": 1
+        },
+        "lure-2": {
+          "lureId": "lure-2",
+          "techniqueId": "T1036.005",
+          "persuasionPrincipleId": "CIAL-01",
+          "title": "Spoofed Display Name",
+          "explanation": "The sender name 'Sarah Johnson' can be easily spoofed. The actual email address is likely fake or a compromised account. Always verify the sender's actual email address, not just the display name.",
+          "createdAt": "2026-01-23T10:00:00.000Z",
+          "annotationNumber": 2
+        }
+      },
+      "scoring": {
+        "visualCues": 1,
+        "languageCues": 0,
+        "premiseAlignment": 5
+      },
+      "inputMode": "richtext",
+      "scheduledDate": "2026-03-16"
+    },
+    {
+      "id": "sample-phish-003",
+      "metadata": {
+        "title": "Fake SharePoint Notice",
+        "author": "Phish Monger Team",
+        "createdAt": "2026-01-23T10:00:00.000Z"
+      },
+      "htmlSource": "<div>\n  <p>Hello,</p>\n  <p>\n    You have <span data-lure-id=\"lure-1\" class=\"lure-mark\">new document notifications</span>\n    waiting in your SharePoint account.\n  </p>\n  <p>\n    <span data-lure-id=\"lure-2\" class=\"lure-mark\">View documents now</span>\n    before they are automatically deleted.\n  </p>\n  <p>Microsoft SharePoint Team</p>\n</div>",
+      "annotations": {
+        "lure-1": {
+          "lureId": "lure-1",
+          "techniqueId": "T1566.003",
+          "persuasionPrincipleId": "CIAL-07",
+          "title": "Service Impersonation",
+          "explanation": "Impersonates SharePoint, a trusted service. The attackers want you to believe this is an automated notification from Microsoft. Note that Microsoft doesn't send emails threatening document deletion.",
+          "createdAt": "2026-01-23T10:00:00.000Z",
+          "annotationNumber": 1
+        },
+        "lure-2": {
+          "lureId": "lure-2",
+          "techniqueId": "T1204.001",
+          "persuasionPrincipleId": "CIAL-07",
+          "title": "Fear-Driven Action",
+          "explanation": "Creates fear of losing documents ('automatically deleted') to make you click without thinking. This exploits our natural aversion to loss. Real services don't delete notifications automatically.",
+          "createdAt": "2026-01-23T10:00:00.000Z",
+          "annotationNumber": 2
+        }
+      },
+      "scoring": {
+        "visualCues": 2,
+        "languageCues": 1,
+        "premiseAlignment": 3
+      },
+      "inputMode": "richtext",
+      "scheduledDate": "2026-03-17"
+    },
+    {
+      "id": "sample-phish-004",
+      "metadata": {
+        "title": "Invoice Refund Available",
+        "author": "Phish Monger Team",
+        "createdAt": "2026-01-23T10:00:00.000Z"
+      },
+      "htmlSource": "<div>\n  <p>Dear Customer,</p>\n  <p>\n    We overcharged you on your recent purchase. We've processed a\n    <span data-lure-id=\"lure-1\" class=\"lure-mark\">refund of $247.50</span>\n    to your account.\n  </p>\n  <p>\n    <span data-lure-id=\"lure-2\" class=\"lure-mark\">Click here to claim your refund</span>\n    within 48 hours or it will be cancelled.\n  </p>\n  <p>Accounting Department</p>\n</div>",
+      "annotations": {
+        "lure-1": {
+          "lureId": "lure-1",
+          "techniqueId": "T1598",
+          "persuasionPrincipleId": "CIAL-05",
+          "title": "Fake Reciprocity",
+          "explanation": "Creates a sense of obligation through a 'favor' - the refund. This makes you feel like you owe them something. The specific dollar amount adds credibility and makes it feel legitimate.",
+          "createdAt": "2026-01-23T10:00:00.000Z",
+          "annotationNumber": 1
+        },
+        "lure-2": {
+          "lureId": "lure-2",
+          "techniqueId": "T1204.001",
+          "persuasionPrincipleId": "CIAL-02",
+          "title": "Urgency + Curiosity",
+          "explanation": "Combines time pressure (48 hours) with the promise of free money. This creates emotional arousal that bypasses critical thinking. No legitimate refund requires you to click a link to claim it.",
+          "createdAt": "2026-01-23T10:00:00.000Z",
+          "annotationNumber": 2
+        }
+      },
+      "scoring": {
+        "visualCues": 3,
+        "languageCues": 1,
+        "premiseAlignment": 4
+      },
+      "inputMode": "richtext",
+      "scheduledDate": "2026-03-18"
+    }
+  ]
+}
