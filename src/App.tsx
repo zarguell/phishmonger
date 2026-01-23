@@ -369,20 +369,19 @@ function App() {
   }
 
   const handleEditPhish = (campaignPhish: CampaignPhish) => {
-    // Convert CampaignPhish to Phish format for main editor
-    const phish: Phish = {
-      id: campaignPhish.id,
-      htmlSource: campaignPhish.htmlSource,
-      annotations: campaignPhish.annotations,
-      metadata: {
-        title: campaignPhish.metadata?.title || 'Untitled Phish',
-        createdAt: campaignPhish.metadata?.createdAt || new Date().toISOString(),
-      },
-      scoring: campaignPhish.scoring,
+    // Load phish data into main editor state
+    setHtmlSource(campaignPhish.htmlSource)
+    setAnnotations(campaignPhish.annotations)
+    setMetadata({
+      title: campaignPhish.metadata?.title || 'Untitled Phish',
+      createdAt: campaignPhish.metadata?.createdAt || new Date().toISOString(),
+    })
+    if (campaignPhish.scoring) {
+      setScoring(campaignPhish.scoring)
     }
 
-    // Load into main editor
-    setCurrentProject(phish)
+    // Store project ID for consistent identity
+    localStorage.setItem('phishmonger-project-id', campaignPhish.id)
 
     // Close campaign editor and return to main editor
     setEditingCampaign(undefined)
