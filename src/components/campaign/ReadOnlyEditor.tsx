@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { CampaignPhish } from '../../types/campaign'
+import { loadCompactLayout, saveCompactLayout } from '../../utils/storage'
 import { SlideWrapper } from '../preview/SlideWrapper'
 import { EmailColumn } from '../preview/EmailColumn'
 import { AnnotationColumn } from '../preview/AnnotationColumn'
@@ -17,7 +18,13 @@ interface ReadOnlyEditorProps {
  */
 export function ReadOnlyEditor({ phish, onBack }: ReadOnlyEditorProps) {
   const [showAnnotations, setShowAnnotations] = useState(true)
+  const [compactLayout, setCompactLayout] = useState(() => loadCompactLayout())
   const hasContent = phish.htmlSource && phish.htmlSource.trim().length > 0
+
+  // Persist compact layout preference
+  useEffect(() => {
+    saveCompactLayout(compactLayout)
+  }, [compactLayout])
 
   const handleCopyHTML = async () => {
     try {
@@ -114,6 +121,25 @@ export function ReadOnlyEditor({ phish, onBack }: ReadOnlyEditorProps) {
           </button>
 
           <button
+            onClick={() => setCompactLayout(!compactLayout)}
+            type="button"
+            style={{
+              backgroundColor: compactLayout ? '#6c757d' : '#8b5cf6',
+              color: '#ffffff',
+              border: 'none',
+              padding: '8px 16px',
+              borderRadius: '4px',
+              fontSize: '13px',
+              fontWeight: '500',
+              cursor: 'pointer',
+              transition: 'background-color 0.2s',
+            }}
+            title={compactLayout ? 'Switch to expanded view' : 'Switch to compact view'}
+          >
+            {compactLayout ? 'Expanded View' : 'Compact View'}
+          </button>
+
+          <button
             onClick={handleCopyHTML}
             type="button"
             style={{
@@ -172,6 +198,7 @@ export function ReadOnlyEditor({ phish, onBack }: ReadOnlyEditorProps) {
               annotations={showAnnotations ? phish.annotations : {}}
               scoring={phish.scoring}
               showBadge={!!phish.scoring && showAnnotations}
+              compactAnnotations={compactLayout}
             >
               <EmailColumn
                 htmlSource={phish.htmlSource}
