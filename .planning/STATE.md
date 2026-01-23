@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-22)
 ## Current Position
 
 Phase: 13 of 15 (Compact Annotation Layout)
-Plan: 1 of 2 in current phase
-Status: In progress
-Last activity: 2026-01-23 — Completed 13-01: compact layout infrastructure
+Plan: 2 of 2 in current phase
+Status: Phase complete
+Last activity: 2026-01-23 — Completed 13-02: compact layout toggle
 
-Progress: [███████████████░░░░] 83% (39/47 plans complete)
+Progress: [███████████████░░░░] 85% (40/47 plans complete)
 
 ## Performance Metrics
 
@@ -94,6 +94,10 @@ Recent decisions affecting current work:
 - Phase 13: Minimum 12px font size maintained in compact-annotations variant for readability per ROADMAP criteria
 - Phase 13: CSS :global() selectors used for annotation component classes (layouts.module.css is CSS Module but annotations use global classes)
 - Phase 13: Separate .compact-annotations variant from existing .compact layout (focused on annotations only, doesn't modify existing behavior)
+- Phase 13: Separate compactAnnotations prop on SlideWrapper (not part of LayoutTemplate type) - keeps annotation density independent from layout templates
+- Phase 13: useState lazy initialization pattern useState(() => loadCompactLayout()) - loads preference once on mount, not every render
+- Phase 13: Toggle button color scheme: purple (#8b5cf6) when expanded, gray (#6c757d) when compact - matches existing UI patterns
+- Phase 13: Toggle button placement between annotation toggle and copy button - logical grouping of display controls
 
 ### Pending Todos
 
@@ -105,6 +109,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-23 (plan 13-01 execution)
-Stopped at: Completed 13-01-PLAN.md - Compact layout infrastructure with localStorage utilities and CSS variant
+Last session: 2026-01-23 (plan 13-02 execution)
+Stopped at: Completed 13-02-PLAN.md - Compact layout toggle with localStorage persistence and conditional CSS application
 Resume file: None
