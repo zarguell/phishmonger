@@ -9,6 +9,7 @@ interface CampaignEditorProps {
   onClose: () => void;
   onSave: (campaignId: string, updates: Partial<Omit<Campaign, 'id' | 'createdAt'>>) => void;
   currentProject: Phish;
+  onEditPhish?: (phish: CampaignPhish) => void;
 }
 
 interface FormData {
@@ -20,7 +21,7 @@ interface FormErrors {
   name?: string;
 }
 
-export function CampaignEditor({ campaign, onClose, onSave, currentProject }: CampaignEditorProps) {
+export function CampaignEditor({ campaign, onClose, onSave, currentProject, onEditPhish }: CampaignEditorProps) {
   const [formData, setFormData] = useState<FormData>({
     name: campaign.name,
     description: campaign.description,
@@ -325,6 +326,7 @@ export function CampaignEditor({ campaign, onClose, onSave, currentProject }: Ca
                       phish={phish}
                       onDateChange={handleDateChange}
                       onRemove={handleRemovePhish}
+                      onEdit={onEditPhish}
                     />
                   ))}
                 </div>

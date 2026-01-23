@@ -4,9 +4,10 @@ interface CampaignPhishItemProps {
   phish: CampaignPhish;
   onDateChange: (phishId: string, date: string | undefined) => void;
   onRemove: (phishId: string) => void;
+  onEdit?: (phish: CampaignPhish) => void;
 }
 
-export function CampaignPhishItem({ phish, onDateChange, onRemove }: CampaignPhishItemProps) {
+export function CampaignPhishItem({ phish, onDateChange, onRemove, onEdit }: CampaignPhishItemProps) {
   // Convert ISO date string to YYYY-MM-DD format for date input
   const getDateInputValue = (isoDate: string | undefined): string => {
     if (!isoDate) return '';
@@ -55,6 +56,24 @@ export function CampaignPhishItem({ phish, onDateChange, onRemove }: CampaignPhi
           }}
         />
       </div>
+
+      {onEdit && (
+        <button
+          onClick={() => onEdit(phish)}
+          style={{
+            padding: '6px 12px',
+            fontSize: '13px',
+            backgroundColor: '#0066cc',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          Edit
+        </button>
+      )}
 
       <button
         onClick={handleRemove}

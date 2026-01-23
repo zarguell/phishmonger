@@ -25,7 +25,7 @@ import { CampaignCarouselModal } from './components/campaign/CampaignCarouselMod
 import type { Annotation } from './types/annotations'
 import type { ScoringData } from './types/scoring'
 import type { ProjectMetadata } from './types/project'
-import type { Campaign } from './types/campaign'
+import type { Campaign, CampaignPhish } from './types/campaign'
 import type { Phish } from './types/phish'
 import { loadAnnotations, saveAnnotations, loadScoring, saveScoring, loadMetadata, saveMetadata, exportProjectJSON, downloadProjectJSON, importProjectJSON } from './utils/storage'
 import type { ProjectJSON } from './utils/storage'
@@ -368,6 +368,27 @@ function App() {
     setShowCampaignManager(true) // Return to campaign list after save
   }
 
+  const handleEditPhish = (campaignPhish: CampaignPhish) => {
+    // Convert CampaignPhish to Phish format for main editor
+    const phish: Phish = {
+      id: campaignPhish.id,
+      htmlSource: campaignPhish.htmlSource,
+      annotations: campaignPhish.annotations,
+      metadata: {
+        title: campaignPhish.metadata?.title || 'Untitled Phish',
+        createdAt: campaignPhish.metadata?.createdAt || new Date().toISOString(),
+      },
+      scoring: campaignPhish.scoring,
+    }
+
+    // Load into main editor
+    setCurrentProject(phish)
+
+    // Close campaign editor and return to main editor
+    setEditingCampaign(undefined)
+    setShowCampaignManager(false)
+  }
+
   const handleViewCarousel = (campaign: Campaign) => {
     setCarouselCampaign(campaign)
     setShowCampaignCarousel(true)
@@ -617,6 +638,7 @@ function App() {
           onClose={handleCloseEditor}
           onSave={handleSaveCampaign}
           currentProject={currentProject}
+          onEditPhish={handleEditPhish}
         />
       )}
       {showCampaignCarousel && carouselCampaign && (
