@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-22)
 
 ## Current Position
 
-Phase: 12 of 15 (Detail Carousel)
-Plan: 4 of 4 in current phase
-Status: Phase complete
-Last activity: 2026-01-23 — Completed 12-04: carousel integration with keyboard navigation
+Phase: 13 of 15 (Compact Annotation Layout)
+Plan: 1 of 2 in current phase
+Status: In progress
+Last activity: 2026-01-23 — Completed 13-01: compact layout infrastructure
 
-Progress: [██████████████░░░░] 81% (38/47 plans complete)
+Progress: [███████████████░░░░] 83% (39/47 plans complete)
 
 ## Performance Metrics
 
@@ -90,6 +90,10 @@ Recent decisions affecting current work:
 - Phase 12: Keyboard navigation uses react-hotkeys-hook for arrow key carousel scrolling (216px = card + gap)
 - Phase 12: View Carousel button (purple #8b5cf6) provides campaign list access to carousel modal
 - Phase 12: Create New Phish button (green #28a745) enables rapid phish creation for improved testing workflow
+- Phase 13: Direct localStorage access for compact layout preference (simpler than useLocalStorage library for boolean flag)
+- Phase 13: Minimum 12px font size maintained in compact-annotations variant for readability per ROADMAP criteria
+- Phase 13: CSS :global() selectors used for annotation component classes (layouts.module.css is CSS Module but annotations use global classes)
+- Phase 13: Separate .compact-annotations variant from existing .compact layout (focused on annotations only, doesn't modify existing behavior)
 
 ### Pending Todos
 
@@ -101,6 +105,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-23 (plan 12-04 execution)
-Stopped at: Completed 12-04-PLAN.md - Phase 12 complete with full carousel integration and keyboard navigation
+Last session: 2026-01-23 (plan 13-01 execution)
+Stopped at: Completed 13-01-PLAN.md - Compact layout infrastructure with localStorage utilities and CSS variant
 Resume file: None
