@@ -98,6 +98,21 @@ export function CampaignEditor({ campaign, onClose, onSave, currentProject }: Ca
     setCampaignPhishes(prev => [...prev, copiedPhish]);
   };
 
+  const handleCreateNewPhish = () => {
+    const newPhishNumber = campaignPhishes.length + 1;
+    const newPhish: CampaignPhish = {
+      id: crypto.randomUUID(),
+      htmlSource: '',
+      annotations: {},
+      metadata: {
+        title: `New Phish ${newPhishNumber}`,
+        createdAt: new Date().toISOString(),
+      },
+      scheduledDate: undefined,
+    };
+    setCampaignPhishes(prev => [...prev, newPhish]);
+  };
+
   const isCurrentProjectInCampaign = campaignPhishes.some(p => p.id === currentProject.id);
 
   return (
@@ -258,6 +273,25 @@ export function CampaignEditor({ campaign, onClose, onSave, currentProject }: Ca
                   }}
                 >
                   {isCurrentProjectInCampaign ? 'Project Already Added' : '+ Add Current Project'}
+                </button>
+
+                {/* Create New Phish Button */}
+                <button
+                  type="button"
+                  onClick={handleCreateNewPhish}
+                  style={{
+                    padding: '8px 16px',
+                    fontSize: '13px',
+                    backgroundColor: '#28a745',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    marginBottom: '12px',
+                    marginLeft: '8px',
+                  }}
+                >
+                  + Create New Phish
                 </button>
               </div>
 
