@@ -10,10 +10,11 @@ interface SlideWrapperProps {
   scoring?: ScoringData
   showBadge?: boolean
   layoutTemplate?: LayoutTemplate
+  compactAnnotations?: boolean
 }
 
 export const SlideWrapper = forwardRef<HTMLDivElement, SlideWrapperProps>(
-  ({ children, scoring, showBadge = true, layoutTemplate = 'balanced' }, ref) => {
+  ({ children, scoring, showBadge = true, layoutTemplate = 'balanced', compactAnnotations = false }, ref) => {
     const internalRef = useRef<HTMLDivElement>(null)
     const containerRef = (ref as React.RefObject<HTMLDivElement>) || internalRef
 
@@ -21,7 +22,8 @@ export const SlideWrapper = forwardRef<HTMLDivElement, SlideWrapperProps>(
     const getSlideWrapperClasses = (): string => {
       const baseClass = styles.slideWrapper
       const templateClass = styles[layoutTemplate]
-      return `${baseClass} ${templateClass}`.trim()
+      const compactClass = compactAnnotations ? styles['compact-annotations'] : ''
+      return `${baseClass} ${templateClass} ${compactClass}`.trim()
     }
 
     // Calculate difficulty if scoring provided
