@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-22)
 ## Current Position
 
 Phase: 12 of 15 (Detail Carousel)
-Plan: 1 of 4 in current phase
+Plan: 3 of 4 in current phase
 Status: In progress
-Last activity: 2026-01-23 — Completed 12-01: Detail Carousel Components with CSS scroll snap
+Last activity: 2026-01-23 — Completed 12-03: CampaignCarouselModal with view state management
 
-Progress: [█████████████░░░░░] 73% (35/48 plans complete)
+Progress: [█████████████░░░░░] 75% (36/48 plans complete)
 
 ## Performance Metrics
 
@@ -84,6 +84,9 @@ Recent decisions affecting current work:
 - Phase 12: ReadOnlyEditor uses full-screen overlay (z-index: 50) with fixed positioning
 - Phase 12: Reuse existing preview components (EmailColumn, AnnotationColumn, SlideWrapper) for consistency
 - Phase 12: Read-only mode displays phish content without editing controls (no lure creation, no annotation editing, no scoring changes)
+- Phase 12: CampaignCarouselModal uses conditional rendering to prevent component remounting during view switches
+- Phase 12: Scroll position preserved via ref and state when switching between carousel and editor views
+- Phase 12: Modal backdrop click-to-close pattern follows CampaignManager implementation
 
 ### Pending Todos
 
@@ -95,6 +98,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-23 (plan 12-01 execution)
-Stopped at: Completed 12-01-PLAN.md - Carousel components created with CSS scroll snap
+Last session: 2026-01-23 (plan 12-03 execution)
+Stopped at: Completed 12-03-PLAN.md - CampaignCarouselModal integration complete with view state management
 Resume file: None
