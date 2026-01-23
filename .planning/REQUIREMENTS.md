@@ -21,8 +21,8 @@ Requirements for Campaign Management milestone. Each maps to roadmap phases.
 
 - [ ] **SCH-01**: User can assign scheduled date to each phish in campaign
 - [ ] **SCH-02**: System auto-calculates campaign duration from min/max phish dates
-- [ ] **SCH-03**: User can export campaign to iCal/ics file for external calendar integration
-- [ ] **SCH-04**: iCal file contains one event per scheduled phish with campaign name and phish title
+- [x] **SCH-03**: User can export campaign to iCal/ics file for external calendar integration
+- [x] **SCH-04**: iCal file contains one event per scheduled phish with campaign name and phish title
 
 ### Visual & Browsing
 
@@ -79,8 +79,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CMP-07 | Phase 10 | Complete |
 | SCH-01 | Phase 10 | Complete |
 | SCH-02 | Phase 10 | Complete |
-| SCH-03 | Phase 11 | Pending |
-| SCH-04 | Phase 11 | Pending |
+| SCH-03 | Phase 11 | Complete |
+| SCH-04 | Phase 11 | Complete |
 | VIS-01 | Phase 12 | Pending |
 | VIS-02 | Phase 13 | Pending |
 | VIS-03 | Phase 14 | Pending |

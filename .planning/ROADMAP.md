@@ -160,8 +160,10 @@ Plans:
 **Plans**: 2 plans in 2 waves
 
 Plans:
-- [ ] 11-01-PLAN.md — Install ical-generator and create iCal export utility (wave 1)
-- [ ] 11-02-PLAN.md — Add Export Calendar button to campaign list view (wave 2)
+- [x] 11-01-PLAN.md — Install ical-generator and create iCal export utility (wave 1)
+- [x] 11-02-PLAN.md — Add Export Calendar button to campaign list view (wave 2)
+
+**Status**: Complete — Verified 2026-01-23
 
 #### Phase 12: Detail Carousel
 **Goal**: Users can browse campaign phishes horizontally without leaving campaign context
@@ -254,7 +256,7 @@ Phases execute in numeric order: 9 → 10 → 11 → 12 → 13 → 14 → 15
 | 8. Custom Technique Library | v1.1 | 3/3 | Complete | 2026-01-22 |
 | 9. Campaign Data Model & Storage | v1.2 | 4/4 | Complete | 2026-01-22 |
 | 10. Campaign Manager UI | v1.2 | 4/4 | Complete | 2026-01-22 |
-| 11. iCal Export & Integration | v1.2 | 0/2 | Not started | - |
+| 11. iCal Export & Integration | v1.2 | 2/2 | Complete | 2026-01-23 |
 | 12. Detail Carousel | v1.2 | 0/4 | Not started | - |
 | 13. Compact Annotation Layout | v1.2 | 0/3 | Not started | - |
 | 14. Sample Campaign & Demo Data | v1.2 | 0/3 | Not started | - |

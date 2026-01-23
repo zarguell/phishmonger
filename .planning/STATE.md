@@ -5,21 +5,21 @@
 See: .planning/PROJECT.md (updated 2026-01-22)
 
 **Core value:** Security trainers can create visual, annotated phishing training materials that clearly highlight deceptive techniques with educational context — without manual layout work.
-**Current focus:** Phase 11: iCal Export & Integration
+**Current focus:** Phase 12: Detail Carousel
 
 ## Current Position
 
 Phase: 11 of 15 (iCal Export & Integration)
 Plan: 2 of 2 in current phase
 Status: Phase complete
-Last activity: 2026-01-23 — Completed 11-02: iCal export UI integration
+Last activity: 2026-01-23 — Completed 11-02: iCal export UI integration with validation
 
 Progress: [█████████████░░░░░] 71% (34/48 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 33
+- Total plans completed: 34
 - Average duration: TBD
 - Total execution time: TBD
 
@@ -28,7 +28,7 @@ Progress: [█████████████░░░░░] 71% (34/48 pl
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1-8 | 24 | TBD | TBD |
-| 9-15 | 9 | - | - |
+| 9-11 | 10 | - | - |
 
 **Recent Trend:**
 - Last 5 plans: TBD
