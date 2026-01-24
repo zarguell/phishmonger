@@ -27,7 +27,7 @@ import type { ScoringData } from './types/scoring'
 import type { ProjectMetadata } from './types/project'
 import type { Campaign, CampaignPhish } from './types/campaign'
 import type { Phish } from './types/phish'
-import { loadAnnotations, saveAnnotations, loadScoring, saveScoring, loadMetadata, saveMetadata, exportProjectJSON, downloadProjectJSON, importProjectJSON } from './utils/storage'
+import { loadAnnotations, saveAnnotations, loadScoring, saveScoring, loadPhishMetadata, savePhishMetadata, exportProjectJSON, downloadProjectJSON, importProjectJSON } from './utils/storage'
 import type { ProjectJSON } from './utils/storage'
 import { initializeSchema } from './utils/schemaVersion'
 import { getStoragePercentage, isStorageNearQuota } from './utils/storageQuota'
@@ -123,7 +123,7 @@ function App() {
     return loadScoring()
   })
   const [metadata, setMetadata] = useState<ProjectMetadata>(() => {
-    return loadMetadata()
+    return loadPhishMetadata()
   })
   const [storagePercent, setStoragePercent] = useState<number>(0)
 
@@ -199,7 +199,7 @@ function App() {
 
   // Save metadata to LocalStorage
   useEffect(() => {
-    saveMetadata(metadata)
+    savePhishMetadata(metadata)
   }, [metadata])
 
   // Build currentPhish Phish object from App state for campaign integration
