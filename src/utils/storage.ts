@@ -4,6 +4,7 @@ import type { ScoringData } from '../types/scoring'
 import type { InputMode } from '../components/ModeToggle'
 import type { CustomTechnique } from '../types/library'
 import type { Campaign } from '../types/campaign'
+import type { ColumnID } from '../types/columns'
 
 const ANNOTATIONS_KEY = 'phishmonger-annotations'
 
@@ -285,6 +286,53 @@ export function saveCompactLayout(enabled: boolean): void {
     localStorage.setItem(COMPACT_LAYOUT_KEY, String(enabled));
   } catch (error) {
     console.error('Failed to save compact layout preference:', error);
+  }
+}
+
+// Focused column storage
+
+const FOCUSED_COLUMN_KEY = 'phishmonger-focused-column';
+
+const VALID_COLUMN_IDS: Set<string> = new Set(['input', 'preview', 'lure-list', 'scoring']);
+
+/**
+ * Load focused column from LocalStorage
+ * Returns null if no column is focused or if the stored value is invalid
+ */
+export function loadFocusedColumn(): ColumnID | null {
+  try {
+    const saved = localStorage.getItem(FOCUSED_COLUMN_KEY);
+    if (!saved) {
+      return null;
+    }
+    // Validate that the saved value is a valid ColumnID
+    if (VALID_COLUMN_IDS.has(saved)) {
+      return saved as ColumnID;
+    }
+    return null;
+  } catch (error) {
+    console.error('Failed to load focused column:', error);
+    return null;
+  }
+}
+
+/**
+ * Save focused column to LocalStorage
+ * Pass null to clear the focused column (reset to normal view)
+ */
+export function saveFocusedColumn(columnId: ColumnID | null): void {
+  try {
+    if (columnId === null) {
+      localStorage.removeItem(FOCUSED_COLUMN_KEY);
+    } else {
+      localStorage.setItem(FOCUSED_COLUMN_KEY, columnId);
+    }
+  } catch (error) {
+    if (error instanceof DOMException && error.name === 'QuotaExceededError') {
+      console.error('LocalStorage quota exceeded while saving focused column:', error);
+    } else {
+      console.error('Failed to save focused column:', error);
+    }
   }
 }
 
