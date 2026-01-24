@@ -29,7 +29,8 @@ import type { ScoringData } from './types/scoring'
 import type { ProjectMetadata } from './types/project'
 import type { Campaign, CampaignPhish } from './types/campaign'
 import type { Phish } from './types/phish'
-import { loadAnnotations, saveAnnotations, loadScoring, saveScoring, loadPhishMetadata, savePhishMetadata, exportProjectJSON, downloadProjectJSON, hasExistingPhishData } from './utils/storage'
+import type { ColumnID } from './types/columns'
+import { loadAnnotations, saveAnnotations, loadScoring, saveScoring, loadPhishMetadata, savePhishMetadata, exportProjectJSON, downloadProjectJSON, hasExistingPhishData, loadFocusedColumn, saveFocusedColumn } from './utils/storage'
 import type { ProjectJSON } from './utils/storage'
 import { initializeSchema } from './utils/schemaVersion'
 import { getStoragePercentage, isStorageNearQuota } from './utils/storageQuota'
@@ -160,6 +161,7 @@ function App() {
     const savedStyle = localStorage.getItem(ARROW_STYLE_KEY)
     return savedStyle || 'classic'
   })
+  const [focusedColumn, setFocusedColumn] = useState<ColumnID | null>(() => loadFocusedColumn())
   const [showShortcutHelp, setShowShortcutHelp] = useState(false)
   const [showTechniqueLibrary, setShowTechniqueLibrary] = useState(false)
   const [showPhishImportModal, setShowPhishImportModal] = useState(false)
@@ -195,6 +197,11 @@ function App() {
   useEffect(() => {
     localStorage.setItem(SHOW_BADGE_KEY, showBadge.toString())
   }, [showBadge])
+
+  // Persist focused column state
+  useEffect(() => {
+    saveFocusedColumn(focusedColumn)
+  }, [focusedColumn])
 
   // Save annotations to LocalStorage
   useEffect(() => {
@@ -452,6 +459,15 @@ function App() {
     setShowCampaignManager(false) // Close campaign list when opening carousel
   }
 
+  const toggleColumnFocus = (columnId: ColumnID) => {
+    setFocusedColumn(prev => {
+      if (prev === columnId) {
+        return null // Reset to normal view
+      }
+      return columnId // Focus this column
+    })
+  }
+
   const handleCloseCarousel = () => {
     setShowCampaignCarousel(false)
     setCarouselCampaign(undefined)
@@ -533,6 +549,25 @@ function App() {
       </div>
     )
   }
+
+  // Column header component with expand button
+  const ColumnHeader = ({ title, columnId, onToggle }: {
+    title: string
+    columnId: ColumnID
+    onToggle: () => void
+  }) => (
+    <div className="column-header">
+      <span className="column-header-title">{title}</span>
+      <button
+        className="expand-column-btn"
+        onClick={onToggle}
+        title={focusedColumn === columnId ? "Reset to normal view" : "Expand to full width"}
+        type="button"
+      >
+        {focusedColumn === columnId ? '−' : '+'}
+      </button>
+    </div>
+  )
 
   return (
     <div className="app">
@@ -626,6 +661,11 @@ function App() {
       </header>
       <main className="app-main">
         <div className="input-column">
+          <ColumnHeader
+            title="Email Input"
+            columnId="input"
+            onToggle={() => toggleColumnFocus('input')}
+          />
           <div className="mode-toggle">
             <label className="mode-toggle-label">
               <input
@@ -661,12 +701,22 @@ function App() {
           )}
         </div>
         <div className="preview-column">
+          <ColumnHeader
+            title="Preview"
+            columnId="preview"
+            onToggle={() => toggleColumnFocus('preview')}
+          />
           <Preview
             htmlSource={htmlSource}
             onUpdate={handleMarkLure}
           />
         </div>
         <div className="lure-list-column">
+          <ColumnHeader
+            title="Annotations"
+            columnId="lure-list"
+            onToggle={() => toggleColumnFocus('lure-list')}
+          />
           <LureList
             htmlSource={htmlSource}
             onRemoveLure={handleRemoveLure}
@@ -675,6 +725,11 @@ function App() {
           />
         </div>
         <div className="scoring-column">
+          <ColumnHeader
+            title="Scoring"
+            columnId="scoring"
+            onToggle={() => toggleColumnFocus('scoring')}
+          />
           <ScoringPanel
             scoring={scoring}
             onUpdate={updateScoring}
