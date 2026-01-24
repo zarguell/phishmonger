@@ -22,6 +22,8 @@ import KeyboardShortcutHelp from './components/shortcuts/KeyboardShortcutHelp'
 import { CampaignManager } from './components/campaign/CampaignManager'
 import { CampaignEditor } from './components/campaign/CampaignEditor'
 import { CampaignCarouselModal } from './components/campaign/CampaignCarouselModal'
+import { PhishImportModal } from './components/import/PhishImportModal'
+import { CampaignImportModal } from './components/import/CampaignImportModal'
 import type { Annotation } from './types/annotations'
 import type { ScoringData } from './types/scoring'
 import type { ProjectMetadata } from './types/project'
@@ -160,6 +162,8 @@ function App() {
   })
   const [showShortcutHelp, setShowShortcutHelp] = useState(false)
   const [showTechniqueLibrary, setShowTechniqueLibrary] = useState(false)
+  const [showPhishImportModal, setShowPhishImportModal] = useState(false)
+  const [showCampaignImportModal, setShowCampaignImportModal] = useState(false)
   const slideWrapperRef = useRef<HTMLDivElement>(null)
 
   // Save to LocalStorage whenever htmlSource changes
@@ -358,6 +362,16 @@ function App() {
     }
   }
 
+  const handlePhishImport = (project: ProjectJSON) => {
+    handleImportJSON(project)
+    setShowPhishImportModal(false)
+  }
+
+  const handleCampaignImport = (campaignData: { name: string; description: string; campaignPhishes: any[] }) => {
+    addCampaign(campaignData)
+    setShowCampaignImportModal(false)
+  }
+
   const handleEditCampaign = (campaign: Campaign) => {
     setEditingCampaign(campaign)
     setShowCampaignManager(false) // Close list, open editor
@@ -547,24 +561,7 @@ function App() {
              metadata={metadata}
              onUpdate={handleUpdateMetadata}
              onExport={handleExportJSON}
-             onImportFromFile={(file: File) => {
-               const reader = new FileReader()
-               reader.onload = (e) => {
-                 try {
-                   const json = e.target?.result as string
-                   const project = importProjectJSON(json)
-                   handleImportJSON(project)
-                 } catch (error) {
-                   // Error handled in ProjectSettings
-                   throw error
-                 }
-               }
-               reader.readAsText(file)
-             }}
-             onImportFromText={(jsonText: string) => {
-               const project = importProjectJSON(jsonText)
-               handleImportJSON(project)
-             }}
+             onImportClick={() => setShowPhishImportModal(true)}
              onOpenTechniqueLibrary={() => setShowTechniqueLibrary(true)}
            />
         </div>
@@ -702,6 +699,8 @@ function App() {
           onEditCampaign={handleEditCampaign}
           onCarousel={handleViewCarousel}
           currentProject={currentPhish}
+          onImportClick={() => setShowCampaignImportModal(true)}
+          campaigns={campaigns}
         />
       )}
       {editingCampaign && (
@@ -718,6 +717,21 @@ function App() {
           isOpen={showCampaignCarousel}
           onClose={handleCloseCarousel}
           campaign={carouselCampaign}
+        />
+      )}
+      {showPhishImportModal && (
+        <PhishImportModal
+          isOpen={showPhishImportModal}
+          onClose={() => setShowPhishImportModal(false)}
+          onImport={handlePhishImport}
+        />
+      )}
+      {showCampaignImportModal && (
+        <CampaignImportModal
+          isOpen={showCampaignImportModal}
+          onClose={() => setShowCampaignImportModal(false)}
+          onImport={handleCampaignImport}
+          existingCampaigns={campaigns}
         />
       )}
     </div>
