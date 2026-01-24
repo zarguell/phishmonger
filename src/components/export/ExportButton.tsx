@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { exportSlideAsPNG, generateExportFilename } from '../../utils/export'
 
 interface ExportButtonProps {
-  slideWrapperRef: React.RefObject<HTMLDivElement>
+  slideWrapperRef: React.RefObject<HTMLDivElement | null>
   projectTitle?: string
   disabled?: boolean
 }
