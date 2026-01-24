@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo } from 'react';
 import { Campaign } from '../../types/campaign';
 import { CampaignCard } from './CampaignCard';
 import { useCampaigns } from '../../hooks/useCampaigns';
@@ -11,13 +11,13 @@ interface CampaignManagerProps {
   onEditCampaign: (campaign: Campaign) => void;
   onCarousel?: (campaign: Campaign) => void;
   currentProject?: any; // Optional - for future "add current project" feature
+  onImportClick?: () => void;  // NEW
+  campaigns?: Campaign[];      // NEW - passed to import modal
 }
 
-export function CampaignManager({ isOpen, onClose, onEditCampaign, onCarousel }: CampaignManagerProps) {
+export function CampaignManager({ isOpen, onClose, onEditCampaign, onCarousel, currentProject, onImportClick, campaigns: campaignsProp }: CampaignManagerProps) {
   const { campaigns, addCampaign, deleteCampaign } = useCampaigns();
   const [searchQuery, setSearchQuery] = useState('');
-  const [importError, setImportError] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Create modal state
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -77,47 +77,6 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign, onCarousel }:
       downloadCampaignICal(campaign);
     } catch (error) {
       console.error('Failed to export iCal:', error);
-    }
-  };
-
-  const handleImportClick = () => {
-    fileInputRef.current?.click();
-  };
-
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    try {
-      const text = await file.text();
-      const imported = JSON.parse(text) as Campaign;
-
-      // Validate structure
-      if (!imported.id || !imported.name || typeof imported.description !== 'string' || !Array.isArray(imported.campaignPhishes)) {
-        throw new Error('Invalid campaign file structure');
-      }
-
-      // Check for duplicate ID
-      if (campaigns.some(c => c.id === imported.id)) {
-        // Generate new ID and add "(copy)" suffix
-        imported.id = crypto.randomUUID();
-        imported.name = imported.name.endsWith(' (copy)') ? imported.name : `${imported.name} (copy)`;
-      }
-
-      addCampaign({
-        name: imported.name,
-        description: imported.description,
-        campaignPhishes: imported.campaignPhishes,
-      });
-
-      setImportError(null);
-    } catch (error) {
-      setImportError(error instanceof Error ? error.message : 'Failed to import campaign');
-    }
-
-    // Reset file input
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
     }
   };
 
@@ -280,7 +239,7 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign, onCarousel }:
             Create New Campaign
           </button>
           <button
-            onClick={handleImportClick}
+            onClick={onImportClick}
             style={{
               padding: '8px 16px',
               backgroundColor: '#f8f9fa',
@@ -327,18 +286,6 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign, onCarousel }:
           >
             New Phish
           </button>
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept=".json"
-            style={{ display: 'none' }}
-            onChange={handleFileChange}
-          />
-          {importError && (
-            <div style={{ color: '#dc2626', fontSize: '13px', maxWidth: '300px' }}>
-              {importError}
-            </div>
-          )}
         </div>
 
         {/* Content area */}
