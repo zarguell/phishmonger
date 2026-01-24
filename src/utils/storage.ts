@@ -72,7 +72,7 @@ export const loadMetadata = (): ProjectMetadata => {
     if (saved) {
       const parsed = JSON.parse(saved)
       return {
-        title: parsed.title || 'Untitled Project',
+        title: parsed.title || 'Untitled Phish',
         author: parsed.author || '',
         createdAt: parsed.createdAt || new Date().toISOString()
       }
@@ -82,7 +82,7 @@ export const loadMetadata = (): ProjectMetadata => {
   }
   // Default metadata for new projects
   return {
-    title: 'Untitled Project',
+    title: 'Untitled Phish',
     author: '',
     createdAt: new Date().toISOString()
   }
