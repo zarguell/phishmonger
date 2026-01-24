@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import type { CampaignPhish } from '../../types/campaign'
 import { loadCompactLayout, saveCompactLayout } from '../../utils/storage'
+import { downloadCleanHtml, copyCleanHtmlToClipboard, generateCleanHtmlFilename } from '../../utils/cleanHtmlExport'
 import { SlideWrapper } from '../preview/SlideWrapper'
 import { EmailColumn } from '../preview/EmailColumn'
 import { AnnotationColumn } from '../preview/AnnotationColumn'
@@ -33,6 +34,21 @@ export function ReadOnlyEditor({ phish, onBack }: ReadOnlyEditorProps) {
     } catch (error) {
       console.error('Failed to copy HTML:', error)
       alert('Failed to copy HTML')
+    }
+  }
+
+  const handleDownloadCleanHTML = () => {
+    const filename = generateCleanHtmlFilename(phish.metadata.title)
+    downloadCleanHtml(phish.htmlSource, filename)
+  }
+
+  const handleCopyCleanHTML = async () => {
+    try {
+      await copyCleanHtmlToClipboard(phish.htmlSource)
+      alert('Clean HTML copied to clipboard!')
+    } catch (error) {
+      console.error('Failed to copy clean HTML:', error)
+      alert('Failed to copy clean HTML')
     }
   }
 
@@ -156,6 +172,56 @@ export function ReadOnlyEditor({ phish, onBack }: ReadOnlyEditorProps) {
             title="Copy raw HTML to clipboard"
           >
             Copy HTML
+          </button>
+
+          <button
+            onClick={handleDownloadCleanHTML}
+            type="button"
+            style={{
+              backgroundColor: '#28a745',
+              color: '#ffffff',
+              border: 'none',
+              padding: '8px 16px',
+              borderRadius: '4px',
+              fontSize: '13px',
+              fontWeight: '500',
+              cursor: 'pointer',
+              transition: 'background-color 0.2s',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#218838'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#28a745'
+            }}
+            title="Download clean HTML file without annotations"
+          >
+            Download Clean HTML
+          </button>
+
+          <button
+            onClick={handleCopyCleanHTML}
+            type="button"
+            style={{
+              backgroundColor: '#fd7e14',
+              color: '#ffffff',
+              border: 'none',
+              padding: '8px 16px',
+              borderRadius: '4px',
+              fontSize: '13px',
+              fontWeight: '500',
+              cursor: 'pointer',
+              transition: 'background-color 0.2s',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#e36a09'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#fd7e14'
+            }}
+            title="Copy clean HTML to clipboard without annotations"
+          >
+            Copy Clean HTML
           </button>
         </div>
       </div>
