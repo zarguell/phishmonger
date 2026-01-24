@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
-import { Campaign } from '../../types/campaign';
+import { Campaign, CampaignPhish } from '../../types/campaign';
 import { CarouselCard } from './CarouselCard';
 
 interface CampaignCarouselProps {

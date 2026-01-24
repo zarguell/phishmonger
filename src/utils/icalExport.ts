@@ -40,9 +40,8 @@ export function generateCampaignICal(campaign: Campaign): string {
         start: startDate,
         end: endDate,
         summary: `${campaign.name}: ${phish.metadata.title}`,
-        description: phish.metadata.description || '',
-        uid: crypto.randomUUID(),
-        stamp: new Date()
+        description: `Phishing training exercise from ${campaign.name}`,
+        id: crypto.randomUUID()
       });
     });
 

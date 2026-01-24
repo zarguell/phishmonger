@@ -13,4 +13,5 @@ export interface ProjectMetadata {
   author: string
   createdAt: string  // ISO 8601 timestamp
   updatedAt?: string // ISO 8601 timestamp (optional, set on save)
+  thumbnailUrl?: string // Base64 screenshot URL for campaign carousel (optional)
 }

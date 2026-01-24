@@ -375,6 +375,7 @@ function App() {
     setAnnotations(phish.annotations)
     setMetadata({
       title: phish.metadata?.title || 'Untitled Phish',
+      author: phish.metadata?.author || '',
       createdAt: phish.metadata?.createdAt || new Date().toISOString(),
     })
     if (phish.scoring) {
@@ -405,6 +406,7 @@ function App() {
       annotations,
       metadata: {
         title: metadata.title,
+        author: metadata.author,
         createdAt: metadata.createdAt,
       },
       scoring,
