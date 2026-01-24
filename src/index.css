@@ -237,6 +237,11 @@ body {
   color: #2c3e50;
 }
 
+.column-header-actions {
+  display: flex;
+  gap: 4px;
+}
+
 .expand-column-btn {
   padding: 4px 8px;
   font-size: 14px;
@@ -250,6 +255,22 @@ body {
 }
 
 .expand-column-btn:hover {
+  background: #e9ecef;
+}
+
+.minimize-column-btn {
+  padding: 4px 8px;
+  font-size: 14px;
+  background: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.2s;
+  min-width: 28px;
+  font-weight: 600;
+}
+
+.minimize-column-btn:hover {
   background: #e9ecef;
 }
 
