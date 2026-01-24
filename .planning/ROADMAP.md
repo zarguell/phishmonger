@@ -231,17 +231,19 @@ Plans:
   2. React monorepo upgraded to latest (19.x) with all components rendering correctly
   3. @types/uuid upgraded to v11 without breaking changes
   4. @vitejs/plugin-react upgraded to v5 with build pipeline working
-  5. @types/html2canvas upgraded to v1 with export functionality intact
+  5. @types/html2canvas removed (deprecated - html2canvas has built-in types)
   6. All existing features pass manual testing (annotations, visualizer, export, undo/redo)
   7. No console errors or warnings in development or production builds
-**Plans**: TBD
+**Plans**: 5 plans in 5 waves
 
 Plans:
-- [ ] 15-01: Upgrade Tiptap to v3 and verify LureMark extension compatibility
-- [ ] 15-02: Upgrade React to 19.x and verify all components work
-- [ ] 15-03: Upgrade @types/uuid to v11, @vitejs/plugin-react to v5, @types/html2canvas to v1
-- [ ] 15-04: Manual regression testing of all v1.0-v1.2 features
-- [ ] 15-05: Fix any breaking changes or deprecation warnings
+- [ ] 15-01-PLAN.md — Upgrade @types/uuid to v11, remove @types/html2canvas, upgrade @vitejs/plugin-react to v5 (wave 1)
+- [ ] 15-02-PLAN.md — Upgrade React to 19.2.3 with type definitions (wave 2)
+- [ ] 15-03-PLAN.md — Upgrade Tiptap to v3.17.0 and migrate LureMark extension (wave 3)
+- [ ] 15-04-PLAN.md — Comprehensive smoke testing of all v1.0-v1.2 features (wave 4)
+- [ ] 15-05-PLAN.md — Fix any breaking changes or deprecation warnings (wave 5, conditional)
+
+**Status**: Not started
 
 ## Progress
 
