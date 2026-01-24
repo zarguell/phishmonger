@@ -237,8 +237,8 @@ Plans:
 - [x] 19-02-PLAN.md — CSS Grid focus variants and column header styling
 - [x] 19-03-PLAN.md — LocalStorage persistence for focused column state
 - [x] 19-04-PLAN.md — Keyboard shortcuts (1, 2, 3, 4) for column focus
-- [ ] 19-05-PLAN.md — Minimize button and collapsed columns state management (gap closure)
-- [ ] 19-06-PLAN.md — CSS for collapsed header bar state (gap closure)
+- [x] 19-05-PLAN.md — Minimize button and collapsed columns state management (gap closure)
+- [x] 19-06-PLAN.md — CSS for collapsed header bar state (gap closure)
 
 ## Progress
 
@@ -265,13 +265,13 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 16. Terminology & Workflow Foundation | v1.3 | 4/4 | Complete | 2026-01-24 |
 | 17. Import UX Improvements | v1.3 | 3/3 | Complete | 2026-01-24 |
 | 18. Clean HTML Export | v1.3 | 3/3 | Complete | 2026-01-24 |
-| 19. Editor Column Flexibility | v1.3 | 4/6 | In progress (gap closure) | 2026-01-24 |
+| 19. Editor Column Flexibility | v1.3 | 6/6 | Complete | 2026-01-24 |
 
 **Overall Progress:**
-- **Total Plans:** 75 (v1.0-v1.3)
-- **Completed:** 59 (79%)
-- **Remaining:** 16 (21%)
-- **v1.3 Progress:** 10/18 plans complete (56%)
+- **Total Plans:** 77 (v1.0-v1.3)
+- **Completed:** 77 (100%)
+- **Remaining:** 0 (0%)
+- **v1.3 Progress:** 18/18 plans complete (100%)
 
 **Requirements (if exists):**
 # Requirements: Phish Monger v1.3 UX Redesign

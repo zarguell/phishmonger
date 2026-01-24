@@ -9,10 +9,10 @@ Requirements for UX Redesign milestone. Each maps to roadmap phases.
 
 ### Terminology & Workflow
 
-- [ ] **TERM-01**: Application renames all "project" references to "phish" in UI text (buttons, labels, headings, help text)
-- [ ] **TERM-02**: Application renames all "project" references to "phish" in code variables, functions, and types
-- [ ] **TERM-03**: LocalStorage keys migrate from "phishmonger-projects" to "phishmonger-phishes" with v2→v3 migration script
-- [ ] **TERM-04**: Application launches with campaigns list as default landing view (not single-phish editor)
+- [x] **TERM-01**: Application renames all "project" references to "phish" in UI text (buttons, labels, headings, help text)
+- [x] **TERM-02**: Application renames all "project" references to "phish" in code variables, functions, and types
+- [x] **TERM-03**: LocalStorage keys migrate from "phishmonger-projects" to "phishmonger-phishes" with v2→v3 migration script
+- [x] **TERM-04**: Application launches with campaigns list as default landing view (not single-phish editor)
 
 ### Import/Export UX
 
@@ -23,10 +23,10 @@ Requirements for UX Redesign milestone. Each maps to roadmap phases.
 
 ### Editor Flexibility
 
-- [ ] **EDIT-01**: Each editor column has expand (full-width) and minimize buttons in column header
-- [ ] **EDIT-02**: Column state persists to localStorage (remembers expanded/minimized between sessions)
-- [ ] **EDIT-03**: Keyboard shortcuts (1, 2, 3, 4) toggle full-width focus for each column
-- [ ] **EDIT-04**: Minimized columns collapse to header bar with expand button visible
+- [x] **EDIT-01**: Each editor column has expand (full-width) and minimize buttons in column header
+- [x] **EDIT-02**: Column state persists to localStorage (remembers expanded/minimized between sessions)
+- [x] **EDIT-03**: Keyboard shortcuts (1, 2, 3, 4) toggle full-width focus for each column
+- [x] **EDIT-04**: Minimized columns collapse to header bar with expand button visible
 
 ## Future Requirements
 
@@ -64,10 +64,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | IEXP-02 | Phase 17 | Complete |
 | IEXP-03 | Phase 18 | Complete |
 | IEXP-04 | Phase 18 | Complete |
-| EDIT-01 | Phase 19 | Pending |
-| EDIT-02 | Phase 19 | Pending |
-| EDIT-03 | Phase 19 | Pending |
-| EDIT-04 | Phase 19 | Pending |
+| EDIT-01 | Phase 19 | Complete |
+| EDIT-02 | Phase 19 | Complete |
+| EDIT-03 | Phase 19 | Complete |
+| EDIT-04 | Phase 19 | Complete |
 
 **Coverage:**
 - v1.3 requirements: 12 total
@@ -76,4 +76,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-01-24*
-*Last updated: 2026-01-24 after roadmap creation*
+*Last updated: 2026-01-24 after Phase 19 completion*
