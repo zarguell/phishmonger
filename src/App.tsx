@@ -30,7 +30,7 @@ import type { ProjectMetadata } from './types/project'
 import type { Campaign, CampaignPhish } from './types/campaign'
 import type { Phish } from './types/phish'
 import type { ColumnID } from './types/columns'
-import { loadAnnotations, saveAnnotations, loadScoring, saveScoring, loadPhishMetadata, savePhishMetadata, exportProjectJSON, downloadProjectJSON, hasExistingPhishData, loadFocusedColumn, saveFocusedColumn } from './utils/storage'
+import { loadAnnotations, saveAnnotations, loadScoring, saveScoring, loadPhishMetadata, savePhishMetadata, exportProjectJSON, downloadProjectJSON, hasExistingPhishData, loadFocusedColumn, saveFocusedColumn, loadCollapsedColumns, saveCollapsedColumns } from './utils/storage'
 import type { ProjectJSON } from './utils/storage'
 import { initializeSchema } from './utils/schemaVersion'
 import { getStoragePercentage, isStorageNearQuota } from './utils/storageQuota'
@@ -162,6 +162,15 @@ function App() {
     return savedStyle || 'classic'
   })
   const [focusedColumn, setFocusedColumn] = useState<ColumnID | null>(() => loadFocusedColumn())
+  const [collapsedColumns, setCollapsedColumns] = useState<Set<ColumnID>>(() => {
+    try {
+      const saved = loadCollapsedColumns();
+      return saved || new Set<ColumnID>();
+    } catch (error) {
+      console.error('Failed to load collapsed columns:', error);
+      return new Set<ColumnID>();
+    }
+  })
   const [showShortcutHelp, setShowShortcutHelp] = useState(false)
   const [showTechniqueLibrary, setShowTechniqueLibrary] = useState(false)
   const [showPhishImportModal, setShowPhishImportModal] = useState(false)
@@ -177,6 +186,20 @@ function App() {
       return columnId // Focus this column
     })
   }, [])
+
+  // Column collapsed toggle function
+  const toggleColumnCollapsed = (columnId: ColumnID) => {
+    setCollapsedColumns(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(columnId)) {
+        newSet.delete(columnId); // Expand from collapsed
+      } else {
+        newSet.add(columnId); // Collapse
+      }
+      saveCollapsedColumns(newSet);
+      return newSet;
+    });
+  }
 
   // Save to LocalStorage whenever htmlSource changes
   useEffect(() => {
@@ -566,21 +589,33 @@ function App() {
   }
 
   // Column header component with expand button
-  const ColumnHeader = ({ title, columnId, onToggle }: {
+  const ColumnHeader = ({ title, columnId, onToggle, onMinimize, isCollapsed }: {
     title: string
     columnId: ColumnID
     onToggle: () => void
+    onMinimize: () => void
+    isCollapsed: boolean
   }) => (
     <div className="column-header">
       <span className="column-header-title">{title}</span>
-      <button
-        className="expand-column-btn"
-        onClick={onToggle}
-        title={focusedColumn === columnId ? "Reset to normal view" : "Expand to full width"}
-        type="button"
-      >
-        {focusedColumn === columnId ? '−' : '+'}
-      </button>
+      <div className="column-header-actions">
+        <button
+          className="minimize-column-btn"
+          onClick={onMinimize}
+          title={isCollapsed ? "Expand" : "Minimize"}
+          type="button"
+        >
+          {isCollapsed ? '↑' : '↓'}
+        </button>
+        <button
+          className="expand-column-btn"
+          onClick={onToggle}
+          title={focusedColumn === columnId ? "Reset to normal view" : "Expand to full width"}
+          type="button"
+        >
+          {focusedColumn === columnId ? '−' : '+'}
+        </button>
+      </div>
     </div>
   )
 
@@ -680,6 +715,8 @@ function App() {
             title="Email Input"
             columnId="input"
             onToggle={() => toggleColumnFocus('input')}
+            onMinimize={() => toggleColumnCollapsed('input')}
+            isCollapsed={collapsedColumns.has('input')}
           />
           <div className="mode-toggle">
             <label className="mode-toggle-label">
@@ -720,6 +757,8 @@ function App() {
             title="Preview"
             columnId="preview"
             onToggle={() => toggleColumnFocus('preview')}
+            onMinimize={() => toggleColumnCollapsed('preview')}
+            isCollapsed={collapsedColumns.has('preview')}
           />
           <Preview
             htmlSource={htmlSource}
@@ -731,6 +770,8 @@ function App() {
             title="Annotations"
             columnId="lure-list"
             onToggle={() => toggleColumnFocus('lure-list')}
+            onMinimize={() => toggleColumnCollapsed('lure-list')}
+            isCollapsed={collapsedColumns.has('lure-list')}
           />
           <LureList
             htmlSource={htmlSource}
@@ -744,6 +785,8 @@ function App() {
             title="Scoring"
             columnId="scoring"
             onToggle={() => toggleColumnFocus('scoring')}
+            onMinimize={() => toggleColumnCollapsed('scoring')}
+            isCollapsed={collapsedColumns.has('scoring')}
           />
           <ScoringPanel
             scoring={scoring}
