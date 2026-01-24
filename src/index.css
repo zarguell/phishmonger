@@ -274,6 +274,30 @@ body {
   background: #e9ecef;
 }
 
+/* Collapsed column state - shows header bar only */
+.column-collapsed {
+  min-width: 40px !important;
+  width: 40px !important;
+  max-width: 40px !important;
+  overflow: hidden;
+}
+
+/* Hide column content when collapsed, keep header visible */
+.column-collapsed > :not(.column-header) {
+  display: none;
+}
+
+/* Collapsed column header - vertical text for compact display */
+.column-collapsed .column-header {
+  width: 40px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  padding: 8px 4px;
+  height: auto;
+  justify-content: center;
+  gap: 4px;
+}
+
 .lure-list h2 {
   margin: 0 0 1rem 0;
   font-size: 1rem;
