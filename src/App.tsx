@@ -205,14 +205,14 @@ function App() {
   // Build currentPhish Phish object from App state for campaign integration
   const currentPhish = useMemo<Phish>(() => {
     // Get or generate phish ID from localStorage
-    let projectId = localStorage.getItem('phishmonger-project-id')
-    if (!projectId) {
-      projectId = crypto.randomUUID()
-      localStorage.setItem('phishmonger-project-id', projectId)
+    let phishId = localStorage.getItem('phishmonger-phish-id')
+    if (!phishId) {
+      phishId = crypto.randomUUID()
+      localStorage.setItem('phishmonger-phish-id', phishId)
     }
 
     return {
-      id: projectId,
+      id: phishId,
       metadata,
       htmlSource,
       annotations,
@@ -382,8 +382,8 @@ function App() {
       setScoring(phish.scoring)
     }
 
-    // Store project ID for consistent identity
-    localStorage.setItem('phishmonger-project-id', phish.id)
+    // Store phish ID for consistent identity
+    localStorage.setItem('phishmonger-phish-id', phish.id)
 
     // Track which campaign phish is being edited for save-to-campaign workflow
     setEditingCampaignPhish({ campaignId, phishId: phish.id })
