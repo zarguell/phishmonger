@@ -230,13 +230,15 @@ Plans:
   2. User minimizes any column to collapsed header bar via header button
   3. Column state persists across sessions (localStorage remembers expanded/minimized)
   4. User toggles column focus with keyboard shortcuts (1, 2, 3, 4)
-**Plans**: 4 plans in 3 waves
+**Plans**: 6 plans in 2 waves
 
 Plans:
-- [ ] 19-01-PLAN.md — Column types, storage utilities, and UI state management
-- [ ] 19-02-PLAN.md — CSS Grid focus variants and column header styling
-- [ ] 19-03-PLAN.md — LocalStorage persistence for focused column state
-- [ ] 19-04-PLAN.md — Keyboard shortcuts (1, 2, 3, 4) for column focus
+- [x] 19-01-PLAN.md — Column types, storage utilities, and UI state management
+- [x] 19-02-PLAN.md — CSS Grid focus variants and column header styling
+- [x] 19-03-PLAN.md — LocalStorage persistence for focused column state
+- [x] 19-04-PLAN.md — Keyboard shortcuts (1, 2, 3, 4) for column focus
+- [ ] 19-05-PLAN.md — Minimize button and collapsed columns state management (gap closure)
+- [ ] 19-06-PLAN.md — CSS for collapsed header bar state (gap closure)
 
 ## Progress
 
@@ -263,7 +265,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 16. Terminology & Workflow Foundation | v1.3 | 4/4 | Complete | 2026-01-24 |
 | 17. Import UX Improvements | v1.3 | 3/3 | Complete | 2026-01-24 |
 | 18. Clean HTML Export | v1.3 | 3/3 | Complete | 2026-01-24 |
-| 19. Editor Column Flexibility | v1.3 | 0/4 | Not started | - |
+| 19. Editor Column Flexibility | v1.3 | 4/6 | In progress (gap closure) | 2026-01-24 |
 
 **Overall Progress:**
 - **Total Plans:** 75 (v1.0-v1.3)
