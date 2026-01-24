@@ -16,10 +16,10 @@ Requirements for UX Redesign milestone. Each maps to roadmap phases.
 
 ### Import/Export UX
 
-- [ ] **IEXP-01**: Phish import uses modal dialog instead of expanding menu (no layout shift)
-- [ ] **IEXP-02**: Campaign import provides text input field for JSON paste (in addition to file upload)
-- [ ] **IEXP-03**: Carousel view exports clean HTML with lure mark divs stripped (email content only)
-- [ ] **IEXP-04**: Clean HTML export offers both file download and clipboard copy options
+- [x] **IEXP-01**: Phish import uses modal dialog instead of expanding menu (no layout shift)
+- [x] **IEXP-02**: Campaign import provides text input field for JSON paste (in addition to file upload)
+- [x] **IEXP-03**: Carousel view exports clean HTML with lure mark divs stripped (email content only)
+- [x] **IEXP-04**: Clean HTML export offers both file download and clipboard copy options
 
 ### Editor Flexibility
 
@@ -56,14 +56,14 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| TERM-01 | Phase 16 | Pending |
-| TERM-02 | Phase 16 | Pending |
-| TERM-03 | Phase 16 | Pending |
-| TERM-04 | Phase 16 | Pending |
-| IEXP-01 | Phase 17 | Pending |
-| IEXP-02 | Phase 17 | Pending |
-| IEXP-03 | Phase 18 | Pending |
-| IEXP-04 | Phase 18 | Pending |
+| TERM-01 | Phase 16 | Complete |
+| TERM-02 | Phase 16 | Complete |
+| TERM-03 | Phase 16 | Complete |
+| TERM-04 | Phase 16 | Complete |
+| IEXP-01 | Phase 17 | Complete |
+| IEXP-02 | Phase 17 | Complete |
+| IEXP-03 | Phase 18 | Complete |
+| IEXP-04 | Phase 18 | Complete |
 | EDIT-01 | Phase 19 | Pending |
 | EDIT-02 | Phase 19 | Pending |
 | EDIT-03 | Phase 19 | Pending |

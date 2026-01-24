@@ -217,9 +217,9 @@ Plans:
 **Plans**: 3 plans in 3 waves
 
 Plans:
-- [ ] 18-01-PLAN.md — Create cleanHtmlExport utility module with DOMParser-based sanitization
-- [ ] 18-02-PLAN.md — Add export UI buttons to ReadOnlyEditor component
-- [ ] 18-03-PLAN.md — Validate export functionality with human testing
+- [x] 18-01-PLAN.md — Create cleanHtmlExport utility module with DOMParser-based sanitization
+- [x] 18-02-PLAN.md — Add export UI buttons to ReadOnlyEditor component
+- [x] 18-03-PLAN.md — Validate export functionality with human testing
 
 #### Phase 19: Editor Column Flexibility
 **Goal**: Expandable and minimizable editor columns with keyboard shortcuts
@@ -262,11 +262,11 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 15. Dependency Upgrades & Polish | v1.2 | 4/5 | Complete | 2026-01-24 |
 | 16. Terminology & Workflow Foundation | v1.3 | 4/4 | Complete | 2026-01-24 |
 | 17. Import UX Improvements | v1.3 | 3/3 | Complete | 2026-01-24 |
-| 18. Clean HTML Export | v1.3 | 0/3 | Not started | - |
+| 18. Clean HTML Export | v1.3 | 3/3 | Complete | 2026-01-24 |
 | 19. Editor Column Flexibility | v1.3 | 0/4 | Not started | - |
 
 **Overall Progress:**
 - **Total Plans:** 70 (v1.0-v1.3)
-- **Completed:** 53 (76%)
-- **Remaining:** 17 (24%)
-- **v1.3 Progress:** 7/14 plans complete (50%)
+- **Completed:** 56 (80%)
+- **Remaining:** 14 (20%)
+- **v1.3 Progress:** 10/14 plans complete (71%)
