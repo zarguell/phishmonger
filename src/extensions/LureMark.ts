@@ -13,7 +13,7 @@ export const LureMark = Node.create({
   addAttributes() {
     return {
       lureId: {
-        default: uuidv4(),
+        default: () => uuidv4(),
       },
     }
   },
