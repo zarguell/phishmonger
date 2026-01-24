@@ -214,12 +214,12 @@ Plans:
   2. Clean HTML export offers both file download and clipboard copy options
   3. Exported HTML renders correctly when opened in email clients or browsers
   4. Original phish data remains unchanged (export is derivative, not mutation)
-**Plans**: 4 plans in 3 waves
+**Plans**: 3 plans in 3 waves
 
 Plans:
-- [ ] 18-01: HTML sanitization for export (strip lure mark divs)
-- [ ] 18-02: Export options UI (file download vs clipboard copy)
-- [ ] 18-03: HTML export validation (test in email clients)
+- [ ] 18-01-PLAN.md — Create cleanHtmlExport utility module with DOMParser-based sanitization
+- [ ] 18-02-PLAN.md — Add export UI buttons to ReadOnlyEditor component
+- [ ] 18-03-PLAN.md — Validate export functionality with human testing
 
 #### Phase 19: Editor Column Flexibility
 **Goal**: Expandable and minimizable editor columns with keyboard shortcuts
