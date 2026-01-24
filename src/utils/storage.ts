@@ -105,6 +105,35 @@ export const savePhishMetadata = (metadata: ProjectMetadata) => {
 }
 
 /**
+ * Check if user has existing phish data (for backward compatibility)
+ *
+ * Returns true if the user has customized their phish metadata,
+ * indicating they are an existing user who should see the editor view.
+ *
+ * @returns true if user has existing data, false for new users
+ */
+export function hasExistingPhishData(): boolean {
+  try {
+    const metadataStr = localStorage.getItem(METADATA_KEY);
+    if (!metadataStr) {
+      return false; // No data at all - new user
+    }
+
+    const metadata = JSON.parse(metadataStr);
+    // Check if user has customized the title from default
+    // "Untitled Phish" (post-migration) or "Untitled Project" (pre-migration)
+    const hasCustomTitle = metadata.title &&
+      metadata.title !== 'Untitled Phish' &&
+      metadata.title !== 'Untitled Project';
+
+    return hasCustomTitle;
+  } catch (error) {
+    console.error('Failed to check for existing data:', error);
+    return false;
+  }
+}
+
+/**
  * Phish export/import interface
  *
  * Includes optional customTechniques field for portability:
