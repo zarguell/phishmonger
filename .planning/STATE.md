@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Security trainers can create visual, annotated phishing training materials that clearly highlight deceptive techniques with educational context — without manual layout work.
-**Current focus:** Phase 16: Terminology & Workflow Foundation
+**Current focus:** Phase 17: Import UX Improvements
 
 ## Current Position
 
-Phase: 16 of 19 (Terminology & Workflow Foundation)
-Plan: 04 of 04
-Status: Phase complete
-Last activity: 2026-01-24 — Completed and verified 16-04-PLAN.md (campaigns-first workflow)
+Phase: 17 of 19 (Import UX Improvements)
+Plan: 02 of 03
+Status: In progress
+Last activity: 2026-01-24 — Completed 17-02-PLAN.md (Campaign import modal)
 
-Progress: [██████████░░░░░░░] 71.4% (50/70 plans complete)
+Progress: [███████████░░░░░░] 72.9% (51/70 plans complete)
 
 ## Performance Metrics
 
@@ -29,7 +29,7 @@ Progress: [██████████░░░░░░░] 71.4% (50/70 pla
 |-------|-------|-------|----------|
 | 1-8 | 29 | TBD | TBD |
 | 9-15 | 17 | TBD | TBD |
-| 16-19 | 4 | TBD | TBD |
+| 16-19 | 5 | TBD | TBD |
 
 **Recent Trend:**
 - Last 5 plans: TBD
@@ -48,6 +48,8 @@ Recent decisions affecting current work:
 - Phase 16: Campaigns-first workflow means campaigns list is default landing view (not standalone editor)
 - Phase 16: LocalStorage migration from v2 to v3 required for key rename ("phishmonger-projects" → "phishmonger-phishes")
 - Phase 16: Maintain backward compatibility for existing users (migration script runs on app mount)
+- Phase 17: Modal pattern established via KeyboardShortcutHelp (escape key + backdrop click) followed for CampaignImportModal
+- Phase 17: Dual input methods (file upload + text paste) provided for campaign import flexibility
 
 [Previous v1.0-v1.2 decisions archived in PROJECT.md]
 
@@ -61,6 +63,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-24 18:10
-Stopped at: Phase 16 complete - all 4 plans finished and verified
+Last session: 2026-01-24 18:32
+Stopped at: Completed 17-02-PLAN.md (Campaign import modal)
 Resume file: None
