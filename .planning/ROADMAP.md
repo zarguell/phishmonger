@@ -201,9 +201,9 @@ Plans:
 **Plans**: 3 plans in 2 waves
 
 Plans:
-- [ ] 17-01: Phish import modal UI
-- [ ] 17-02: Campaign import modal UI
-- [ ] 17-03: Integrate modals into App, ProjectSettings, and CampaignManager
+- [x] 17-01: Phish import modal UI
+- [x] 17-02: Campaign import modal UI
+- [x] 17-03: Integrate modals into App, ProjectSettings, and CampaignManager
 
 #### Phase 18: Clean HTML Export
 **Goal**: Export clean email HTML from carousel view (strip lure mark divs)
@@ -261,12 +261,12 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 14. Sample Campaign & Demo Data | v1.2 | 2/2 | Complete | 2026-01-23 |
 | 15. Dependency Upgrades & Polish | v1.2 | 4/5 | Complete | 2026-01-24 |
 | 16. Terminology & Workflow Foundation | v1.3 | 4/4 | Complete | 2026-01-24 |
-| 17. Import UX Improvements | v1.3 | 0/3 | Not started | - |
+| 17. Import UX Improvements | v1.3 | 3/3 | Complete | 2026-01-24 |
 | 18. Clean HTML Export | v1.3 | 0/3 | Not started | - |
 | 19. Editor Column Flexibility | v1.3 | 0/4 | Not started | - |
 
 **Overall Progress:**
 - **Total Plans:** 70 (v1.0-v1.3)
-- **Completed:** 50 (71%)
-- **Remaining:** 20 (29%)
-- **v1.3 Progress:** 4/14 plans complete (29%)
+- **Completed:** 53 (76%)
+- **Remaining:** 17 (24%)
+- **v1.3 Progress:** 7/14 plans complete (50%)
