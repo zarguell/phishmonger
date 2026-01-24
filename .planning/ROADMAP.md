@@ -6,9 +6,9 @@ Phish Monger delivers campaign management capabilities through a progressive bui
 
 ## Milestones
 
-- **v1.0 MVP** - Phases 1-5 (shipped 2026-01-21)
-- **v1.1 Enhanced** - Phases 6-8 (shipped 2026-01-22)
-- **v1.2 Campaign Management** - Phases 9-15 (in progress)
+- ✅ **v1.0 MVP** — Phases 1-5 (shipped 2026-01-21)
+- ✅ **v1.1 Enhanced** — Phases 6-8 (shipped 2026-01-22)
+- ✅ **v1.2 Campaign Management** — Phases 9-15 (shipped 2026-01-24)
 
 ## Phases
 
@@ -97,158 +97,54 @@ Plans:
 
 </details>
 
-### v1.2 Campaign Management (In Progress)
+<details>
+<summary>v1.2 Campaign Management (Phases 9-15) — SHIPPED 2026-01-24</summary>
 
-**Milestone Goal:** Enable security teams to organize multiple phishing exercises into campaigns, schedule them, and export to external calendars.
+### Phase 9: Campaign Data Model & Storage
+- [x] 09-01-PLAN.md — Campaign and Phish type definitions
+- [x] 09-02-PLAN.md — LocalStorage schema extension and schema versioning
+- [x] 09-03-PLAN.md — useCampaigns hook with CRUD operations and phish copying
+- [x] 09-04-PLAN.md — Storage quota monitoring and warning system
 
-#### Phase 9: Campaign Data Model & Storage
-**Goal**: Campaign and scheduling data structures persist reliably with referential integrity
-**Depends on**: Phase 8
-**Requirements**: CMP-01, CMP-02, CMP-03, CMP-04, CMP-05, CMP-06, CMP-07, DAT-04, DAT-05
-**Success Criteria** (what must be TRUE):
-  1. User can create campaign entity with name, description, and project ID array in LocalStorage
-  2. System maintains many-to-many relationships (projects belong to multiple campaigns, campaigns contain multiple projects)
-  3. System enforces referential integrity (deleting project updates all campaigns, deleting campaign doesn't delete projects)
-  4. System migrates existing v1.1 projects to v1.2 schema without data loss
-  5. System monitors LocalStorage quota and warns before hitting ~5MB limit
-**Plans**: 4 plans in 2 waves
+### Phase 10: Campaign Manager UI
+- [x] 10-01-PLAN.md — CampaignCard and CampaignPhishItem display components
+- [x] 10-02-PLAN.md — CampaignManager modal with campaign list, search, create, import
+- [x] 10-03-PLAN.md — CampaignEditor modal with metadata form, phish list, scheduling
+- [x] 10-04-PLAN.md — App.tsx integration with Campaigns button and state management
 
-Plans:
-- [x] 09-01-PLAN.md — Campaign and Phish type definitions (wave 1)
-- [x] 09-02-PLAN.md — LocalStorage schema extension and schema versioning (wave 2)
-- [x] 09-03-PLAN.md — useCampaigns hook with CRUD operations and phish copying (wave 2)
-- [x] 09-04-PLAN.md — Storage quota monitoring and warning system (wave 2)
+### Phase 11: iCal Export & Integration
+- [x] 11-01-PLAN.md — Install ical-generator and create iCal export utility
+- [x] 11-02-PLAN.md — Add Export Calendar button to campaign list view
 
-**Status**: Complete — Verified 2026-01-22
+### Phase 12: Detail Carousel
+- [x] 12-01-PLAN.md — CarouselCard and CampaignCarousel components
+- [x] 12-02-PLAN.md — ReadOnlyEditor component for viewing phishes
+- [x] 12-03-PLAN.md — CampaignCarouselModal with view state management
+- [x] 12-04-PLAN.md — App.tsx integration with keyboard navigation
 
-#### Phase 10: Campaign Manager UI
-**Goal**: Users can create, edit, and manage campaigns through intuitive interface
-**Depends on**: Phase 9
-**Requirements**: SCH-01, SCH-02, DAT-01, DAT-02, DAT-03, CMP-01, CMP-02, CMP-03, CMP-04, CMP-05, CMP-06, CMP-07
-**Success Criteria** (what must be TRUE):
-  1. User can view list of all campaigns with metadata (name, description, project count, date range)
-  2. User can create new campaign with name and description
-  3. User can edit campaign name and description
-  4. User can delete campaign (with confirmation)
-  5. User can add current phishing project to campaign
-  6. User can remove phishing projects from campaign
-  7. User can assign scheduled date to each phish in campaign via date picker
-  8. System auto-calculates and displays campaign duration (earliest to latest phish dates)
-  9. User can export campaign as JSON
-  10. User can import campaign from JSON file
-  11. System handles duplicate detection on import (by campaign ID)
-**Plans**: 4 plans in 3 waves
+### Phase 13: Compact Annotation Layout
+- [x] 13-01-PLAN.md — Storage utilities and compact-annotations CSS variant
+- [x] 13-02-PLAN.md — ReadOnlyEditor toggle button with state persistence
 
-Plans:
-- [x] 10-01-PLAN.md — CampaignCard and CampaignPhishItem display components (wave 1)
-- [x] 10-02-PLAN.md — CampaignManager modal with campaign list, search, create, import (wave 2)
-- [x] 10-03-PLAN.md — CampaignEditor modal with metadata form, phish list, scheduling (wave 2)
-- [x] 10-04-PLAN.md — App.tsx integration with Campaigns button and state management (wave 3)
+### Phase 14: Sample Campaign & Demo Data
+- [x] 14-01-PLAN.md — Create sample campaign JSON with TypeScript wrapper
+- [x] 14-02-PLAN.md — Add Load Sample Campaign button to CampaignManager
 
-**Status**: Complete — Verified 2026-01-22
+### Phase 15: Dependency Upgrades & Polish
+- [x] 15-01-PLAN.md — Upgrade @types/uuid to v11, remove @types/html2canvas, upgrade @vitejs/plugin-react to v5
+- [x] 15-02-PLAN.md — Upgrade React to 19.2.3 with type definitions
+- [x] 15-03-PLAN.md — Upgrade Tiptap to v3.17.0 and migrate LureMark extension
+- [x] 15-04-PLAN.md — Comprehensive smoke testing of all v1.0-v1.2 features
+- [x] 15-05-PLAN.md — Fix any breaking changes or deprecation warnings (skipped - not needed)
 
-#### Phase 11: iCal Export & Integration
-**Goal**: Users can export campaign schedules to external calendar applications
-**Depends on**: Phase 10
-**Requirements**: SCH-03, SCH-04
-**Success Criteria** (what must be TRUE):
-  1. User can export campaign to .ics file via export button
-  2. iCal file contains one event per scheduled phish with campaign name, phish title, date/time
-  3. iCal file imports correctly into Google Calendar, Outlook, and Apple Calendar
-  4. System handles timezone conversion correctly (UTC storage, local display)
-  5. Export button appears in campaign list view
-**Plans**: 2 plans in 2 waves
+**Archive:** `.planning/milestones/v1.2-ROADMAP.md` for full details
 
-Plans:
-- [x] 11-01-PLAN.md — Install ical-generator and create iCal export utility (wave 1)
-- [x] 11-02-PLAN.md — Add Export Calendar button to campaign list view (wave 2)
-
-**Status**: Complete — Verified 2026-01-23
-
-#### Phase 12: Detail Carousel
-**Goal**: Users can browse campaign phishes horizontally without leaving campaign context
-**Depends on**: Phase 10
-**Requirements**: VIS-01
-**Success Criteria** (what must be TRUE):
-  1. User can view campaign phishes in horizontal scrollable carousel
-  2. User can navigate between phishes via prev/next buttons
-  3. User can click carousel card to open phish in read-only editor mode
-  4. Carousel shows phish metadata (title, scheduled date, annotation count)
-  5. Carousel maintains scroll position and selected card state
-  6. Carousel handles 20+ phishes without performance degradation
-**Plans**: 4 plans in 2 waves
-
-Plans:
-- [x] 12-01-PLAN.md — CarouselCard and CampaignCarousel components (wave 1)
-- [x] 12-02-PLAN.md — ReadOnlyEditor component for viewing phishes (wave 1)
-- [x] 12-03-PLAN.md — CampaignCarouselModal with view state management (wave 2)
-- [x] 12-04-PLAN.md — App.tsx integration with keyboard navigation (wave 2)
-
-**Status**: Complete — 2026-01-23 (91% - minor scroll position bug, core features working)
-
-#### Phase 13: Compact Annotation Layout
-**Goal**: Users can toggle denser annotation display for carousel browsing
-**Depends on**: Phase 12
-**Requirements**: VIS-02
-**Success Criteria** (what must be TRUE):
-  1. User can toggle compact layout via button in carousel view
-  2. Compact layout displays annotations with smaller font (12px vs 14px)
-  3. Compact layout uses tighter spacing (reduced padding and margins)
-  4. Compact layout maintains readability and badge visibility
-  5. Toggle preference persists across sessions via LocalStorage
-**Plans**: 2 plans in 2 waves
-
-Plans:
-- [x] 13-01-PLAN.md — Storage utilities and compact-annotations CSS variant (wave 1)
-- [x] 13-02-PLAN.md — ReadOnlyEditor toggle button with state persistence (wave 2)
-
-**Status**: Complete — Verified 2026-01-23
-
-#### Phase 14: Sample Campaign & Demo Data
-**Goal**: Users can load sample campaign to explore features without manual setup
-**Depends on**: Phase 10
-**Requirements**: VIS-03, VIS-04
-**Success Criteria** (what must be TRUE):
-  1. System includes sample campaign JSON with 3-4 well-annotated demo phishes
-  2. Sample phishes demonstrate variety (credential harvest, attachment malware, business email compromise)
-  3. User can load sample campaign via "Load Sample Campaign" option
-  4. Sample campaign imports without duplicate conflicts (unique IDs)
-  5. Sample campaign appears in campaign list after loading
-**Plans**: 2 plans in 2 waves
-
-Plans:
-- [x] 14-01-PLAN.md — Create sample campaign JSON with TypeScript wrapper (wave 1)
-- [x] 14-02-PLAN.md — Add Load Sample Campaign button to CampaignManager (wave 2)
-
-**Status**: Complete — Verified 2026-01-23
-
-#### Phase 15: Dependency Upgrades & Polish
-**Goal**: All major dependencies upgraded and verified working
-**Depends on**: Phase 14
-**Requirements**: DEP-01, DEP-02, DEP-03, DEP-04, DEP-05, DEP-06, DEP-07
-**Success Criteria** (what must be TRUE):
-  1. Tiptap monorepo upgraded to v3 with LureMark extension working
-  2. React monorepo upgraded to latest (19.x) with all components rendering correctly
-  3. @types/uuid upgraded to v11 without breaking changes
-  4. @vitejs/plugin-react upgraded to v5 with build pipeline working
-  5. @types/html2canvas removed (deprecated - html2canvas has built-in types)
-  6. All existing features pass manual testing (annotations, visualizer, export, undo/redo)
-  7. No console errors or warnings in development or production builds
-**Plans**: 5 plans in 5 waves
-
-Plans:
-- [x] 15-01-PLAN.md — Upgrade @types/uuid to v11, remove @types/html2canvas, upgrade @vitejs/plugin-react to v5 (wave 1)
-- [x] 15-02-PLAN.md — Upgrade React to 19.2.3 with type definitions (wave 2)
-- [x] 15-03-PLAN.md — Upgrade Tiptap to v3.17.0 and migrate LureMark extension (wave 3)
-- [x] 15-04-PLAN.md — Comprehensive smoke testing of all v1.0-v1.2 features (wave 4)
-- [x] 15-05-PLAN.md — Fix any breaking changes or deprecation warnings (wave 5, conditional, skipped - not needed)
-
-**Status**: Complete — Verified 2026-01-24
+</details>
 
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 9 → 10 → 11 → 12 → 13 → 14 → 15
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11 → 12 → 13 → 14 → 15
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|

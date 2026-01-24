@@ -38,19 +38,37 @@ Security trainers can create visual, annotated phishing training materials that 
 
 ### Active
 
-**Current Milestone: v1.2 Campaign Management**
+**Current Milestone:** TBD (user to decide next goals)
 
-**Goal:** Enable security teams to organize multiple phishing exercises into campaigns, schedule them, and export to external calendars.
+**Potential areas:**
+- Bug fixes (carousel scroll position, other minor issues)
+- Visual calendar view (month/week grid for campaigns)
+- Advanced campaign features (templates, bulk operations, conflict detection)
+- Collaboration features (multi-user, cloud sync)
+- Analytics and reporting (campaign effectiveness, phishing statistics)
+- Mobile responsiveness improvements
+- Performance optimizations (large campaign handling)
 
-**Target features:**
-- Campaign manager interface (create/edit campaigns, add phishes)
-- Many-to-many phish↔campaign relationships
-- Campaign JSON export/import (single file as array of phishes)
-- Detail carousel for browsing campaign phishes (prev/next navigation)
-- Per-phish scheduled date field
-- Calendar view showing campaign-level summaries
-- iCal/ics export for external calendar integration (Outlook, Google Calendar)
-- Dependency updates (careful upgrade of major version bumps)
+### Validated (v1.2)
+
+- ✅ Campaign creation with name, description, and project list — v1.2
+- ✅ Campaign list view with metadata (project count, date range) — v1.2
+- ✅ Campaign editing (name, description, phishes) — v1.2
+- ✅ Campaign deletion with confirmation — v1.2
+- ✅ Add/remove phishing projects from campaigns — v1.2
+- ✅ Per-phish scheduled date assignment with date picker — v1.2
+- ✅ Auto-calculated campaign duration (min/max phish dates) — v1.2
+- ✅ Campaign JSON export/import with duplicate detection — v1.2
+- ✅ iCal/ics calendar export (RFC 5545 compliant) — v1.2
+- ✅ Detail carousel for horizontal browsing (prev/next, keyboard) — v1.2
+- ✅ Compact annotation layout toggle (denser display) — v1.2
+- ✅ Read-only editor for viewing campaign phishes — v1.2
+- ✅ Sample campaign with 4 demo phishes — v1.2
+- ✅ LocalStorage schema versioning (v2) for campaigns — v1.2
+- ✅ Many-to-many phish↔campaign relationships (self-contained design) — v1.2
+- ✅ React 19.2.3 upgrade — v1.2
+- ✅ Tiptap 3.17.0 upgrade with LureMark extension migration — v1.2
+- ✅ Dependency upgrades (uuid v11, Vite plugin v5) — v1.2
 
 ### Out of Scope
 
@@ -66,6 +84,7 @@ Built for security teams creating phishing awareness training materials. The too
 
 Shipped v1.0 with 3,101 LOC TypeScript. Tech stack: React + Vite, Tiptap editor, html2canvas, DOMPurify.
 Shipped v1.1 with 4,146 LOC TypeScript. Added: react-hotkeys-hook for keyboard shortcuts.
+Shipped v1.2 with 7,081 LOC TypeScript. Added: ical-generator for calendar export.
 
 ## Constraints
 
@@ -93,7 +112,14 @@ Shipped v1.1 with 4,146 LOC TypeScript. Added: react-hotkeys-hook for keyboard s
 | Optional techniqueId in annotations | Enables freetext annotations without MITRE technique mapping | ✅ Confirmed in v1.1 |
 | Modal overlay for technique library | Consistent UX pattern with other tools (settings, shortcuts) | ✅ Confirmed in v1.1 |
 | Orphaned technique warnings | Preserve user annotations even when custom techniques deleted | ✅ Confirmed in v1.1 |
+| Self-contained campaign design | No referential integrity issues, fully importable/exportable | ✅ Confirmed in v1.2 |
+| crypto.randomUUID() for IDs | Native browser API, zero dependencies | ✅ Confirmed in v1.2 |
+| ISO 8601 strings for dates | JSON-serializable, lexicographically sortable | ✅ Confirmed in v1.2 |
+| Schema version 2 for campaigns | Future migration support established | ✅ Confirmed in v1.2 |
+| ical-generator for iCal export | RFC 5545 compliance, library over custom implementation | ✅ Confirmed in v1.2 |
+| Deferred to final phase | Reduce risk, verify all features before upgrades | ✅ Confirmed in v1.2 |
+| Function-based Tiptap defaults | Prevents state sharing between editor instances (v3 requirement) | ✅ Confirmed in v1.2 |
 
 ---
 
-*Last updated: 2026-01-22 after v1.2 milestone initiated*
+*Last updated: 2026-01-24 after v1.2 milestone completion*

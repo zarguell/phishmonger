@@ -2,17 +2,17 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-01-22)
+See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Security trainers can create visual, annotated phishing training materials that clearly highlight deceptive techniques with educational context — without manual layout work.
-**Current focus:** Phase 14: Sample Campaign & Demo Data
+**Current focus:** Planning next milestone
 
 ## Current Position
 
-Phase: 15 of 15 (Dependency Upgrades & Polish)
-Plan: 4 of 4 in current phase
-Status: Phase complete
-Last activity: 2026-01-24 — Completed 15-04: Comprehensive smoke testing after dependency upgrades
+Phase: None (v1.2 milestone complete)
+Plan: Not started
+Status: Ready to plan next milestone
+Last activity: 2026-01-24 — v1.2 Campaign Management milestone complete
 
 Progress: [██████████████████] 100% (61/61 plans complete)
 
@@ -132,6 +132,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-24T17:02:17Z (plan 15-04 execution)
-Stopped at: Completed 15-04-PLAN.md - All phases complete (61/61)
+Last session: 2026-01-24T18:00:00Z (v1.2 milestone completion)
+Stopped at: v1.2 Campaign Management milestone archived and shipped
 Resume file: None
