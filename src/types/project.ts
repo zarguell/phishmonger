@@ -1,12 +1,12 @@
 /**
- * Project metadata type definition for Phish Monger
+ * Phish metadata type definition for Phish Monger
  *
- * Stores project identification and timestamp information
+ * Stores phish identification and timestamp information
  * for persistence and export functionality.
  */
 
 /**
- * Project metadata including title, author, and timestamps
+ * Phish metadata including title, author, and timestamps
  */
 export interface ProjectMetadata {
   title: string

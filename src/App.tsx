@@ -41,15 +41,15 @@ const SHOW_TAGS_KEY = 'phishmonger-show-tags'
 const SHOW_BADGE_KEY = 'phishmonger-show-badge'
 
 /**
- * Merge custom techniques from imported project with existing local techniques
+ * Merge custom techniques from imported phish with existing local techniques
  *
  * Strategy:
  * - If imported technique ID doesn't exist locally, add it
  * - If imported technique ID exists locally, keep the newer one (based on createdAt timestamp)
- * - This allows sharing techniques across projects without data loss
+ * - This allows sharing techniques across phishes without data loss
  *
  * @param existing - Existing custom techniques from LocalStorage
- * @param imported - Custom techniques from imported project JSON
+ * @param imported - Custom techniques from imported phish JSON
  * @returns Merged custom techniques
  */
 function mergeCustomTechniques(

@@ -105,12 +105,12 @@ export const savePhishMetadata = (metadata: ProjectMetadata) => {
 }
 
 /**
- * Project export/import interface
+ * Phish export/import interface
  *
  * Includes optional customTechniques field for portability:
- * - Custom techniques travel with the project JSON
+ * - Custom techniques travel with the phish JSON
  * - Built-in techniques are NOT included (reference by ID only)
- * - This prevents bloat and allows sharing projects with custom techniques
+ * - This prevents bloat and allows sharing phishes with custom techniques
  */
 export interface ProjectJSON {
   metadata: ProjectMetadata
@@ -122,15 +122,15 @@ export interface ProjectJSON {
 }
 
 /**
- * Export project data as JSON string
+ * Export phish data as JSON string
  *
- * @param metadata - Project metadata (title, author, timestamps)
+ * @param metadata - Phish metadata (title, author, timestamps)
  * @param htmlSource - HTML email source with lure mark spans
  * @param annotations - Annotation data keyed by lure ID
  * @param scoring - NIST Phish Scale scoring data
  * @param inputMode - Current input mode (html or richtext)
  * @param customTechniques - Optional custom techniques to include in export
- * @returns JSON string representation of the project
+ * @returns JSON string representation of the phish
  */
 export const exportProjectJSON = (
   metadata: ProjectMetadata,
@@ -140,7 +140,7 @@ export const exportProjectJSON = (
   inputMode: InputMode,
   customTechniques?: Record<string, CustomTechnique>
 ): string => {
-  const project: ProjectJSON = {
+  const phish: ProjectJSON = {
     metadata,
     htmlSource,
     annotations,
@@ -148,17 +148,17 @@ export const exportProjectJSON = (
     inputMode,
     ...(customTechniques && Object.keys(customTechniques).length > 0 && { customTechniques })
   }
-  return JSON.stringify(project, null, 2)
+  return JSON.stringify(phish, null, 2)
 }
 
 /**
- * Import project data from JSON string with validation
+ * Import phish data from JSON string with validation
  *
  * Validates required fields (metadata, htmlSource, annotations, scoring)
  * and optionally accepts customTechniques for merging into LocalStorage.
  *
- * @param jsonString - JSON string representation of project
- * @returns Parsed and validated project data
+ * @param jsonString - JSON string representation of phish
+ * @returns Parsed and validated phish data
  * @throws Error if JSON is malformed or missing required fields
  */
 export const importProjectJSON = (jsonString: string): ProjectJSON => {
@@ -216,7 +216,7 @@ export const importProjectJSON = (jsonString: string): ProjectJSON => {
 }
 
 /**
- * Download project JSON as file
+ * Download phish JSON as file
  */
 export const downloadProjectJSON = (jsonString: string, filename: string) => {
   const blob = new Blob([jsonString], { type: 'application/json' })
