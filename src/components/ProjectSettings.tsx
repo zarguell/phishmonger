@@ -5,8 +5,7 @@ interface ProjectSettingsProps {
   metadata: ProjectMetadata
   onUpdate: (metadata: ProjectMetadata) => void
   onExport?: () => void
-  onImportFromFile?: (file: File) => void
-  onImportFromText?: (jsonText: string) => void
+  onImportClick?: () => void  // Replaces file/text import props
   onOpenTechniqueLibrary?: () => void
 }
 
@@ -14,13 +13,10 @@ export const ProjectSettings: React.FC<ProjectSettingsProps> = ({
   metadata,
   onUpdate,
   onExport,
-  onImportFromFile,
-  onImportFromText,
+  onImportClick,
   onOpenTechniqueLibrary
 }) => {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [importText, setImportText] = useState('')
-  const [importError, setImportError] = useState<string | null>(null)
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onUpdate({
@@ -51,44 +47,9 @@ export const ProjectSettings: React.FC<ProjectSettingsProps> = ({
     }
   }
 
-  const handleFileImport = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file && onImportFromFile) {
-      const reader = new FileReader()
-      reader.onload = () => {
-        onImportFromFile(file)
-        setImportError(null)
-      }
-      reader.onerror = () => {
-        setImportError('Failed to read file')
-      }
-      reader.readAsText(file)
-    }
-    e.target.value = ''
-  }
-
-  const handleTextImport = () => {
-    if (onImportFromText && importText.trim()) {
-      try {
-        onImportFromText(importText)
-        setImportText('')
-        setImportError(null)
-      } catch (error) {
-        setImportError(error instanceof Error ? error.message : 'Import failed')
-      }
-    }
-  }
-
   const handleExportClick = () => {
     if (onExport) {
       onExport()
-    }
-  }
-
-  const handleImportTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setImportText(e.target.value)
-    if (importError) {
-      setImportError(null)
     }
   }
 
@@ -160,39 +121,15 @@ export const ProjectSettings: React.FC<ProjectSettingsProps> = ({
               >
                 Export Phish
               </button>
-            </div>
-
-            <div className="export-import-section">
-              <label htmlFor="import-file" className="import-file-label">
-                Import from File
-              </label>
-              <input
-                id="import-file"
-                type="file"
-                accept=".json"
-                onChange={handleFileImport}
-                className="import-file-input"
-              />
-            </div>
-
-            <div className="export-import-section">
-              <label htmlFor="import-text">Import from Pasted JSON</label>
-              <textarea
-                id="import-text"
-                value={importText}
-                onChange={handleImportTextChange}
-                placeholder="Paste phish JSON here..."
-                className="import-textarea"
-              />
               <button
-                onClick={handleTextImport}
-                disabled={!onImportFromText || !importText.trim()}
-                className="import-text-button"
+                onClick={onImportClick}
+                disabled={!onImportClick}
+                className="import-json-button"
                 type="button"
+                style={{ marginLeft: '8px' }}
               >
-                Import
+                Import Phish
               </button>
-              {importError && <div className="import-error">{importError}</div>}
             </div>
           </div>
         </div>
