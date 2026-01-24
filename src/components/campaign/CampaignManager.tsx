@@ -309,6 +309,24 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign, onCarousel }:
           >
             Load Sample Campaign
           </button>
+          <button
+            onClick={() => {
+              onClose();
+              // Note: User can now create a new phish in the editor
+            }}
+            style={{
+              padding: '8px 16px',
+              backgroundColor: '#28a745',
+              color: 'white',
+              border: 'none',
+              borderRadius: '6px',
+              fontSize: '14px',
+              fontWeight: '500',
+              cursor: 'pointer',
+            }}
+          >
+            New Phish
+          </button>
           <input
             ref={fileInputRef}
             type="file"
