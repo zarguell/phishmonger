@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from 'react'
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { HTMLInput } from './components/HTMLInput'
 import { Editor } from './components/Editor'
@@ -168,6 +168,16 @@ function App() {
   const [showCampaignImportModal, setShowCampaignImportModal] = useState(false)
   const slideWrapperRef = useRef<HTMLDivElement>(null)
 
+  // Column focus toggle function (defined early for useHotkeys hooks)
+  const toggleColumnFocus = useCallback((columnId: ColumnID) => {
+    setFocusedColumn(prev => {
+      if (prev === columnId) {
+        return null // Reset to normal view
+      }
+      return columnId // Focus this column
+    })
+  }, [])
+
   // Save to LocalStorage whenever htmlSource changes
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, htmlSource)
@@ -253,6 +263,20 @@ function App() {
     e.preventDefault()
     setShowShortcutHelp(true)
   }, { enableOnFormTags: true }, [])
+
+  // Keyboard shortcuts for column focus mode (keys 1-4)
+  // Note: enableOnFormTags: true allows shortcuts even in text inputs
+  useHotkeys('1', () => toggleColumnFocus('input'),
+    { enableOnFormTags: true }, [toggleColumnFocus])
+
+  useHotkeys('2', () => toggleColumnFocus('preview'),
+    { enableOnFormTags: true }, [toggleColumnFocus])
+
+  useHotkeys('3', () => toggleColumnFocus('lure-list'),
+    { enableOnFormTags: true }, [toggleColumnFocus])
+
+  useHotkeys('4', () => toggleColumnFocus('scoring'),
+    { enableOnFormTags: true }, [toggleColumnFocus])
 
   // Calculate scale factor for "fit to screen" mode
   useEffect(() => {
@@ -457,15 +481,6 @@ function App() {
     setCarouselCampaign(campaign)
     setShowCampaignCarousel(true)
     setShowCampaignManager(false) // Close campaign list when opening carousel
-  }
-
-  const toggleColumnFocus = (columnId: ColumnID) => {
-    setFocusedColumn(prev => {
-      if (prev === columnId) {
-        return null // Reset to normal view
-      }
-      return columnId // Focus this column
-    })
   }
 
   const handleCloseCarousel = () => {
