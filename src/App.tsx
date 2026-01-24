@@ -22,14 +22,14 @@ import KeyboardShortcutHelp from './components/shortcuts/KeyboardShortcutHelp'
 import { CampaignManager } from './components/campaign/CampaignManager'
 import { CampaignEditor } from './components/campaign/CampaignEditor'
 import { CampaignCarouselModal } from './components/campaign/CampaignCarouselModal'
-import { PhishImportModal } from './components/import/PhishImportModal'
+import PhishImportModal from './components/import/PhishImportModal'
 import { CampaignImportModal } from './components/import/CampaignImportModal'
 import type { Annotation } from './types/annotations'
 import type { ScoringData } from './types/scoring'
 import type { ProjectMetadata } from './types/project'
 import type { Campaign, CampaignPhish } from './types/campaign'
 import type { Phish } from './types/phish'
-import { loadAnnotations, saveAnnotations, loadScoring, saveScoring, loadPhishMetadata, savePhishMetadata, exportProjectJSON, downloadProjectJSON, importProjectJSON, hasExistingPhishData } from './utils/storage'
+import { loadAnnotations, saveAnnotations, loadScoring, saveScoring, loadPhishMetadata, savePhishMetadata, exportProjectJSON, downloadProjectJSON, hasExistingPhishData } from './utils/storage'
 import type { ProjectJSON } from './utils/storage'
 import { initializeSchema } from './utils/schemaVersion'
 import { getStoragePercentage, isStorageNearQuota } from './utils/storageQuota'
@@ -131,7 +131,7 @@ function App() {
 
   // Custom techniques management
   const { customTechniques } = useCustomTechniques()
-  const { updateCampaign, updatePhishInCampaign } = useCampaigns()
+  const { campaigns, addCampaign, updateCampaign, updatePhishInCampaign } = useCampaigns()
   const [showCampaignManager, setShowCampaignManager] = useState(() => {
     // Campaigns-first workflow: new users see campaigns list
     // Existing users with data stay in editor for backward compatibility
@@ -698,9 +698,7 @@ function App() {
           onClose={() => setShowCampaignManager(false)}
           onEditCampaign={handleEditCampaign}
           onCarousel={handleViewCarousel}
-          currentProject={currentPhish}
           onImportClick={() => setShowCampaignImportModal(true)}
-          campaigns={campaigns}
         />
       )}
       {editingCampaign && (

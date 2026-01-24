@@ -10,12 +10,10 @@ interface CampaignManagerProps {
   onClose: () => void;
   onEditCampaign: (campaign: Campaign) => void;
   onCarousel?: (campaign: Campaign) => void;
-  currentProject?: any; // Optional - for future "add current project" feature
   onImportClick?: () => void;  // NEW
-  campaigns?: Campaign[];      // NEW - passed to import modal
 }
 
-export function CampaignManager({ isOpen, onClose, onEditCampaign, onCarousel, currentProject, onImportClick, campaigns: campaignsProp }: CampaignManagerProps) {
+export function CampaignManager({ isOpen, onClose, onEditCampaign, onCarousel, onImportClick }: CampaignManagerProps) {
   const { campaigns, addCampaign, deleteCampaign } = useCampaigns();
   const [searchQuery, setSearchQuery] = useState('');
 
