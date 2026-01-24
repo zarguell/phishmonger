@@ -10,9 +10,9 @@ See: .planning/PROJECT.md (updated 2026-01-24)
 ## Current Position
 
 Phase: 17 of 19 (Import UX Improvements)
-Plan: 02 of 03
+Plan: 01 of 03
 Status: In progress
-Last activity: 2026-01-24 — Completed 17-02-PLAN.md (Campaign import modal)
+Last activity: 2026-01-24 — Completed 17-01-PLAN.md (Phish import modal)
 
 Progress: [███████████░░░░░░] 72.9% (51/70 plans complete)
 
@@ -48,8 +48,9 @@ Recent decisions affecting current work:
 - Phase 16: Campaigns-first workflow means campaigns list is default landing view (not standalone editor)
 - Phase 16: LocalStorage migration from v2 to v3 required for key rename ("phishmonger-projects" → "phishmonger-phishes")
 - Phase 16: Maintain backward compatibility for existing users (migration script runs on app mount)
-- Phase 17: Modal pattern established via KeyboardShortcutHelp (escape key + backdrop click) followed for CampaignImportModal
-- Phase 17: Dual input methods (file upload + text paste) provided for campaign import flexibility
+- Phase 17: Modal pattern established via KeyboardShortcutHelp (escape key + backdrop click) followed for PhishImportModal
+- Phase 17: Dual input methods (file upload + text paste) provided for phish import flexibility
+- Phase 17: State reset on modal close prevents stale errors and content between opens
 
 [Previous v1.0-v1.2 decisions archived in PROJECT.md]
 
@@ -64,5 +65,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-24 18:32
-Stopped at: Completed 17-02-PLAN.md (Campaign import modal)
+Stopped at: Completed 17-01-PLAN.md (Phish import modal)
 Resume file: None
