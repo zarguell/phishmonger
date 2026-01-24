@@ -2,13 +2,14 @@
 
 ## Overview
 
-Phish Monger delivers campaign management capabilities through a progressive build: establishing data model foundations, building campaign management UI, integrating scheduling and calendar features, implementing visual browsing with detail carousel, handling export/import functionality, and completing dependency upgrades. Each phase delivers verifiable capabilities that build toward the complete campaign management experience.
+Phish Monger delivers visual phishing training materials through annotation, technique mapping, and export capabilities. This roadmap spans from v1.0 MVP through v1.3 UX Redesign, progressing from core annotation features to campaign management and finally to workflow improvements that reorient the application around campaigns-first usage with consistent terminology and enhanced editor flexibility.
 
 ## Milestones
 
-- ✅ **v1.0 MVP** — Phases 1-5 (shipped 2026-01-21)
-- ✅ **v1.1 Enhanced** — Phases 6-8 (shipped 2026-01-22)
-- ✅ **v1.2 Campaign Management** — Phases 9-15 (shipped 2026-01-24)
+- ✅ **v1.0 MVP** - Phases 1-5 (shipped 2026-01-21)
+- ✅ **v1.1 Enhanced** - Phases 6-8 (shipped 2026-01-22)
+- ✅ **v1.2 Campaign Management** - Phases 9-15 (shipped 2026-01-24)
+- 🚧 **v1.3 UX Redesign** - Phases 16-19 (in progress)
 
 ## Phases
 
@@ -98,53 +99,149 @@ Plans:
 </details>
 
 <details>
-<summary>v1.2 Campaign Management (Phases 9-15) — SHIPPED 2026-01-24</summary>
+<summary>v1.2 Campaign Management (Phases 9-15) - SHIPPED 2026-01-24</summary>
 
 ### Phase 9: Campaign Data Model & Storage
-- [x] 09-01-PLAN.md — Campaign and Phish type definitions
-- [x] 09-02-PLAN.md — LocalStorage schema extension and schema versioning
-- [x] 09-03-PLAN.md — useCampaigns hook with CRUD operations and phish copying
-- [x] 09-04-PLAN.md — Storage quota monitoring and warning system
+**Goal**: Many-to-many phish↔campaign relationships with schema versioning
+**Plans**: 4 plans
+
+Plans:
+- [x] 09-01: Campaign and Phish type definitions
+- [x] 09-02: LocalStorage schema extension and schema versioning
+- [x] 09-03: useCampaigns hook with CRUD operations and phish copying
+- [x] 09-04: Storage quota monitoring and warning system
 
 ### Phase 10: Campaign Manager UI
-- [x] 10-01-PLAN.md — CampaignCard and CampaignPhishItem display components
-- [x] 10-02-PLAN.md — CampaignManager modal with campaign list, search, create, import
-- [x] 10-03-PLAN.md — CampaignEditor modal with metadata form, phish list, scheduling
-- [x] 10-04-PLAN.md — App.tsx integration with Campaigns button and state management
+**Goal**: Campaign list, create, edit, delete interface
+**Plans**: 4 plans
+
+Plans:
+- [x] 10-01: CampaignCard and CampaignPhishItem display components
+- [x] 10-02: CampaignManager modal with campaign list, search, create, import
+- [x] 10-03: CampaignEditor modal with metadata form, phish list, scheduling
+- [x] 10-04: App.tsx integration with Campaigns button and state management
 
 ### Phase 11: iCal Export & Integration
-- [x] 11-01-PLAN.md — Install ical-generator and create iCal export utility
-- [x] 11-02-PLAN.md — Add Export Calendar button to campaign list view
+**Goal**: Calendar export for campaign scheduling
+**Plans**: 2 plans
+
+Plans:
+- [x] 11-01: Install ical-generator and create iCal export utility
+- [x] 11-02: Add Export Calendar button to campaign list view
 
 ### Phase 12: Detail Carousel
-- [x] 12-01-PLAN.md — CarouselCard and CampaignCarousel components
-- [x] 12-02-PLAN.md — ReadOnlyEditor component for viewing phishes
-- [x] 12-03-PLAN.md — CampaignCarouselModal with view state management
-- [x] 12-04-PLAN.md — App.tsx integration with keyboard navigation
+**Goal**: Horizontal browsing with prev/next navigation and keyboard shortcuts
+**Plans**: 4 plans
+
+Plans:
+- [x] 12-01: CarouselCard and CampaignCarousel components
+- [x] 12-02: ReadOnlyEditor component for viewing phishes
+- [x] 12-03: CampaignCarouselModal with view state management
+- [x] 12-04: App.tsx integration with keyboard navigation
 
 ### Phase 13: Compact Annotation Layout
-- [x] 13-01-PLAN.md — Storage utilities and compact-annotations CSS variant
-- [x] 13-02-PLAN.md — ReadOnlyEditor toggle button with state persistence
+**Goal**: Denser display for carousel browsing
+**Plans**: 2 plans
+
+Plans:
+- [x] 13-01: Storage utilities and compact-annotations CSS variant
+- [x] 13-02: ReadOnlyEditor toggle button with state persistence
 
 ### Phase 14: Sample Campaign & Demo Data
-- [x] 14-01-PLAN.md — Create sample campaign JSON with TypeScript wrapper
-- [x] 14-02-PLAN.md — Add Load Sample Campaign button to CampaignManager
+**Goal**: Demo campaign with diverse phishing examples
+**Plans**: 2 plans
+
+Plans:
+- [x] 14-01: Create sample campaign JSON with TypeScript wrapper
+- [x] 14-02: Add Load Sample Campaign button to CampaignManager
 
 ### Phase 15: Dependency Upgrades & Polish
-- [x] 15-01-PLAN.md — Upgrade @types/uuid to v11, remove @types/html2canvas, upgrade @vitejs/plugin-react to v5
-- [x] 15-02-PLAN.md — Upgrade React to 19.2.3 with type definitions
-- [x] 15-03-PLAN.md — Upgrade Tiptap to v3.17.0 and migrate LureMark extension
-- [x] 15-04-PLAN.md — Comprehensive smoke testing of all v1.0-v1.2 features
-- [x] 15-05-PLAN.md — Fix any breaking changes or deprecation warnings (skipped - not needed)
+**Goal**: React 19, Tiptap v3, dependency updates, smoke testing
+**Plans**: 5 plans
 
-**Archive:** `.planning/milestones/v1.2-ROADMAP.md` for full details
+Plans:
+- [x] 15-01: Upgrade @types/uuid to v11, remove @types/html2canvas, upgrade @vitejs/plugin-react to v5
+- [x] 15-02: Upgrade React to 19.2.3 with type definitions
+- [x] 15-03: Upgrade Tiptap to v3.17.0 and migrate LureMark extension
+- [x] 15-04: Comprehensive smoke testing of all v1.0-v1.2 features
+- [x] 15-05: Fix any breaking changes or deprecation warnings (skipped - not needed)
 
 </details>
+
+### 🚧 v1.3 UX Redesign (In Progress)
+
+**Milestone Goal:** Reorient application around campaigns-first workflow, eliminate confusing "project" terminology, improve editor flexibility, and enhance import/export options.
+
+#### Phase 16: Terminology & Workflow Foundation
+**Goal**: Rename all "project" references to "phish" and make campaigns the default landing view
+**Depends on**: Phase 15
+**Requirements**: TERM-01, TERM-02, TERM-03, TERM-04
+**Success Criteria** (what must be TRUE):
+  1. User sees campaigns list as first screen when launching application (not standalone editor)
+  2. All UI text refers to "phishes" instead of "projects" (buttons, labels, headings, help text)
+  3. Existing user data migrates automatically from old "phishmonger-projects" key to "phishmonger-phishes" key
+  4. Application code uses "phish" terminology consistently (variables, functions, types, comments)
+**Plans**: TBD
+
+Plans:
+- [ ] 16-01: UI text terminology update (all user-facing strings)
+- [ ] 16-02: Code terminology update (variables, functions, types)
+- [ ] 16-03: LocalStorage migration script (v2 → v3)
+- [ ] 16-04: Campaigns-first routing (default landing view)
+
+#### Phase 17: Import UX Improvements
+**Goal**: Modal-based phish import and text input for campaign import
+**Depends on**: Phase 16
+**Requirements**: IEXP-01, IEXP-02
+**Success Criteria** (what must be TRUE):
+  1. User imports phishes via modal dialog (no layout shift from expanding menus)
+  2. User imports campaigns via file upload OR text paste (JSON input field)
+  3. Modal dialogs close cleanly with escape key or cancel button
+  4. Text paste input validates JSON format before import
+**Plans**: TBD
+
+Plans:
+- [ ] 17-01: Phish import modal UI
+- [ ] 17-02: Campaign import text input field
+- [ ] 17-03: JSON validation for text paste imports
+
+#### Phase 18: Clean HTML Export
+**Goal**: Export clean email HTML from carousel view (strip lure mark divs)
+**Depends on**: Phase 17
+**Requirements**: IEXP-03, IEXP-04
+**Success Criteria** (what must be TRUE):
+  1. User exports clean HTML from carousel view (no lure mark divs, no annotation UI)
+  2. Clean HTML export offers both file download and clipboard copy options
+  3. Exported HTML renders correctly when opened in email clients or browsers
+  4. Original phish data remains unchanged (export is derivative, not mutation)
+**Plans**: TBD
+
+Plans:
+- [ ] 18-01: HTML sanitization for export (strip lure mark divs)
+- [ ] 18-02: Export options UI (file download vs clipboard copy)
+- [ ] 18-03: HTML export validation (test in email clients)
+
+#### Phase 19: Editor Column Flexibility
+**Goal**: Expandable and minimizable editor columns with keyboard shortcuts
+**Depends on**: Phase 18
+**Requirements**: EDIT-01, EDIT-02, EDIT-03, EDIT-04
+**Success Criteria** (what must be TRUE):
+  1. User expands any editor column to full-width focus mode via header button
+  2. User minimizes any column to collapsed header bar via header button
+  3. Column state persists across sessions (localStorage remembers expanded/minimized)
+  4. User toggles column focus with keyboard shortcuts (1, 2, 3, 4)
+**Plans**: TBD
+
+Plans:
+- [ ] 19-01: Column expand/minimize UI buttons
+- [ ] 19-02: Column collapse behavior (minimized to header bar)
+- [ ] 19-03: LocalStorage persistence for column states
+- [ ] 19-04: Keyboard shortcuts (1, 2, 3, 4) for column focus
 
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11 → 12 → 13 → 14 → 15
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11 → 12 → 13 → 14 → 15 → 16 → 17 → 18 → 19
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
@@ -163,9 +260,13 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 13. Compact Annotation Layout | v1.2 | 2/2 | Complete | 2026-01-23 |
 | 14. Sample Campaign & Demo Data | v1.2 | 2/2 | Complete | 2026-01-23 |
 | 15. Dependency Upgrades & Polish | v1.2 | 4/5 | Complete | 2026-01-24 |
+| 16. Terminology & Workflow Foundation | v1.3 | 0/4 | Not started | - |
+| 17. Import UX Improvements | v1.3 | 0/3 | Not started | - |
+| 18. Clean HTML Export | v1.3 | 0/3 | Not started | - |
+| 19. Editor Column Flexibility | v1.3 | 0/4 | Not started | - |
 
 **Overall Progress:**
-- **Total Plans:** 47
-- **Completed:** 46 (98%)
-- **Remaining:** 1 (conditional, skipped)
-- **v1.2 Progress:** 26/27 plans complete (96%)
+- **Total Plans:** 70 (v1.0-v1.3)
+- **Completed:** 46 (66%)
+- **Remaining:** 24 (34%)
+- **v1.3 Progress:** 0/14 plans complete (0%)
