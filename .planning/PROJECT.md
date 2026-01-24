@@ -35,22 +35,19 @@ Security trainers can create visual, annotated phishing training materials that 
 - ✅ Technique library management interface (CRUD operations) — v1.1
 - ✅ Keyboard shortcuts help modal — v1.1
 - ✅ NIST badge visibility toggle — v1.1
+- ✅ Terminology consistency: "project" → "phish" throughout UI, code, and localStorage — v1.3
+- ✅ Campaigns-first workflow with smart default landing view — v1.3
+- ✅ localStorage migration v2→v3 for key rename — v1.3
+- ✅ Modal-based import UI for phishes (file + text paste) — v1.3
+- ✅ Modal-based import UI for campaigns (file + text paste) — v1.3
+- ✅ Clean HTML export from carousel view (strips lure marks and annotation badges) — v1.3
+- ✅ Column focus mode with keyboard shortcuts (1-4 keys) — v1.3
+- ✅ Column collapse to header bar with localStorage persistence — v1.3
 
 ### Active
 
-**Current Milestone: v1.3 UX Redesign**
-
-**Goal:** Reorient the entire application around campaigns-first workflow, eliminate confusing "project" terminology, improve editor flexibility, and enhance import/export options.
-
-**Target features:**
-- Campaigns-first UX flow (landing page shows campaigns, deprecate standalone "project" workflow)
-- Full terminology rename: "project" → "phish" (UI, localStorage keys, code comments)
-- Modal-based import UI for phishes (replace expanding menu)
-- Expandable/minimizable editor columns (focus mode per panel)
-- Campaign JSON import via text input (in addition to file upload)
-- Clean HTML export from carousel view (strip lure divs for email-only HTML)
-
-### Validated (v1.2)
+**Next Milestone Goals:**
+Planning next milestone (use /gsd-new-milestone to define requirements and roadmap)
 
 - ✅ Campaign creation with name, description, and project list — v1.2
 - ✅ Campaign list view with metadata (project count, date range) — v1.2
@@ -86,6 +83,7 @@ Built for security teams creating phishing awareness training materials. The too
 Shipped v1.0 with 3,101 LOC TypeScript. Tech stack: React + Vite, Tiptap editor, html2canvas, DOMPurify.
 Shipped v1.1 with 4,146 LOC TypeScript. Added: react-hotkeys-hook for keyboard shortcuts.
 Shipped v1.2 with 7,081 LOC TypeScript. Added: ical-generator for calendar export.
+Shipped v1.3 with 8,114 LOC TypeScript. Added: modal-based import, clean HTML export, column focus/collapse.
 
 ## Constraints
 
@@ -123,4 +121,4 @@ Shipped v1.2 with 7,081 LOC TypeScript. Added: ical-generator for calendar expor
 
 ---
 
-*Last updated: 2026-01-24 after v1.3 milestone initialization*
+*Last updated: 2026-01-24 after v1.3 milestone completion*

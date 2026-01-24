@@ -5,16 +5,15 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Security trainers can create visual, annotated phishing training materials that clearly highlight deceptive techniques with educational context — without manual layout work.
-**Current focus:** Phase 19: Editor Column Flexibility
+**Current focus:** Planning next milestone
 
 ## Current Position
 
-Phase: 19 of 19 (Editor Column Flexibility)
-Plan: 06 of 06
-Status: Phase complete
-Last activity: 2026-01-24 — Completed 19-06-PLAN.md (Collapsed column CSS)
+Phase: 19 of 19 complete
+Status: v1.3 milestone complete
+Last activity: 2026-01-24 — v1.3 milestone archived
 
-Progress: [████████████████] 100.0% (76/76 plans complete)
+Progress: [████████████████] 100.0% (77/77 plans complete)
 
 ## Performance Metrics
 

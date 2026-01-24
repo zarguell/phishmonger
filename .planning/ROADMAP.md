@@ -9,7 +9,7 @@ Phish Monger delivers visual phishing training materials through annotation, tec
 - ✅ **v1.0 MVP** - Phases 1-5 (shipped 2026-01-21)
 - ✅ **v1.1 Enhanced** - Phases 6-8 (shipped 2026-01-22)
 - ✅ **v1.2 Campaign Management** - Phases 9-15 (shipped 2026-01-24)
-- 🚧 **v1.3 UX Redesign** - Phases 16-19 (in progress)
+- ✅ **v1.3 UX Redesign** - Phases 16-19 (shipped 2026-01-24)
 
 ## Phases
 
@@ -168,77 +168,7 @@ Plans:
 
 </details>
 
-### 🚧 v1.3 UX Redesign (In Progress)
-
-**Milestone Goal:** Reorient application around campaigns-first workflow, eliminate confusing "project" terminology, improve editor flexibility, and enhance import/export options.
-
-#### Phase 16: Terminology & Workflow Foundation
-**Goal**: Rename all "project" references to "phish" and make campaigns the default landing view
-**Depends on**: Phase 15
-**Requirements**: TERM-01, TERM-02, TERM-03, TERM-04
-**Success Criteria** (what must be TRUE):
-  1. User sees campaigns list as first screen when launching application (not standalone editor)
-  2. All UI text refers to "phishes" instead of "projects" (buttons, labels, headings, help text)
-  3. Existing user data migrates automatically from old "key to "phishmonger-phish-id"" key
-  4. Application code uses "phish" terminology consistently (variables, functions, comments)
-**Plans**: 4 plans in 3 waves
-
-Plans:
-- [x] 16-01: UI text terminology update (user-facing strings, CSS classes)
-- [x] 16-02: Code terminology update (variables, functions, comments)
-- [x] 16-03: LocalStorage migration script (v2 → v3)
-- [x] 16-04: Campaigns-first routing (default landing view)
-
-#### Phase 17: Import UX Improvements
-**Goal**: Modal-based phish import and text input for campaign import
-**Depends on**: Phase 16
-**Requirements**: IEXP-01, IEXP-02
-**Success Criteria** (what must be TRUE):
-  1. User imports phishes via modal dialog (no layout shift from expanding menus)
-  2. User imports campaigns via file upload OR text paste (JSON input field)
-  3. Modal dialogs close cleanly with escape key or cancel button
-  4. Text paste input validates JSON format before import
-**Plans**: 3 plans in 2 waves
-
-Plans:
-- [x] 17-01: Phish import modal UI
-- [x] 17-02: Campaign import modal UI
-- [x] 17-03: Integrate modals into App, ProjectSettings, and CampaignManager
-
-#### Phase 18: Clean HTML Export
-**Goal**: Export clean email HTML from carousel view (strip lure mark divs)
-**Depends on**: Phase 17
-**Requirements**: IEXP-03, IEXP-04
-**Success Criteria** (what must be TRUE):
-  1. User exports clean HTML from carousel view (no lure mark divs, no annotation UI)
-  2. Clean HTML export offers both file download and clipboard copy options
-  3. Exported HTML renders correctly when opened in email clients or browsers
-  4. Original phish data remains unchanged (export is derivative, not mutation)
-**Plans**: 3 plans in 3 waves
-
-Plans:
-- [x] 18-01-PLAN.md — Create cleanHtmlExport utility module with DOMParser-based sanitization
-- [x] 18-02-PLAN.md — Add export UI buttons to ReadOnlyEditor component
-- [x] 18-03-PLAN.md — Validate export functionality with human testing
-
-#### Phase 19: Editor Column Flexibility
-**Goal**: Expandable and minimizable editor columns with keyboard shortcuts
-**Depends on**: Phase 18
-**Requirements**: EDIT-01, EDIT-02, EDIT-03, EDIT-04
-**Success Criteria** (what must be TRUE):
-  1. User expands any editor column to full-width focus mode via header button
-  2. User minimizes any column to collapsed header bar via header button
-  3. Column state persists across sessions (localStorage remembers expanded/minimized)
-  4. User toggles column focus with keyboard shortcuts (1, 2, 3, 4)
-**Plans**: 6 plans in 2 waves
-
-Plans:
-- [x] 19-01-PLAN.md — Column types, storage utilities, and UI state management
-- [x] 19-02-PLAN.md — CSS Grid focus variants and column header styling
-- [x] 19-03-PLAN.md — LocalStorage persistence for focused column state
-- [x] 19-04-PLAN.md — Keyboard shortcuts (1, 2, 3, 4) for column focus
-- [x] 19-05-PLAN.md — Minimize button and collapsed columns state management (gap closure)
-- [x] 19-06-PLAN.md — CSS for collapsed header bar state (gap closure)
+- ✅ **v1.3 UX Redesign** — Phases 16-19 (shipped 2026-01-24) — See [milestones/v1.3-ROADMAP.md](milestones/v1.3-ROADMAP.md)
 
 ## Progress
 
@@ -271,9 +201,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 - **Total Plans:** 77 (v1.0-v1.3)
 - **Completed:** 77 (100%)
 - **Remaining:** 0 (0%)
-- **v1.3 Progress:** 18/18 plans complete (100%)
-
-**Requirements (if exists):**
+- **v1.3 Progress:** 16/16 plans complete (100%)
 # Requirements: Phish Monger v1.3 UX Redesign
 
 **Defined:** 2026-01-24
