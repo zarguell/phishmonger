@@ -202,9 +202,9 @@ function App() {
     saveMetadata(metadata)
   }, [metadata])
 
-  // Build currentProject Phish object from App state for campaign integration
-  const currentProject = useMemo<Phish>(() => {
-    // Get or generate project ID from localStorage
+  // Build currentPhish Phish object from App state for campaign integration
+  const currentPhish = useMemo<Phish>(() => {
+    // Get or generate phish ID from localStorage
     let projectId = localStorage.getItem('phishmonger-project-id')
     if (!projectId) {
       projectId = crypto.randomUUID()
@@ -696,7 +696,7 @@ function App() {
           onClose={() => setShowCampaignManager(false)}
           onEditCampaign={handleEditCampaign}
           onCarousel={handleViewCarousel}
-          currentProject={currentProject}
+          currentProject={currentPhish}
         />
       )}
       {editingCampaign && (
@@ -704,7 +704,7 @@ function App() {
           campaign={editingCampaign}
           onClose={handleCloseEditor}
           onSave={handleSaveCampaign}
-          currentProject={currentProject}
+          currentProject={currentPhish}
           onEditPhish={handleEditPhish}
         />
       )}
