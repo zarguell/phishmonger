@@ -8,12 +8,13 @@
  * Schema versions:
  * - v1: Initial schema (implicit, no version field)
  * - v2: Campaign data model with campaigns array and scheduledDate (v1.2)
+ * - v3: Phish terminology rename - localStorage key updates (v1.3)
  */
 
 const SCHEMA_VERSION_KEY = 'phishmonger-schema-version';
 
-/** Current schema version (v1.2) */
-export const CURRENT_SCHEMA_VERSION = 2;
+/** Current schema version (v1.3) */
+export const CURRENT_SCHEMA_VERSION = 3;
 
 /**
  * Initialize schema version in LocalStorage
