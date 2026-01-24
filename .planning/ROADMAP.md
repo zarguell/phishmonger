@@ -233,10 +233,10 @@ Plans:
 **Plans**: 4 plans in 3 waves
 
 Plans:
-- [ ] 19-01: Column expand/minimize UI buttons
-- [ ] 19-02: Column collapse behavior (minimized to header bar)
-- [ ] 19-03: LocalStorage persistence for column states
-- [ ] 19-04: Keyboard shortcuts (1, 2, 3, 4) for column focus
+- [ ] 19-01-PLAN.md — Column types, storage utilities, and UI state management
+- [ ] 19-02-PLAN.md — CSS Grid focus variants and column header styling
+- [ ] 19-03-PLAN.md — LocalStorage persistence for focused column state
+- [ ] 19-04-PLAN.md — Keyboard shortcuts (1, 2, 3, 4) for column focus
 
 ## Progress
 
@@ -266,7 +266,88 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 19. Editor Column Flexibility | v1.3 | 0/4 | Not started | - |
 
 **Overall Progress:**
-- **Total Plans:** 70 (v1.0-v1.3)
-- **Completed:** 56 (80%)
-- **Remaining:** 14 (20%)
-- **v1.3 Progress:** 10/14 plans complete (71%)
+- **Total Plans:** 75 (v1.0-v1.3)
+- **Completed:** 59 (79%)
+- **Remaining:** 16 (21%)
+- **v1.3 Progress:** 10/18 plans complete (56%)
+
+**Requirements (if exists):**
+# Requirements: Phish Monger v1.3 UX Redesign
+
+**Defined:** 2026-01-24
+**Core Value:** Security trainers can create visual, annotated phishing training materials that clearly highlight deceptive techniques with educational context — without manual layout work.
+
+## v1.3 Requirements
+
+Requirements for UX Redesign milestone. Each maps to roadmap phases.
+
+### Terminology & Workflow
+
+- [x] **TERM-01**: Application renames all "project" references to "phish" in UI text (buttons, labels, headings, help text)
+- [x] **TERM-02**: Application renames all "project" references to "phish" in code variables, functions, and types
+- [x] **TERM-03**: LocalStorage keys migrate from "phishmonger-projects" to "phishmonger-phishes" with v2→v3 migration script
+- [x] **TERM-04**: Application launches with campaigns list as default landing view (not single-phish editor)
+
+### Import/Export UX
+
+- [x] **IEXP-01**: Phish import uses modal dialog instead of expanding menu (no layout shift)
+- [x] **IEXP-02**: Campaign import provides text input field for JSON paste (in addition to file upload)
+- [x] **IEXP-03**: Carousel view exports clean HTML with lure mark divs stripped (email content only)
+- [x] **IEXP-04**: Clean HTML export offers both file download and clipboard copy options
+
+### Editor Flexibility
+
+- [ ] **EDIT-01**: Each editor column has expand (full-width) and minimize buttons in column header
+- [ ] **EDIT-02**: Column state persists to localStorage (remembers expanded/minimized between sessions)
+- [ ] **EDIT-03**: Keyboard shortcuts (1, 2, 3, 4) toggle full-width focus for each column
+- [ ] **EDIT-04**: Minimized columns collapse to header bar with expand button visible
+
+## Future Requirements
+
+Deferred to future release. Tracked but not in current roadmap.
+
+### Future Enhancements
+
+- Visual calendar view (month/week grid for campaigns) — Deferred to v1.4
+- Campaign templates (clone campaign structure) — Deferred to v1.4
+- Bulk date assignment for campaign phishes — Deferred to v1.4
+- Conflict detection for scheduled phishes — Deferred to v1.4
+
+## Out of Scope
+
+Explicitly excluded. Documented to prevent scope creep.
+
+| Feature | Reason |
+|---------|--------|
+| Single-phish workflow removal | Maintain backward compatibility for existing users, campaigns is now default but standalone workflow still accessible |
+| Real-time collaboration | Single-user tool per constraints |
+| Cloud sync | LocalStorage-only per constraints |
+| Mobile-responsive editor improvements | Desktop-focused design per constraints |
+
+## Traceability
+
+Which phases cover which requirements. Updated during roadmap creation.
+
+| Requirement | Phase | Status |
+|-------------|-------|--------|
+| TERM-01 | Phase 16 | Complete |
+| TERM-02 | Phase 16 | Complete |
+| TERM-03 | Phase 16 | Complete |
+| TERM-04 | Phase 16 | Complete |
+| IEXP-01 | Phase 17 | Complete |
+| IEXP-02 | Phase 17 | Complete |
+| IEXP-03 | Phase 18 | Complete |
+| IEXP-04 | Phase 18 | Complete |
+| EDIT-01 | Phase 19 | Pending |
+| EDIT-02 | Phase 19 | Pending |
+| EDIT-03 | Phase 19 | Pending |
+| EDIT-04 | Phase 19 | Pending |
+
+**Coverage:**
+- v1.3 requirements: 12 total
+- Mapped to phases: 12 (100%)
+- Unmapped: 0 ✓
+
+---
+*Requirements defined: 2026-01-24*
+*Last updated: 2026-01-24 after Phase 19 planning*
