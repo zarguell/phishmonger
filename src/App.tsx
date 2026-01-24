@@ -659,7 +659,7 @@ function App() {
           </button>
         </div>
       </header>
-      <main className="app-main">
+      <main className="app-main" data-focus-column={focusedColumn || undefined}>
         <div className="input-column">
           <ColumnHeader
             title="Email Input"
