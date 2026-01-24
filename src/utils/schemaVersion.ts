@@ -36,11 +36,59 @@ export function initializeSchema(): void {
   } else {
     const version = parseInt(storedVersion, 10);
     if (version < CURRENT_SCHEMA_VERSION) {
-      // Schema migration needed (not needed for v1.2 since no existing users)
       console.log(`Schema migration needed: v${version} → v${CURRENT_SCHEMA_VERSION}`);
+
+      // Run migrations based on current version
+      if (version === 2) {
+        migrateV2ToV3();
+      }
+
+      // Update version after successful migration
       localStorage.setItem(SCHEMA_VERSION_KEY, CURRENT_SCHEMA_VERSION.toString());
     }
   }
+}
+
+/**
+ * Migrate schema from v2 to v3
+ *
+ * Changes:
+ * - Rename localStorage key: phishmonger-project-id → phishmonger-phish-id
+ * - Update default title in metadata from "Untitled Project" to "Untitled Phish"
+ *
+ * This migration preserves all existing user data.
+ */
+function migrateV2ToV3(): void {
+  console.log('Starting schema migration v2 → v3...');
+
+  // Step 1: Migrate phishmonger-project-id → phishmonger-phish-id
+  const oldProjectId = localStorage.getItem('phishmonger-project-id');
+  if (oldProjectId) {
+    localStorage.setItem('phishmonger-phish-id', oldProjectId);
+    localStorage.removeItem('phishmonger-project-id');
+    console.log('✓ Migrated phishmonger-project-id → phishmonger-phish-id');
+  } else {
+    console.log('  No phishmonger-project-id found, skipping key migration');
+  }
+
+  // Step 2: Update default title in metadata (if still "Untitled Project")
+  const metadataStr = localStorage.getItem('phishmonger-metadata');
+  if (metadataStr) {
+    try {
+      const metadata = JSON.parse(metadataStr);
+      if (metadata.title === 'Untitled Project') {
+        metadata.title = 'Untitled Phish';
+        localStorage.setItem('phishmonger-metadata', JSON.stringify(metadata));
+        console.log('✓ Updated default title from "Untitled Project" to "Untitled Phish"');
+      } else {
+        console.log('  Metadata title already customized, skipping update');
+      }
+    } catch (error) {
+      console.error('  Failed to update metadata:', error);
+    }
+  }
+
+  console.log('Schema v2 → v3 migration complete');
 }
 
 /**
