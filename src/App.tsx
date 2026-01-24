@@ -715,7 +715,7 @@ function App() {
         </div>
       </header>
       <main className="app-main" data-focus-column={focusedColumn || undefined}>
-        <div className="input-column">
+        <div className={`input-column ${collapsedColumns.has('input') ? 'column-collapsed' : ''}`} data-collapsed={collapsedColumns.has('input') ? 'true' : 'false'}>
           <ColumnHeader
             title="Email Input"
             columnId="input"
@@ -757,7 +757,7 @@ function App() {
             />
           )}
         </div>
-        <div className="preview-column">
+        <div className={`preview-column ${collapsedColumns.has('preview') ? 'column-collapsed' : ''}`} data-collapsed={collapsedColumns.has('preview') ? 'true' : 'false'}>
           <ColumnHeader
             title="Preview"
             columnId="preview"
@@ -770,7 +770,7 @@ function App() {
             onUpdate={handleMarkLure}
           />
         </div>
-        <div className="lure-list-column">
+        <div className={`lure-list-column ${collapsedColumns.has('lure-list') ? 'column-collapsed' : ''}`} data-collapsed={collapsedColumns.has('lure-list') ? 'true' : 'false'}>
           <ColumnHeader
             title="Annotations"
             columnId="lure-list"
@@ -785,7 +785,7 @@ function App() {
             onUpdateAnnotation={updateAnnotation}
           />
         </div>
-        <div className="scoring-column">
+        <div className={`scoring-column ${collapsedColumns.has('scoring') ? 'column-collapsed' : ''}`} data-collapsed={collapsedColumns.has('scoring') ? 'true' : 'false'}>
           <ColumnHeader
             title="Scoring"
             columnId="scoring"
