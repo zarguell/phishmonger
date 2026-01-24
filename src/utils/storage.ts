@@ -63,10 +63,10 @@ export function saveScoring(scoring: ScoringData): void {
 const METADATA_KEY = 'phishmonger-metadata'
 
 /**
- * Load project metadata from LocalStorage
+ * Load phish metadata from LocalStorage
  * Returns default metadata if no saved data exists
  */
-export const loadMetadata = (): ProjectMetadata => {
+export const loadPhishMetadata = (): ProjectMetadata => {
   try {
     const saved = localStorage.getItem(METADATA_KEY)
     if (saved) {
@@ -80,7 +80,7 @@ export const loadMetadata = (): ProjectMetadata => {
   } catch (error) {
     console.error('Failed to load metadata:', error)
   }
-  // Default metadata for new projects
+  // Default metadata for new phishes
   return {
     title: 'Untitled Phish',
     author: '',
@@ -89,10 +89,10 @@ export const loadMetadata = (): ProjectMetadata => {
 }
 
 /**
- * Save project metadata to LocalStorage
+ * Save phish metadata to LocalStorage
  * Automatically adds updatedAt timestamp
  */
-export const saveMetadata = (metadata: ProjectMetadata) => {
+export const savePhishMetadata = (metadata: ProjectMetadata) => {
   try {
     const toSave = {
       ...metadata,
@@ -300,3 +300,7 @@ export const saveCampaigns = (campaigns: Campaign[]): void => {
     throw error;
   }
 };
+
+// Backward compatibility aliases (deprecated)
+export const loadMetadata = loadPhishMetadata;
+export const saveMetadata = savePhishMetadata;
