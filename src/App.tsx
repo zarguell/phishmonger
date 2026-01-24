@@ -130,7 +130,12 @@ function App() {
   // Custom techniques management
   const { customTechniques } = useCustomTechniques()
   const { updateCampaign, updatePhishInCampaign } = useCampaigns()
-  const [showCampaignManager, setShowCampaignManager] = useState(false)
+  const [showCampaignManager, setShowCampaignManager] = useState(() => {
+    // Campaigns-first workflow: new users see campaigns list
+    // Existing users with data stay in editor for backward compatibility
+    const hasData = hasExistingPhishData();
+    return !hasData; // Show campaigns for new users, editor for existing users
+  })
   const [editingCampaign, setEditingCampaign] = useState<Campaign | undefined>(undefined)
   const [showCampaignCarousel, setShowCampaignCarousel] = useState(false)
   const [carouselCampaign, setCarouselCampaign] = useState<Campaign | undefined>(undefined)
