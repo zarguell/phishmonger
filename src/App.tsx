@@ -236,6 +236,11 @@ function App() {
     saveFocusedColumn(focusedColumn)
   }, [focusedColumn])
 
+  // Persist collapsed columns state
+  useEffect(() => {
+    saveCollapsedColumns(collapsedColumns);
+  }, [collapsedColumns]);
+
   // Save annotations to LocalStorage
   useEffect(() => {
     saveAnnotations(annotations)
