@@ -23,8 +23,8 @@ export const CURRENT_SCHEMA_VERSION = 3;
  * This is called on app mount to establish the schema version for
  * future migrations.
  *
- * For v1.2: No existing users, so we can set version 2 directly.
- * Future migrations will check the version and run migration logic if needed.
+ * For v1.3: Checks existing schema version and runs migrations if needed.
+ * Fresh installs start at schema version 3. Existing v2 users are migrated to v3.
  */
 export function initializeSchema(): void {
   const storedVersion = localStorage.getItem(SCHEMA_VERSION_KEY);
