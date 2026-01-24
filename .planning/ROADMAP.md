@@ -179,15 +179,15 @@ Plans:
 **Success Criteria** (what must be TRUE):
   1. User sees campaigns list as first screen when launching application (not standalone editor)
   2. All UI text refers to "phishes" instead of "projects" (buttons, labels, headings, help text)
-  3. Existing user data migrates automatically from old "phishmonger-projects" key to "phishmonger-phishes" key
-  4. Application code uses "phish" terminology consistently (variables, functions, types, comments)
-**Plans**: TBD
+  3. Existing user data migrates automatically from old "key to "phishmonger-phish-id"" key
+  4. Application code uses "phish" terminology consistently (variables, functions, comments)
+**Plans**: 4 plans in 3 waves
 
 Plans:
-- [ ] 16-01: UI text terminology update (all user-facing strings)
-- [ ] 16-02: Code terminology update (variables, functions, types)
-- [ ] 16-03: LocalStorage migration script (v2 → v3)
-- [ ] 16-04: Campaigns-first routing (default landing view)
+- [ ] 16-01-PLAN.md — UI text terminology update (user-facing strings, CSS classes)
+- [ ] 16-02-PLAN.md — Code terminology update (variables, functions, comments)
+- [ ] 16-03-PLAN.md — LocalStorage migration script (v2 → v3)
+- [ ] 16-04-PLAN.md — Campaigns-first routing (default landing view)
 
 #### Phase 17: Import UX Improvements
 **Goal**: Modal-based phish import and text input for campaign import
@@ -198,7 +198,7 @@ Plans:
   2. User imports campaigns via file upload OR text paste (JSON input field)
   3. Modal dialogs close cleanly with escape key or cancel button
   4. Text paste input validates JSON format before import
-**Plans**: TBD
+**Plans**: 4 plans in 3 waves
 
 Plans:
 - [ ] 17-01: Phish import modal UI
@@ -214,7 +214,7 @@ Plans:
   2. Clean HTML export offers both file download and clipboard copy options
   3. Exported HTML renders correctly when opened in email clients or browsers
   4. Original phish data remains unchanged (export is derivative, not mutation)
-**Plans**: TBD
+**Plans**: 4 plans in 3 waves
 
 Plans:
 - [ ] 18-01: HTML sanitization for export (strip lure mark divs)
@@ -230,7 +230,7 @@ Plans:
   2. User minimizes any column to collapsed header bar via header button
   3. Column state persists across sessions (localStorage remembers expanded/minimized)
   4. User toggles column focus with keyboard shortcuts (1, 2, 3, 4)
-**Plans**: TBD
+**Plans**: 4 plans in 3 waves
 
 Plans:
 - [ ] 19-01: Column expand/minimize UI buttons
