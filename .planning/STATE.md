@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Security trainers can create visual, annotated phishing training materials that clearly highlight deceptive techniques with educational context — without manual layout work.
-**Current focus:** Phase 17: Import UX Improvements
+**Current focus:** Phase 18: Clean HTML Export
 
 ## Current Position
 
-Phase: 17 of 19 (Import UX Improvements)
-Plan: 03 of 03
+Phase: 18 of 19 (Clean HTML Export)
+Plan: 01 of 01
 Status: Phase complete
-Last activity: 2026-01-24 — Completed 17-03-PLAN.md (Import modal integration)
+Last activity: 2026-01-24 — Completed 18-01-PLAN.md (Clean HTML export utility)
 
-Progress: [████████████░░░░░] 75.7% (53/70 plans complete)
+Progress: [████████████░░░░░] 77.1% (54/70 plans complete)
 
 ## Performance Metrics
 
@@ -53,6 +53,9 @@ Recent decisions affecting current work:
 - Phase 17: State reset on modal close prevents stale errors and content between opens
 - Phase 17: Centralized modal state management in App.tsx established for consistency
 - Phase 17: Callback prop pattern (onImportClick) used for modal triggers to decouple child components from state
+- Phase 18: DOMParser-based HTML sanitization used instead of regex for reliable HTML manipulation
+- Phase 18: Pure function design for export utilities (no source data mutation, always work with copies)
+- Phase 18: Separate filename generation function exported for reuse across export formats
 
 [Previous v1.0-v1.2 decisions archived in PROJECT.md]
 
@@ -67,5 +70,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-24
-Stopped at: Completed 17-03-PLAN.md (Import modal integration)
+Stopped at: Completed 18-01-PLAN.md (Clean HTML export utility)
 Resume file: None
