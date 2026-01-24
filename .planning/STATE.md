@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-24)
 ## Current Position
 
 Phase: 18 of 19 (Clean HTML Export)
-Plan: 01 of 01
+Plan: 02 of 02
 Status: Phase complete
-Last activity: 2026-01-24 — Completed 18-01-PLAN.md (Clean HTML export utility)
+Last activity: 2026-01-24 — Completed 18-02-PLAN.md (Clean HTML export UI)
 
-Progress: [████████████░░░░░] 77.1% (54/70 plans complete)
+Progress: [████████████░░░░░] 98.6% (70/71 plans complete)
 
 ## Performance Metrics
 
@@ -56,6 +56,8 @@ Recent decisions affecting current work:
 - Phase 18: DOMParser-based HTML sanitization used instead of regex for reliable HTML manipulation
 - Phase 18: Pure function design for export utilities (no source data mutation, always work with copies)
 - Phase 18: Separate filename generation function exported for reuse across export formats
+- Phase 18-02: Preserved original "Copy HTML" button alongside clean HTML export buttons for dual export options (raw vs clean)
+- Phase 18-02: Color-coded export buttons (green for download, orange for copy) for visual differentiation
 
 [Previous v1.0-v1.2 decisions archived in PROJECT.md]
 
@@ -70,5 +72,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-24
-Stopped at: Completed 18-01-PLAN.md (Clean HTML export utility)
+Stopped at: Completed 18-02-PLAN.md (Clean HTML export UI)
 Resume file: None
