@@ -336,6 +336,58 @@ export function saveFocusedColumn(columnId: ColumnID | null): void {
   }
 }
 
+// Collapsed columns storage
+
+const COLLAPSED_COLUMNS_KEY = 'phishmonger-collapsed-columns';
+
+/**
+ * Load collapsed columns from LocalStorage
+ * Returns empty set if no columns are collapsed or if the stored value is invalid
+ */
+export function loadCollapsedColumns(): Set<ColumnID> {
+  try {
+    const saved = localStorage.getItem(COLLAPSED_COLUMNS_KEY);
+    if (!saved) {
+      return new Set<ColumnID>();
+    }
+    // Parse and validate each column ID
+    const parsed = JSON.parse(saved);
+    if (!Array.isArray(parsed)) {
+      return new Set<ColumnID>();
+    }
+    const validColumns = new Set<ColumnID>();
+    for (const id of parsed) {
+      if (VALID_COLUMN_IDS.has(id)) {
+        validColumns.add(id as ColumnID);
+      }
+    }
+    return validColumns;
+  } catch (error) {
+    console.error('Failed to load collapsed columns:', error);
+    return new Set<ColumnID>();
+  }
+}
+
+/**
+ * Save collapsed columns to LocalStorage
+ * Removes key if set is empty
+ */
+export function saveCollapsedColumns(columns: Set<ColumnID>): void {
+  try {
+    if (columns.size === 0) {
+      localStorage.removeItem(COLLAPSED_COLUMNS_KEY);
+    } else {
+      localStorage.setItem(COLLAPSED_COLUMNS_KEY, JSON.stringify(Array.from(columns)));
+    }
+  } catch (error) {
+    if (error instanceof DOMException && error.name === 'QuotaExceededError') {
+      console.error('LocalStorage quota exceeded while saving collapsed columns:', error);
+    } else {
+      console.error('Failed to save collapsed columns:', error);
+    }
+  }
+}
+
 // Campaign storage
 
 const CAMPAIGNS_KEY = 'phishmonger-campaigns';
