@@ -184,10 +184,10 @@ Plans:
 **Plans**: 4 plans in 3 waves
 
 Plans:
-- [ ] 16-01-PLAN.md — UI text terminology update (user-facing strings, CSS classes)
-- [ ] 16-02-PLAN.md — Code terminology update (variables, functions, comments)
-- [ ] 16-03-PLAN.md — LocalStorage migration script (v2 → v3)
-- [ ] 16-04-PLAN.md — Campaigns-first routing (default landing view)
+- [x] 16-01: UI text terminology update (user-facing strings, CSS classes)
+- [x] 16-02: Code terminology update (variables, functions, comments)
+- [x] 16-03: LocalStorage migration script (v2 → v3)
+- [x] 16-04: Campaigns-first routing (default landing view)
 
 #### Phase 17: Import UX Improvements
 **Goal**: Modal-based phish import and text input for campaign import
@@ -260,13 +260,13 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 13. Compact Annotation Layout | v1.2 | 2/2 | Complete | 2026-01-23 |
 | 14. Sample Campaign & Demo Data | v1.2 | 2/2 | Complete | 2026-01-23 |
 | 15. Dependency Upgrades & Polish | v1.2 | 4/5 | Complete | 2026-01-24 |
-| 16. Terminology & Workflow Foundation | v1.3 | 0/4 | Not started | - |
+| 16. Terminology & Workflow Foundation | v1.3 | 4/4 | Complete | 2026-01-24 |
 | 17. Import UX Improvements | v1.3 | 0/3 | Not started | - |
 | 18. Clean HTML Export | v1.3 | 0/3 | Not started | - |
 | 19. Editor Column Flexibility | v1.3 | 0/4 | Not started | - |
 
 **Overall Progress:**
 - **Total Plans:** 70 (v1.0-v1.3)
-- **Completed:** 46 (66%)
-- **Remaining:** 24 (34%)
-- **v1.3 Progress:** 0/14 plans complete (0%)
+- **Completed:** 50 (71%)
+- **Remaining:** 20 (29%)
+- **v1.3 Progress:** 4/14 plans complete (29%)
