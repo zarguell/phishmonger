@@ -971,20 +971,20 @@ body {
 }
 
 /* Project Settings Component */
-.project-settings {
+.phish-settings {
   background: #f8f9fa;
   border: 1px solid #dee2e6;
   border-radius: 4px;
   font-size: 0.875rem;
 }
 
-.project-settings-header {
+.phish-settings-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.project-settings-header h3 {
+.phish-settings-header h3 {
   margin: 0;
   font-size: 1rem;
   color: #333;
@@ -1005,7 +1005,7 @@ body {
   background: #dee2e6;
 }
 
-.project-settings-content {
+.phish-settings-content {
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: 1px solid #dee2e6;
@@ -1172,7 +1172,7 @@ body {
   flex-shrink: 0;
 }
 
-.header-top .project-settings {
+.header-top .phish-settings {
   flex: 1;
   max-width: 400px;
 }
