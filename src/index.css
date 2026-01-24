@@ -39,6 +39,33 @@ body {
   grid-template-columns: 1fr 1fr 300px 280px; /* Added fourth column for scoring */
   gap: 1.5rem;
   align-items: start;
+  transition: all 0.3s ease;
+}
+
+/* Input column focused */
+.app-main[data-focus-column="input"] {
+  grid-template-columns: 1fr 0 0 0;
+}
+
+/* Preview column focused */
+.app-main[data-focus-column="preview"] {
+  grid-template-columns: 0 1fr 0 0;
+}
+
+/* Lure list column focused */
+.app-main[data-focus-column="lure-list"] {
+  grid-template-columns: 0 0 1fr 0;
+}
+
+/* Scoring column focused */
+.app-main[data-focus-column="scoring"] {
+  grid-template-columns: 0 0 0 1fr;
+}
+
+/* Column visibility helper (hidden columns shouldn't overflow) */
+.app-main > div {
+  min-width: 0;
+  overflow: hidden;
 }
 
 .editor-container {
