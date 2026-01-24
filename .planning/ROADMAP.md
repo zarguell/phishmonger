@@ -237,13 +237,13 @@ Plans:
 **Plans**: 5 plans in 5 waves
 
 Plans:
-- [ ] 15-01-PLAN.md — Upgrade @types/uuid to v11, remove @types/html2canvas, upgrade @vitejs/plugin-react to v5 (wave 1)
-- [ ] 15-02-PLAN.md — Upgrade React to 19.2.3 with type definitions (wave 2)
-- [ ] 15-03-PLAN.md — Upgrade Tiptap to v3.17.0 and migrate LureMark extension (wave 3)
-- [ ] 15-04-PLAN.md — Comprehensive smoke testing of all v1.0-v1.2 features (wave 4)
-- [ ] 15-05-PLAN.md — Fix any breaking changes or deprecation warnings (wave 5, conditional)
+- [x] 15-01-PLAN.md — Upgrade @types/uuid to v11, remove @types/html2canvas, upgrade @vitejs/plugin-react to v5 (wave 1)
+- [x] 15-02-PLAN.md — Upgrade React to 19.2.3 with type definitions (wave 2)
+- [x] 15-03-PLAN.md — Upgrade Tiptap to v3.17.0 and migrate LureMark extension (wave 3)
+- [x] 15-04-PLAN.md — Comprehensive smoke testing of all v1.0-v1.2 features (wave 4)
+- [x] 15-05-PLAN.md — Fix any breaking changes or deprecation warnings (wave 5, conditional, skipped - not needed)
 
-**Status**: Not started
+**Status**: Complete — Verified 2026-01-24
 
 ## Progress
 
@@ -266,10 +266,10 @@ Phases execute in numeric order: 9 → 10 → 11 → 12 → 13 → 14 → 15
 | 12. Detail Carousel | v1.2 | 4/4 | Complete | 2026-01-23 |
 | 13. Compact Annotation Layout | v1.2 | 2/2 | Complete | 2026-01-23 |
 | 14. Sample Campaign & Demo Data | v1.2 | 2/2 | Complete | 2026-01-23 |
-| 15. Dependency Upgrades & Polish | v1.2 | 0/5 | Not started | - |
+| 15. Dependency Upgrades & Polish | v1.2 | 4/5 | Complete | 2026-01-24 |
 
 **Overall Progress:**
 - **Total Plans:** 47
-- **Completed:** 42 (89%)
-- **Remaining:** 5
-- **v1.2 Progress:** 22/27 plans complete (81%)
+- **Completed:** 46 (98%)
+- **Remaining:** 1 (conditional, skipped)
+- **v1.2 Progress:** 26/27 plans complete (96%)

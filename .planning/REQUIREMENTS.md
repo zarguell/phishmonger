@@ -41,13 +41,13 @@ Requirements for Campaign Management milestone. Each maps to roadmap phases.
 
 ### Dependencies
 
-- [ ] **DEP-01**: Upgrade Tiptap monorepo to v3 (major version)
-- [ ] **DEP-02**: Upgrade React monorepo to latest (major version)
-- [ ] **DEP-03**: Upgrade @types/uuid to v11
-- [ ] **DEP-04**: Upgrade @vitejs/plugin-react to v5
-- [ ] **DEP-05**: Upgrade @types/html2canvas to v1
-- [ ] **DEP-06**: Verify LureMark extension compatibility after Tiptap v3 upgrade
-- [ ] **DEP-07**: Verify all components work after React 19 upgrade
+- [x] **DEP-01**: Upgrade Tiptap monorepo to v3 (major version)
+- [x] **DEP-02**: Upgrade React monorepo to latest (major version)
+- [x] **DEP-03**: Upgrade @types/uuid to v11
+- [x] **DEP-04**: Upgrade @vitejs/plugin-react to v5
+- [x] **DEP-05**: Upgrade @types/html2canvas to v1 (removed - using native types)
+- [x] **DEP-06**: Verify LureMark extension compatibility after Tiptap v3 upgrade
+- [x] **DEP-07**: Verify all components work after React 19 upgrade
 
 ## Out of Scope
 
@@ -83,20 +83,20 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SCH-04 | Phase 11 | Complete |
 | VIS-01 | Phase 12 | Complete |
 | VIS-02 | Phase 13 | Complete |
-| VIS-03 | Phase 14 | Pending |
-| VIS-04 | Phase 14 | Pending |
+| VIS-03 | Phase 14 | Complete |
+| VIS-04 | Phase 14 | Complete |
 | DAT-01 | Phase 10 | Complete |
 | DAT-02 | Phase 10 | Complete |
 | DAT-03 | Phase 10 | Complete |
 | DAT-04 | Phase 9 | Complete |
 | DAT-05 | Phase 9 | Complete |
-| DEP-01 | Phase 15 | Pending |
-| DEP-02 | Phase 15 | Pending |
-| DEP-03 | Phase 15 | Pending |
-| DEP-04 | Phase 15 | Pending |
-| DEP-05 | Phase 15 | Pending |
-| DEP-06 | Phase 15 | Pending |
-| DEP-07 | Phase 15 | Pending |
+| DEP-01 | Phase 15 | Complete |
+| DEP-02 | Phase 15 | Complete |
+| DEP-03 | Phase 15 | Complete |
+| DEP-04 | Phase 15 | Complete |
+| DEP-05 | Phase 15 | Complete |
+| DEP-06 | Phase 15 | Complete |
+| DEP-07 | Phase 15 | Complete |
 
 **Coverage:**
 - v1.2 requirements: 28 total
@@ -114,4 +114,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-01-22*
-*Last updated: 2026-01-22 after roadmap creation*
+*Last updated: 2026-01-24 after Phase 15 completion*
