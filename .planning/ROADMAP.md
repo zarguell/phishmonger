@@ -198,12 +198,12 @@ Plans:
   2. User imports campaigns via file upload OR text paste (JSON input field)
   3. Modal dialogs close cleanly with escape key or cancel button
   4. Text paste input validates JSON format before import
-**Plans**: 4 plans in 3 waves
+**Plans**: 3 plans in 2 waves
 
 Plans:
 - [ ] 17-01: Phish import modal UI
-- [ ] 17-02: Campaign import text input field
-- [ ] 17-03: JSON validation for text paste imports
+- [ ] 17-02: Campaign import modal UI
+- [ ] 17-03: Integrate modals into App, ProjectSettings, and CampaignManager
 
 #### Phase 18: Clean HTML Export
 **Goal**: Export clean email HTML from carousel view (strip lure mark divs)
