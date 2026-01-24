@@ -5,14 +5,14 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Security trainers can create visual, annotated phishing training materials that clearly highlight deceptive techniques with educational context — without manual layout work.
-**Current focus:** Planning next milestone
+**Current focus:** Defining requirements for v1.3 UX Redesign
 
 ## Current Position
 
-Phase: None (v1.2 milestone complete)
-Plan: Not started
-Status: Ready to plan next milestone
-Last activity: 2026-01-24 — v1.2 Campaign Management milestone complete
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements for v1.3 UX Redesign
+Last activity: 2026-01-24 — Milestone v1.3 initialized
 
 Progress: [██████████████████] 100% (61/61 plans complete)
 

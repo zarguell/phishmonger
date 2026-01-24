@@ -38,16 +38,17 @@ Security trainers can create visual, annotated phishing training materials that 
 
 ### Active
 
-**Current Milestone:** TBD (user to decide next goals)
+**Current Milestone: v1.3 UX Redesign**
 
-**Potential areas:**
-- Bug fixes (carousel scroll position, other minor issues)
-- Visual calendar view (month/week grid for campaigns)
-- Advanced campaign features (templates, bulk operations, conflict detection)
-- Collaboration features (multi-user, cloud sync)
-- Analytics and reporting (campaign effectiveness, phishing statistics)
-- Mobile responsiveness improvements
-- Performance optimizations (large campaign handling)
+**Goal:** Reorient the entire application around campaigns-first workflow, eliminate confusing "project" terminology, improve editor flexibility, and enhance import/export options.
+
+**Target features:**
+- Campaigns-first UX flow (landing page shows campaigns, deprecate standalone "project" workflow)
+- Full terminology rename: "project" → "phish" (UI, localStorage keys, code comments)
+- Modal-based import UI for phishes (replace expanding menu)
+- Expandable/minimizable editor columns (focus mode per panel)
+- Campaign JSON import via text input (in addition to file upload)
+- Clean HTML export from carousel view (strip lure divs for email-only HTML)
 
 ### Validated (v1.2)
 
@@ -122,4 +123,4 @@ Shipped v1.2 with 7,081 LOC TypeScript. Added: ical-generator for calendar expor
 
 ---
 
-*Last updated: 2026-01-24 after v1.2 milestone completion*
+*Last updated: 2026-01-24 after v1.3 milestone initialization*
