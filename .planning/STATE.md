@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-24)
 ## Current Position
 
 Phase: 19 of 19 (Editor Column Flexibility)
-Plan: 05 of 04
+Plan: 06 of 06
 Status: Phase complete
-Last activity: 2026-01-24 — Completed 19-05-PLAN.md (Column minimize functionality)
+Last activity: 2026-01-24 — Completed 19-06-PLAN.md (Collapsed column CSS)
 
-Progress: [████████████████] 100.0% (75/75 plans complete)
+Progress: [████████████████] 100.0% (76/76 plans complete)
 
 ## Performance Metrics
 
@@ -71,6 +71,10 @@ Recent decisions affecting current work:
 - Phase 19-05: Separate minimize button (↓/↑) in column header allows independent column collapse without affecting focus mode
 - Phase 19-05: Set<ColumnID> for collapsedColumns state enables multiple columns to be minimized simultaneously
 - Phase 19-05: Column header actions container with flexbox layout for proper button spacing
+- Phase 19-06: CSS !important on collapsed column width properties overrides focus-mode grid widths (0px) for simultaneous collapsed + focus states
+- Phase 19-06: writing-mode: vertical-rl on collapsed column headers maximizes space efficiency while keeping labels readable
+- Phase 19-06: :not(.column-header) selector hides all column content except header when collapsed
+- Phase 19-06: data-collapsed attribute binding on all 4 column containers enables CSS targeting of collapsed columns
 
 [Previous v1.0-v1.2 decisions archived in PROJECT.md]
 
@@ -84,6 +88,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-24T20:36:02Z
-Stopped at: Completed 19-05-PLAN.md (Column minimize functionality)
+Last session: 2026-01-24T20:57:06Z
+Stopped at: Completed 19-06-PLAN.md (Collapsed column CSS)
 Resume file: None
