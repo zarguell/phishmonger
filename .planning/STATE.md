@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-22)
 
 ## Current Position
 
-Phase: 14 of 15 (Sample Campaign & Demo Data)
-Plan: 2 of 2 in current phase
-Status: Phase complete
-Last activity: 2026-01-23 — Completed 14-02: Load Sample Campaign button
+Phase: 15 of 15 (Dependency Upgrades & Polish)
+Plan: 1 of 3 in current phase
+Status: In progress
+Last activity: 2026-01-24 — Completed 15-01: Low-risk dependency upgrades (types & build tooling)
 
-Progress: [███████████████░░░░] 89% (42/47 plans complete)
+Progress: [████████████████░░░] 95% (58/61 plans complete)
 
 ## Performance Metrics
 
@@ -109,6 +109,11 @@ Recent decisions affecting current work:
 - Phase 14: Duplicate detection checks for exact name match OR 'Sample Campaign' OR 'Demo' to prevent multiple loads
 - Phase 14: Direct button action (no modal) for simplicity and faster access to demo content
 - Phase 14: User-friendly alert message explains next steps when sample already exists
+- Phase 15: Keep @types/uuid despite deprecation warning - per plan specification (uuid provides native types but @types adds explicit version control)
+- Phase 15: Removed @types/html2canvas - using native html2canvas@1.4.1 types instead
+- Phase 15: Upgraded @vitejs/plugin-react from v4.3.3 to v5.1.2 (Vite v7.0.0 satisfies v6.x peer dependency)
+- Phase 15: Added optional thumbnailUrl field to ProjectMetadata for campaign carousel support
+- Phase 15: Fixed ical-generator v10 API usage (changed uid to id parameter)
 
 ### Pending Todos
 
@@ -120,6 +125,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-23 (plan 14-02 execution)
-Stopped at: Completed 14-02-PLAN.md - Load Sample Campaign button with duplicate detection
+Last session: 2026-01-24 (plan 15-01 execution)
+Stopped at: Completed 15-01-PLAN.md - Low-risk dependency upgrades with TypeScript error fixes
 Resume file: None
