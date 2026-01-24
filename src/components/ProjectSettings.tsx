@@ -93,9 +93,9 @@ export const ProjectSettings: React.FC<ProjectSettingsProps> = ({
   }
 
   return (
-    <div className="project-settings">
-      <div className="project-settings-header">
-        <h3>Project Settings</h3>
+    <div className="phish-settings">
+      <div className="phish-settings-header">
+        <h3>Phish Settings</h3>
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="menu-toggle-button"
@@ -106,15 +106,15 @@ export const ProjectSettings: React.FC<ProjectSettingsProps> = ({
       </div>
 
       {menuOpen && (
-        <div className="project-settings-content">
+        <div className="phish-settings-content">
           <div className="settings-field">
-            <label htmlFor="project-title">Project Title</label>
+            <label htmlFor="project-title">Phish Title</label>
             <input
               id="project-title"
               type="text"
               value={metadata.title || ''}
               onChange={handleTitleChange}
-              placeholder="Enter project title"
+              placeholder="Enter phish title"
             />
           </div>
 
@@ -181,7 +181,7 @@ export const ProjectSettings: React.FC<ProjectSettingsProps> = ({
                 id="import-text"
                 value={importText}
                 onChange={handleImportTextChange}
-                placeholder="Paste project JSON here..."
+                placeholder="Paste phish JSON here..."
                 className="import-textarea"
               />
               <button
