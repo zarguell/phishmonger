@@ -132,7 +132,7 @@ function App() {
 
   // Custom techniques management
   const { customTechniques } = useCustomTechniques()
-  const { campaigns, addCampaign, updateCampaign, updatePhishInCampaign } = useCampaigns()
+  const { campaigns, addCampaign, updateCampaign, deleteCampaign, updatePhishInCampaign } = useCampaigns()
   const [showCampaignManager, setShowCampaignManager] = useState(() => {
     // Campaigns-first workflow: new users see campaigns list
     // Existing users with data stay in editor for backward compatibility
@@ -426,9 +426,8 @@ function App() {
     setShowPhishImportModal(false)
   }
 
-  const handleCampaignImport = (campaignData: { name: string; description: string; campaignPhishes: any[] }) => {
-    addCampaign(campaignData)
-    setShowCampaignImportModal(false)
+  const handleCampaignImport = async (campaignData: { name: string; description: string; campaignPhishes: any[] }) => {
+    await addCampaign(campaignData)
   }
 
   const handleEditCampaign = (campaign: Campaign) => {
@@ -441,8 +440,8 @@ function App() {
     setShowCampaignManager(true) // Return to campaign list
   }
 
-  const handleSaveCampaign = (campaignId: string, updates: Partial<Omit<Campaign, 'id' | 'createdAt'>>) => {
-    updateCampaign(campaignId, updates)
+  const handleSaveCampaign = async (campaignId: string, updates: Partial<Omit<Campaign, 'id' | 'createdAt'>>) => {
+    await updateCampaign(campaignId, updates)
     setEditingCampaign(undefined)
     setShowCampaignManager(true) // Return to campaign list after save
   }
@@ -471,7 +470,7 @@ function App() {
     setShowCampaignManager(false)
   }
 
-  const handleSaveToCampaign = () => {
+  const handleSaveToCampaign = async () => {
     if (!editingCampaignPhish) return
 
     const { campaignId, phishId } = editingCampaignPhish
@@ -493,8 +492,8 @@ function App() {
 
     console.log('🐛 [SaveToCampaign] Updated phish data:', updatedPhish)
 
-    // Update the phish within the campaign using the dedicated hook function
-    updatePhishInCampaign(campaignId, phishId, updatedPhish)
+    // Update phish within campaign using dedicated hook function
+    await updatePhishInCampaign(campaignId, phishId, updatedPhish)
 
     console.log('🐛 [SaveToCampaign] Called updatePhishInCampaign')
 
@@ -817,6 +816,9 @@ function App() {
           onEditCampaign={handleEditCampaign}
           onCarousel={handleViewCarousel}
           onImportClick={() => setShowCampaignImportModal(true)}
+          campaigns={campaigns}
+          addCampaign={addCampaign}
+          deleteCampaign={deleteCampaign}
         />
       )}
       {editingCampaign && (

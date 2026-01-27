@@ -4,12 +4,14 @@ import type { Campaign, CampaignInput } from '../../types/campaign';
 interface CampaignImportModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onImport: (campaign: CampaignInput) => void;
+  onImport: (campaign: CampaignInput) => Promise<void>;
   existingCampaigns: Campaign[];
 }
 
 export function CampaignImportModal({ isOpen, onClose, onImport, existingCampaigns }: CampaignImportModalProps) {
   const [importError, setImportError] = useState<string | null>(null);
+  const [isImporting, setIsImporting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [importText, setImportText] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -49,6 +51,10 @@ export function CampaignImportModal({ isOpen, onClose, onImport, existingCampaig
     const file = e.target.files?.[0];
     if (!file) return;
 
+    setIsImporting(true);
+    setImportError(null);
+    setSuccessMessage(null);
+
     try {
       const text = await file.text();
       const imported = JSON.parse(text) as Campaign;
@@ -65,29 +71,39 @@ export function CampaignImportModal({ isOpen, onClose, onImport, existingCampaig
         imported.name = imported.name.endsWith(' (copy)') ? imported.name : `${imported.name} (copy)`;
       }
 
-      onImport({
+      await onImport({
         name: imported.name,
         description: imported.description,
         campaignPhishes: imported.campaignPhishes,
       });
 
       setImportError(null);
-      onClose();
+      setSuccessMessage('Campaign imported successfully!');
+      setTimeout(() => {
+        onClose();
+        setSuccessMessage(null);
+      }, 500);
     } catch (error) {
       setImportError(error instanceof Error ? error.message : 'Failed to import campaign file');
-    }
+    } finally {
+      setIsImporting(false);
 
-    // Reset file input
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+      // Reset file input
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
     }
   };
 
-  const handleTextImport = () => {
+  const handleTextImport = async () => {
     if (!importText.trim()) {
       setImportError('Please paste campaign JSON or upload a file');
       return;
     }
+
+    setIsImporting(true);
+    setImportError(null);
+    setSuccessMessage(null);
 
     try {
       const imported = JSON.parse(importText) as Campaign;
@@ -104,21 +120,27 @@ export function CampaignImportModal({ isOpen, onClose, onImport, existingCampaig
         imported.name = imported.name.endsWith(' (copy)') ? imported.name : `${imported.name} (copy)`;
       }
 
-      onImport({
+      await onImport({
         name: imported.name,
         description: imported.description,
         campaignPhishes: imported.campaignPhishes,
       });
 
       setImportError(null);
+      setSuccessMessage('Campaign imported successfully!');
       setImportText('');
-      onClose();
+      setTimeout(() => {
+        onClose();
+        setSuccessMessage(null);
+      }, 500);
     } catch (error) {
       setImportError(error instanceof Error ? error.message : 'Failed to parse campaign JSON');
+    } finally {
+      setIsImporting(false);
     }
   };
 
-  const isImportDisabled = !importText.trim() && !fileInputRef.current?.files?.length;
+  const isImportDisabled = !importText.trim() && !fileInputRef.current?.files?.length || isImporting;
 
   if (!isOpen) return null;
 
@@ -221,6 +243,27 @@ export function CampaignImportModal({ isOpen, onClose, onImport, existingCampaig
     marginBottom: '16px'
   };
 
+  const successStyle: React.CSSProperties = {
+    backgroundColor: '#d4edda',
+    border: '1px solid #c3e6cb',
+    borderRadius: '6px',
+    padding: '10px 14px',
+    fontSize: '13px',
+    color: '#155724',
+    marginBottom: '16px'
+  };
+
+  const loadingSpinner: React.CSSProperties = {
+    display: 'inline-block',
+    width: '14px',
+    height: '14px',
+    border: '2px solid rgba(255,255,255,0.3)',
+    borderRadius: '50%',
+    borderTopColor: 'white',
+    animation: 'spin 0.8s linear infinite',
+    marginRight: '8px'
+  };
+
   const buttonGroupStyle: React.CSSProperties = {
     display: 'flex',
     justifyContent: 'flex-end',
@@ -300,6 +343,13 @@ export function CampaignImportModal({ isOpen, onClose, onImport, existingCampaig
             </div>
           )}
 
+          {/* Success Message */}
+          {successMessage && (
+            <div style={successStyle}>
+              {successMessage}
+            </div>
+          )}
+
           {/* Action Buttons */}
           <div style={buttonGroupStyle}>
             <button
@@ -315,7 +365,10 @@ export function CampaignImportModal({ isOpen, onClose, onImport, existingCampaig
               onClick={handleTextImport}
               disabled={isImportDisabled}
             >
-              Import
+              {isImporting && (
+                <span style={loadingSpinner}></span>
+              )}
+              {isImporting ? 'Importing...' : 'Import'}
             </button>
           </div>
         </div>
