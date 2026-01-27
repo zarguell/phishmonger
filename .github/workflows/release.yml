@@ -65,7 +65,7 @@ jobs:
         include:
           - platform: macos-latest
             args: '--target aarch64-apple-darwin'
-          - platform: ubuntu-20.04
+          - platform: ubuntu-22.04
             args: ''
           - platform: windows-latest
             args: ''
@@ -106,6 +106,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           releaseId: ${{ needs.create-release.outputs.release_id }}
+          args: ${{ matrix.args }}
 
   generate-checksums:
     needs: [create-release, build-tauri]
