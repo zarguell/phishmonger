@@ -6,32 +6,42 @@
  */
 
 /**
- * Remove elements matching selector from HTML string
+ * Unwrap elements matching selector from HTML string, preserving their content
  * Uses DOMParser for reliable HTML manipulation
+ * Removes the element wrapper but keeps all child nodes/text content intact
  *
  * @param htmlString - HTML source to clean
- * @param selector - CSS selector for elements to remove
- * @returns Cleaned HTML string
+ * @param selector - CSS selector for elements to unwrap
+ * @returns Cleaned HTML string with elements unwrapped
  */
-function removeElementsFromHTML(htmlString: string, selector: string): string {
+function unwrapElementsFromHTML(htmlString: string, selector: string): string {
   const parser = new DOMParser()
   const doc = parser.parseFromString(htmlString, 'text/html')
 
-  const elements = doc.querySelectorAll(selector)
-  elements.forEach(element => element.remove())
+  const elements = Array.from(doc.querySelectorAll(selector))
+  elements.forEach(element => {
+    const parent = element.parentNode
+    if (parent) {
+      while (element.firstChild) {
+        parent.insertBefore(element.firstChild, element)
+      }
+      parent.removeChild(element)
+    }
+  })
 
   return doc.body.innerHTML
 }
 
 /**
  * Strip all lure mark spans from email HTML
- * Removes: <span data-lure-id="..." class="lure-mark">...</span>
+ * Unwraps: <span data-lure-id="..." class="lure-mark">...</span>
+ * Preserves the text content inside the lure mark spans
  *
  * @param htmlString - HTML source with lure marks
- * @returns HTML with lure marks removed
+ * @returns HTML with lure marks unwrapped (text preserved)
  */
 export function stripLureMarks(htmlString: string): string {
-  return removeElementsFromHTML(htmlString, '[data-lure-id]')
+  return unwrapElementsFromHTML(htmlString, '[data-lure-id]')
 }
 
 /**
@@ -43,7 +53,7 @@ export function stripLureMarks(htmlString: string): string {
  * @returns HTML with annotation badges removed
  */
 export function stripAnnotationBadges(htmlString: string): string {
-  return removeElementsFromHTML(htmlString, '[data-annotation-number]')
+  return unwrapElementsFromHTML(htmlString, '[data-annotation-number]')
 }
 
 /**
