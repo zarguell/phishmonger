@@ -1,6 +1,6 @@
 [package]
 name = "phishmonger"
-version = "1.4.1"
+version = "1.4.5"
 description = "PhishMonger - Annotate phishing emails with technique explanations"
 authors = ["zarguell"]
 license = ""
