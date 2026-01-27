@@ -46,28 +46,41 @@ export function useCampaigns() {
 
   /**
    * Save campaigns to LocalStorage with quota error handling
+   * Uses requestIdleCallback to defer storage and avoid blocking main thread
    */
-  const saveToStorage = useCallback((campaignsToSave: Campaign[]) => {
-    try {
-      setStorageError(null);
-      saveCampaigns(campaignsToSave);
-    } catch (error) {
-      if (error instanceof Error && error.name === 'QuotaExceededError') {
-        setStorageError('Storage nearly full. Delete old campaigns or export data.');
+  const saveToStorage = useCallback((campaignsToSave: Campaign[]): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      const performSave = () => {
+        try {
+          setStorageError(null);
+          saveCampaigns(campaignsToSave);
+          resolve();
+        } catch (error) {
+          if (error instanceof Error && error.name === 'QuotaExceededError') {
+            setStorageError('Storage nearly full. Delete old campaigns or export data.');
+          } else {
+            console.error('Failed to save campaigns:', error);
+            setStorageError('Failed to save campaigns.');
+          }
+          reject(error);
+        }
+      };
+
+      if ('requestIdleCallback' in window) {
+        (window as any).requestIdleCallback(() => performSave(), { timeout: 100 });
       } else {
-        console.error('Failed to save campaigns:', error);
-        setStorageError('Failed to save campaigns.');
+        setTimeout(() => performSave(), 0);
       }
-    }
+    });
   }, []);
 
   /**
    * Add a new campaign
    *
    * @param input - Campaign data without id and createdAt
-   * @returns Created campaign with generated id
+   * @returns Promise that resolves to created campaign with generated id
    */
-  const addCampaign = useCallback((input: CampaignInput): Campaign => {
+  const addCampaign = useCallback(async (input: CampaignInput): Promise<Campaign> => {
     const newCampaign: Campaign = {
       ...input,
       id: crypto.randomUUID(),
@@ -76,7 +89,7 @@ export function useCampaigns() {
 
     const updated = [...campaigns, newCampaign];
     setCampaigns(updated);
-    saveToStorage(updated);
+    await saveToStorage(updated);
 
     return newCampaign;
   }, [campaigns, saveToStorage]);
@@ -87,7 +100,7 @@ export function useCampaigns() {
    * @param id - Campaign ID to update
    * @param updates - Partial campaign data to merge
    */
-  const updateCampaign = useCallback((id: string, updates: Partial<Omit<Campaign, 'id' | 'createdAt'>>): void => {
+  const updateCampaign = useCallback(async (id: string, updates: Partial<Omit<Campaign, 'id' | 'createdAt'>>): Promise<void> => {
     // Load fresh data from localStorage to avoid stale closure issues
     const freshCampaigns = loadCampaigns();
     const existing = freshCampaigns.find(c => c.id === id);
@@ -103,7 +116,7 @@ export function useCampaigns() {
     );
 
     setCampaigns(updated);
-    saveToStorage(updated);
+    await saveToStorage(updated);
   }, [saveToStorage]);
 
   /**
@@ -111,7 +124,7 @@ export function useCampaigns() {
    *
    * @param id - Campaign ID to delete
    */
-  const deleteCampaign = useCallback((id: string): void => {
+  const deleteCampaign = useCallback(async (id: string): Promise<void> => {
     const existing = campaigns.find(c => c.id === id);
     if (!existing) {
       console.warn(`Cannot delete non-existent campaign: ${id}`);
@@ -120,19 +133,19 @@ export function useCampaigns() {
 
     const updated = campaigns.filter(c => c.id !== id);
     setCampaigns(updated);
-    saveToStorage(updated);
+    await saveToStorage(updated);
   }, [campaigns, saveToStorage]);
 
   /**
    * Add a phish to a campaign
    *
-   * Copies the phish into the campaign's phish array.
+   * Copies phish into campaign's phish array.
    * Use copyPhishForCampaign() to create an independent copy.
    *
    * @param campaignId - Campaign ID to add phish to
    * @param phish - Phish to add (should be a copy from copyPhishForCampaign)
    */
-  const addPhishToCampaign = useCallback((campaignId: string, phish: CampaignPhish): void => {
+  const addPhishToCampaign = useCallback(async (campaignId: string, phish: CampaignPhish): Promise<void> => {
     const campaign = campaigns.find(c => c.id === campaignId);
     if (!campaign) {
       console.warn(`Cannot add phish to non-existent campaign: ${campaignId}`);
@@ -146,7 +159,7 @@ export function useCampaigns() {
     );
 
     setCampaigns(updated);
-    saveToStorage(updated);
+    await saveToStorage(updated);
   }, [campaigns, saveToStorage]);
 
   /**
@@ -155,7 +168,7 @@ export function useCampaigns() {
    * @param campaignId - Campaign ID to remove phish from
    * @param phishId - Phish ID to remove
    */
-  const removePhishFromCampaign = useCallback((campaignId: string, phishId: string): void => {
+  const removePhishFromCampaign = useCallback(async (campaignId: string, phishId: string): Promise<void> => {
     const campaign = campaigns.find(c => c.id === campaignId);
     if (!campaign) {
       console.warn(`Cannot remove phish from non-existent campaign: ${campaignId}`);
@@ -169,7 +182,7 @@ export function useCampaigns() {
     );
 
     setCampaigns(updated);
-    saveToStorage(updated);
+    await saveToStorage(updated);
   }, [campaigns, saveToStorage]);
 
   /**
@@ -179,7 +192,7 @@ export function useCampaigns() {
    * @param phishId - Phish ID to update
    * @param updates - Partial phish data to merge
    */
-  const updatePhishInCampaign = useCallback((campaignId: string, phishId: string, updates: Partial<Omit<CampaignPhish, 'id'>>): void => {
+  const updatePhishInCampaign = useCallback(async (campaignId: string, phishId: string, updates: Partial<Omit<CampaignPhish, 'id'>>): Promise<void> => {
     console.log('🐛 [updatePhishInCampaign] Input:', { campaignId, phishId, updates })
     console.log('🐛 [updatePhishInCampaign] Current campaigns:', campaigns)
 
@@ -211,7 +224,7 @@ export function useCampaigns() {
     console.log('🐛 [updatePhishInCampaign] Final updated campaigns:', updated)
 
     setCampaigns(updated);
-    saveToStorage(updated);
+    await saveToStorage(updated);
   }, [campaigns, saveToStorage]);
 
   /**

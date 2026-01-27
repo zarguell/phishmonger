@@ -1,7 +1,6 @@
 import { useState, useMemo } from 'react';
-import { Campaign } from '../../types/campaign';
+import { Campaign, CampaignInput } from '../../types/campaign';
 import { CampaignCard } from './CampaignCard';
-import { useCampaigns } from '../../hooks/useCampaigns';
 import { downloadCampaignICal } from '../../utils/icalExport';
 import { SAMPLE_CAMPAIGN } from '../../data/sampleCampaign';
 
@@ -10,11 +9,13 @@ interface CampaignManagerProps {
   onClose: () => void;
   onEditCampaign: (campaign: Campaign) => void;
   onCarousel?: (campaign: Campaign) => void;
-  onImportClick?: () => void;  // NEW
+  onImportClick?: () => void;
+  campaigns: Campaign[];
+  addCampaign: (input: CampaignInput) => Promise<Campaign>;
+  deleteCampaign: (id: string) => Promise<void>;
 }
 
-export function CampaignManager({ isOpen, onClose, onEditCampaign, onCarousel, onImportClick }: CampaignManagerProps) {
-  const { campaigns, addCampaign, deleteCampaign } = useCampaigns();
+export function CampaignManager({ isOpen, onClose, onEditCampaign, onCarousel, onImportClick, campaigns, addCampaign, deleteCampaign }: CampaignManagerProps) {
   const [searchQuery, setSearchQuery] = useState('');
 
   // Create modal state
@@ -41,7 +42,7 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign, onCarousel, o
     }
   };
 
-  const handleDelete = (campaign: Campaign) => {
+  const handleDelete = (campaign: Campaign): void => {
     if (window.confirm(`Delete "${campaign.name}"? This action cannot be undone.`)) {
       deleteCampaign(campaign.id);
     }
@@ -84,7 +85,7 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign, onCarousel, o
     setCreateErrors({});
   };
 
-  const handleCreateSubmit = (e: React.FormEvent) => {
+  const handleCreateSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Validate
@@ -100,7 +101,7 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign, onCarousel, o
     }
 
     // Create campaign
-    addCampaign({
+    await addCampaign({
       name: createForm.name.trim(),
       description: createForm.description.trim(),
       campaignPhishes: [],
@@ -117,9 +118,9 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign, onCarousel, o
     setCreateErrors({});
   };
 
-  const handleLoadSample = () => {
+  const handleLoadSample = async () => {
     // Check if sample campaign already exists
-    const existing = campaigns.find(c =>
+    const existing = campaigns.find((c: Campaign) =>
       c.name === SAMPLE_CAMPAIGN.name ||
       c.name.includes('Sample Campaign') ||
       c.name.includes('Demo')
@@ -131,7 +132,7 @@ export function CampaignManager({ isOpen, onClose, onEditCampaign, onCarousel, o
     }
 
     // Use existing addCampaign function
-    addCampaign({
+    await addCampaign({
       name: SAMPLE_CAMPAIGN.name,
       description: SAMPLE_CAMPAIGN.description,
       campaignPhishes: SAMPLE_CAMPAIGN.campaignPhishes,

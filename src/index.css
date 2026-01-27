@@ -1514,3 +1514,9 @@ body {
   background: #f8f9fa;
   border-color: #adb5bd;
 }
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
