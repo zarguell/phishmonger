@@ -41,7 +41,7 @@ jobs:
           echo "$NOTES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      - name: Create GitHub Release
+      - name: Create Release and Upload Assets
         id: create_release
         uses: softprops/action-gh-release@v2
         env:
@@ -53,13 +53,8 @@ jobs:
           draft: false
           prerelease: false
           generate_release_notes: false
-
-      - name: Upload single HTML file
-        uses: softprops/action-gh-release@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          files: ./dist/index.html
+          files: |
+            ./dist/index.html
 
   build-tauri:
     needs: create-release
