@@ -56,7 +56,7 @@ export const SlideWrapper = forwardRef<HTMLDivElement, SlideWrapperProps>(
     return (
       <div
         ref={containerRef}
-        className={getSlideWrapperClasses()}
+        className={`${getSlideWrapperClasses()} slide-wrapper`}
         style={dimensions ? {
           '--slide-width': `${dimensions.width}px`,
           '--slide-height': `${dimensions.height}px`
