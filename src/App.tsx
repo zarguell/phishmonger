@@ -14,6 +14,7 @@ import { AnnotationColumn } from './components/preview/AnnotationColumn'
 import { ExportButton } from './components/export/ExportButton'
 import { ArrowStyleSelector } from './components/visualizer/ArrowStyleSelector'
 import { LayoutTemplateSelector, type LayoutTemplate } from './components/visualizer/LayoutTemplateSelector'
+import { AspectRatioSelector, type AspectRatio } from './components/visualizer/AspectRatioSelector'
 import { VisibilityToggles } from './components/visualizer/VisibilityToggles'
 import { useUndoRedo } from './hooks/useUndoRedo'
 import { useCustomTechniques } from './hooks/useCustomTechniques'
@@ -85,6 +86,16 @@ function mergeCustomTechniques(
 type ViewMode = 'edit' | 'preview'
 type ScaleMode = 'scroll' | 'fit'
 
+const ASPECT_RATIO_KEY = 'phishmonger-aspect-ratio'
+const BASE_WIDTH = 1600
+
+const ASPECT_RATIOS: Record<AspectRatio, { width: number; height: number }> = {
+  '16:9': { width: BASE_WIDTH, height: Math.round(BASE_WIDTH * 9 / 16) },
+  '2:1': { width: BASE_WIDTH, height: Math.round(BASE_WIDTH * 1 / 2) },
+  '4:3': { width: BASE_WIDTH, height: Math.round(BASE_WIDTH * 3 / 4) },
+  '21:9': { width: BASE_WIDTH, height: Math.round(BASE_WIDTH * 9 / 21) }
+}
+
 function App() {
   // Initialize schema version on app mount
   useEffect(() => {
@@ -149,6 +160,17 @@ function App() {
     const savedTemplate = localStorage.getItem(LAYOUT_TEMPLATE_KEY) as LayoutTemplate | null
     return savedTemplate || 'balanced'
   })
+  const [aspectRatio, setAspectRatio] = useState<AspectRatio>(() => {
+    const savedRatio = localStorage.getItem(ASPECT_RATIO_KEY) as AspectRatio | null
+    return savedRatio || '16:9'
+  })
+
+  const handleAspectRatioChange = (ratio: AspectRatio) => {
+    setAspectRatio(ratio)
+    localStorage.setItem(ASPECT_RATIO_KEY, ratio)
+  }
+
+  const currentDimensions = ASPECT_RATIOS[aspectRatio]
   const [showTags, setShowTags] = useState(() => {
     const savedShowTags = localStorage.getItem(SHOW_TAGS_KEY)
     return savedShowTags === null ? true : savedShowTags === 'true'
@@ -314,17 +336,17 @@ function App() {
         const slideWrapper = slideWrapperRef.current
         if (container && slideWrapper) {
           const containerWidth = container.clientWidth
-          const slideWidth = 1600 // Fixed width of slide-wrapper
-          const slideHeight = 900 // Fixed height of slide-wrapper
+          const slideWidth = currentDimensions.width
+          const slideHeight = currentDimensions.height
           const padding = 80 // Account for container padding
-          
+
           const availableWidth = containerWidth - padding
           const availableHeight = window.innerHeight - 200 // Account for header and padding
-          
+
           const scaleX = availableWidth / slideWidth
           const scaleY = availableHeight / slideHeight
           const scale = Math.min(scaleX, scaleY, 1) // Don't scale up, only down
-          
+
           slideWrapper.style.setProperty('--scale-factor', scale.toString())
         }
       }
@@ -333,7 +355,7 @@ function App() {
       window.addEventListener('resize', updateScale)
       return () => window.removeEventListener('resize', updateScale)
     }
-  }, [viewMode, scaleMode])
+  }, [viewMode, scaleMode, currentDimensions])
 
   const updateAnnotation = (lureId: string, updates: Partial<Annotation>) => {
     setAnnotations(prev => ({
@@ -543,6 +565,10 @@ function App() {
                 Full Width
               </button>
             </div>
+            <AspectRatioSelector
+              currentRatio={aspectRatio}
+              onRatioChange={handleAspectRatioChange}
+            />
             <LayoutTemplateSelector
               currentTemplate={layoutTemplate}
               onTemplateChange={setLayoutTemplate}
@@ -578,6 +604,7 @@ function App() {
               scoring={scoring}
               showBadge={showBadge}
               layoutTemplate={layoutTemplate}
+              dimensions={currentDimensions}
             >
               <EmailColumn htmlSource={htmlSource} annotations={annotations} arrowStyle={arrowStyle} />
               <AnnotationColumn

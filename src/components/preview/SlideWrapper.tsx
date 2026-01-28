@@ -11,10 +11,11 @@ interface SlideWrapperProps {
   showBadge?: boolean
   layoutTemplate?: LayoutTemplate
   compactAnnotations?: boolean
+  dimensions?: { width: number; height: number }
 }
 
 export const SlideWrapper = forwardRef<HTMLDivElement, SlideWrapperProps>(
-  ({ children, scoring, showBadge = true, layoutTemplate = 'balanced', compactAnnotations = false }, ref) => {
+  ({ children, scoring, showBadge = true, layoutTemplate = 'balanced', compactAnnotations = false, dimensions }, ref) => {
     const internalRef = useRef<HTMLDivElement>(null)
     const containerRef = (ref as React.RefObject<HTMLDivElement>) || internalRef
 
@@ -53,7 +54,14 @@ export const SlideWrapper = forwardRef<HTMLDivElement, SlideWrapperProps>(
     }
 
     return (
-      <div ref={containerRef} className={getSlideWrapperClasses()}>
+      <div
+        ref={containerRef}
+        className={getSlideWrapperClasses()}
+        style={dimensions ? {
+          '--slide-width': `${dimensions.width}px`,
+          '--slide-height': `${dimensions.height}px`
+        } as React.CSSProperties : undefined}
+      >
         {children}
         {badge && (
           <div className="difficulty-badge-overlay" style={{ backgroundColor: badge.color }}>
