@@ -685,7 +685,6 @@ body {
 /* Scale to fit mode - scales the slide to fit viewport */
 .slide-container.scale-mode-fit {
   justify-content: center;
-  align-items: center;
 }
 
 .slide-container.scale-mode-fit .slide-wrapper {

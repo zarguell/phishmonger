@@ -16,11 +16,11 @@
   display: flex;
   gap: var(--layout-gap, 40px);
   width: var(--slide-width, 1600px);
-  min-height: var(--slide-height, 900px);
+  height: var(--slide-height, 900px);
   background: #FFFFFF;
   margin: 0 auto;
   position: relative;
-  transition: gap 0.3s ease, width 0.3s ease, min-height 0.3s ease;
+  transition: gap 0.3s ease, width 0.3s ease, height 0.3s ease;
 }
 
 /* Set gap for each template */
