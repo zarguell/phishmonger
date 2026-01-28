@@ -53,7 +53,7 @@
 }
 
 .balanced :global(.annotation-column) {
-  width: calc(var(--slide-width, 1600px) * 0.25);
+  width: 25%;
   transition: width 0.3s ease;
 }
 
@@ -70,7 +70,7 @@
 }
 
 .wideEmail :global(.annotation-column) {
-  width: calc(var(--slide-width, 1600px) * 0.2);
+  width: 20%;
   transition: width 0.3s ease;
 }
 
@@ -87,7 +87,7 @@
 }
 
 .wideAnnotations :global(.annotation-column) {
-  width: calc(var(--slide-width, 1600px) * 0.35);
+  width: 35%;
   transition: width 0.3s ease;
 }
 
