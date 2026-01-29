@@ -4,15 +4,16 @@
 /* Base arrow badge class */
 .arrowBadge {
   position: absolute;
-  width: 24px;
-  height: 24px;
+  width: calc(24px * var(--aspect-ratio-scale, 1));
+  height: calc(24px * var(--aspect-ratio-scale, 1));
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 14px;
+  font-size: calc(14px * var(--aspect-ratio-scale, 1));
   cursor: pointer;
   transition: all 0.2s ease;
+  border-width: calc(2px * var(--aspect-ratio-scale, 1));
 }
 
 /* Style 1: Classic Blue Circle */

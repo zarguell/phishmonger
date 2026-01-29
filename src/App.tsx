@@ -171,6 +171,9 @@ function App() {
   }
 
   const currentDimensions = ASPECT_RATIOS[aspectRatio]
+  
+  // Calculate scale factor based on slide height vs default (900px)
+  const aspectScaleFactor = currentDimensions.height / 900
   const [showTags, setShowTags] = useState(() => {
     const savedShowTags = localStorage.getItem(SHOW_TAGS_KEY)
     return savedShowTags === null ? true : savedShowTags === 'true'
@@ -610,6 +613,7 @@ function App() {
               showBadge={showBadge}
               layoutTemplate={layoutTemplate}
               dimensions={currentDimensions}
+              aspectScaleFactor={aspectScaleFactor}
             >
               <EmailColumn htmlSource={htmlSource} annotations={annotations} arrowStyle={arrowStyle} />
               <AnnotationColumn

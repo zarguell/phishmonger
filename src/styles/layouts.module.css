@@ -14,7 +14,7 @@
 /* Base slide wrapper styles */
 .slideWrapper {
   display: flex;
-  gap: var(--layout-gap, 40px);
+  gap: calc(var(--layout-gap, 40px) * var(--aspect-ratio-scale, 1));
   width: var(--slide-width, 1600px);
   height: var(--slide-height, 900px);
   background: #FFFFFF;
@@ -55,6 +55,8 @@
 .balanced :global(.annotation-column) {
   width: 25%;
   transition: width 0.3s ease;
+  gap: calc(24px * var(--aspect-ratio-scale, 1));
+  padding: calc(40px * var(--aspect-ratio-scale, 1));
 }
 
 /*
@@ -72,6 +74,8 @@
 .wideEmail :global(.annotation-column) {
   width: 20%;
   transition: width 0.3s ease;
+  gap: calc(24px * var(--aspect-ratio-scale, 1));
+  padding: calc(40px * var(--aspect-ratio-scale, 1));
 }
 
 /*
@@ -89,6 +93,8 @@
 .wideAnnotations :global(.annotation-column) {
   width: 35%;
   transition: width 0.3s ease;
+  gap: calc(24px * var(--aspect-ratio-scale, 1));
+  padding: calc(40px * var(--aspect-ratio-scale, 1));
 }
 
 /*
