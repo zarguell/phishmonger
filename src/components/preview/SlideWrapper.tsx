@@ -11,10 +11,12 @@ interface SlideWrapperProps {
   showBadge?: boolean
   layoutTemplate?: LayoutTemplate
   compactAnnotations?: boolean
+  dimensions?: { width: number; height: number }
+  aspectScaleFactor?: number
 }
 
 export const SlideWrapper = forwardRef<HTMLDivElement, SlideWrapperProps>(
-  ({ children, scoring, showBadge = true, layoutTemplate = 'balanced', compactAnnotations = false }, ref) => {
+  ({ children, scoring, showBadge = true, layoutTemplate = 'balanced', compactAnnotations = false, dimensions, aspectScaleFactor = 1 }, ref) => {
     const internalRef = useRef<HTMLDivElement>(null)
     const containerRef = (ref as React.RefObject<HTMLDivElement>) || internalRef
 
@@ -41,10 +43,10 @@ export const SlideWrapper = forwardRef<HTMLDivElement, SlideWrapperProps>(
         letter: badgeData.letter,
         color: badgeData.color,
         breakdown: (
-          <div style={{ fontSize: '11px', lineHeight: '1.3' }}>
-            <div style={{ fontWeight: '600', marginBottom: '2px' }}>NIST Phish Scale Score</div>
+          <div style={{ fontSize: `${11 * aspectScaleFactor}px`, lineHeight: '1.3' }}>
+            <div style={{ fontWeight: '600', marginBottom: `${2 * aspectScaleFactor}px` }}>NIST Phish Scale Score</div>
             <div>{badgeData.label}</div>
-            <div style={{ fontSize: '10px', marginTop: '2px', opacity: 0.9 }}>
+            <div style={{ fontSize: `${10 * aspectScaleFactor}px`, marginTop: `${2 * aspectScaleFactor}px`, opacity: 0.9 }}>
               Cues ({totalCues}): {cueZone} • Alignment: {alignmentZone}
             </div>
           </div>
@@ -53,10 +55,29 @@ export const SlideWrapper = forwardRef<HTMLDivElement, SlideWrapperProps>(
     }
 
     return (
-      <div ref={containerRef} className={getSlideWrapperClasses()}>
+      <div
+        ref={containerRef}
+        className={`${getSlideWrapperClasses()} slide-wrapper`}
+        style={dimensions ? {
+          '--slide-width': `${dimensions.width}px`,
+          '--slide-height': `${dimensions.height}px`,
+          '--aspect-ratio-scale': aspectScaleFactor.toString()
+        } as React.CSSProperties : undefined}
+      >
         {children}
         {badge && (
-          <div className="difficulty-badge-overlay" style={{ backgroundColor: badge.color }}>
+          <div 
+            className="difficulty-badge-overlay" 
+            style={{ 
+              backgroundColor: badge.color,
+              padding: `${12 * aspectScaleFactor}px ${16 * aspectScaleFactor}px`,
+              minWidth: `${180 * aspectScaleFactor}px`,
+              fontSize: `${1 * aspectScaleFactor}rem`,
+              bottom: `${20 * aspectScaleFactor}px`,
+              right: `${20 * aspectScaleFactor}px`,
+              borderRadius: `${8 * aspectScaleFactor}px`
+            }}
+          >
             {badge.breakdown}
           </div>
         )}

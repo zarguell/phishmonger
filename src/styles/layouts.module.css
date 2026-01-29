@@ -14,13 +14,13 @@
 /* Base slide wrapper styles */
 .slideWrapper {
   display: flex;
-  gap: var(--layout-gap, 40px);
-  width: 1600px;
-  min-height: 900px;
+  gap: calc(var(--layout-gap, 40px) * var(--aspect-ratio-scale, 1));
+  width: var(--slide-width, 1600px);
+  height: var(--slide-height, 900px);
   background: #FFFFFF;
   margin: 0 auto;
   position: relative;
-  transition: gap 0.3s ease;
+  transition: gap 0.3s ease, width 0.3s ease, height 0.3s ease;
 }
 
 /* Set gap for each template */
@@ -43,8 +43,8 @@
 /*
  * Balanced Layout (Default)
  * Email: 1fr (flex grow to fill available space)
- * Annotations: 400px fixed width
- * Split: Approximately 60/40 ratio at 1600px total width
+ * Annotations: 25% of total width
+ * Split: 75/25 ratio
  */
 .balanced :global(.email-column) {
   flex: 1;
@@ -53,14 +53,16 @@
 }
 
 .balanced :global(.annotation-column) {
-  width: 400px;
+  width: 25%;
   transition: width 0.3s ease;
+  gap: calc(24px * var(--aspect-ratio-scale, 1));
+  padding: calc(40px * var(--aspect-ratio-scale, 1));
 }
 
 /*
  * Wide Email Layout
  * Email: 1.5fr (75% more space than balanced)
- * Annotations: 300px fixed width (reduced from balanced)
+ * Annotations: 20% of total width (reduced from balanced)
  * Use case: Long phishing emails, complex HTML structure, wide tables
  */
 .wideEmail :global(.email-column) {
@@ -70,14 +72,16 @@
 }
 
 .wideEmail :global(.annotation-column) {
-  width: 300px;
+  width: 20%;
   transition: width 0.3s ease;
+  gap: calc(24px * var(--aspect-ratio-scale, 1));
+  padding: calc(40px * var(--aspect-ratio-scale, 1));
 }
 
 /*
  * Wide Annotations Layout
  * Email: 1fr (same as balanced)
- * Annotations: 500px fixed width (increased from balanced)
+ * Annotations: 35% of total width (increased from balanced)
  * Use case: Detailed technique explanations, comprehensive notes
  */
 .wideAnnotations :global(.email-column) {
@@ -87,8 +91,10 @@
 }
 
 .wideAnnotations :global(.annotation-column) {
-  width: 500px;
+  width: 35%;
   transition: width 0.3s ease;
+  gap: calc(24px * var(--aspect-ratio-scale, 1));
+  padding: calc(40px * var(--aspect-ratio-scale, 1));
 }
 
 /*
