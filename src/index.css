@@ -553,8 +553,8 @@ body {
 
 /* Slide Layout */
 .slide-wrapper {
-  width: 1600px;
-  min-height: 900px;
+  width: var(--slide-width, 1600px);
+  height: var(--slide-height, 900px);
   background: #FFFFFF;
   display: flex;
   flex-direction: row;
@@ -563,8 +563,8 @@ body {
 }
 
 .email-column {
-  width: calc(var(--slide-width, 1600px) - 400px);
-  flex-shrink: 0;
+  flex: 1;
+  min-width: 0;
   padding: 40px;
   box-sizing: border-box;
   background: #fff;
@@ -683,17 +683,23 @@ body {
 }
 
 /* Scale to fit mode - scales the slide to fit viewport */
-.slide-container.scale-mode-fit {
-  justify-content: center;
-}
-
 .slide-container.scale-mode-fit .slide-wrapper {
   transform-origin: top center;
+  /* Scale visual representation but percentages still calculate against actual dimensions */
   transform: scale(var(--scale-factor, 1));
   margin: 0 auto;
 }
 
-/* Full width scroll mode */
+.slide-container.scale-mode-fit .slide-wrapper {
+  transform-origin: top center;
+  /* Scale the visual representation but percentages still calculate against actual dimensions */
+  transform: scale(var(--scale-factor, 1));
+  margin: 0 auto;
+  /* Ensure content maintains actual proportions */
+  flex-direction: row;
+}
+
+/* Full width scroll mode - shows actual dimensions */
 .slide-container.scale-mode-scroll {
   justify-content: flex-start;
   width: auto;

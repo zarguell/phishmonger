@@ -354,6 +354,11 @@ function App() {
       updateScale()
       window.addEventListener('resize', updateScale)
       return () => window.removeEventListener('resize', updateScale)
+    } else if (viewMode === 'preview' && scaleMode === 'scroll') {
+      // Ensure no scaling in scroll mode
+      if (slideWrapperRef.current) {
+        slideWrapperRef.current.style.setProperty('--scale-factor', '1')
+      }
     }
   }, [viewMode, scaleMode, currentDimensions])
 
