@@ -1,3 +1,6 @@
+// NOTE: vite-plugin-pwa@1.2.0 only supports up to vite@^7.0.0.
+// Do NOT upgrade to vite 8 until vite-plugin-pwa ships vite 8 support.
+// See renovate.json for automated pinning.
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { viteSingleFile } from 'vite-plugin-singlefile'

@@ -1,6 +1,15 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
+  "packageRules": [
+    {
+      "description": "Pin vite to v7 — vite-plugin-pwa does not support vite 8 yet",
+      "matchPackageNames": ["vite"],
+      "allowedVersions": "<8.0.0"
+    },
+    {
+      "description": "Pin @vitejs/plugin-react to v5 — v6 requires vite 8",
+      "matchPackageNames": ["@vitejs/plugin-react"],
+      "allowedVersions": "<6.0.0"
+    }
   ]
 }
