@@ -11,5 +11,8 @@
       "matchPackageNames": ["@vitejs/plugin-react"],
       "allowedVersions": "<6.0.0"
     }
-  ]
+  ],
+  "lockFileMaintenance": {
+    "enabled": true
+  }
 }
