@@ -1,6 +1,21 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "lockFileMaintenance": { "enabled": true },
+  "minimumReleaseAge": "7 days",
+  "separateMajorMinor": true,
+  "automerge": true,
+  "automergeType": "pr",
   "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest", "lockFileMaintenance"],
+      "automerge": true,
+      "minimumReleaseAge": "7 days"
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    },
     {
       "description": "Pin vite to v7 — vite-plugin-pwa does not support vite 8 yet",
       "matchPackageNames": ["vite"],
@@ -11,8 +26,5 @@
       "matchPackageNames": ["@vitejs/plugin-react"],
       "allowedVersions": "<6.0.0"
     }
-  ],
-  "lockFileMaintenance": {
-    "enabled": true
-  }
+  ]
 }
